@@ -1,20 +1,12 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-:root {
-  --blue: #009bc9;
-  --blue-2: #89cee7;
-  --gray: #939598;
-  --gray-light-1: #dcdcdc;
-  --gray-light-2: #f6f6f6;
-}
-
-@theme inline {
-  --color-blue: var(--blue);
-  --color-blue-2: var(--blue-2);
-  --color-gray: var(--gray);
-  --color-gray-light-1: var(--gray-light-1);
-  --color-gray-light-2: var(--gray-light-2);
+@theme {
+  --color-blue: #009bc9;
+  --color-blue-2: #89cee7;
+  --color-gray: #939598;
+  --color-gray-light-1: #dcdcdc;
+  --color-gray-light-2: #f6f6f6;
 }
 
 @layer base {
@@ -24,12 +16,12 @@
   }
 
   body {
-    @apply bg-white text-black antialiased;
+    @apply min-h-screen bg-white text-black antialiased;
   }
 
   a,
   button {
-    @apply focus-visible:outline-none;
+    @apply cursor-pointer focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-none;
   }
 }
 
