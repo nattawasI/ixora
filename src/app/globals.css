@@ -1,20 +1,12 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-:root {
-  --blue: #009bc9;
-  --blue-2: #89cee7;
-  --gray: #939598;
-  --gray-light-1: #dcdcdc;
-  --gray-light-2: #f6f6f6;
-}
-
-@theme inline {
-  --color-blue: var(--blue);
-  --color-blue-2: var(--blue-2);
-  --color-gray: var(--gray);
-  --color-gray-light-1: var(--gray-light-1);
-  --color-gray-light-2: var(--gray-light-2);
+@theme {
+  --color-blue: #009bc9;
+  --color-blue-2: #89cee7;
+  --color-gray: #939598;
+  --color-gray-light-1: #dcdcdc;
+  --color-gray-light-2: #f6f6f6;
 }
 
 @layer base {
@@ -29,7 +21,7 @@
 
   a,
   button {
-    @apply focus-visible:outline-none;
+    @apply cursor-pointer focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-none;
   }
 }
 
@@ -56,6 +48,42 @@
 
   .typo-body-3 {
     @apply text-[0.625rem] leading-[1rem];
+  }
+
+  .btn-square {
+    @apply flex items-center justify-center transition-colors duration-300 [&>*]:duration-300;
+    width: var(--btn-size, 3.125rem);
+    height: var(--btn-size, 3.125rem);
+    background-color: var(--btn-bg-color, var(--color-white));
+    color: var(--btn-text-color, var(--color-black));
+
+    &:hover {
+      background-color: var(--btn-bg-color-hover, var(--color-blue));
+      color: var(--btn-text-color-hover, var(--color-white));
+    }
+  }
+
+  .btn-square-blue {
+    --btn-bg-color: var(--color-blue);
+    --btn-text-color: var(--color-white);
+    @apply before:bg-blue-2/30 relative before:absolute before:inset-0 before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100 [&>*]:relative;
+  }
+
+  .btn-square-gray {
+    --btn-bg-color: var(--color-gray);
+    --btn-text-color: var(--color-white);
+  }
+
+  .btn-square-text-blue {
+    --btn-text-color: var(--color-blue);
+  }
+
+  .btn-square-sm {
+    --btn-size: 2.5rem;
+  }
+
+  .btn-square-border {
+    @apply border-gray-light-1 border hover:border-transparent;
   }
 }
 
