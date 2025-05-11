@@ -76,8 +76,14 @@ export default function AllComponents() {
       </div>
       <div className="mx-auto max-w-[77.5rem]">
         <CardAward
-          mainImage={{
+          awardImage={{
             src: '/mockup/award.jpg',
+            alt: 'Award',
+            width: 143,
+            height: 62,
+          }}
+          projectImage={{
+            src: '/mockup/project-award.jpg',
             alt: 'Award',
           }}
           title={'Architecture Master Prize 2025 | Winner'}

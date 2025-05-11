@@ -3,7 +3,8 @@ import { cn } from '@/libs/utils/cn'
 import Image, { type ImageProps } from 'next/image'
 
 type CardAwardProps = ComponentProps<'div'> & {
-  mainImage: Omit<ImageProps, 'fill'>
+  awardImage: ImageProps
+  projectImage: Omit<ImageProps, 'fill'>
   title: string
   description: string
   date: string
@@ -14,7 +15,8 @@ type CardAwardProps = ComponentProps<'div'> & {
 }
 
 const CardAward = ({
-  mainImage,
+  awardImage,
+  projectImage,
   title,
   description,
   date,
@@ -25,7 +27,8 @@ const CardAward = ({
   className,
   ...props
 }: CardAwardProps) => {
-  const { src: mainSrc, alt: mainAlt, ...restMainImageProps } = mainImage
+  const { src: awardSrc, alt: awardAlt, ...restAwardImageProps } = awardImage
+  const { src: projectSrc, alt: projectAlt, ...restProjectImageProps } = projectImage
   return (
     <div className={cn('flex flex-wrap gap-[3.125rem] bg-white p-10', className)} {...props}>
       <div
@@ -34,8 +37,16 @@ const CardAward = ({
           'before:absolute before:inset-0 before:z-[1] before:bg-black/10 before:content-[""]',
         )}
       >
-        <Image src={mainSrc} alt={mainAlt} fill className="object-cover object-center" {...restMainImageProps} />
-        <div className="bg-gray relative z-[2] size-20"></div>
+        <Image
+          src={projectSrc}
+          alt={projectAlt}
+          fill
+          className="object-cover object-center"
+          {...restProjectImageProps}
+        />
+        <div className="relative z-[2] mt-5 ml-5">
+          <Image src={awardSrc} alt={awardAlt} {...restAwardImageProps} />
+        </div>
       </div>
       <div className="flex-1 space-y-5">
         <h2 className="typo-title-2 font-bold">{title}</h2>
