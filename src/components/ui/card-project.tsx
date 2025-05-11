@@ -1,18 +1,30 @@
 import { ComponentProps } from 'react'
 import { cn } from '@/libs/utils/cn'
-import Link, { type LinkProps } from 'next/link'
 import Image, { type ImageProps } from 'next/image'
 
-const CardProject = ({ className, ...props }: ComponentProps<'div'>) => {
-  return <div className={cn('relative', className)} {...props} />
+type CardProjectProps = ComponentProps<'div'> & {
+  image: React.ReactElement
+  projectName: string
+  projectNameTag?: 'h2' | 'h3'
+  location: string
 }
 
-const CardProjectLink = ({ className, ...props }: LinkProps & Omit<ComponentProps<'a'>, keyof LinkProps>) => {
-  return <Link className={cn('group/card block', className)} {...props} />
-}
-
-const CardProjectImageWrap = ({ className, ...props }: ComponentProps<'div'>) => {
-  return <div className={cn('bg-gray relative mb-[0.625rem] aspect-[22/15] overflow-hidden', className)} {...props} />
+const CardProject = ({
+  className,
+  image,
+  projectName,
+  projectNameTag = 'h2',
+  location,
+  ...props
+}: CardProjectProps) => {
+  const TagName = projectNameTag
+  return (
+    <div className={cn('group/card relative', className)} {...props}>
+      <div className="bg-gray relative mb-[0.625rem] aspect-[22/15] overflow-hidden">{image}</div>
+      <TagName className="typo-body-1 font-bold uppercase">{projectName}</TagName>
+      <p className="typo-body-3 text-gray">{location}</p>
+    </div>
+  )
 }
 
 const CardProjectImage = ({ src, alt, className, ...props }: Omit<ImageProps, 'fill'>) => {
@@ -31,25 +43,4 @@ const CardProjectImage = ({ src, alt, className, ...props }: Omit<ImageProps, 'f
   )
 }
 
-type CardProjectTitleTags = 'h2' | 'h3'
-
-const defaultTag: CardProjectTitleTags = 'h2'
-
-type CardProjectTitleProps<T extends CardProjectTitleTags = typeof defaultTag> = {
-  tag?: T
-} & ComponentProps<T>
-
-const CardProjectName = <T extends CardProjectTitleTags = typeof defaultTag>({
-  tag,
-  className,
-  ...props
-}: CardProjectTitleProps<T>) => {
-  const TagName = tag ?? defaultTag
-  return <TagName className={cn('typo-body-1 font-bold uppercase', className)} {...props} />
-}
-
-const CardProjectLocation = ({ className, ...props }: ComponentProps<'p'>) => {
-  return <p className={cn('typo-body-3 text-gray', className)} {...props} />
-}
-
-export { CardProject, CardProjectLink, CardProjectImageWrap, CardProjectImage, CardProjectName, CardProjectLocation }
+export { CardProject, CardProjectImage, type CardProjectProps }
