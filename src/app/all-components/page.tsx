@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ButtonSquare, buttonSquareVariants } from '@/components/ui/button-square'
 import { ButtonLink } from '@/components/ui/button-link'
 import { ButtonCopy } from '@/components/ui/button-copy'
-import { CardProject, CardProjectImage } from '@/components/ui/card-project'
+import { CardProject } from '@/components/ui/card-project'
 
 export default function AllComponents() {
   return (
@@ -44,14 +44,20 @@ export default function AllComponents() {
         </ButtonLink>
         <ButtonCopy label="Copy" copiedLabel="Copied" isCopied={false} />
         <div className="grid grid-cols-3 gap-5">
-          <Link href="#" className="block">
-            <CardProject
-              image={<CardProjectImage src="/mockup/project.jpg" alt="Card Project" />}
-              projectName={'XT HUAIKHWANG'}
-              projectNameTag="h2"
-              location={'BANGKOK, THAILAND'}
-            />
-          </Link>
+          <CardProject
+            link={{
+              href: '#',
+            }}
+            image={{
+              src: '/mockup/project.jpg',
+              alt: 'XT HUAIKHWANG',
+            }}
+            projectName={{
+              tag: 'h2',
+              text: 'XT HUAIKHWANG',
+            }}
+            location={'BANGKOK, THAILAND'}
+          />
         </div>
       </div>
     </div>
