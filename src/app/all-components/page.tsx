@@ -10,7 +10,7 @@ import { CardAward } from '@/components/ui/card-award'
 export default function AllComponents() {
   return (
     <>
-      <div className="mx-auto max-w-[77.5rem] px-4 lg:px-[3.125rem]">
+      <div className="c-container-px">
         <div className="space-y-[0.625rem]">
           <div className="space-y-[0.625rem]">
             <Link href="#" className={buttonSquareVariants()}>
@@ -74,7 +74,7 @@ export default function AllComponents() {
           </div>
         </div>
       </div>
-      <div className="mx-auto max-w-[77.5rem]">
+      <div className="c-container">
         <CardAward
           awardImage={{
             src: '/mockup/award.jpg',
