@@ -49,6 +49,10 @@
   .typo-body-3 {
     @apply text-[0.625rem] leading-[1rem];
   }
+
+  .card-hover-image {
+    @apply opacity-90 transition-all duration-300 group-hover/card:scale-110 group-hover/card:opacity-100;
+  }
 }
 
 @utility c-container {

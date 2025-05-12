@@ -6,6 +6,7 @@ import { ButtonCopy } from '@/components/ui/button-copy'
 import { CardProject } from '@/components/ui/card-project'
 import { CardPeople } from '@/components/ui/card-people'
 import { CardAward } from '@/components/ui/card-award'
+import { CardPress } from '@/components/ui/card-press'
 
 export default function AllComponents() {
   return (
@@ -55,7 +56,7 @@ export default function AllComponents() {
                 src: '/mockup/project.jpg',
                 alt: 'XT HUAIKHWANG',
               }}
-              projectName={{
+              title={{
                 tag: 'h2',
                 text: 'XT HUAIKHWANG',
               }}
@@ -86,16 +87,53 @@ export default function AllComponents() {
             src: '/mockup/project-award.jpg',
             alt: 'Award',
           }}
-          title={'Architecture Master Prize 2025 | Winner'}
+          title={{ tag: 'h2', text: 'Architecture Master Prize 2025 | Winner' }}
           description={
             'A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits, linked by a convergent iconic bridge that seamlessly connects diverse characteristics, offering an unparalleled living experience.'
           }
-          date={'April, 2025'}
+          date={'April, 2025'}
           project={'PANYA INDRA RESIDENCE'}
           type={'RESIDENTIAL'}
           year={'2025'}
           action={<ButtonLink href="#">See this project</ButtonLink>}
         />
+        <div className="space-y-10">
+          <CardPress
+            link={{
+              href: '#',
+            }}
+            image={{
+              src: '/mockup/press-1.jpg',
+              alt: 'Topic of press Abc...',
+            }}
+            date={'April, 2025'}
+            title={{
+              tag: 'h2',
+              text: 'Topic of press Abc...',
+            }}
+            description={
+              'A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits.'
+            }
+            isImageRight
+          />
+          <CardPress
+            link={{
+              href: '#',
+            }}
+            image={{
+              src: '/mockup/press-2.jpg',
+              alt: 'Topic of press Abc...',
+            }}
+            date={'April, 2025'}
+            title={{
+              tag: 'h2',
+              text: 'Topic of press Abc...',
+            }}
+            description={
+              'A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits.'
+            }
+          />
+        </div>
       </div>
     </>
   )

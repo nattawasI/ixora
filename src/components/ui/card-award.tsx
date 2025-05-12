@@ -2,10 +2,13 @@ import { ComponentProps, ReactElement } from 'react'
 import { cn } from '@/libs/utils/cn'
 import Image, { type ImageProps } from 'next/image'
 
-type CardAwardProps = ComponentProps<'div'> & {
+type CardAwardProps = Omit<ComponentProps<'div'>, 'title'> & {
   awardImage: ImageProps
   projectImage: Omit<ImageProps, 'fill'>
-  title: string
+  title: {
+    tag?: 'h2' | 'h3'
+    text: string
+  }
   description: string
   date: string
   project: string
@@ -29,6 +32,7 @@ const CardAward = ({
 }: CardAwardProps) => {
   const { src: awardSrc, alt: awardAlt, ...restAwardImageProps } = awardImage
   const { src: projectSrc, alt: projectAlt, ...restProjectImageProps } = projectImage
+  const TitleTag = title.tag ?? 'h2'
   return (
     <div className={cn('flex flex-wrap gap-[3.125rem] bg-white p-10', className)} {...props}>
       <div
@@ -49,7 +53,7 @@ const CardAward = ({
         </div>
       </div>
       <div className="flex-1 space-y-5">
-        <h2 className="typo-title-2 font-bold">{title}</h2>
+        <TitleTag className="typo-title-2 font-bold">{title.text}</TitleTag>
         <p className="typo-body-2 whitespace-pre-line">{description}</p>
         <p className="text-gray typo-body-3">{date}</p>
       </div>
