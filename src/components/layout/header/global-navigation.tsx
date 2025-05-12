@@ -15,8 +15,9 @@ import { IconLogo } from '@/components/ui/icons-color'
 import { HamburgerMenu } from '@/components/ui/icons-color/hamburger-menu'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import Link from 'next/link'
+import type { NavigationItemType } from '@/components/layout/type'
 
-const menuItems: { label: string; href: string }[] = [
+const menuItems: NavigationItemType[] = [
   { label: 'HOME', href: '/' },
   { label: 'PROJECTS', href: '/projects' },
   { label: 'AWARDS & PRESS', href: '/awards' },

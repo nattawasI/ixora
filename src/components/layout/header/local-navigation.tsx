@@ -3,8 +3,9 @@
 import { cn } from '@/libs/utils/cn'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import type { NavigationItemType } from '@/components/layout/type'
 
-const projectsItems: { label: string; href: string }[] = [
+const projectsItems: NavigationItemType[] = [
   { label: 'RESIDENTIAL', href: '/projects/residential' },
   { label: 'CONDOMINIUM', href: '/projects/condominium' },
   { label: 'HOSPITALITY', href: '/projects/hospitality' },
@@ -13,7 +14,7 @@ const projectsItems: { label: string; href: string }[] = [
   { label: 'PUBLIC SPACE ', href: '/projects/public-space' },
 ]
 
-const awardsAndPressItems: { label: string; href: string }[] = [
+const awardsAndPressItems: NavigationItemType[] = [
   { label: 'AWARDS', href: '/awards' },
   { label: 'PRESS', href: '/press' },
 ]
@@ -21,7 +22,7 @@ const awardsAndPressItems: { label: string; href: string }[] = [
 const LocalNavigation = () => {
   const pathname = usePathname()
 
-  let items: { label: string; href: string }[] = []
+  let items: NavigationItemType[] = []
   if (pathname.startsWith('/projects')) {
     items = projectsItems
   } else if (pathname.startsWith('/awards') || pathname.startsWith('/press')) {
