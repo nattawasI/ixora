@@ -2,6 +2,7 @@ import { ComponentProps } from 'react'
 import { cn } from '@/libs/utils/cn'
 import Link, { type LinkProps } from 'next/link'
 import Image, { type ImageProps } from 'next/image'
+import { Separator } from '@/components/ui/separator'
 
 type CardPressProps = Omit<ComponentProps<'div'>, 'title'> & {
   link: LinkProps
@@ -27,7 +28,7 @@ const CardPress = ({ className, link, image, date, title, description, isImageRi
         </div>
         <div className={cn('flex flex-col bg-white p-5 lg:p-10', isImageRight ? 'lg:order-1' : '')}>
           <p className="typo-body-3 text-gray">{date}</p>
-          <div role="none" className="bg-gray-light-1 mt-[0.625rem] mb-5 h-px" />
+          <Separator className="mt-[0.625rem] mb-5" />
           <TitleTag className="typo-title-2 group-hover/card:text-blue font-bold transition-colors duration-300">
             {title.text}
           </TitleTag>
