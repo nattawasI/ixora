@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { cn } from '@/libs/utils/cn'
 import {
   Dialog,
@@ -25,13 +26,15 @@ const menuItems: { label: string; href: string }[] = [
 ]
 
 const GlobalNavigation = () => {
+  const [open, setOpen] = useState(false)
+
   return (
-    <Dialog>
+    <Dialog modal={false} open={open} onOpenChange={setOpen}>
       <DialogTrigger className="block">
         <HamburgerMenu />
       </DialogTrigger>
       <DialogPortal>
-        <DialogOverlay className="fixed inset-0" />
+        <DialogOverlay />
         <DialogContent
           aria-describedby={undefined}
           className={cn(
@@ -51,7 +54,8 @@ const GlobalNavigation = () => {
               <div key={item.href}>
                 <Link
                   href={item.href}
-                  className="hover:text-blue typo-body-2 text-gray inline-block font-bold transition-colors duration-300"
+                  className="hover:text-blue typo-body-2 text-gray inline-block font-bold uppercase transition-colors duration-300"
+                  onClick={() => setOpen(false)}
                 >
                   {item.label}
                 </Link>
