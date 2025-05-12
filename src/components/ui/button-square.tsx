@@ -29,8 +29,8 @@ const buttonSquareVariants = cva(
 
 export type ButtonSquareProps = ComponentProps<'button'> & VariantProps<typeof buttonSquareVariants>
 
-const ButtonSquare = ({ className, theme, size, ...props }: ButtonSquareProps) => {
-  return <button className={cn(buttonSquareVariants({ theme, size, className }))} {...props} />
+const ButtonSquare = ({ type = 'button', className, theme, size, ...props }: ButtonSquareProps) => {
+  return <button type={type} className={cn(buttonSquareVariants({ theme, size, className }))} {...props} />
 }
 
 export { ButtonSquare, buttonSquareVariants }
