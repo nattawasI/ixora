@@ -18,6 +18,7 @@ type CardPressProps = Omit<ComponentProps<'div'>, 'title'> & {
 const CardPress = ({ className, link, image, date, title, description, isImageRight, ...props }: CardPressProps) => {
   const TitleTag = title.tag ?? 'h2'
   const { src, alt, ...restImageProps } = image
+
   return (
     <div className={cn('relative', className)} {...props}>
       <Link className="group/card grid lg:grid-cols-2" {...link}>
