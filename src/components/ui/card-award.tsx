@@ -37,7 +37,7 @@ const CardAward = ({
     <div className={cn('flex flex-wrap gap-[3.125rem] bg-white p-10', className)} {...props}>
       <div
         className={cn(
-          'bg-gray relative mb-[0.625rem] aspect-square w-[20rem] shrink-0 gap-[3.125rem] self-start overflow-hidden',
+          'bg-gray-light-1 relative mb-[0.625rem] aspect-square w-[20rem] shrink-0 gap-[3.125rem] self-start overflow-hidden',
           'before:absolute before:inset-0 before:z-[1] before:bg-black/10 before:content-[""]',
         )}
       >

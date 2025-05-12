@@ -11,7 +11,7 @@ const CardPeople = ({ image, name, position, ...props }: CardPeopleProps) => {
   const { src, alt, ...restImageProps } = image
   return (
     <div {...props}>
-      <div className="bg-gray relative mb-[0.625rem] aspect-square overflow-hidden">
+      <div className="bg-gray-light-1 relative mb-[0.625rem] aspect-square overflow-hidden">
         <Image src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />
       </div>
       <div className="min-h-[6.25rem]">

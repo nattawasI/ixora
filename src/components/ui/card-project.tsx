@@ -19,7 +19,7 @@ const CardProject = ({ className, link, image, title, location, ...props }: Card
   return (
     <div className={cn('relative', className)} {...props}>
       <Link className="group/card block" {...link}>
-        <div className="bg-gray relative mb-[0.625rem] aspect-[22/15] overflow-hidden">
+        <div className="bg-gray-light-1 relative mb-[0.625rem] aspect-[22/15] overflow-hidden">
           <Image src={src} alt={alt} fill className="card-hover-image object-cover object-center" {...restImageProps} />
         </div>
         <ProjectNameTag className="typo-body-1 font-bold uppercase">{title.text}</ProjectNameTag>
