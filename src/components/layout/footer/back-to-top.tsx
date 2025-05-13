@@ -11,17 +11,10 @@ const BackToTop = () => {
   return (
     <button
       type="button"
-      className="text-gray hover:text-blue flex size-9 items-center justify-center"
+      className="text-gray hover:text-blue flex size-9 items-center justify-center transition-colors duration-300"
       onClick={handleClick}
     >
-      <svg
-        width="36"
-        height="36"
-        viewBox="0 0 36 36"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="size-9 transition-colors duration-300"
-      >
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-9">
         <path d="M31.5 24.75L18 11.25L4.5 24.75" stroke="currentColor" />
       </svg>
     </button>

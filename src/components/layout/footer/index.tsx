@@ -45,7 +45,9 @@ const socials: { label: string; href: string }[] = [
 ]
 
 const Footer = () => {
-  const footerLinkClassName = cn('border-gray-light-1 typo-body-2 inline-flex items-center gap-x-2.5 border-b')
+  const footerLinkClassName = cn(
+    'border-gray-light-1 typo-body-2 inline-flex items-center gap-x-2.5 border-b focus-visible:ring-offset-0',
+  )
 
   return (
     <footer className="flex min-h-[28.875rem] shrink-0 flex-col px-4 pt-10 lg:px-10 lg:pt-[7.125rem]">
@@ -79,7 +81,7 @@ const Footer = () => {
         <AccordionItem value="social">
           <AccordionTrigger>SOCIAL</AccordionTrigger>
           <AccordionContent>
-            <div className="inline-flex flex-col gap-y-[0.313rem]">
+            <div className="inline-flex flex-col gap-y-[0.313rem] pl-0.5">
               {socials.map((item) => (
                 <Link key={item.label} href={item.href} className={footerLinkClassName} target="_blank">
                   {item.label}
