@@ -31,7 +31,7 @@ const GlobalNavigation = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="block">
+      <DialogTrigger aria-label="Open global navigation" className="block">
         <HamburgerMenu />
       </DialogTrigger>
       <DialogPortal>
@@ -53,7 +53,7 @@ const GlobalNavigation = () => {
           <VisuallyHidden>
             <DialogTitle>Global Navigation</DialogTitle>
           </VisuallyHidden>
-          <DialogClose className="block">
+          <DialogClose aria-label="Close global navigation" className="block">
             <IconLogo className="size-[1.625rem]" />
           </DialogClose>
           <nav className="mt-5 space-y-[0.313rem]">

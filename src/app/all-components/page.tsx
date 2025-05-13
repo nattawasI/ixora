@@ -82,12 +82,7 @@ export default function AllComponents() {
       </div>
       <div className="c-container">
         <CardAward
-          awardImage={{
-            src: '/mockup/award.jpg',
-            alt: 'Award',
-            width: 143,
-            height: 62,
-          }}
+          award="architecture-masterprize"
           projectImage={{
             src: '/mockup/project-award.jpg',
             alt: 'Award',

@@ -50,7 +50,12 @@ const Footer = () => {
   )
 
   return (
-    <footer className="flex min-h-[28.875rem] shrink-0 flex-col px-4 pt-10 lg:px-10 lg:pt-[7.125rem]">
+    <footer
+      className={cn(
+        'flex shrink-0 flex-col px-4 pt-10 pb-2.5',
+        'lg:min-h-[28.875rem] lg:px-10 lg:pt-[7.125rem] lg:pb-5',
+      )}
+    >
       <Accordion className="lg:flex-1">
         <AccordionItem value="email">
           <AccordionTrigger>EMAIL</AccordionTrigger>
@@ -104,7 +109,7 @@ const Footer = () => {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      <div className="mt-auto flex shrink-0 justify-center">
+      <div className="mt-auto flex shrink-0 justify-center max-lg:mt-[6.25rem]">
         <BackToTop />
       </div>
     </footer>

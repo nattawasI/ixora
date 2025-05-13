@@ -7,8 +7,10 @@ import { Plus } from '@/components/ui/icons'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
 import type { LinkProps } from 'next/link'
 
+type AwardNameType = 'architecture-masterprize' | 'tala-awards'
+
 type CardAwardProps = Omit<ComponentProps<'div'>, 'title'> & {
-  awardImage: ImageProps
+  award: AwardNameType
   projectImage: Omit<ImageProps, 'fill'>
   title: {
     tag?: 'h2' | 'h3'
@@ -23,7 +25,7 @@ type CardAwardProps = Omit<ComponentProps<'div'>, 'title'> & {
 }
 
 const CardAward = ({
-  awardImage,
+  award,
   projectImage,
   title,
   description,
@@ -35,8 +37,22 @@ const CardAward = ({
   className,
   ...props
 }: CardAwardProps) => {
-  const { src: awardSrc, alt: awardAlt, ...restAwardImageProps } = awardImage
   const { src: projectSrc, alt: projectAlt, ...restProjectImageProps } = projectImage
+
+  const awardImage: Record<AwardNameType, { src: string; alt: string; width: number; height: number }> = {
+    'architecture-masterprize': {
+      src: '/awards/architecture-masterprize.jpg',
+      alt: 'ARCHITECTURE MASTERPRIZE',
+      width: 143,
+      height: 62,
+    },
+    'tala-awards': {
+      src: '/awards/tala-awards.jpg',
+      alt: 'TALA AWARDS',
+      width: 80,
+      height: 80,
+    },
+  }
 
   const TitleTag = title.tag ?? 'h2'
 
@@ -60,7 +76,12 @@ const CardAward = ({
           {...restProjectImageProps}
         />
         <div className="relative z-[2] mt-5 ml-5">
-          <Image src={awardSrc} alt={awardAlt} {...restAwardImageProps} />
+          <Image
+            src={awardImage[award].src}
+            alt={awardImage[award].alt}
+            width={awardImage[award].width}
+            height={awardImage[award].height}
+          />
         </div>
       </div>
       <div className="flex-1 space-y-2">
