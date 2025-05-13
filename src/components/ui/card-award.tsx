@@ -42,7 +42,7 @@ const CardAward = ({
 
   return (
     <div
-      className={cn('flex flex-col gap-5 bg-white p-4', 'lg:flex-row lg:gap-8 lg:p-10 xl:gap-[3.125rem]', className)}
+      className={cn('flex flex-col gap-5 bg-white p-4', 'lg:flex-row lg:gap-9 lg:p-10', 'xl:gap-[3.125rem]', className)}
       {...props}
     >
       <div
@@ -103,25 +103,25 @@ const CardAward = ({
 
 const CardAwardLoading = () => {
   return (
-    <div className={cn('flex flex-col gap-5 bg-white p-4', 'lg:flex-row lg:p-10 xl:gap-[3.125rem]')}>
+    <div className={cn('flex flex-col gap-5 bg-white p-4', 'lg:flex-row lg:gap-9 lg:p-10', 'xl:gap-[3.125rem]')}>
       <div className={cn('skeleton aspect-square', 'lg:w-[20rem] lg:shrink-0 lg:self-start')} />
       <div className="flex-1 space-y-2">
-        <TextSkeleton variant="typo-body-2" className="w-1/4" />
-        <TextSkeleton variant="typo-title-2" />
+        <TextSkeleton variant="typo-body-2" className="w-28" />
+        <TextSkeleton variant="typo-title-2" className="w-1/2" />
         <div>
           <TextSkeleton variant="typo-body-2" />
           <TextSkeleton variant="typo-body-2" className="w-3/4" />
-          <TextSkeleton variant="typo-body-3" className="mt-5 w-1/4" />
+          <TextSkeleton variant="typo-body-3" className="mt-5 w-20" />
         </div>
       </div>
       <Separator orientation="horizontal" className="animate-pulse lg:hidden" />
       <Separator orientation="vertical" className="animate-pulse max-lg:hidden" />
-      <div className={cn('flex flex-col', 'lg:w-[16.625rem] lg:shrink-0')}>
+      <div className={cn('flex flex-col', 'lg:w-[13.5rem] lg:shrink-0')}>
         <div className="flex flex-1 flex-col gap-y-2.5 lg:gap-5">
           {Array.from({ length: 3 }).map((_, index) => (
             <div key={index}>
-              <TextSkeleton variant="typo-body-2" className="w-1/3" />
-              <TextSkeleton variant="typo-body-2" className="w-2/3" />
+              <TextSkeleton variant="typo-body-2" className="w-28" />
+              <TextSkeleton variant="typo-body-2" className="w-32" />
             </div>
           ))}
         </div>
