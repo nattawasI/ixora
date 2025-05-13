@@ -35,16 +35,16 @@ const AccordionTrigger = ({ className, children, ...props }: ComponentProps<type
     <AccordionPrimitiveHeader>
       <AccordionPrimitiveTrigger
         className={cn(
-          'border-gray-light-1 text-gray relative flex h-8 w-full items-center gap-x-2.5 border-t pt-2 font-bold uppercase',
+          'border-gray-light-1 text-gray relative flex h-8 w-full items-center gap-x-2.5 border-t pt-2 font-bold uppercase transition-colors duration-300',
           'before:bg-blue before:absolute before:-top-px before:left-0 before:h-px before:w-0 before:transition-[width] before:duration-300 before:content-[""]',
-          'hover:before:w-full',
+          'hover:text-blue hover:before:w-full',
           '[&[data-state=open]>svg]:rotate-45',
           className,
         )}
         {...props}
       >
         {children}
-        <Plus className="ml-auto size-3 transition-transform duration-300" />
+        <Plus className="text-blue ml-auto size-3 transition-transform duration-300" />
       </AccordionPrimitiveTrigger>
     </AccordionPrimitiveHeader>
   )
@@ -53,17 +53,15 @@ const AccordionTrigger = ({ className, children, ...props }: ComponentProps<type
 const AccordionContent = ({ className, children, ...props }: ComponentProps<typeof AccordionPrimitiveContent>) => {
   return (
     <AccordionPrimitiveContent
-      className={cn(
-        'group data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden transition-all',
-        className,
-      )}
+      className="group data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden transition-all"
       {...props}
     >
       <div
         className={cn(
-          'py-5 transition-opacity duration-700 ease-in-out',
+          'py-5 transition-opacity duration-500 ease-in-out',
           'group-data-[state=closed]:animate-out group-data-[state=open]:animate-in',
           'group-data-[state=closed]:fade-out-0 group-data-[state=open]:fade-in-0',
+          className,
         )}
       >
         {children}
