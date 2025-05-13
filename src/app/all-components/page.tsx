@@ -12,45 +12,47 @@ export default function AllComponents() {
   return (
     <>
       <div className="c-container-px">
-        <div className="space-y-2.5">
+        <div className="space-y-5">
           <div className="space-y-2.5">
-            <Link href="#" className={buttonSquareVariants()}>
-              <Facebook />
-            </Link>
-            <Link href="#" className={buttonSquareVariants()}>
-              <Line />
-            </Link>
-            <Link href="#" className={buttonSquareVariants()}>
-              <X />
-            </Link>
-            <Link href="#" className={buttonSquareVariants()}>
-              <Email />
-            </Link>
-            <Link href="#" className={buttonSquareVariants({ theme: 'blue' })}>
-              <CopyLink />
-            </Link>
+            <div className="space-y-2.5">
+              <Link href="#" className={buttonSquareVariants()}>
+                <Facebook />
+              </Link>
+              <Link href="#" className={buttonSquareVariants()}>
+                <Line />
+              </Link>
+              <Link href="#" className={buttonSquareVariants()}>
+                <X />
+              </Link>
+              <Link href="#" className={buttonSquareVariants()}>
+                <Email />
+              </Link>
+              <Link href="#" className={buttonSquareVariants({ theme: 'blue' })}>
+                <CopyLink />
+              </Link>
+            </div>
+            <ButtonSquare theme="gray">
+              <Close />
+            </ButtonSquare>
+            <ButtonSquare theme="gray">
+              <ArrowLeft />
+            </ButtonSquare>
+            <ButtonSquare theme="gray">
+              <ArrowRight />
+            </ButtonSquare>
+            <ButtonSquare theme="text-blue">
+              <Video />
+            </ButtonSquare>
+            <ButtonLink href="#">Award & Press</ButtonLink>
+            <ButtonLink href="#" arrow="left" isFullWidth className="uppercase">
+              BACK TO RESIDENTIAL
+            </ButtonLink>
+            <div className="flex gap-x-2">
+              <ButtonCopy isCopied={false} />
+              <ButtonCopy isCopied={true} />
+            </div>
           </div>
-          <ButtonSquare theme="gray">
-            <Close />
-          </ButtonSquare>
-          <ButtonSquare theme="gray">
-            <ArrowLeft />
-          </ButtonSquare>
-          <ButtonSquare theme="gray">
-            <ArrowRight />
-          </ButtonSquare>
-          <ButtonSquare theme="text-blue">
-            <Video />
-          </ButtonSquare>
-          <ButtonLink href="#">Award & Press</ButtonLink>
-          <ButtonLink href="#" arrow="left" isFullWidth className="uppercase">
-            BACK TO RESIDENTIAL
-          </ButtonLink>
-          <div className="flex gap-x-2">
-            <ButtonCopy isCopied={false} />
-            <ButtonCopy isCopied={true} />
-          </div>
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             <CardProject
               link={{
                 href: '#',
@@ -67,7 +69,7 @@ export default function AllComponents() {
             />
             <CardProjectLoading />
           </div>
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             <CardPeople
               image={{
                 src: '/mockup/people.jpg',
