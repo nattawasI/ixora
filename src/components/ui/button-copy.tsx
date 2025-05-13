@@ -4,11 +4,9 @@ import { Copy } from '@/components/ui/icons/copy'
 
 const ButtonCopy = ({
   className,
-  label,
-  copiedLabel,
   isCopied,
   ...props
-}: Omit<ComponentProps<'button'>, 'children'> & { label: string; copiedLabel: string; isCopied?: boolean }) => {
+}: Omit<ComponentProps<'button'>, 'children'> & { isCopied?: boolean }) => {
   return (
     <button
       type="button"
@@ -22,7 +20,7 @@ const ButtonCopy = ({
       {...props}
     >
       {!isCopied ? <Copy /> : null}
-      <span className="mt-0.5">{isCopied ? copiedLabel : label}</span>
+      <span className="mt-0.5">{isCopied ? 'Copied' : 'Copy'}</span>
     </button>
   )
 }

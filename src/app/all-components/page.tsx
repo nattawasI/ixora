@@ -46,7 +46,10 @@ export default function AllComponents() {
           <ButtonLink href="#" arrow="left" isFullWidth className="uppercase">
             BACK TO RESIDENTIAL
           </ButtonLink>
-          <ButtonCopy label="Copy" copiedLabel="Copied" isCopied={false} />
+          <div className="flex gap-x-2">
+            <ButtonCopy isCopied={false} />
+            <ButtonCopy isCopied={true} />
+          </div>
           <div className="grid grid-cols-3 gap-5">
             <CardProject
               link={{
