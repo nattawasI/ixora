@@ -67,7 +67,7 @@
   }
 
   .card-hover-image {
-    @apply opacity-90 transition-all duration-300 group-hover/card:scale-110 group-hover/card:opacity-100;
+    @apply transition-all duration-300 group-hover/card:scale-110 group-hover/card:opacity-100 lg:opacity-90;
   }
 
   .skeleton {

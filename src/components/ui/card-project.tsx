@@ -20,7 +20,7 @@ const CardProject = ({ className, link, image, title, location, ...props }: Card
   return (
     <div className={cn('relative', className)} {...props}>
       <Link className="group/card block" {...link}>
-        <div className="bg-gray-light-1 relative mb-[0.625rem] aspect-[22/15] overflow-hidden">
+        <div className="bg-gray-light-1 relative mb-2.5 aspect-[22/15] overflow-hidden">
           <Image src={src} alt={alt} fill className="card-hover-image object-cover object-center" {...restImageProps} />
         </div>
         <ProjectNameTag className="typo-body-1 font-bold uppercase">{title.text}</ProjectNameTag>
@@ -33,7 +33,7 @@ const CardProject = ({ className, link, image, title, location, ...props }: Card
 const CardProjectLoading = () => {
   return (
     <div>
-      <div className="skeleton mb-[0.625rem] aspect-[22/15]" />
+      <div className="skeleton mb-2.5 aspect-[22/15]" />
       <TextSkeleton variant="typo-body-1" className="w-2/3" />
       <TextSkeleton variant="typo-body-3" className="w-1/3" />
     </div>

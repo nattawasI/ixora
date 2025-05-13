@@ -5,15 +5,15 @@ import { ButtonLink } from '@/components/ui/button-link'
 import { ButtonCopy } from '@/components/ui/button-copy'
 import { CardProject, CardProjectLoading } from '@/components/ui/card-project'
 import { CardPeople, CardPeopleLoading } from '@/components/ui/card-people'
-import { CardAward } from '@/components/ui/card-award'
+import { CardAward, CardAwardLoading } from '@/components/ui/card-award'
 import { CardPress, CardPressLoading } from '@/components/ui/card-press'
 
 export default function AllComponents() {
   return (
     <>
       <div className="c-container-px">
-        <div className="space-y-[0.625rem]">
-          <div className="space-y-[0.625rem]">
+        <div className="space-y-2.5">
+          <div className="space-y-2.5">
             <Link href="#" className={buttonSquareVariants()}>
               <Facebook />
             </Link>
@@ -91,14 +91,17 @@ export default function AllComponents() {
           }}
           title={{ tag: 'h2', text: 'Architecture Master Prize 2025 | Winner' }}
           description={
-            'A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits, linked by a convergent iconic bridge that seamlessly connects diverse characteristics, offering an unparalleled living experience.'
+            'A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits.'
           }
           date={'April, 2025'}
-          project={'PANYA INDRA RESIDENCE'}
+          projectName={'PANYA INDRA RESIDENCE'}
           type={'RESIDENTIAL'}
           year={'2025'}
-          action={<ButtonLink href="#">See this project</ButtonLink>}
+          projectLink={{
+            href: '#',
+          }}
         />
+        <CardAwardLoading />
         <div className="space-y-10">
           <CardPress
             link={{

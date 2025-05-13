@@ -35,7 +35,7 @@ const AccordionTrigger = ({ className, children, ...props }: ComponentProps<type
     <AccordionPrimitiveHeader>
       <AccordionPrimitiveTrigger
         className={cn(
-          'border-gray-light-1 text-gray relative flex h-8 w-full items-center gap-x-[0.625rem] border-t pt-2 font-bold uppercase',
+          'border-gray-light-1 text-gray relative flex h-8 w-full items-center gap-x-2.5 border-t pt-2 font-bold uppercase',
           'before:bg-blue before:absolute before:-top-px before:left-0 before:h-px before:w-0 before:transition-[width] before:duration-300 before:content-[""]',
           'hover:before:w-full',
           '[&[data-state=open]>svg]:rotate-45',

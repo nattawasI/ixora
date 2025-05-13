@@ -17,7 +17,7 @@ const TextSkeleton = ({ variant = 'typo-body-1', className }: TextSkeletonProps)
     'typo-title-2': 'h-[1.25rem] lg:h-[1.625rem]',
     'typo-body-1': 'h-[0.938rem]',
     'typo-body-2': 'h-[0.813rem]',
-    'typo-body-3': 'h-[0.625rem]',
+    'typo-body-3': 'h-2.5',
   }
 
   return (
