@@ -3,10 +3,10 @@ import Link from 'next/link'
 import { ButtonSquare, buttonSquareVariants } from '@/components/ui/button-square'
 import { ButtonLink } from '@/components/ui/button-link'
 import { ButtonCopy } from '@/components/ui/button-copy'
-import { CardProject } from '@/components/ui/card-project'
-import { CardPeople } from '@/components/ui/card-people'
+import { CardProject, CardProjectLoading } from '@/components/ui/card-project'
+import { CardPeople, CardPeopleLoading } from '@/components/ui/card-people'
 import { CardAward } from '@/components/ui/card-award'
-import { CardPress } from '@/components/ui/card-press'
+import { CardPress, CardPressLoading } from '@/components/ui/card-press'
 
 export default function AllComponents() {
   return (
@@ -62,6 +62,7 @@ export default function AllComponents() {
               }}
               location={'BANGKOK, THAILAND'}
             />
+            <CardProjectLoading />
           </div>
           <div className="grid grid-cols-3 gap-5">
             <CardPeople
@@ -72,6 +73,7 @@ export default function AllComponents() {
               name={'Chanchai Jarungruangkiat'}
               position={'Founder / Partner'}
             />
+            <CardPeopleLoading />
           </div>
         </div>
       </div>
@@ -133,6 +135,7 @@ export default function AllComponents() {
               'A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits.'
             }
           />
+          <CardPressLoading />
         </div>
       </div>
     </>

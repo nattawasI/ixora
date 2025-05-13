@@ -2,6 +2,7 @@ import { ComponentProps } from 'react'
 import { cn } from '@/libs/utils/cn'
 import Link, { type LinkProps } from 'next/link'
 import Image, { type ImageProps } from 'next/image'
+import { TextSkeleton } from '@/components/ui/text-skeleton'
 
 type CardProjectProps = Omit<ComponentProps<'div'>, 'title'> & {
   link: LinkProps
@@ -29,4 +30,14 @@ const CardProject = ({ className, link, image, title, location, ...props }: Card
   )
 }
 
-export { CardProject, type CardProjectProps }
+const CardProjectLoading = () => {
+  return (
+    <div>
+      <div className="skeleton mb-[0.625rem] aspect-[22/15]" />
+      <TextSkeleton variant="typo-body-1" className="w-2/3" />
+      <TextSkeleton variant="typo-body-3" className="w-1/3" />
+    </div>
+  )
+}
+
+export { CardProject, CardProjectLoading, type CardProjectProps }

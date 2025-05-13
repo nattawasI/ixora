@@ -59,7 +59,7 @@
   }
 
   .typo-body-2 {
-    @apply text-[0.938rem] leading-[1.375rem];
+    @apply text-[0.813rem] leading-[1.375rem];
   }
 
   .typo-body-3 {
@@ -68,6 +68,10 @@
 
   .card-hover-image {
     @apply opacity-90 transition-all duration-300 group-hover/card:scale-110 group-hover/card:opacity-100;
+  }
+
+  .skeleton {
+    @apply bg-gray-light-1 animate-pulse;
   }
 }
 

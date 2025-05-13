@@ -3,6 +3,7 @@ import { cn } from '@/libs/utils/cn'
 import Link, { type LinkProps } from 'next/link'
 import Image, { type ImageProps } from 'next/image'
 import { Separator } from '@/components/ui/separator'
+import { TextSkeleton } from '@/components/ui/text-skeleton'
 
 type CardPressProps = Omit<ComponentProps<'div'>, 'title'> & {
   link: LinkProps
@@ -39,4 +40,21 @@ const CardPress = ({ className, link, image, date, title, description, isImageRi
   )
 }
 
-export { CardPress, type CardPressProps }
+const CardPressLoading = ({ isImageRight }: { isImageRight?: boolean }) => {
+  return (
+    <div className="grid lg:grid-cols-2">
+      <div className={cn('skeleton mb-[0.625rem] aspect-[10/7]', isImageRight ? 'lg:order-2' : '')} />
+      <div className={cn('flex flex-col bg-white p-5 lg:p-10', isImageRight ? 'lg:order-1' : '')}>
+        <TextSkeleton variant="typo-body-3" className="w-1/4" />
+        <Separator className="mt-[0.625rem] mb-5 animate-pulse" />
+        <TextSkeleton variant="typo-title-2" className="w-2/4" />
+        <div className="mt-auto max-lg:mt-5">
+          <TextSkeleton variant="typo-body-2" />
+          <TextSkeleton variant="typo-body-2" className="w-2/3" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export { CardPress, CardPressLoading, type CardPressProps }
