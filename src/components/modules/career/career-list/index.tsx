@@ -50,7 +50,7 @@ const mockupData: { id: string; title: string; numberPositionRequired: number; r
 
 const CareerList = () => {
   return (
-    <Accordion type="multiple">
+    <Accordion type="multiple" className="c-container-px mb-12.5 lg:mb-[6.25rem]">
       {mockupData.map((item) => (
         <AccordionItem key={item.id} value={item.id}>
           <AccordionTrigger>

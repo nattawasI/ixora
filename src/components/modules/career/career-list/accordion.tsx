@@ -58,7 +58,7 @@ const AccordionContent = ({
     >
       <div
         className={cn(
-          'pb-5 transition-opacity duration-500 ease-in-out',
+          'pb-2.5 transition-opacity duration-500 ease-in-out lg:pb-5',
           'group-data-[state=closed]/accordion-content:animate-out group-data-[state=closed]/accordion-content:fade-out-0',
           'group-data-[state=open]/accordion-content:animate-in group-data-[state=open]/accordion-content:fade-in-0',
         )}
