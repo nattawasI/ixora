@@ -1,11 +1,11 @@
 import { cn } from '@/libs/utils/cn'
 import { Montserrat } from 'next/font/google'
 import './globals.css'
-import { Preloader } from "@/components/modules/preloader";
 
 /** components */
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
+import { Preloader } from "@/components/layout/preloader";
 
 import type { Metadata } from 'next'
 
