@@ -15,6 +15,7 @@ const Preloader = () => {
   const logoRef = useRef<HTMLDivElement>(null)
   const boxTextRef = useRef<HTMLDivElement>(null)
   const textRef = useRef<HTMLParagraphElement>(null)
+  const descriptionRef = useRef<HTMLParagraphElement>(null)
   const lineTopLeftRef = useRef<HTMLSpanElement>(null)
   const lineTopRightRef = useRef<HTMLSpanElement>(null)
   const lineBottomRightRef = useRef<HTMLSpanElement>(null)
@@ -31,6 +32,35 @@ const Preloader = () => {
       { opacity: 0, scale: 0.5 },
       { opacity: 1, scale: 1, duration: 2, ease: 'power3.inOut' }
     )
+
+    tl.fromTo(
+      boxTextRef.current,
+      {
+        opacity: 0,
+        y: 20,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.inOut',
+      }, "-=0.75"
+    )
+
+    tl.fromTo(
+      descriptionRef.current,
+      {
+        opacity: 0,
+        y: 20,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.inOut',
+      }, "-=0.75"
+    )
+
   },{scope: containerRef})
 
   const handleMouseEnter = contextSafe(() => {
@@ -57,10 +87,10 @@ const Preloader = () => {
     })
 
     tl.to(logoRef.current, {
-      width: 28,
-      height: 28,
-      top: 12,
-      left: 16,
+      width: 26,
+      height: 26,
+      top: 33,
+      left: 40,
       duration: 2.5,
       ease: 'power3.inOut',
       onStart: () => {
@@ -72,7 +102,7 @@ const Preloader = () => {
             lineBottomLeftRef.current,
           ],
           {
-            width: 12,
+            width: 10,
             height: 2,
             duration: 2,
           }
@@ -117,7 +147,7 @@ const Preloader = () => {
         gsap.to(
           [lineBottomLeftRef.current, lineBottomRightRef.current],
           {
-            bottom: 6,
+            bottom: 4,
             duration: 1,
             delay: 0.5,
           }
@@ -128,8 +158,8 @@ const Preloader = () => {
     tl.to(containerRef.current, {
       pointerEvents: 'none',
       opacity: 0,
-      duration: 1.5,
-      delay: 0.5,
+      duration: 1,
+      delay: 0.25,
       ease: 'power3.inOut',
     })
   })
@@ -178,7 +208,7 @@ const Preloader = () => {
             EXPLORE OUR PROJECTS
           </p>
         </div>
-        <p className="typo-body-1 uppercase text-gray">
+        <p ref={descriptionRef} className="typo-body-1 uppercase text-gray">
           LIMITLESS POSSIBILITY
         </p>
       </div>
