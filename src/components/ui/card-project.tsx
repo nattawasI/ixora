@@ -14,11 +14,11 @@ type CardProjectProps = Omit<ComponentProps<'div'>, 'title'> & {
   location: string
 }
 
-const CardProject = ({ className, link, image, title, location, ...props }: CardProjectProps) => {
+const CardProject = ({ link, image, title, location, ...props }: CardProjectProps) => {
   const ProjectNameTag = title.tag ?? 'h2'
   const { src, alt, ...restImageProps } = image
   return (
-    <div className={cn('relative', className)} {...props}>
+    <div {...props}>
       <Link className="group/card block" {...link}>
         <div className="bg-gray-light-1 card-hover-image relative mb-2.5 aspect-[22/15] overflow-hidden">
           <Image src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />

@@ -95,10 +95,8 @@ const GlobalNavigation = () => {
 
 export { GlobalNavigation }
 
-const CloseIcon = ({
-  // isShowMenu,
-  ...props
-}: React.ComponentProps<'svg'> & { isShowMenu: boolean }) => {
+const CloseIcon = ({ isShowMenu, ...props }: React.ComponentProps<'svg'> & { isShowMenu: boolean }) => {
+  console.log(isShowMenu)
   /** use "isShowMenu" to make icon animation */
   return (
     <svg width="31" height="21" viewBox="0 0 31 21" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
