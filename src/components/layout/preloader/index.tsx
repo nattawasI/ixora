@@ -1,13 +1,13 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { MouseEvent, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { cn } from '@/libs/utils/cn'
 import { useMediaQuery } from '@/libs/hooks/use-media-query'
 
 
-gsap.registerPlugin(useGSAP); 
+gsap.registerPlugin(useGSAP);
 
 const Preloader = () => {
   /* refs */
@@ -21,25 +21,28 @@ const Preloader = () => {
   const lineBottomRightRef = useRef<HTMLSpanElement>(null)
   const lineBottomLeftRef = useRef<HTMLSpanElement>(null)
 
-  const [isComplete, setIsComplete] = useState<boolean>(false)
-
+  /* hooks */
   const isMobile = useMediaQuery("(max-width: 768px)")
-  const {contextSafe} = useGSAP(() => {
+
+  /* states */
+  const [isComplete, setIsComplete] = useState<boolean>(false)
+  const [isClicked, setIsClicked] = useState<boolean>(false)
+
+  const { contextSafe } = useGSAP(() => {
     const tl = gsap.timeline()
 
-    tl.fromTo(
+    gsap.set(logoRef.current, { opacity: 0, scale: 0.5 })
+    gsap.set(boxTextRef.current, { opacity: 0, y: 20 })
+    gsap.set(descriptionRef.current, { opacity: 0, y: 20 })
+
+    tl.to(
       logoRef.current,
-      { opacity: 0, scale: 0.5 },
       { opacity: 1, scale: 1, duration: 2, ease: 'power3.inOut' }
     )
 
-    tl.fromTo(
+    tl.to(
       boxTextRef.current,
       {
-        opacity: 0,
-        y: 20,
-      },
-      {
         opacity: 1,
         y: 0,
         duration: 1,
@@ -47,21 +50,16 @@ const Preloader = () => {
       }, "-=0.75"
     )
 
-    tl.fromTo(
+    tl.to(
       descriptionRef.current,
       {
-        opacity: 0,
-        y: 20,
-      },
-      {
         opacity: 1,
         y: 0,
         duration: 1,
         ease: 'power3.inOut',
       }, "-=0.75"
     )
-
-  },{scope: containerRef})
+  }, { scope: containerRef })
 
   const handleMouseEnter = contextSafe(() => {
     gsap.to(boxTextRef.current, {
@@ -72,14 +70,17 @@ const Preloader = () => {
   })
 
   const handleMouseLeave = contextSafe(() => {
+    if (isClicked) return
     gsap.to(boxTextRef.current, {
-      width: isMobile ? "90px" : "105px",
+      width: isMobile ? "5.625rem" : "6.5rem",
       duration: 0.4,
       ease: "power2.out",
     })
   })
 
-  const handleClick = contextSafe(() => {
+  const handleClick = contextSafe((e: MouseEvent) => {
+    e.stopPropagation()
+    setIsClicked(true)
     const tl = gsap.timeline({
       onComplete: () => {
         setIsComplete(true) // unmount the Preloader after animation
@@ -158,14 +159,13 @@ const Preloader = () => {
     tl.to(containerRef.current, {
       pointerEvents: 'none',
       opacity: 0,
-      duration: 1,
+      duration: 0.5,
       delay: 0.25,
       ease: 'power3.inOut',
-    })
+    }, "-=0.5")
   })
 
-
-  if (isComplete) return null
+  if ( isComplete) return null
 
   return (
     <div
@@ -196,14 +196,14 @@ const Preloader = () => {
       <div className="space-y-2 text-center">
         <div
           ref={boxTextRef}
-          className={cn("whitespace-nowrap overflow-hidden cursor-pointer mx-auto", isMobile ? 'w-[90px]' : 'w-[105px]')}
+          className={cn("whitespace-nowrap overflow-hidden cursor-pointer mx-auto", isMobile ? 'w-[5.625rem]' : 'w-[6.5rem]', { "w-[6.5rem] pointer-events-none": isClicked })}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onClick={handleClick}
         >
           <p
             ref={textRef}
-            className="hover:text-blue typo-title-3 font-bold uppercase text-gray"
+            className={cn("hover:text-blue typo-title-3 font-bold uppercase text-gray", { "text-blue": isClicked })}
           >
             EXPLORE OUR PROJECTS
           </p>

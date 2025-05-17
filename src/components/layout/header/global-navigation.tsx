@@ -79,7 +79,10 @@ const GlobalNavigation = () => {
                   <Link
                     href={item.href}
                     className="hover:text-blue typo-body-2 text-gray inline-block font-bold uppercase transition-colors duration-300"
-                    onClick={() => setOpen(false)}
+                    onClick={() => {
+                      setOpen(false)
+                      setIsShowMenu(false)
+                    }}
                   >
                     {item.label}
                   </Link>
