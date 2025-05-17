@@ -97,7 +97,11 @@ export { GlobalNavigation }
 
 const CloseIcon = ({ isShowMenu, ...props }: React.ComponentProps<'svg'> & { isShowMenu: boolean }) => {
   console.log(isShowMenu)
-  /** use "isShowMenu" to make icon animation */
+  /**
+   * ใช้ "isShowMenu" เพื่อให้ icon สามารถ animation ได้
+   * ตั้นสามารถสร้าง file หรือ component ใหม่ได้ตามใจเลยครับ
+   * */
+
   return (
     <svg width="31" height="21" viewBox="0 0 31 21" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path d="M12.8694 5.97491L0.919146 5.97539L0.919145 7.81368L12.8699 7.81367L12.8694 5.97491Z" fill="#89CEE7" />
