@@ -7,10 +7,7 @@ import { Plus } from '@/components/ui/icons'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
 import type { LinkProps } from 'next/link'
 
-type AwardNameType = 'architecture-masterprize' | 'tala-awards'
-
 type CardAwardProps = Omit<ComponentProps<'div'>, 'title'> & {
-  award: AwardNameType
   projectImage: Omit<ImageProps, 'fill'>
   title: {
     tag?: 'h2' | 'h3'
@@ -25,7 +22,6 @@ type CardAwardProps = Omit<ComponentProps<'div'>, 'title'> & {
 }
 
 const CardAward = ({
-  award,
   projectImage,
   title,
   description,
@@ -39,21 +35,6 @@ const CardAward = ({
 }: CardAwardProps) => {
   const { src: projectSrc, alt: projectAlt, ...restProjectImageProps } = projectImage
 
-  const awardImage: Record<AwardNameType, { src: string; alt: string; width: number; height: number }> = {
-    'architecture-masterprize': {
-      src: '/awards/architecture-masterprize.jpg',
-      alt: 'ARCHITECTURE MASTERPRIZE',
-      width: 143,
-      height: 62,
-    },
-    'tala-awards': {
-      src: '/awards/tala-awards.jpg',
-      alt: 'TALA AWARDS',
-      width: 80,
-      height: 80,
-    },
-  }
-
   const TitleTag = title.tag ?? 'h2'
 
   return (
@@ -65,7 +46,6 @@ const CardAward = ({
         className={cn(
           'bg-gray-light-1 relative aspect-square overflow-hidden',
           'lg:w-[20rem] lg:shrink-0 lg:self-start',
-          'before:absolute before:inset-0 before:z-[1] before:bg-black/10 before:content-[""]',
         )}
       >
         <Image
@@ -75,21 +55,13 @@ const CardAward = ({
           className="object-cover object-center"
           {...restProjectImageProps}
         />
-        <div className="relative z-[2] mt-5 ml-5">
-          <Image
-            src={awardImage[award].src}
-            alt={awardImage[award].alt}
-            width={awardImage[award].width}
-            height={awardImage[award].height}
-          />
-        </div>
       </div>
       <div className="flex-1 space-y-2">
         <p className="text-gray typo-body-2">{date}</p>
         <TitleTag className="typo-title-2 font-bold">{title.text}</TitleTag>
         <div>
           <p className="typo-body-2 whitespace-pre-line">{description}</p>
-          <button className="typo-body-3 text-gray mt-5 inline-flex items-center gap-x-[0.313rem] font-bold uppercase">
+          <button className="typo-body-3 text-gray mt-5 inline-flex items-center gap-x-1.25 font-bold uppercase">
             READ MORE
             <Plus className="text-blue -mt-px size-2.5" />
           </button>
@@ -99,15 +71,15 @@ const CardAward = ({
       <Separator orientation="vertical" className="max-lg:hidden" />
       <div className={cn('flex flex-col', 'lg:w-[13.5rem] lg:shrink-0')}>
         <div className="flex flex-1 flex-col gap-y-2.5 lg:gap-5">
-          <div className="space-y-[0.313rem]">
+          <div className="space-y-1.25">
             <p className="typo-body-2 text-gray">Project :</p>
             <p className="typo-body-2 font-bold uppercase">{projectName}</p>
           </div>
-          <div className="space-y-[0.313rem]">
+          <div className="space-y-1.25">
             <p className="typo-body-2 text-gray">Type :</p>
             <p className="typo-body-2 font-bold uppercase">{type}</p>
           </div>
-          <div className="space-y-[0.313rem]">
+          <div className="space-y-1.25">
             <p className="typo-body-2 text-gray">Year :</p>
             <p className="typo-body-2 font-bold uppercase">{year}</p>
           </div>

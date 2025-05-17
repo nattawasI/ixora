@@ -86,7 +86,7 @@ const Footer = () => {
         <AccordionItem value="social">
           <AccordionTrigger>SOCIAL</AccordionTrigger>
           <AccordionContent>
-            <div className="inline-flex flex-col gap-y-[0.313rem] pl-0.5">
+            <div className="inline-flex flex-col gap-y-1.25 pl-0.5">
               {socials.map((item) => (
                 <Link key={item.label} href={item.href} className={footerLinkClassName} target="_blank">
                   {item.label}

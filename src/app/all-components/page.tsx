@@ -7,6 +7,7 @@ import { CardProject, CardProjectLoading } from '@/components/ui/card-project'
 import { CardPeople, CardPeopleLoading } from '@/components/ui/card-people'
 import { CardAward, CardAwardLoading } from '@/components/ui/card-award'
 import { CardPress, CardPressLoading } from '@/components/ui/card-press'
+import { CardOther } from '@/components/ui/card-other'
 
 export default function AllComponents() {
   return (
@@ -60,6 +61,7 @@ export default function AllComponents() {
               image={{
                 src: '/mockup/project.jpg',
                 alt: 'XT HUAIKHWANG',
+                sizes: '100vw, (min-width: 768px) 33vw',
               }}
               title={{
                 tag: 'h2',
@@ -74,6 +76,7 @@ export default function AllComponents() {
               image={{
                 src: '/mockup/people.jpg',
                 alt: 'Chanchai Jarungruangkiat',
+                sizes: '50vw, (min-width: 1024px) 33vw, (min-width: 1280px) 25vw',
               }}
               name={'Chanchai Jarungruangkiat'}
               position={'Founder / Partner'}
@@ -84,10 +87,10 @@ export default function AllComponents() {
       </div>
       <div className="c-container">
         <CardAward
-          award="architecture-masterprize"
           projectImage={{
-            src: '/mockup/project-award.jpg',
+            src: '/mockup/award-1.jpg',
             alt: 'Award',
+            sizes: '100vw, (min-width: 1024px) 320px',
           }}
           title={{ tag: 'h2', text: 'Architecture Master Prize 2025 | Winner' }}
           description={
@@ -110,6 +113,7 @@ export default function AllComponents() {
             image={{
               src: '/mockup/press-1.jpg',
               alt: 'Topic of press Abc...',
+              sizes: '100vw, (min-width: 1024px) 50vw',
             }}
             date={'April, 2025'}
             title={{
@@ -128,6 +132,7 @@ export default function AllComponents() {
             image={{
               src: '/mockup/press-2.jpg',
               alt: 'Topic of press Abc...',
+              sizes: '100vw, (min-width: 1024px) 50vw',
             }}
             date={'April, 2025'}
             title={{
@@ -140,6 +145,25 @@ export default function AllComponents() {
           />
           <CardPressLoading />
         </div>
+        <CardOther
+          image={{
+            src: '/images/culture.jpg',
+            alt: 'CULTURE',
+            sizes: '100vw, (min-width: 1024px) 50vw',
+          }}
+          title={{
+            tag: 'h2',
+            text: 'CULTURE',
+          }}
+          description={
+            'We value collaboration, creativity, and purpose-driven design — turning every space into something meaningful through thoughtful ideas and teamwork.'
+          }
+          action={
+            <ButtonLink href="/career" className="max-lg:w-full">
+              Career
+            </ButtonLink>
+          }
+        />
       </div>
     </>
   )
