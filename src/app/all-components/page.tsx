@@ -12,7 +12,7 @@ import { CardOther } from '@/components/ui/card-other'
 export default function AllComponents() {
   return (
     <>
-      <div className="c-container-px">
+      <div className="c-container">
         <div className="space-y-5">
           <div className="space-y-2.5">
             <div className="space-y-2.5">

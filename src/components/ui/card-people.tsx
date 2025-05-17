@@ -1,4 +1,5 @@
 import { ComponentProps } from 'react'
+import { cn } from '@/libs/utils/cn'
 import Image, { type ImageProps } from 'next/image'
 import { IconLogo } from '@/components/ui/icons-color/icon-logo'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
@@ -23,21 +24,23 @@ const CardPeople = ({ image, name, position, ...props }: CardPeopleProps) => {
           {...restImageProps}
         />
       </div>
-      <div className="relative min-h-20 space-y-1.25 pl-6">
+      <div className="relative min-h-16 space-y-1.25 pl-6 lg:min-h-20">
         <IconLogo className="absolute top-1.25 left-0 size-3.5" />
-        <h2 className="typo-body-1 font-bold uppercase">{name}</h2>
-        <p className="typo-body-2 text-gray font-bold">{position}</p>
+        <h2 className="typo-body-1 font-bold break-words uppercase">{name}</h2>
+        <p className="typo-body-2 text-gray">{position}</p>
       </div>
     </div>
   )
 }
 
-const CardPeopleLoading = () => {
+const CardPeopleLoading = ({ className }: { className?: string }) => {
   return (
-    <div>
+    <div className={cn('flex flex-col gap-2.5', className)}>
       <div className="skeleton mb-2.5 aspect-square" />
-      <TextSkeleton variant="typo-body-1" className="w-2/3" />
-      <TextSkeleton variant="typo-body-2" className="w-1/3" />
+      <div className="min-h-16 lg:min-h-20">
+        <TextSkeleton variant="typo-body-1" className="w-2/3" />
+        <TextSkeleton variant="typo-body-2" className="w-1/3" />
+      </div>
     </div>
   )
 }

@@ -88,11 +88,11 @@
 }
 
 @utility c-container {
-  @apply mx-auto max-w-[77.5rem] max-lg:px-4;
+  @apply mx-auto max-w-[77.5rem] px-4 lg:px-[3.125rem];
 }
 
-@utility c-container-px {
-  @apply mx-auto max-w-[77.5rem] px-4 lg:px-[3.125rem];
+@utility c-container-no-px {
+  @apply mx-auto max-w-[77.5rem] max-lg:px-4;
 }
 
 @utility scrollbar-hidden {
