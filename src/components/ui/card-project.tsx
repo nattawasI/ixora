@@ -1,5 +1,4 @@
 import { ComponentProps } from 'react'
-import { cn } from '@/libs/utils/cn'
 import Link, { type LinkProps } from 'next/link'
 import Image, { type ImageProps } from 'next/image'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
