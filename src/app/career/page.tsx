@@ -1,11 +1,13 @@
+import { HeadingPage } from '@/components/ui/heading-page'
+import { CareerList } from '@/components/modules/career/career-list'
+
 export default function Career() {
   return (
-    <div className="c-container">
-      <h1>Career</h1>
-      <p>
-        We are dedicated to exploring the limitless possibilities of landscape architectural design, crafting spaces
-        that seamlessly integrate the beauty of nature with human needs.
-      </p>
-    </div>
+    <>
+      <div className="c-container-px">
+        <HeadingPage>CAREER</HeadingPage>
+        <CareerList />
+      </div>
+    </>
   )
 }

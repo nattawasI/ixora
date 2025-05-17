@@ -77,6 +77,14 @@
   .skeleton {
     @apply bg-gray-light-1 animate-pulse;
   }
+
+  .list-bullet {
+    @apply space-y-2;
+
+    & > li {
+      @apply relative list-none pl-6 before:absolute before:top-0 before:left-2 before:size-1 before:bg-black before:content-[''];
+    }
+  }
 }
 
 @utility c-container {
