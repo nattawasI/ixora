@@ -1,6 +1,7 @@
 import { cn } from '@/libs/utils/cn'
 import { Montserrat } from 'next/font/google'
 import './globals.css'
+import { Preloader } from "@/components/modules/preloader";
 
 /** components */
 import { Header } from '@/components/layout/header'
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn('typo-body-1 flex min-h-screen flex-col', montserrat.className)}>
+        <Preloader />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
