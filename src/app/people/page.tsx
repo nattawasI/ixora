@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import { HeadingPage } from '@/components/ui/heading-page'
 import { PeopleList, PeopleListLoading } from '@/components/modules/people/people-list'
 import { CardOther } from '@/components/ui/card-other'
-import { ButtonLink } from '@/components/ui/button-link'
+import { ButtonLink } from '@/components/ui/button-arrow'
 
 export default function People() {
   return (

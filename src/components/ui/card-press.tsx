@@ -1,12 +1,10 @@
 import { ComponentProps } from 'react'
 import { cn } from '@/libs/utils/cn'
-import Link, { type LinkProps } from 'next/link'
 import Image, { type ImageProps } from 'next/image'
 import { Separator } from '@/components/ui/separator'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
 
 type CardPressProps = Omit<ComponentProps<'div'>, 'title'> & {
-  link: LinkProps
   image: Omit<ImageProps, 'fill'>
   date: string
   title: {
@@ -17,30 +15,28 @@ type CardPressProps = Omit<ComponentProps<'div'>, 'title'> & {
   isImageRight?: boolean
 }
 
-const CardPress = ({ link, image, date, title, description, isImageRight, ...props }: CardPressProps) => {
+const CardPress = ({ image, date, title, description, isImageRight, className, ...props }: CardPressProps) => {
   const TitleTag = title.tag ?? 'h2'
   const { src, alt, ...restImageProps } = image
 
   return (
-    <div {...props}>
-      <Link className="group/card grid lg:grid-cols-2" {...link}>
-        <div
-          className={cn(
-            'bg-gray-light-1 card-hover-image relative aspect-[10/7] overflow-hidden',
-            isImageRight ? 'lg:order-2' : '',
-          )}
-        >
-          <Image src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />
-        </div>
-        <div className={cn('flex flex-col bg-white p-5 lg:p-10', isImageRight ? 'lg:order-1' : '')}>
-          <p className="typo-body-3 text-gray">{date}</p>
-          <Separator className="mt-2.5 mb-5" />
-          <TitleTag className="typo-title-2 group-hover/card:text-blue font-bold transition-colors duration-300">
-            {title.text}
-          </TitleTag>
-          <p className="typo-body-2 mt-auto whitespace-pre-line max-lg:mt-2.5">{description}</p>
-        </div>
-      </Link>
+    <div className={cn('group/card grid lg:grid-cols-2', className)} {...props}>
+      <div
+        className={cn(
+          'bg-gray-light-1 card-hover-image relative aspect-[10/7] overflow-hidden',
+          isImageRight ? 'lg:order-2' : '',
+        )}
+      >
+        <Image src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />
+      </div>
+      <div className={cn('flex flex-col bg-white p-5 lg:p-10', isImageRight ? 'lg:order-1' : '')}>
+        <p className="typo-body-3 text-gray">{date}</p>
+        <Separator className="mt-2.5 mb-5" />
+        <TitleTag className="typo-title-2 group-hover/card:text-blue font-bold transition-colors duration-300">
+          {title.text}
+        </TitleTag>
+        <p className="typo-body-2 mt-auto whitespace-pre-line max-lg:mt-2.5">{description}</p>
+      </div>
     </div>
   )
 }

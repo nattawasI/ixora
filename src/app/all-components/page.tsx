@@ -1,7 +1,7 @@
 import { Facebook, Line, X, Email, CopyLink, Close, ArrowLeft, ArrowRight, Video } from '@/components/ui/icons'
 import Link from 'next/link'
 import { ButtonSquare, buttonSquareVariants } from '@/components/ui/button-square'
-import { ButtonLink } from '@/components/ui/button-link'
+import { ButtonArrow, ButtonArrowLink } from '@/components/ui/button-arrow'
 import { ButtonCopy } from '@/components/ui/button-copy'
 import { CardProject, CardProjectLoading } from '@/components/ui/card-project'
 import { CardPeople, CardPeopleLoading } from '@/components/ui/card-people'
@@ -44,31 +44,30 @@ export default function AllComponents() {
             <ButtonSquare theme="text-blue">
               <Video />
             </ButtonSquare>
-            <ButtonLink href="#">Award & Press</ButtonLink>
-            <ButtonLink href="#" arrow="left" isFullWidth className="uppercase">
+            <ButtonArrowLink href="#">Award & Press</ButtonArrowLink>
+            <ButtonArrowLink href="#" arrow="left" isFullWidth className="uppercase">
               BACK TO RESIDENTIAL
-            </ButtonLink>
+            </ButtonArrowLink>
             <div className="flex gap-x-2">
               <ButtonCopy isCopied={false} />
               <ButtonCopy isCopied={true} />
             </div>
           </div>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            <CardProject
-              link={{
-                href: '#',
-              }}
-              image={{
-                src: '/mockup/project.jpg',
-                alt: 'XT HUAIKHWANG',
-                sizes: '100vw, (min-width: 768px) 33vw',
-              }}
-              title={{
-                tag: 'h2',
-                text: 'XT HUAIKHWANG',
-              }}
-              location={'BANGKOK, THAILAND'}
-            />
+            <Link href="#" className="block">
+              <CardProject
+                image={{
+                  src: '/mockup/project.jpg',
+                  alt: 'XT HUAIKHWANG',
+                  sizes: '100vw, (min-width: 768px) 33vw',
+                }}
+                title={{
+                  tag: 'h2',
+                  text: 'XT HUAIKHWANG',
+                }}
+                location={'BANGKOK, THAILAND'}
+              />
+            </Link>
             <CardProjectLoading />
           </div>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -100,51 +99,45 @@ export default function AllComponents() {
           projectName={'PANYA INDRA RESIDENCE'}
           type={'RESIDENTIAL'}
           year={'2025'}
-          action={
-            <ButtonLink isFullWidth href="/">
-              See this project
-            </ButtonLink>
-          }
+          action={<ButtonArrow isFullWidth>See this project</ButtonArrow>}
         />
         <CardAwardLoading />
         <div className="space-y-10">
-          <CardPress
-            link={{
-              href: '#',
-            }}
-            image={{
-              src: '/mockup/press-1.jpg',
-              alt: 'Topic of press Abc...',
-              sizes: '100vw, (min-width: 1024px) 50vw',
-            }}
-            date={'April, 2025'}
-            title={{
-              tag: 'h2',
-              text: 'Topic of press Abc...',
-            }}
-            description={
-              'A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits.'
-            }
-            isImageRight
-          />
-          <CardPress
-            link={{
-              href: '#',
-            }}
-            image={{
-              src: '/mockup/press-2.jpg',
-              alt: 'Topic of press Abc...',
-              sizes: '100vw, (min-width: 1024px) 50vw',
-            }}
-            date={'April, 2025'}
-            title={{
-              tag: 'h2',
-              text: 'Topic of press Abc...',
-            }}
-            description={
-              'A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits.'
-            }
-          />
+          <Link href="#" className="block">
+            <CardPress
+              image={{
+                src: '/mockup/press-1.jpg',
+                alt: 'Topic of press Abc...',
+                sizes: '100vw, (min-width: 1024px) 50vw',
+              }}
+              date={'April, 2025'}
+              title={{
+                tag: 'h2',
+                text: 'Topic of press Abc...',
+              }}
+              description={
+                'A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits.'
+              }
+              isImageRight
+            />
+          </Link>
+          <Link href="#" className="block">
+            <CardPress
+              image={{
+                src: '/mockup/press-2.jpg',
+                alt: 'Topic of press Abc...',
+                sizes: '100vw, (min-width: 1024px) 50vw',
+              }}
+              date={'April, 2025'}
+              title={{
+                tag: 'h2',
+                text: 'Topic of press Abc...',
+              }}
+              description={
+                'A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits.'
+              }
+            />
+          </Link>
           <CardPressLoading />
         </div>
         <CardOther
@@ -161,9 +154,9 @@ export default function AllComponents() {
             'We value collaboration, creativity, and purpose-driven design — turning every space into something meaningful through thoughtful ideas and teamwork.'
           }
           action={
-            <ButtonLink href="/career" className="max-lg:w-full">
+            <ButtonArrowLink href="/career" className="max-lg:w-full">
               Career
-            </ButtonLink>
+            </ButtonArrowLink>
           }
         />
       </div>

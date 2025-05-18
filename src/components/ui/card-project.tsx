@@ -1,10 +1,9 @@
 import { ComponentProps } from 'react'
-import Link, { type LinkProps } from 'next/link'
+import { cn } from '@/libs/utils/cn'
 import Image, { type ImageProps } from 'next/image'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
 
 type CardProjectProps = Omit<ComponentProps<'div'>, 'title'> & {
-  link: LinkProps
   image: Omit<ImageProps, 'fill'>
   title: {
     tag?: 'h2' | 'h3'
@@ -13,18 +12,16 @@ type CardProjectProps = Omit<ComponentProps<'div'>, 'title'> & {
   location: string
 }
 
-const CardProject = ({ link, image, title, location, ...props }: CardProjectProps) => {
+const CardProject = ({ image, title, location, className, ...props }: CardProjectProps) => {
   const ProjectNameTag = title.tag ?? 'h2'
   const { src, alt, ...restImageProps } = image
   return (
-    <div {...props}>
-      <Link className="group/card block" {...link}>
-        <div className="bg-gray-light-1 card-hover-image relative mb-2.5 aspect-[22/15] overflow-hidden">
-          <Image src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />
-        </div>
-        <ProjectNameTag className="typo-body-1 font-bold uppercase">{title.text}</ProjectNameTag>
-        <p className="typo-body-3 text-gray">{location}</p>
-      </Link>
+    <div className={cn('group/card block', className)} {...props}>
+      <div className="bg-gray-light-1 card-hover-image relative mb-2.5 aspect-[22/15] overflow-hidden">
+        <Image src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />
+      </div>
+      <ProjectNameTag className="typo-body-1 font-bold uppercase">{title.text}</ProjectNameTag>
+      <p className="typo-body-3 text-gray">{location}</p>
     </div>
   )
 }

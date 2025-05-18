@@ -2,7 +2,6 @@ import { ComponentProps, ReactElement } from 'react'
 import { cn } from '@/libs/utils/cn'
 import Image, { type ImageProps } from 'next/image'
 import { Separator } from '@/components/ui/separator'
-import { ButtonLink } from '@/components/ui/button-link'
 import { Plus } from '@/components/ui/icons'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
 
