@@ -2,6 +2,8 @@
 @import 'tw-animate-css';
 
 @theme {
+  --color-white: #ffffff;
+  --color-black: #000000;
   --color-blue: #009bc9;
   --color-blue-2: #89cee7;
   --color-gray: #939598;
@@ -53,12 +55,20 @@
 
 @layer base {
   body {
-    @apply min-h-svh bg-white text-black antialiased;
+    @apply min-h-svh text-black antialiased;
   }
 
   a,
   button {
     @apply cursor-pointer focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-none;
+  }
+
+  body {
+    background-color: var(--bg-color, var(--color-white));
+  }
+
+  #header {
+    background-color: var(--bg-color, var(--color-white));
   }
 }
 
