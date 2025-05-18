@@ -6,7 +6,7 @@ import { ProjectCategoriesNav } from '@/components/modules/projects/project-cate
 import { AwardsAndPressNav } from '@/components/modules/awards-and-press/awards-and-press-nav'
 import type { NavigationItemType } from '@/components/layout/type'
 
-const projectCategories: NavigationItemType[] = [
+const mockupProjectCategories: NavigationItemType[] = [
   { label: 'RESIDENTIAL', href: '/projects/residential' },
   { label: 'CONDOMINIUM', href: '/projects/condominium' },
   { label: 'HOSPITALITY', href: '/projects/hospitality' },
@@ -25,7 +25,7 @@ const Header = () => {
       <GlobalNavigation />
       <HeaderNavigation
         projectCategoriesNav={
-          <ProjectCategoriesNav layout="horizontal" categories={projectCategories} className="max-lg:hidden" />
+          <ProjectCategoriesNav layout="horizontal" categories={mockupProjectCategories} className="max-lg:hidden" />
         }
         awardsAndPressNav={<AwardsAndPressNav className="max-lg:hidden" />}
       />
