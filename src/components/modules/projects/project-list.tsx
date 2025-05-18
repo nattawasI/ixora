@@ -2,8 +2,7 @@ import { cn } from '@/libs/utils/cn'
 import { CardProject, CardProjectLoading } from '@/components/ui/card-project'
 import Link from 'next/link'
 
-const ProjectList = async () => {
-  /** fetch here */
+const ProjectList = () => {
   return (
     <div className="list-project">
       {Array.from({ length: 21 }).map((_, index) => (
