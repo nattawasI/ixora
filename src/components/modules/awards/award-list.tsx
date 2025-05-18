@@ -1,5 +1,5 @@
 import { CardAward, CardAwardLoading } from '@/components/ui/card-award'
-import { ButtonArrow } from '@/components/ui/button-arrow'
+import { ButtonArrowLink } from '@/components/ui/button-arrow'
 
 const AwardList = async () => {
   /** fetch here */
@@ -24,7 +24,11 @@ const AwardList = async () => {
           projectName={'PANYA INDRA RESIDENCE'}
           type={'RESIDENTIAL'}
           year={'2025'}
-          action={<ButtonArrow isFullWidth>See this project</ButtonArrow>}
+          action={
+            <ButtonArrowLink href="#" isFullWidth>
+              See this project
+            </ButtonArrowLink>
+          }
         />
       ))}
     </div>

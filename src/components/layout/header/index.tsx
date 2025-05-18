@@ -5,7 +5,10 @@ import { LocalNavigation } from '@/components/layout/header/local-navigation'
 
 const Header = () => {
   return (
-    <header className="sticky top-0 z-10 flex h-[3.75rem] shrink-0 items-center justify-between gap-x-[1.25rem] bg-white px-4 lg:h-[6.25rem] lg:px-10">
+    <header
+      id="header"
+      className="sticky top-0 z-10 flex h-[3.75rem] shrink-0 items-center justify-between gap-x-[1.25rem] bg-white px-4 lg:h-[6.25rem] lg:px-10"
+    >
       <GlobalNavigation />
       <LocalNavigation />
       <Link href="/" aria-label="Home" className="block w-[6.75rem] lg:w-[9.375rem]">
