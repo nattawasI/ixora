@@ -26,9 +26,9 @@ const CardProject = ({ image, title, location, className, ...props }: CardProjec
   )
 }
 
-const CardProjectLoading = () => {
+const CardProjectLoading = ({ className }: { className?: string }) => {
   return (
-    <div>
+    <div className={className}>
       <div className="skeleton mb-2.5 aspect-[22/15]" />
       <TextSkeleton variant="typo-body-1" className="w-2/3" />
       <TextSkeleton variant="typo-body-3" className="w-1/3" />

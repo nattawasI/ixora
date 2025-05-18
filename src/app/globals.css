@@ -107,6 +107,10 @@
     }
   }
 
+  .list-project {
+    @apply grid gap-5 md:grid-cols-3 lg:grid-cols-3;
+  }
+
   .list-awards-press {
     @apply space-y-4 lg:space-y-10;
   }
