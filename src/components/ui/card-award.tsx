@@ -1,14 +1,13 @@
-import { ComponentProps } from 'react'
+import { ComponentProps, ReactElement } from 'react'
 import { cn } from '@/libs/utils/cn'
 import Image, { type ImageProps } from 'next/image'
 import { Separator } from '@/components/ui/separator'
 import { ButtonLink } from '@/components/ui/button-link'
 import { Plus } from '@/components/ui/icons'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
-import type { LinkProps } from 'next/link'
 
 type CardAwardProps = Omit<ComponentProps<'div'>, 'title'> & {
-  projectImage: Omit<ImageProps, 'fill'>
+  image: Omit<ImageProps, 'fill'>
   title: {
     tag?: 'h2' | 'h3'
     text: string
@@ -18,22 +17,22 @@ type CardAwardProps = Omit<ComponentProps<'div'>, 'title'> & {
   projectName: string
   type: string
   year: string
-  projectLink: LinkProps
+  action: ReactElement
 }
 
 const CardAward = ({
-  projectImage,
+  image,
   title,
   description,
   date,
   projectName,
   type,
   year,
-  projectLink,
+  action,
   className,
   ...props
 }: CardAwardProps) => {
-  const { src: projectSrc, alt: projectAlt, ...restProjectImageProps } = projectImage
+  const { src, alt, ...restImageProps } = image
 
   const TitleTag = title.tag ?? 'h2'
 
@@ -48,13 +47,7 @@ const CardAward = ({
           'lg:w-[20rem] lg:shrink-0 lg:self-start',
         )}
       >
-        <Image
-          src={projectSrc}
-          alt={projectAlt}
-          fill
-          className="object-cover object-center"
-          {...restProjectImageProps}
-        />
+        <Image src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />
       </div>
       <div className="flex-1 space-y-2">
         <p className="text-gray typo-body-2">{date}</p>
@@ -84,11 +77,7 @@ const CardAward = ({
             <p className="typo-body-2 font-bold uppercase">{year}</p>
           </div>
         </div>
-        <div className="shrink-0 max-lg:mt-5">
-          <ButtonLink isFullWidth {...projectLink}>
-            See this project
-          </ButtonLink>
-        </div>
+        <div className="shrink-0 max-lg:mt-5">{action}</div>
       </div>
     </div>
   )

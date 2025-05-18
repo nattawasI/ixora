@@ -6,7 +6,7 @@ export default function Press() {
     <div className="c-container">
       <h1 className="sr-only">PRESS</h1>
       <Suspense fallback={<PressListLoading />}>
-        <PressList />
+        <PressListLoading />
       </Suspense>
     </div>
   )

@@ -3,7 +3,7 @@ import { CardPress, CardPressLoading } from '@/components/ui/card-press'
 const PressList = async () => {
   /** fetch here */
   return (
-    <div className="space-y-4 lg:space-y-10">
+    <div className="list-awards-press">
       {Array.from({ length: 4 }).map((_, index) => (
         <CardPress
           key={index}
@@ -32,7 +32,7 @@ const PressList = async () => {
 
 const PressListLoading = () => {
   return (
-    <div className="space-y-4 lg:space-y-10">
+    <div className="list-awards-press">
       {Array.from({ length: 2 }).map((_, index) => (
         <CardPressLoading key={index} isImageRight={index % 2 === 0} />
       ))}

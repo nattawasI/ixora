@@ -1,11 +1,13 @@
+import { Suspense } from 'react'
+import { AwardsList, AwardsListLoading } from '@/components/modules/awards/awards-list'
+
 export default function Awards() {
   return (
     <div className="c-container">
-      <h1>Awards</h1>
-      <p>
-        We are dedicated to exploring the limitless possibilities of landscape architectural design, crafting spaces
-        that seamlessly integrate the beauty of nature with human needs.
-      </p>
+      <h1 className="sr-only">AWARDS</h1>
+      <Suspense fallback={<AwardsListLoading />}>
+        <AwardsList />
+      </Suspense>
     </div>
   )
 }

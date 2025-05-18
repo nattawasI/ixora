@@ -87,7 +87,7 @@ export default function AllComponents() {
       </div>
       <div className="c-container">
         <CardAward
-          projectImage={{
+          image={{
             src: '/mockup/award-1.jpg',
             alt: 'Award',
             sizes: '100vw, (min-width: 1024px) 320px',
@@ -100,9 +100,11 @@ export default function AllComponents() {
           projectName={'PANYA INDRA RESIDENCE'}
           type={'RESIDENTIAL'}
           year={'2025'}
-          projectLink={{
-            href: '#',
-          }}
+          action={
+            <ButtonLink isFullWidth href="/">
+              See this project
+            </ButtonLink>
+          }
         />
         <CardAwardLoading />
         <div className="space-y-10">

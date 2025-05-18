@@ -85,6 +85,14 @@
       @apply relative list-none pl-6 before:absolute before:top-2.5 before:left-2.5 before:size-0.75 before:rounded-full before:bg-black before:content-[''];
     }
   }
+
+  .list-awards-press {
+    @apply space-y-4 lg:space-y-10;
+  }
+
+  .list-people {
+    @apply grid grid-cols-2 gap-x-2.5 gap-y-4 md:grid-cols-4 lg:gap-x-7.5 lg:gap-y-2.5;
+  }
 }
 
 @utility c-container {
