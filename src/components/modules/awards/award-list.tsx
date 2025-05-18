@@ -1,7 +1,7 @@
 import { CardAward, CardAwardLoading } from '@/components/ui/card-award'
 import { ButtonLink } from '@/components/ui/button-link'
 
-const AwardsList = async () => {
+const AwardList = async () => {
   /** fetch here */
   return (
     <div className="list-awards-press">
@@ -32,7 +32,7 @@ const AwardsList = async () => {
   )
 }
 
-const AwardsListLoading = () => {
+const AwardListLoading = () => {
   return (
     <div className="list-awards-press">
       {Array.from({ length: 2 }).map((_, index) => (
@@ -42,4 +42,4 @@ const AwardsListLoading = () => {
   )
 }
 
-export { AwardsList, AwardsListLoading }
+export { AwardList, AwardListLoading }
