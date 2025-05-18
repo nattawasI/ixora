@@ -1,5 +1,6 @@
 import { cn } from '@/libs/utils/cn'
-import { CardProject, CardProjectLoading } from '@/components/ui/card-project'
+import { CardProjectLoading } from '@/components/ui/card-project'
+import { ProjectCard } from '@/components/modules/projects/project-card'
 import Link from 'next/link'
 
 const ProjectList = () => {
@@ -7,7 +8,7 @@ const ProjectList = () => {
     <div className="list-project">
       {Array.from({ length: 21 }).map((_, index) => (
         <Link href="#" className="block" key={index}>
-          <CardProject
+          <ProjectCard
             image={{
               src: '/mockup/project.jpg',
               alt: 'XT HUAIKHWANG',

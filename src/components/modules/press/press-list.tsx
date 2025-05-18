@@ -1,4 +1,5 @@
-import { CardPress, CardPressLoading } from '@/components/ui/card-press'
+import { CardPressLoading } from '@/components/ui/card-press'
+import { PressCard } from '@/components/modules/press/press-card'
 import Link from 'next/link'
 
 const PressList = async () => {
@@ -7,7 +8,7 @@ const PressList = async () => {
     <div className="list-awards-press">
       {Array.from({ length: 4 }).map((_, index) => (
         <Link href="#" className="block" key={index}>
-          <CardPress
+          <PressCard
             image={{
               src: '/mockup/press-1.jpg',
               alt: 'Topic of press Abc...',
