@@ -54,7 +54,10 @@ const GlobalNavigation = () => {
             'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
           )}
         />
-        <DialogContent aria-describedby={undefined} className="fixed top-0 left-0 z-20 h-full">
+        <DialogContent
+          aria-describedby={undefined}
+          className="fixed top-0 left-0 z-20 h-full w-[10rem] lg:w-[14.188rem]"
+        >
           <VisuallyHidden>
             <DialogTitle>Global Navigation</DialogTitle>
           </VisuallyHidden>
@@ -71,12 +74,11 @@ const GlobalNavigation = () => {
               }
             }}
             className={cn(
-              'h-full w-[10rem] bg-white p-4 pt-16 md:w-[14.188rem] lg:p-10 lg:pt-21.5',
-              'transition-transform duration-300',
+              'h-full w-full bg-white transition-transform duration-300',
               isShowMenu ? 'translate-x-0' : '-translate-x-full',
             )}
           >
-            <nav className="mt-5 space-y-1.25">
+            <nav className="space-y-1.25 p-4 pt-16 lg:p-10 lg:pt-21.5">
               {menuItems.map((item) => (
                 <div key={item.href}>
                   <NavigationLink
