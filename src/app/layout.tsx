@@ -5,7 +5,7 @@ import './globals.css'
 /** components */
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
-import { Preloader } from '@/components/layout/preloader'
+// import { Preloader } from '@/components/layout/preloader'
 import { ThemeSetter } from '@/components/layout/theme-setter'
 
 import type { Metadata } from 'next'
@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn('typo-body-1 flex min-h-screen flex-col', montserrat.className)}>
-        <Preloader />
+        {/* <Preloader /> */}
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

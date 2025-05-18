@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { cn } from '@/libs/utils/cn'
+import { usePathname } from 'next/navigation'
 import {
   Dialog,
   DialogTrigger,
@@ -13,18 +14,20 @@ import {
 } from '@radix-ui/react-dialog'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { HamburgerMenu } from '@/components/ui/icons-color/hamburger-menu'
-import Link from 'next/link'
+import { NavigationLink } from '@/components/ui/navigation-link'
 import type { NavigationItemType } from '@/components/layout/type'
 
 const menuItems: NavigationItemType[] = [
-  { label: 'PROJECTS', href: '/' },
-  { label: 'AWARDS & PRESS', href: '/awards' },
+  { label: 'PROJECTS', href: '/', rootOf: ['/projects'] },
+  { label: 'AWARDS & PRESS', href: '/awards', rootOf: ['/awards', '/press'] },
   { label: 'PEOPLE', href: '/people' },
   { label: 'CAREER', href: '/career' },
   { label: 'CONTACT', href: '/contact' },
 ]
 
 const GlobalNavigation = () => {
+  const pathname = usePathname()
+
   const [open, setOpen] = useState(false)
   const [isShowMenu, setIsShowMenu] = useState(false)
 
@@ -76,16 +79,20 @@ const GlobalNavigation = () => {
             <nav className="mt-5 space-y-1.25">
               {menuItems.map((item) => (
                 <div key={item.href}>
-                  <Link
+                  <NavigationLink
                     href={item.href}
-                    className="hover:text-blue typo-body-2 text-gray inline-block font-bold uppercase transition-colors duration-300"
+                    isCurrent={
+                      item.rootOf
+                        ? item.rootOf.some((root) => pathname.startsWith(root)) || pathname === item.href
+                        : pathname === item.href
+                    }
                     onClick={() => {
                       setOpen(false)
                       setIsShowMenu(false)
                     }}
                   >
                     {item.label}
-                  </Link>
+                  </NavigationLink>
                 </div>
               ))}
             </nav>

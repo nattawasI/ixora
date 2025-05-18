@@ -1,8 +1,7 @@
 'use client'
 
-import { cn } from '@/libs/utils/cn'
 import { usePathname } from 'next/navigation'
-import Link from 'next/link'
+import { NavigationLink } from '@/components/ui/navigation-link'
 import type { NavigationItemType } from '@/components/layout/type'
 
 const projectsItems: NavigationItemType[] = [
@@ -34,16 +33,9 @@ const LocalNavigation = () => {
       {items.length > 0 ? (
         <nav className="flex gap-x-10 max-xl:hidden">
           {items.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                'hover:text-blue typo-body-2 inline-block font-bold uppercase transition-colors duration-300',
-                pathname === item.href ? 'text-blue' : 'text-gray',
-              )}
-            >
+            <NavigationLink key={item.href} href={item.href} isCurrent={pathname === item.href}>
               {item.label}
-            </Link>
+            </NavigationLink>
           ))}
         </nav>
       ) : null}
