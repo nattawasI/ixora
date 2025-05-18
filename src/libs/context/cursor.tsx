@@ -30,8 +30,6 @@ const CursorProvider = ({children}: {children: ReactNode}) => {
   useGSAP(() => {
     if (!cursorRef.current) return
 
-    gsap.set(cursorRef.current, {opacity: 0, scale: 0.75})
-
     gsap.to(cursorRef.current, {
       opacity: cursorType === "hovered" ? 1 : 0,
       scale: cursorType === "hovered" ? 1 : 0.75,
@@ -43,6 +41,7 @@ const CursorProvider = ({children}: {children: ReactNode}) => {
       ease: "power2.out",
     })
   }, { dependencies: [cursorType, position], scope: containerRef })
+
   useEffect(() => {
     const move = (e: MouseEvent) => {
       if (cursorRef.current) {
