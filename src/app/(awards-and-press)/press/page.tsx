@@ -3,11 +3,11 @@ import { PressList, PressListLoading } from '@/components/modules/press/press-li
 
 export default function Press() {
   return (
-    <div className="c-container">
+    <>
       <h1 className="sr-only">PRESS</h1>
       <Suspense fallback={<PressListLoading />}>
         <PressList />
       </Suspense>
-    </div>
+    </>
   )
 }

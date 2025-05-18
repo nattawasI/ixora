@@ -3,11 +3,11 @@ import { AwardList, AwardListLoading } from '@/components/modules/awards/award-l
 
 export default function Awards() {
   return (
-    <div className="c-container">
+    <>
       <h1 className="sr-only">AWARDS</h1>
       <Suspense fallback={<AwardListLoading />}>
         <AwardList />
       </Suspense>
-    </div>
+    </>
   )
 }
