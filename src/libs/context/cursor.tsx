@@ -20,7 +20,6 @@ const CursorContext = createContext<CursorContextType>({
 
 const CursorProvider = ({children}: {children: ReactNode}) => {
   /* refs */
-  const containerRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
 
   /* states */
@@ -31,16 +30,15 @@ const CursorProvider = ({children}: {children: ReactNode}) => {
     if (!cursorRef.current) return
 
     gsap.to(cursorRef.current, {
-      opacity: cursorType === "hovered" ? 1 : 0,
-      scale: cursorType === "hovered" ? 1 : 0.75,
-      width: cursorType === "hovered" ? 70 : 0,
-      height: cursorType === "hovered" ? 70 : 0,
+      opacity: cursorType === "hovered" ? 0.9 : 0,
+      width: cursorType === "hovered" ? 70 : 32,
+      height: cursorType === "hovered" ? 70 : 32,
       x: position.x - 2.1875 * 16,
       y: position.y - 2.1875 * 16,
       duration: 0.4,
       ease: "power2.out",
     })
-  }, { dependencies: [cursorType, position], scope: containerRef })
+  }, { dependencies: [cursorType, position], scope: cursorRef })
 
   useEffect(() => {
     const move = (e: MouseEvent) => {
@@ -55,29 +53,22 @@ const CursorProvider = ({children}: {children: ReactNode}) => {
   return (
     <CursorContext.Provider value={{cursorType, setCursorType}}>
       {children}
-      <div ref={containerRef}>
-        <div
-          ref={cursorRef}
-          className="fixed z-[9999] pointer-events-none"
-          style={{
-            left: 0,
-            top: 0,
-            opacity: 0,
-          }}
-        >
-          <div className="size-[4.375rem] bg-blue/90 rounded-full flex items-center justify-center">
-            {/* SVG Arrow */}
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M7.22266 1H15.0004V8.77778" stroke="white" />
-              <path d="M15 1L1 15" stroke="white" />
-            </svg>
-          </div>
+      <div
+        ref={cursorRef}
+        className="fixed z-[9999] pointer-events-none opacity-0 top-0 left-0 bg-blue rounded-full backdrop-blur-2xl"
+      >
+        <div className="h-full w-full flex items-center justify-center">
+          {/* SVG Arrow */}
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M7.22266 1H15.0004V8.77778" stroke="white" />
+            <path d="M15 1L1 15" stroke="white" />
+          </svg>
         </div>
       </div>
     </CursorContext.Provider>

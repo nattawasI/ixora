@@ -20,7 +20,7 @@ const Preloader = () => {
   const lineTopRightRef = useRef<HTMLSpanElement>(null)
   const lineBottomRightRef = useRef<HTMLSpanElement>(null)
   const lineBottomLeftRef = useRef<HTMLSpanElement>(null)
-
+  
   /* hooks */
   const isMobile = useMediaQuery("(max-width: 768px)")
 
@@ -72,7 +72,7 @@ const Preloader = () => {
   const handleMouseLeave = contextSafe(() => {
     if (isClicked) return
     gsap.to(boxTextRef.current, {
-      width: isMobile ? "5.625rem" : "6.5rem",
+      width: "37.05%",
       duration: 0.4,
       ease: "power2.out",
     })
@@ -90,8 +90,8 @@ const Preloader = () => {
     tl.to(logoRef.current, {
       width: 26,
       height: 26,
-      top: 33,
-      left: 40,
+      top: isMobile ? 13 : 33,
+      left: isMobile ? 16 : 40,
       duration: 2.5,
       ease: 'power3.inOut',
       onStart: () => {
@@ -196,7 +196,7 @@ const Preloader = () => {
       <div className="space-y-2 text-center">
         <div
           ref={boxTextRef}
-          className={cn("whitespace-nowrap overflow-hidden cursor-pointer mx-auto", isMobile ? 'w-[5.625rem]' : 'w-[6.5rem]', { "w-[6.5rem] pointer-events-none": isClicked })}
+          className={cn("whitespace-nowrap overflow-hidden cursor-pointer mx-auto w-[37.05%]", { "w-full pointer-events-none": isClicked })}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onClick={handleClick}
