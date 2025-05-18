@@ -2,27 +2,30 @@ import { cn } from '@/libs/utils/cn'
 import { CardProjectLoading } from '@/components/ui/card-project'
 import { ProjectCard } from '@/components/modules/projects/project-card'
 import Link from 'next/link'
+import { CursorProvider } from '@/libs/context/cursor'
 
 const ProjectList = () => {
   return (
+    <CursorProvider>
     <div className="list-project">
       {Array.from({ length: 21 }).map((_, index) => (
         <Link href="#" className="block" key={index}>
-          <ProjectCard
-            image={{
-              src: '/mockup/project.jpg',
-              alt: 'XT HUAIKHWANG',
-              sizes: '100vw, (min-width: 768px) 33vw',
-            }}
-            title={{
-              tag: 'h2',
-              text: 'XT HUAIKHWANG',
-            }}
-            location={'BANGKOK, THAILAND'}
-          />
+            <ProjectCard
+              image={{
+                src: '/mockup/project.jpg',
+                alt: 'XT HUAIKHWANG',
+                sizes: '100vw, (min-width: 768px) 33vw',
+              }}
+              title={{
+                tag: 'h2',
+                text: 'XT HUAIKHWANG',
+              }}
+              location={'BANGKOK, THAILAND'}
+            />
         </Link>
       ))}
     </div>
+          </CursorProvider>
   )
 }
 
