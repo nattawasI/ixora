@@ -1,3 +1,13 @@
+import { Suspense } from 'react'
+import { ProjectList, ProjectListLoading } from '@/components/modules/projects/project-list'
+
 export default function Home() {
-  return null
+  return (
+    <>
+      <h1 className="sr-only">PROJECTS</h1>
+      <Suspense fallback={<ProjectListLoading />}>
+        <ProjectList />
+      </Suspense>
+    </>
+  )
 }

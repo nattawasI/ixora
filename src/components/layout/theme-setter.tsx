@@ -20,7 +20,13 @@ const ThemeSetter = () => {
     let bgColor = '--color-white'
 
     // เช็คเงื่อนไขตาม pathname
-    if (pathname.startsWith('/projects') || pathname.startsWith('/awards') || pathname.startsWith('/press')) {
+    if (pathname.startsWith('/projects')) {
+      const pathnameArray = pathname.split('/').filter((item) => item !== '')
+      if (pathnameArray.length > 2) {
+        /** ถ้า pathnameArray.length > 2 แสดงว่าเป็นหน้า project detail */
+        bgColor = '--color-gray-light-2'
+      }
+    } else if (pathname.startsWith('/awards') || pathname.startsWith('/press')) {
       bgColor = '--color-gray-light-2'
     }
 

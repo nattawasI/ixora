@@ -7,9 +7,9 @@ import { CursorProvider } from '@/libs/context/cursor'
 const ProjectList = () => {
   return (
     <CursorProvider>
-    <div className="list-project">
-      {Array.from({ length: 21 }).map((_, index) => (
-        <Link href="#" className="block" key={index}>
+      <div className="list-project">
+        {Array.from({ length: 21 }).map((_, index) => (
+          <Link href="/projects/residential/1" className="block" key={index}>
             <ProjectCard
               image={{
                 src: '/mockup/project.jpg',
@@ -22,10 +22,10 @@ const ProjectList = () => {
               }}
               location={'BANGKOK, THAILAND'}
             />
-        </Link>
-      ))}
-    </div>
-          </CursorProvider>
+          </Link>
+        ))}
+      </div>
+    </CursorProvider>
   )
 }
 

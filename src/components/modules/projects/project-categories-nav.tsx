@@ -2,7 +2,7 @@
 
 import { cn } from '@/libs/utils/cn'
 import { usePathname } from 'next/navigation'
-import { navigationLinkVariants } from '@/components/ui/navigation-link'
+import { NavigationLink } from '@/components/ui/navigation-link'
 import type { NavigationItemType } from '@/components/layout/type'
 
 type ProjectCategoriesNavProps = {
@@ -30,17 +30,16 @@ const ProjectCategoriesNav = ({
       {...props}
     >
       {categories.map((item) => (
-        <button
-          type="button"
+        <NavigationLink
           key={item.href}
-          className={navigationLinkVariants({ isCurrent: pathname.startsWith(item.href) })}
+          href={item.href}
+          isCurrent={pathname.startsWith(item.href)}
           onClick={() => {
-            history.pushState(null, '', item.href)
             onSelect?.()
           }}
         >
           {item.label}
-        </button>
+        </NavigationLink>
       ))}
     </nav>
   )

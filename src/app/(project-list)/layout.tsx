@@ -18,7 +18,6 @@ export default function ProjectListLayout({
   /** fetch product categories here... */
   return (
     <div className="px-4 max-lg:pt-5 max-lg:pb-6 lg:px-10">
-      <h1 className="sr-only">PROJECTS</h1>
       <ProjectCategoriesFilter categories={mockupProjectCategories} />
       {children}
     </div>
