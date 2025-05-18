@@ -2,8 +2,8 @@ import { ComponentProps, ReactElement } from 'react'
 import { cn } from '@/libs/utils/cn'
 import Image, { type ImageProps } from 'next/image'
 import { Separator } from '@/components/ui/separator'
-import { Plus } from '@/components/ui/icons'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
+import { ReadMore, ReadMoreTrigger, ReadMoreContent } from '@/components/ui/read-more'
 
 type CardAwardProps = Omit<ComponentProps<'div'>, 'title'> & {
   image: Omit<ImageProps, 'fill'>
@@ -12,6 +12,7 @@ type CardAwardProps = Omit<ComponentProps<'div'>, 'title'> & {
     text: string
   }
   description: string
+  descriptionMore?: string
   date: string
   projectName: string
   type: string
@@ -23,6 +24,7 @@ const CardAward = ({
   image,
   title,
   description,
+  descriptionMore,
   date,
   projectName,
   type,
@@ -51,13 +53,17 @@ const CardAward = ({
       <div className="flex-1 space-y-2">
         <p className="text-gray typo-body-2">{date}</p>
         <TitleTag className="typo-title-2 font-bold">{title.text}</TitleTag>
-        <div>
+        <ReadMore>
           <p className="typo-body-2 whitespace-pre-line">{description}</p>
-          <button className="typo-body-3 text-gray mt-5 inline-flex items-center gap-x-1.25 font-bold uppercase">
-            READ MORE
-            <Plus className="text-blue -mt-px size-2.5" />
-          </button>
-        </div>
+          {descriptionMore ? (
+            <>
+              <ReadMoreContent>
+                <p className="typo-body-2 mt-5 whitespace-pre-line">{descriptionMore}</p>
+              </ReadMoreContent>
+              <ReadMoreTrigger className="mt-4" />
+            </>
+          ) : null}
+        </ReadMore>
       </div>
       <Separator orientation="horizontal" className="lg:hidden" />
       <Separator orientation="vertical" className="max-lg:hidden" />

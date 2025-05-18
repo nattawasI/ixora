@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import { HeadingPage } from '@/components/ui/heading-page'
 import { PeopleList, PeopleListLoading } from '@/components/modules/people/people-list'
 import { CardOther } from '@/components/ui/card-other'
-import { ButtonLink } from '@/components/ui/button-arrow'
+import { ButtonArrowLink } from '@/components/ui/button-arrow'
 
 export default function People() {
   return (
@@ -22,9 +22,9 @@ export default function People() {
           title={{ text: 'CULTURE' }}
           description={`We value collaboration, creativity, and purpose-driven design — turning every space into something meaningful through thoughtful ideas and teamwork.`}
           action={
-            <ButtonLink href="/career" className="max-lg:w-full">
+            <ButtonArrowLink href="/career" className="max-lg:w-full">
               Career
-            </ButtonLink>
+            </ButtonArrowLink>
           }
         />
       </div>

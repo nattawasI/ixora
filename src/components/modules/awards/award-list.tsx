@@ -17,6 +17,9 @@ const AwardList = async () => {
           description={
             'A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits.'
           }
+          descriptionMore={
+            'A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits.'
+          }
           date={'April, 2025'}
           projectName={'PANYA INDRA RESIDENCE'}
           type={'RESIDENTIAL'}
