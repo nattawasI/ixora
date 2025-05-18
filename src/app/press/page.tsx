@@ -1,11 +1,13 @@
+import { Suspense } from 'react'
+import { PressList, PressListLoading } from '@/components/modules/press/press-list'
+
 export default function Press() {
   return (
     <div className="c-container">
-      <h1>Press</h1>
-      <p>
-        We are dedicated to exploring the limitless possibilities of landscape architectural design, crafting spaces
-        that seamlessly integrate the beauty of nature with human needs.
-      </p>
+      <h1 className="sr-only">PRESS</h1>
+      <Suspense fallback={<PressListLoading />}>
+        <PressList />
+      </Suspense>
     </div>
   )
 }
