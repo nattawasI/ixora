@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn('typo-body-1 flex min-h-screen flex-col', montserrat.className)}>
-        {/* <Preloader /> */}
+        <Preloader />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
