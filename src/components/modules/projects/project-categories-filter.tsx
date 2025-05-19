@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { cn } from '@/libs/utils/cn'
+import { useMediaQuery } from '@/libs/hooks/use-media-query'
 import {
   Dialog,
   DialogTrigger,
@@ -22,7 +23,15 @@ const ProjectCategoriesFilter = ({
   className,
   ...props
 }: React.ComponentProps<'div'> & Pick<ProjectCategoriesNavProps, 'categories'>) => {
+  const isLaptopUp = useMediaQuery('(min-width: 1024px)')
+
   const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    if (isLaptopUp) {
+      setOpen(false)
+    }
+  }, [isLaptopUp])
 
   return (
     <div className={cn('mb-5 flex items-center justify-between gap-x-5 lg:hidden', className)} {...props}>
