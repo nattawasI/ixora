@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import { cn } from '@/libs/utils/cn'
 import { useMediaQuery } from '@/libs/hooks/use-media-query'
 import {
@@ -23,6 +24,9 @@ const ProjectCategoriesFilter = ({
   className,
   ...props
 }: React.ComponentProps<'div'> & Pick<ProjectCategoriesNavProps, 'categories'>) => {
+  const pathname = usePathname()
+  const current = categories.find((item) => item.href === pathname)
+
   const isLaptopUp = useMediaQuery('(min-width: 1024px)')
 
   const [open, setOpen] = useState(false)
@@ -35,7 +39,7 @@ const ProjectCategoriesFilter = ({
 
   return (
     <div className={cn('mb-5 flex items-center justify-between gap-x-5 lg:hidden', className)} {...props}>
-      <p className="typo-body-2 text-blue font-bold uppercase">ALL</p>
+      <p className="typo-body-2 text-blue font-bold uppercase">{current?.label || 'ALL'}</p>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger className="size-4" aria-label="Open Project categories filter">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
