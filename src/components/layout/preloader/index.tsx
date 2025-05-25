@@ -1,218 +1,178 @@
 'use client'
 
-import { MouseEvent, useRef, useState } from 'react'
-import { gsap } from 'gsap'
-import { useGSAP } from '@gsap/react'
+import { useState } from 'react'
+import { AnimatePresence, motion, useAnimation } from 'motion/react'
 import { cn } from '@/libs/utils/cn'
 import { useMediaQuery } from '@/libs/hooks/use-media-query'
-
-
-gsap.registerPlugin(useGSAP);
+import { PreloaderFooter } from '@/components/layout/preloader/footer'
 
 const Preloader = () => {
-  /* refs */
-  const containerRef = useRef<HTMLDivElement>(null)
-  const logoRef = useRef<HTMLDivElement>(null)
-  const boxTextRef = useRef<HTMLDivElement>(null)
-  const textRef = useRef<HTMLParagraphElement>(null)
-  const descriptionRef = useRef<HTMLParagraphElement>(null)
-  const lineTopLeftRef = useRef<HTMLSpanElement>(null)
-  const lineTopRightRef = useRef<HTMLSpanElement>(null)
-  const lineBottomRightRef = useRef<HTMLSpanElement>(null)
-  const lineBottomLeftRef = useRef<HTMLSpanElement>(null)
-  
-  /* hooks */
-  const isMobile = useMediaQuery("(max-width: 768px)")
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
-  /* states */
   const [isComplete, setIsComplete] = useState<boolean>(false)
   const [isClicked, setIsClicked] = useState<boolean>(false)
 
-  const { contextSafe } = useGSAP(() => {
-    const tl = gsap.timeline()
+  const containerControls = useAnimation()
+  const logoControls = useAnimation()
+  const lineTopLeftControls = useAnimation()
+  const lineTopRightControls = useAnimation()
+  const lineBottomLeftControls = useAnimation()
+  const lineBottomRightControls = useAnimation()
+  const boxTextControls = useAnimation()
 
-    gsap.set(logoRef.current, { opacity: 0, scale: 0.5 })
-    gsap.set(boxTextRef.current, { opacity: 0, y: 20 })
-    gsap.set(descriptionRef.current, { opacity: 0, y: 20 })
+  const lineTargetDuration = {
+    transition: { delay: 1, duration: 0.3 },
+  }
+  const yPosition = 18
+  const rotatePosition = 45
 
-    tl.to(
-      logoRef.current,
-      { opacity: 1, scale: 1, duration: 2, ease: 'power3.inOut' }
-    )
+  const logoVariants = {
+    hidden: { scale: 0.5, opacity: 0 },
+    visible: () => ({
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: 'easeInOut',
+      },
+    }),
+  }
 
-    tl.to(
-      boxTextRef.current,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.inOut',
-      }, "-=0.75"
-    )
+  const handleMouseEnter = () => {
+    if (!isClicked) {
+      boxTextControls.start({ width: '100%', transition: { duration: 0.25, ease: 'easeOut' } })
+    }
+  }
 
-    tl.to(
-      descriptionRef.current,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.inOut',
-      }, "-=0.75"
-    )
-  }, { scope: containerRef })
+  const handleMouseLeave = () => {
+    if (!isClicked) {
+      boxTextControls.start({ width: '37.05%', transition: { duration: 0.25, ease: 'easeOut' } })
+    }
+  }
 
-  const handleMouseEnter = contextSafe(() => {
-    gsap.to(boxTextRef.current, {
-      width: "100%",
-      duration: 0.4,
-      ease: "power2.out",
-    })
-  })
-
-  const handleMouseLeave = contextSafe(() => {
-    if (isClicked) return
-    gsap.to(boxTextRef.current, {
-      width: "37.05%",
-      duration: 0.4,
-      ease: "power2.out",
-    })
-  })
-
-  const handleClick = contextSafe((e: MouseEvent) => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
     setIsClicked(true)
-    const tl = gsap.timeline({
-      onComplete: () => {
-        setIsComplete(true) // unmount the Preloader after animation
-      },
-    })
 
-    tl.to(logoRef.current, {
+    const logoTarget = {
       width: 26,
       height: 26,
-      top: isMobile ? 13 : 33,
+      top: isMobile ? 16 : 37,
       left: isMobile ? 16 : 40,
-      duration: 2.5,
-      ease: 'power3.inOut',
-      onStart: () => {
-        gsap.to(
-          [
-            lineTopLeftRef.current,
-            lineTopRightRef.current,
-            lineBottomRightRef.current,
-            lineBottomLeftRef.current,
-          ],
-          {
-            width: 10,
-            height: 2,
-            duration: 2,
-          }
-        )
-        gsap.to(
-          [
-            lineTopLeftRef.current,
-            lineTopRightRef.current,
-            lineBottomRightRef.current,
-            lineBottomLeftRef.current,
-          ],
-          {
-            rotation: 0,
-            duration: 1,
-            delay: 1,
-          }
-        )
-        gsap.to(
-          [lineTopLeftRef.current, lineBottomLeftRef.current],
-          {
-            left: 0,
-            duration: 1,
-            delay: 0.5,
-          }
-        )
-        gsap.to(
-          [lineTopRightRef.current, lineBottomRightRef.current],
-          {
-            right: 0,
-            duration: 1,
-            delay: 0.5,
-          }
-        )
-        gsap.to(
-          [lineTopLeftRef.current, lineTopRightRef.current],
-          {
-            top: 12,
-            duration: 1,
-            delay: 0.5,
-          }
-        )
-        gsap.to(
-          [lineBottomLeftRef.current, lineBottomRightRef.current],
-          {
-            bottom: 4,
-            duration: 1,
-            delay: 0.5,
-          }
-        )
-      },
+      transition: { duration: 1, ease: 'easeInOut' },
+    }
+
+    logoControls.start(logoTarget)
+
+    lineTopLeftControls.start({
+      ...lineTargetDuration,
+      y: yPosition,
+      rotate: -rotatePosition,
     })
 
-    tl.to(containerRef.current, {
-      pointerEvents: 'none',
-      opacity: 0,
-      duration: 0.5,
-      delay: 0.25,
-      ease: 'power3.inOut',
-    }, "-=0.5")
-  })
+    lineTopRightControls.start({
+      ...lineTargetDuration,
+      y: yPosition,
+      rotate: rotatePosition,
+    })
 
-  if ( isComplete) return null
+    lineBottomLeftControls.start({
+      ...lineTargetDuration,
+      y: -yPosition,
+      rotate: rotatePosition,
+    })
+
+    lineBottomRightControls.start({
+      ...lineTargetDuration,
+      y: -yPosition,
+      rotate: -rotatePosition,
+    })
+
+    containerControls
+      .start({
+        opacity: 0,
+        pointerEvents: 'all',
+        transition: { delay: 1.5, duration: 0.2, ease: 'easeInOut' },
+      })
+      .then(() => setIsComplete(true))
+  }
+
+  if (isComplete) return null
 
   return (
-    <div
-      ref={containerRef}
-      className="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center gap-y-8"
-    >
-      <div className="relative size-32">
-        <div ref={logoRef} className="fixed size-32">
-          <span
-            ref={lineTopLeftRef}
-            className="absolute w-16 h-2 rotate-45 top-[calc(50%-40px)] left-[-6px] bg-blue-2 transition-all"
-          />
-          <span
-            ref={lineTopRightRef}
-            className="absolute w-16 h-2 -rotate-45 top-[calc(50%-40px)] right-[-6px] bg-blue transition-all"
-          />
-          <span
-            ref={lineBottomLeftRef}
-            className="absolute w-16 h-2 -rotate-45 bottom-[calc(50%-40px)] left-[-6px] bg-blue transition-all"
-          />
-          <span
-            ref={lineBottomRightRef}
-            className="absolute w-16 h-2 rotate-45 bottom-[calc(50%-40px)] right-[-6px] bg-blue-2 transition-all"
-          />
-        </div>
-      </div>
-
-      <div className="space-y-2 text-center">
+    <AnimatePresence mode="wait">
+      <motion.div animate={containerControls} className="fixed inset-0 z-[9999] flex flex-col bg-white">
         <div
-          ref={boxTextRef}
-          className={cn("whitespace-nowrap overflow-hidden cursor-pointer mx-auto w-[37.05%]", { "w-full pointer-events-none": isClicked })}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onClick={handleClick}
+          className={cn('group m-auto flex flex-col items-center justify-center gap-y-8 hover:cursor-pointer', {
+            'pointer-events-none': isClicked,
+          })}
         >
-          <p
-            ref={textRef}
-            className={cn("hover:text-blue typo-title-3 font-bold uppercase text-gray", { "text-blue": isClicked })}
-          >
-            EXPLORE OUR PROJECTS
-          </p>
+          <div className="relative size-32">
+            <motion.svg
+              width="128"
+              height="128"
+              viewBox="0 0 128 128"
+              animate={logoControls}
+              variants={logoVariants}
+              className="fixed size-32"
+            >
+              <motion.line
+                x1="4"
+                y1="4"
+                x2="44"
+                y2="44"
+                stroke="#89cee7"
+                strokeWidth="8"
+                animate={lineTopLeftControls}
+              />
+              <motion.line
+                x1="124"
+                y1="4"
+                x2="84"
+                y2="44"
+                stroke="#009bc9"
+                strokeWidth="8"
+                animate={lineTopRightControls}
+              />
+              <motion.line
+                x1="4"
+                y1="124"
+                x2="44"
+                y2="84"
+                stroke="#009bc9"
+                strokeWidth="8"
+                animate={lineBottomLeftControls}
+              />
+              <motion.line
+                x1="124"
+                y1="124"
+                x2="84"
+                y2="84"
+                stroke="#89cee7"
+                strokeWidth="8"
+                animate={lineBottomRightControls}
+              />
+            </motion.svg>
+          </div>
+
+          <div className="space-y-2 text-center">
+            <motion.div animate={boxTextControls} className="mx-auto w-[37.05%] overflow-hidden whitespace-nowrap">
+              <p className={cn('typo-title-3 text-gray font-bold uppercase', { 'text-blue': isClicked })}>
+                EXPLORE OUR PROJECTS
+              </p>
+            </motion.div>
+            <motion.p className="typo-body-1 text-gray uppercase">LIMITLESS POSSIBILITY</motion.p>
+          </div>
         </div>
-        <p ref={descriptionRef} className="typo-body-1 uppercase text-gray">
-          LIMITLESS POSSIBILITY
-        </p>
-      </div>
-    </div>
+
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2">
+          <PreloaderFooter />
+        </div>
+      </motion.div>
+    </AnimatePresence>
   )
 }
 

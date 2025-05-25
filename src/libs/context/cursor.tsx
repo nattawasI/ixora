@@ -1,10 +1,7 @@
 'use client'
 
-import { use, useState, createContext, useRef, ReactNode, useEffect } from 'react'
-import { gsap } from 'gsap'
-import { useGSAP } from '@gsap/react'
-
-gsap.registerPlugin(useGSAP)
+import { use, useState, createContext, ReactNode, useEffect } from 'react'
+import { motion, useMotionValue, useSpring } from 'framer-motion'
 
 type CursorType = 'default' | 'hovered'
 
@@ -19,66 +16,60 @@ const CursorContext = createContext<CursorContextType>({
 })
 
 const CursorProvider = ({ children }: { children: ReactNode }) => {
-  /* refs */
-  const cursorRef = useRef<HTMLDivElement>(null)
-
-  /* states */
   const [cursorType, setCursorType] = useState<CursorType>('default')
-  const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 })
 
-  useGSAP(
-    () => {
-      if (!cursorRef.current) return
+  const cursorSize = 70
 
-      gsap.to(cursorRef.current, {
-        opacity: cursorType === 'hovered' ? 0.9 : 0,
-        width: cursorType === 'hovered' ? 70 : 32,
-        height: cursorType === 'hovered' ? 70 : 32,
-        x: position.x - 2.1875 * 16,
-        y: position.y - 2.1875 * 16,
-        duration: 0.4,
-        ease: 'power2.out',
-      })
-    },
-    { dependencies: [cursorType, position], scope: cursorRef },
-  )
+  // Cursor position tracking
+  const mouse = { x: useMotionValue(0), y: useMotionValue(0) }
+
+  // Smooth spring animation
+  const springConfig = { damping: 20, stiffness: 300 }
+
+  const smoothMouse = {
+    x: useSpring(mouse.x, springConfig),
+    y: useSpring(mouse.y, springConfig),
+  }
 
   useEffect(() => {
-    const move = (e: MouseEvent) => {
-      if (cursorRef.current) {
-        setPosition({ x: e.clientX, y: e.clientY })
-      }
+    const handleMouseMove = (e: MouseEvent) => {
+      mouse.x.set(e.clientX - cursorSize / 2)
+      mouse.y.set(e.clientY - cursorSize / 2)
     }
-    window.addEventListener('mousemove', move)
-    return () => window.removeEventListener('mousemove', move)
-  }, [])
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [mouse.x, mouse.y, cursorSize])
 
   return (
     <CursorContext.Provider value={{ cursorType, setCursorType }}>
       {children}
-      <div
-        ref={cursorRef}
-        className="bg-blue pointer-events-none fixed top-0 left-0 z-[9999] rounded-full opacity-0 backdrop-blur-2xl"
+      <motion.div
+        className="bg-blue pointer-events-none fixed z-[9999] size-0 rounded-full opacity-0 backdrop-blur-2xl"
+        animate={{
+          opacity: cursorType === 'hovered' ? 0.9 : 0,
+          width: cursorSize,
+          height: cursorSize,
+        }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        style={{
+          left: smoothMouse.x,
+          top: smoothMouse.y,
+        }}
       >
-        <div className="flex h-full w-full items-center justify-center">
-          {/* SVG Arrow */}
+        <div className="flex size-full items-center justify-center">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7.22266 1H15.0004V8.77778" stroke="white" />
             <path d="M15 1L1 15" stroke="white" />
           </svg>
         </div>
-      </div>
+      </motion.div>
     </CursorContext.Provider>
   )
 }
 
 const useCursorContext = () => {
   const context = use(CursorContext)
-
-  if (!context) {
-    throw new Error('useCursorContext must be used within a CursorProvider')
-  }
-
+  if (!context) throw new Error('useCursorContext must be used within a CursorProvider')
   return context
 }
 
