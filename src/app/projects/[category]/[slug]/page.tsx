@@ -1,4 +1,5 @@
 import { ReadMore, ReadMoreTrigger, ReadMoreContent } from '@/components/ui/read-more'
+import { SnsShare } from '@/components/modules/article-detail/sns-share'
 
 export default function ProjectDetail() {
   return (
@@ -41,6 +42,7 @@ export default function ProjectDetail() {
             </p>
           </div>
         </div>
+        <SnsShare label="Share this project" title="SARANSIRI PRACHAUTHIT 90" coverImage="/mockup/project.jpg" />
       </div>
     </div>
   )
