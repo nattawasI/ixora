@@ -1,5 +1,8 @@
 import { ReadMore, ReadMoreTrigger, ReadMoreContent } from '@/components/ui/read-more'
-import { SnsShare } from '@/components/modules/article-detail/sns-share'
+import { SingleImage } from '@/components/modules/article-detail/single-image'
+import { ColumnImages } from '@/components/modules/article-detail/column-images'
+import { VideoPlayer } from '@/components/modules/article-detail/video-player'
+import { SnsShareFooter } from '@/components/modules/article-detail/sns-share-footer'
 
 export default function ProjectDetail() {
   return (
@@ -42,7 +45,17 @@ export default function ProjectDetail() {
             </p>
           </div>
         </div>
-        <SnsShare label="Share this project" title="SARANSIRI PRACHAUTHIT 90" coverImage="/mockup/project.jpg" />
+        <div className="space-y-2.5">
+          <SingleImage src="/mockup/project.jpg" alt="SARANSIRI PRACHAUTHIT 90" />
+          <ColumnImages
+            images={[
+              { src: '/mockup/project.jpg', alt: 'SARANSIRI PRACHAUTHIT 90' },
+              { src: '/mockup/project.jpg', alt: 'SARANSIRI PRACHAUTHIT 90' },
+            ]}
+          />
+          <VideoPlayer src="/mockup/video.mp4" />
+        </div>
+        <SnsShareFooter label="Share this project" title="SARANSIRI PRACHAUTHIT 90" coverImage="/mockup/project.jpg" />
       </div>
     </div>
   )

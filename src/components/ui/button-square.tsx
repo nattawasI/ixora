@@ -2,7 +2,7 @@ import { ComponentProps } from 'react'
 import { cn } from '@/libs/utils/cn'
 import { cva, type VariantProps } from 'class-variance-authority'
 
-const buttonSquareVariants = cva(cn('flex items-center justify-center transition-colors'), {
+const buttonSquareVariants = cva(cn('flex size-11.5 items-center justify-center transition-colors'), {
   variants: {
     theme: {
       default: cn('border-gray-light-1 border bg-white text-black', 'hover:bg-blue hover:text-white'),
@@ -13,21 +13,16 @@ const buttonSquareVariants = cva(cn('flex items-center justify-center transition
       gray: cn('bg-gray text-white', 'hover:bg-blue'),
       'text-blue': cn('text-blue', 'hover:bg-blue hover:text-white'),
     },
-    size: {
-      default: cn('size-[3.125rem]'),
-      small: cn('size-10'),
-    },
   },
   defaultVariants: {
     theme: 'default',
-    size: 'default',
   },
 })
 
 export type ButtonSquareProps = ComponentProps<'button'> & VariantProps<typeof buttonSquareVariants>
 
-const ButtonSquare = ({ type = 'button', className, theme, size, ...props }: ButtonSquareProps) => {
-  return <button type={type} className={cn(buttonSquareVariants({ theme, size, className }))} {...props} />
+const ButtonSquare = ({ type = 'button', className, theme, ...props }: ButtonSquareProps) => {
+  return <button type={type} className={cn(buttonSquareVariants({ theme, className }))} {...props} />
 }
 
 export { ButtonSquare, buttonSquareVariants }

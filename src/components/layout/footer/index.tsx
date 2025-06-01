@@ -47,7 +47,7 @@ const socials: { label: string; href: string }[] = [
 
 const Footer = () => {
   const footerLinkClassName = cn(
-    'border-gray-light-1 typo-body-2 hover:border-blue hover:text-blue inline-flex items-center gap-x-2.5 border-b transition-colors focus-visible:ring-offset-0',
+    'group/footer-link border-gray-light-1 typo-body-2 hover:border-blue inline-flex items-center gap-x-2.5 border-b transition-colors focus-visible:ring-offset-0',
   )
 
   return (
@@ -91,7 +91,7 @@ const Footer = () => {
               {socials.map((item) => (
                 <Link key={item.label} href={item.href} className={footerLinkClassName} target="_blank">
                   {item.label}
-                  <External />
+                  <External className="group-hover/footer-link:text-blue" />
                 </Link>
               ))}
             </div>
