@@ -31,7 +31,7 @@ const AccordionTrigger = ({
         <span
           className={cn(
             'border-blue ml-auto flex size-7 items-center justify-center rounded-full border transition-all duration-300',
-            'group-hover/accordion-trigger:bg-blue group-hover/accordion-trigger:text-white group-hover/accordion-trigger:[&_path]:stroke-white',
+            'group-hover/accordion-trigger:bg-blue group-hover/accordion-trigger:text-white group-hover/accordion-trigger:[&_path]:stroke-current',
             'group-data-[state=open]/accordion-trigger:rotate-180',
           )}
         >
