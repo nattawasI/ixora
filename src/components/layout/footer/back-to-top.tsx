@@ -14,8 +14,16 @@ const BackToTop = () => {
       className="text-gray hover:text-blue flex size-9 items-center justify-center transition-colors duration-300"
       onClick={handleClick}
     >
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-9">
-        <path d="M31.5 24.75L18 11.25L4.5 24.75" stroke="currentColor" />
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clipPath="url(#clip0_220_7953)">
+          <path d="M18.3574 14.3931L7.75125 24.9992" stroke="#009BC9" />
+          <path d="M32.5 25L21.8938 14.3938" stroke="#89CEE7" />
+        </g>
+        <defs>
+          <clipPath id="clip0_220_7953">
+            <rect width="40" height="40" fill="white" />
+          </clipPath>
+        </defs>
       </svg>
     </button>
   )

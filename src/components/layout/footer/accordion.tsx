@@ -3,7 +3,7 @@
 import { ComponentProps } from 'react'
 import { cn } from '@/libs/utils/cn'
 import { useMediaQuery } from '@/libs/hooks/use-media-query'
-import { Plus } from '@/components/ui/icons-outline/plus'
+import { ChevronDown } from '@/components/ui/icons-color/chevron-down'
 import {
   Accordion as AccordionPrimitive,
   AccordionItem as AccordionPrimitiveItem,
@@ -38,13 +38,13 @@ const AccordionTrigger = ({ className, children, ...props }: ComponentProps<type
           'border-gray-light-1 text-gray relative flex h-8 w-full items-center gap-x-2.5 border-t pt-2 font-bold uppercase transition-colors duration-300',
           'before:bg-blue before:absolute before:-top-px before:left-0 before:h-px before:w-0 before:transition-[width] before:duration-300 before:content-[""]',
           'hover:text-blue hover:before:w-full',
-          '[&[data-state=open]>svg]:rotate-45',
+          '[&[data-state=open]>svg]:rotate-180',
           className,
         )}
         {...props}
       >
         {children}
-        <Plus className="text-blue ml-auto size-3 transition-transform duration-300" />
+        <ChevronDown className="text-blue ml-auto transition-transform duration-300" />
       </AccordionPrimitiveTrigger>
     </AccordionPrimitiveHeader>
   )

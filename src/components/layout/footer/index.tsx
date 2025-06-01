@@ -1,6 +1,7 @@
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './accordion'
 import { BackToTop } from './back-to-top'
 import Link from 'next/link'
+import { External } from '@/components/ui/icons-outline/external'
 import { cn } from '@/libs/utils/cn'
 
 const emails: { label: string; email: string }[] = [
@@ -46,7 +47,7 @@ const socials: { label: string; href: string }[] = [
 
 const Footer = () => {
   const footerLinkClassName = cn(
-    'border-gray-light-1 typo-body-2 hover:border-blue inline-flex items-center gap-x-2.5 border-b transition-colors focus-visible:ring-offset-0',
+    'border-gray-light-1 typo-body-2 hover:border-blue hover:text-blue inline-flex items-center gap-x-2.5 border-b transition-colors focus-visible:ring-offset-0',
   )
 
   return (
@@ -90,19 +91,7 @@ const Footer = () => {
               {socials.map((item) => (
                 <Link key={item.label} href={item.href} className={footerLinkClassName} target="_blank">
                   {item.label}
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 12 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="mt-px"
-                  >
-                    <path
-                      d="M9.49726 2.8167C9.49726 2.54056 9.2734 2.3167 8.99726 2.3167L4.49726 2.3167C4.22112 2.3167 3.99726 2.54056 3.99726 2.8167C3.99726 3.09285 4.22112 3.3167 4.49726 3.3167L8.49726 3.3167L8.49726 7.3167C8.49726 7.59285 8.72112 7.8167 8.99726 7.8167C9.2734 7.8167 9.49726 7.59285 9.49726 7.3167L9.49726 2.8167ZM8.99726 2.8167L8.64371 2.46315L2.27975 8.82711L2.6333 9.18066L2.98685 9.53422L9.35082 3.17026L8.99726 2.8167Z"
-                      fill="black"
-                    />
-                  </svg>
+                  <External />
                 </Link>
               ))}
             </div>
