@@ -1,7 +1,7 @@
 'use client'
 
 import { use, useState, createContext, ReactNode, useEffect } from 'react'
-import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { motion, useMotionValue } from 'framer-motion'
 
 type CursorType = 'default' | 'hovered'
 
@@ -23,12 +23,9 @@ const CursorProvider = ({ children }: { children: ReactNode }) => {
   // Cursor position tracking
   const mouse = { x: useMotionValue(0), y: useMotionValue(0) }
 
-  // Smooth spring animation
-  const springConfig = { damping: 20, stiffness: 300 }
-
   const smoothMouse = {
-    x: useSpring(mouse.x, springConfig),
-    y: useSpring(mouse.y, springConfig),
+    x: mouse.x,
+    y: mouse.y,
   }
 
   useEffect(() => {
