@@ -6,7 +6,7 @@ import {
   AccordionTrigger as AccordionPrimitiveTrigger,
   AccordionContent as AccordionPrimitiveContent,
 } from '@radix-ui/react-accordion'
-import { ChevronDown } from '@/components/ui/icons/chevron-down'
+import { ChevronDown } from '@/components/ui/icons-color/chevron-down'
 
 const Accordion = ({ className, ...props }: React.ComponentProps<typeof AccordionPrimitive>) => {
   return <AccordionPrimitive className={cn('space-y-5', className)} {...props} />
@@ -31,7 +31,7 @@ const AccordionTrigger = ({
         <span
           className={cn(
             'border-blue ml-auto flex size-7 items-center justify-center rounded-full border transition-all duration-300',
-            'group-hover/accordion-trigger:bg-blue group-hover/accordion-trigger:text-white',
+            'group-hover/accordion-trigger:bg-blue group-hover/accordion-trigger:text-white group-hover/accordion-trigger:[&_path]:stroke-white',
             'group-data-[state=open]/accordion-trigger:rotate-180',
           )}
         >

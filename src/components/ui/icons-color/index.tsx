@@ -1,3 +1,5 @@
+export { ChevronDown } from './chevron-down'
 export { FullLogo } from './full-logo'
+export { FullLogoGray } from './full-logo-gray'
 export { IconLogo } from './icon-logo'
-export { HamburgerMenu } from './hamburger-menu'
+export { HamburgerMenu } from '../../layout/header/hamburger-menu'

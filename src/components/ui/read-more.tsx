@@ -1,6 +1,6 @@
 import { cn } from '@/libs/utils/cn'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@radix-ui/react-collapsible'
-import { Plus } from '@/components/ui/icons/plus'
+import { ChevronDown } from '@/components/ui/icons-color/chevron-down'
 
 const ReadMore = Collapsible
 
@@ -15,7 +15,7 @@ const ReadMoreTrigger = ({ className, ...props }: React.ComponentProps<typeof Co
     >
       <span className="group-data-[state=open]/read-more-trigger:hidden">READ MORE</span>
       <span className="group-data-[state=closed]/read-more-trigger:hidden">SHOW LESS</span>
-      <Plus className="text-blue -mt-0.5 size-2.5 transition-transform duration-300 group-data-[state=open]/read-more-trigger:rotate-45" />
+      <ChevronDown className="-mt-0.5 transition-transform duration-300 group-data-[state=open]/read-more-trigger:rotate-180" />
     </CollapsibleTrigger>
   )
 }

@@ -2,7 +2,7 @@ import { ComponentProps, ReactNode } from 'react'
 import { cn } from '@/libs/utils/cn'
 import { cva, VariantProps } from 'class-variance-authority'
 import Link, { type LinkProps } from 'next/link'
-import { ArrowLeft, ArrowRight } from '@/components/ui/icons'
+import { ArrowLeft, ArrowRight } from '@/components/ui/icons-outline'
 
 const buttonArrowVariants = cva(
   cn(

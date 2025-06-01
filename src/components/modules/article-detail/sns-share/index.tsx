@@ -3,7 +3,7 @@
 import { cn } from '@/libs/utils/cn'
 import { usePathname } from 'next/navigation'
 import { buttonSquareVariants } from '@/components/ui/button-square'
-import { Facebook, Line, X, Pinterest, Email } from '@/components/ui/icons'
+import { Facebook, Line, X, Pinterest, Email } from '@/components/ui/icons-outline'
 import {
   FacebookShareButton,
   LineShareButton,
@@ -35,7 +35,7 @@ const SnsShare = ({ label, title, coverImage }: SnsShareProps) => {
           url={shareUrl}
           className={buttonSquareVariants()}
         >
-          <Facebook className="size-5.5" />
+          <Facebook />
         </FacebookShareButton>
         <LineShareButton
           resetButtonStyle={false}
@@ -44,7 +44,7 @@ const SnsShare = ({ label, title, coverImage }: SnsShareProps) => {
           title={title}
           className={buttonSquareVariants()}
         >
-          <Line className="size-5.5" />
+          <Line />
         </LineShareButton>
         <TwitterShareButton
           resetButtonStyle={false}
@@ -53,7 +53,7 @@ const SnsShare = ({ label, title, coverImage }: SnsShareProps) => {
           title={title}
           className={buttonSquareVariants()}
         >
-          <X className="size-5.5" />
+          <X />
         </TwitterShareButton>
         <PinterestShareButton
           resetButtonStyle={false}
@@ -62,7 +62,7 @@ const SnsShare = ({ label, title, coverImage }: SnsShareProps) => {
           media={coverImage}
           className={buttonSquareVariants()}
         >
-          <Pinterest className="size-5.5" />
+          <Pinterest />
         </PinterestShareButton>
         <CopyLinkButton />
         <EmailShareButton
@@ -73,7 +73,7 @@ const SnsShare = ({ label, title, coverImage }: SnsShareProps) => {
           body="Body"
           className={buttonSquareVariants()}
         >
-          <Email className="size-5.5" />
+          <Email />
         </EmailShareButton>
       </div>
     </div>

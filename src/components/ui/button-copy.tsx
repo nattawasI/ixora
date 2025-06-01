@@ -1,6 +1,6 @@
 import { ComponentProps } from 'react'
 import { cn } from '@/libs/utils/cn'
-import { Copy } from '@/components/ui/icons/copy'
+import { Copy } from '@/components/ui/icons-outline/copy'
 
 const ButtonCopy = ({
   className,

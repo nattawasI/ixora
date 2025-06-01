@@ -3,7 +3,7 @@
 import { ComponentProps } from 'react'
 import { cn } from '@/libs/utils/cn'
 import { useMediaQuery } from '@/libs/hooks/use-media-query'
-import { Plus } from '@/components/ui/icons/plus'
+import { Plus } from '@/components/ui/icons-outline/plus'
 import {
   Accordion as AccordionPrimitive,
   AccordionItem as AccordionPrimitiveItem,

@@ -13,7 +13,7 @@ import {
   DialogClose,
 } from '@radix-ui/react-dialog'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
-import { HamburgerMenu } from '@/components/ui/icons-color/hamburger-menu'
+import { HamburgerMenu } from '@/components/layout/header/hamburger-menu'
 import { NavigationLink } from '@/components/ui/navigation-link'
 import type { NavigationItemType } from '@/components/layout/type'
 
