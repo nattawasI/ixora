@@ -90,7 +90,7 @@
   }
 
   .typo-body-2 {
-    @apply text-[0.813rem] leading-[1.375rem];
+    @apply text-[0.813rem] leading-[1.125rem];
   }
 
   .typo-body-3 {
