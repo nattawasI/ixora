@@ -21,21 +21,25 @@ const CursorProvider = ({ children }: { children: ReactNode }) => {
   const cursorSize = 70
 
   // Cursor position tracking
-  const mouse = { x: useMotionValue(0), y: useMotionValue(0) }
+  const mouse = { x: useMotionValue(0), y: useMotionValue(0), scale: useMotionValue(1) }
 
   const smoothMouse = {
     x: mouse.x,
     y: mouse.y,
+    scale: mouse.scale,
   }
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       mouse.x.set(e.clientX - cursorSize / 2)
       mouse.y.set(e.clientY - cursorSize / 2)
+      mouse.scale.set(1)
     }
     window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [mouse.x, mouse.y, cursorSize])
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [mouse.x, mouse.y, mouse.scale, cursorSize])
 
   return (
     <CursorContext.Provider value={{ cursorType, setCursorType }}>
@@ -44,10 +48,11 @@ const CursorProvider = ({ children }: { children: ReactNode }) => {
         className="bg-blue pointer-events-none fixed z-[9999] size-0 rounded-full opacity-0 backdrop-blur-2xl"
         animate={{
           opacity: cursorType === 'hovered' ? 0.9 : 0,
+          scale: cursorType === 'hovered' ? 1 : 0.7,
           width: cursorSize,
           height: cursorSize,
         }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        transition={{ duration: 0.25, ease: 'easeInOut' }}
         style={{
           left: smoothMouse.x,
           top: smoothMouse.y,
