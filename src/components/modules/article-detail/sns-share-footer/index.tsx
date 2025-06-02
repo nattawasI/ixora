@@ -9,7 +9,7 @@ const SnsShareFooter = ({ label, title, coverImage }: { label: string } & SnsSha
       className={cn(
         'flex items-center',
         'max-lg:flex-col max-lg:items-center max-lg:gap-y-2.5',
-        'lg:flex-row lg:justify-between lg:gap-x-4 lg:py-7',
+        'lg:flex-row lg:justify-between lg:gap-x-4',
       )}
     >
       <p className="typo-body-2 text-gray font-bold">{label}</p>
