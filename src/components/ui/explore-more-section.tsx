@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@radix-ui/react-accordion'
+import { cn } from '@/libs/utils/cn'
 
 const ExploreMoreSection = ({ children, ...props }: React.ComponentProps<typeof Accordion>) => {
   return (
@@ -20,8 +21,16 @@ const ExploreMoreSection = ({ children, ...props }: React.ComponentProps<typeof 
               </AccordionTrigger>
             </h2>
           </AccordionHeader>
-          <AccordionContent className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden">
-            <div className="p-0.5">{children}</div>
+          <AccordionContent className="group data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden">
+            <div
+              className={cn(
+                'p-0.5 transition-opacity duration-500 ease-in-out',
+                'group-data-[state=closed]:animate-out group-data-[state=open]:animate-in',
+                'group-data-[state=closed]:fade-out-0 group-data-[state=open]:fade-in-0',
+              )}
+            >
+              {children}
+            </div>
           </AccordionContent>
         </section>
       </AccordionItem>

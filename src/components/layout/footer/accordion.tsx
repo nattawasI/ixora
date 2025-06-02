@@ -58,7 +58,7 @@ const AccordionContent = ({ className, children, ...props }: ComponentProps<type
     >
       <div
         className={cn(
-          'py-5 transition-opacity duration-500 ease-in-out',
+          'py-5 transition-opacity ease-in-out',
           'group-data-[state=closed]:animate-out group-data-[state=open]:animate-in',
           'group-data-[state=closed]:fade-out-0 group-data-[state=open]:fade-in-0',
           className,
