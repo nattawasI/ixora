@@ -47,7 +47,7 @@ const socials: { label: string; href: string }[] = [
 
 const Footer = () => {
   const footerLinkClassName = cn(
-    'group/footer-link border-gray-light-1 typo-body-2 hover:border-blue inline-flex items-center gap-x-2.5 border-b transition-colors focus-visible:ring-offset-0',
+    'group/footer-link typo-body-2 decoration-gray-light-1 hover:decoration-blue inline-flex items-center gap-x-2.5 underline underline-offset-4 transition-colors focus-visible:ring-offset-0',
   )
 
   return (
