@@ -11,7 +11,7 @@ const ExploreMoreSection = ({ children, ...props }: React.ComponentProps<typeof 
   return (
     <Accordion {...props}>
       <AccordionItem value="explore-more" asChild>
-        <section className="max-lg:pt-4">
+        <section className="max-lg:px-4 max-lg:pt-4">
           <AccordionHeader asChild>
             <h2>
               <AccordionTrigger className="typo-title-3 flex h-[3.75rem] w-full items-center justify-center font-bold ring-offset-0 lg:h-[5.625rem]">

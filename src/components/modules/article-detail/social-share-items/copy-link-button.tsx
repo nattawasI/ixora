@@ -3,7 +3,7 @@
 import { ButtonSquare } from '@/components/ui/button-square'
 import { CopyLink as CopyLinkIcon } from '@/components/ui/icons-outline/copy-link'
 import { useClipboard } from '@/libs/hooks/use-clipboard'
-import { CopiedLabel } from '@/components/modules/common/social-share/copied-label'
+import { CopiedLabel } from '@/components/modules/article-detail/social-share-items/copied-label'
 
 const CopyLinkButton = () => {
   const { copy, copied } = useClipboard({ timeout: 1000 })

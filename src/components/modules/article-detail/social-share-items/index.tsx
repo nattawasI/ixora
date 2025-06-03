@@ -12,9 +12,9 @@ import {
 } from 'react-share'
 import { CopyLinkButton } from './copy-link-button'
 
-type SnsShareProps = { title: string; coverImage: string }
+type SocialShareItemsProps = { title: string; coverImage: string }
 
-const SocialShare = ({ title, coverImage }: SnsShareProps) => {
+const SocialShareItems = ({ title, coverImage }: SocialShareItemsProps) => {
   const pathname = usePathname()
   const shareUrl = `${process.env.NEXT_PUBLIC_BASE_URL}${pathname}`
 
@@ -70,4 +70,4 @@ const SocialShare = ({ title, coverImage }: SnsShareProps) => {
   )
 }
 
-export { SocialShare, type SnsShareProps }
+export { SocialShareItems, type SocialShareItemsProps }
