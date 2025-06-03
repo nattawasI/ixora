@@ -1,17 +1,17 @@
-import { ArticleDetailLayout } from '@/components/modules/article-detail/article-detail-layout'
 import { ReadMore, ReadMoreTrigger, ReadMoreContent } from '@/components/ui/read-more'
 import { SingleImage } from '@/components/modules/article-detail/single-image'
 import { ColumnImages } from '@/components/modules/article-detail/column-images'
 import { VideoPlayer } from '@/components/modules/article-detail/video-player'
 import { SnsShareFooter } from '@/components/modules/article-detail/sns-share-footer'
 import { SnsShareSticky } from '@/components/modules/article-detail/sns-share-sticky'
+import { SocialShareProvider } from '@/components/modules/article-detail/sns-share-context'
 // import { ProjectExploreMore } from '@/components/modules/project-detail/project-explore-more'
 // import { ButtonArrowLink } from '@/components/ui/button-arrow'
 
 export default function ProjectDetail() {
   return (
-    <>
-      <SnsShareSticky title="SARANSIRI PRACHAUTHIT 90" coverImage="/mockup/project.jpg" />
+    <SocialShareProvider>
+      <SnsShareSticky inLayout="page" title="SARANSIRI PRACHAUTHIT 90" coverImage="/mockup/project.jpg" />
       <div className="mx-auto max-w-[88.75rem] lg:px-[5.625rem]">
         <div className="bg-white p-4 lg:p-12.5 lg:pb-7">
           <div className="space-y-5">
@@ -79,6 +79,6 @@ export default function ProjectDetail() {
         className="mt-4 w-full md:mt-10"
       >{`SEE ALL ${'RESIDENTIAL'} PROJECTS`}</ButtonArrowLink> */}
       </div>
-    </>
+    </SocialShareProvider>
   )
 }

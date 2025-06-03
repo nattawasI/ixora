@@ -1,11 +1,26 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
+import { useInView } from 'motion/react'
 import { cn } from '@/libs/utils/cn'
-import { SocialShareItems, type SocialShareItemsProps } from '@/components/modules/article-detail/social-share-items'
+import { SnsShareItems, type SnsShareItemsProps } from '@/components/modules/article-detail/sns-share-items'
+import { useSocialShareContext } from '@/components/modules/article-detail/sns-share-context'
 
-const SnsShareFooter = ({ label, title, coverImage }: { label: string } & SocialShareItemsProps) => {
+const SnsShareFooter = ({ label, title, coverImage }: { label: string } & SnsShareItemsProps) => {
+  const { setHideSnsShareSticky } = useSocialShareContext()
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  const isInView = useInView(containerRef, {
+    amount: 'all',
+  })
+
+  useEffect(() => {
+    setHideSnsShareSticky(isInView)
+  }, [isInView, setHideSnsShareSticky])
+
   return (
     <div
+      ref={containerRef}
       className={cn(
         'flex items-center',
         'max-md:flex-col max-md:items-center max-md:gap-y-2.5',
@@ -14,7 +29,7 @@ const SnsShareFooter = ({ label, title, coverImage }: { label: string } & Social
     >
       <p className="typo-body-2 text-gray font-bold">{label}</p>
       <div className="flex gap-x-2.5 md:gap-x-3.75">
-        <SocialShareItems title={title} coverImage={coverImage} />
+        <SnsShareItems title={title} coverImage={coverImage} />
       </div>
     </div>
   )
