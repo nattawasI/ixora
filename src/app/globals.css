@@ -109,14 +109,6 @@
     @apply bg-gray-light-1 animate-pulse;
   }
 
-  .list-bullet {
-    @apply space-y-2;
-
-    & > li {
-      @apply relative list-none pl-6 before:absolute before:top-2.5 before:left-2.5 before:size-0.75 before:rounded-full before:bg-black before:content-[''];
-    }
-  }
-
   .list-project {
     @apply grid gap-5 md:grid-cols-3 lg:grid-cols-3;
   }
@@ -127,6 +119,63 @@
 
   .list-people {
     @apply grid grid-cols-2 gap-x-2.5 gap-y-4 md:grid-cols-4 lg:gap-x-7.5 lg:gap-y-2.5;
+  }
+
+  .detail-content {
+    .title-1,
+    .title-1-bold {
+      @apply text-[1.625rem] leading-[2.188rem] lg:text-[2.25rem] lg:leading-[2.875rem];
+    }
+
+    .title-2,
+    .title-2-bold {
+      @apply text-[1.25rem] leading-[1.813rem] lg:text-[1.625rem] lg:leading-[2.25rem];
+    }
+
+    .title-3,
+    .title-3-bold {
+      @apply text-[1.125rem] leading-[1.688rem] lg:text-[1.313rem] lg:leading-[1.938rem];
+    }
+
+    .body-1,
+    .body-1-bold {
+      @apply text-[0.938rem] leading-[1.563rem];
+    }
+
+    .body-2,
+    .body-2-bold {
+      @apply text-[0.813rem] leading-[1.125rem];
+    }
+
+    .body-3,
+    .body-3-bold {
+      @apply text-[0.625rem] leading-[1rem];
+    }
+
+    .title-1-bold,
+    .title-2-bold,
+    .title-3-bold,
+    .body-1-bold,
+    .body-2-bold,
+    .body-3-bold {
+      @apply font-bold;
+    }
+
+    ul {
+      @apply space-y-2;
+
+      & > li {
+        @apply relative list-none pl-6 before:absolute before:top-2.5 before:left-2.5 before:size-0.75 before:rounded-full before:bg-black before:content-[''];
+      }
+    }
+
+    ol {
+      @apply space-y-2;
+
+      & > li {
+        @apply ml-6 list-decimal;
+      }
+    }
   }
 }
 

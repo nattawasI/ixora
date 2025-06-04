@@ -63,11 +63,13 @@ const CareerList = () => {
           </AccordionTrigger>
           <AccordionContent>
             <h4 className="text-gray typo-body-1 mb-2.5 font-bold">Requirements</h4>
-            <ul className="list-bullet">
-              {item.requirements.map((requirement, index) => (
-                <li key={`requirement-${index}`}>{requirement}</li>
-              ))}
-            </ul>
+            <div className="detail-content">
+              <ul>
+                {item.requirements.map((requirement, index) => (
+                  <li key={`requirement-${index}`}>{requirement}</li>
+                ))}
+              </ul>
+            </div>
           </AccordionContent>
         </AccordionItem>
       ))}
