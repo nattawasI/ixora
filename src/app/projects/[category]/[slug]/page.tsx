@@ -5,15 +5,15 @@ import { VideoPlayer } from '@/components/modules/article-detail/video-player'
 import { SnsShareFooter } from '@/components/modules/article-detail/sns-share-footer'
 import { SnsShareSticky } from '@/components/modules/article-detail/sns-share-sticky'
 import { SocialShareProvider } from '@/components/modules/article-detail/sns-share-context'
-// import { ProjectExploreMore } from '@/components/modules/project-detail/project-explore-more'
-// import { ButtonArrowLink } from '@/components/ui/button-arrow'
+import { ProjectExploreMore } from '@/components/modules/project-detail/project-explore-more'
+import { ButtonArrowLink } from '@/components/ui/button-arrow'
 
 export default function ProjectDetail() {
   return (
     <SocialShareProvider>
       <SnsShareSticky inLayout="page" title="SARANSIRI PRACHAUTHIT 90" coverImage="/mockup/project.jpg" />
-      <div className="mx-auto max-w-[88.75rem] lg:px-[5.625rem]">
-        <div className="bg-white p-4 lg:p-12.5 lg:pb-7">
+      <div className="mx-auto max-w-[88.75rem] pt-0.5 lg:px-[5.625rem]">
+        <section className="bg-white p-4 lg:p-12.5 lg:pb-7">
           <div className="space-y-5">
             <div className="space-y-2.5 lg:mb-[3.75rem]">
               <h1 className="typo-title-1 font-bold uppercase">SARANSIRI PRACHAUTHIT 90</h1>
@@ -72,12 +72,14 @@ export default function ProjectDetail() {
               coverImage="/mockup/project.jpg"
             />
           </div>
-        </div>
-        {/* <ProjectExploreMore />
-      <ButtonArrowLink
-        href={'/projects/residential'}
-        className="mt-4 w-full md:mt-10"
-      >{`SEE ALL ${'RESIDENTIAL'} PROJECTS`}</ButtonArrowLink> */}
+        </section>
+        <section className="max-lg:px-4 max-lg:pt-4">
+          <ProjectExploreMore />
+          <ButtonArrowLink
+            href={'/projects/residential'}
+            className="mt-4 w-full md:mt-10"
+          >{`SEE ALL ${'RESIDENTIAL'} PROJECTS`}</ButtonArrowLink>
+        </section>
       </div>
     </SocialShareProvider>
   )

@@ -25,7 +25,7 @@ const SnsShareSticky = ({ title, coverImage, inLayout }: SnsShareStickyProps) =>
       value={value}
       onValueChange={setValue}
       className={cn(
-        'fixed top-[3.75rem] z-10 -mt-0.5 w-12 lg:top-[6.25rem]',
+        'fixed top-[3.75rem] z-10 w-12 pt-0.5 max-lg:hidden lg:top-[6.25rem]',
         'max-[88.75rem]:right-5',
         'min-[88.75rem]:right-1/2 min-[88.75rem]:translate-x-[calc(38.75rem+4.125rem)]',
         'transition-opacity duration-300',
