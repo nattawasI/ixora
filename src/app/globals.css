@@ -176,6 +176,10 @@
         @apply ml-6 list-decimal;
       }
     }
+
+    a {
+      @apply decoration-gray-light-1 hover:decoration-blue inline-block underline underline-offset-4 transition-colors;
+    }
   }
 }
 
