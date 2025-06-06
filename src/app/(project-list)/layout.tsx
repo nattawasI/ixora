@@ -12,8 +12,10 @@ const mockupProjectCategories: NavigationItemType[] = [
 
 export default function ProjectListLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode
+  modal: React.ReactNode
 }>) {
   /** fetch product categories here... */
 
@@ -21,6 +23,7 @@ export default function ProjectListLayout({
     <div className="px-4 max-lg:pt-5 max-lg:pb-6 lg:px-10">
       <ProjectCategoriesFilter categories={mockupProjectCategories} />
       {children}
+      {modal}
     </div>
   )
 }
