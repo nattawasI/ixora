@@ -11,6 +11,8 @@ import {
   ChevronRight as ChevronRightColor,
 } from '@/components/ui/icons-color'
 import Link from 'next/link'
+import { SnsShareSticky } from '@/components/modules/article-detail/sns-share-sticky'
+import { SocialShareProvider } from '@/components/modules/article-detail/sns-share-context'
 
 const PageDetailModal = ({
   contentSize,
@@ -48,48 +50,54 @@ const PageDetailModal = ({
               'max-lg:scrollbar-hidden outline-none max-lg:mt-[3.75rem] max-lg:h-[calc(100svh-3.75rem)] max-lg:overflow-hidden max-lg:overflow-y-auto lg:my-[5.625rem]',
             )}
           >
-            <DialogClose
-              className={buttonSquareVariants({ theme: 'gray', className: 'fixed top-0 right-0 max-lg:hidden' })}
-            >
-              <Close />
-            </DialogClose>
-            <div className="bg-gray-light-2">
-              {children}
-              <div className="mt-4 flex gap-x-2.5 px-4 pb-4 lg:hidden">
-                {prevHref ? (
-                  <Link
-                    href={prevHref}
+            <SocialShareProvider>
+              <SnsShareSticky
+                isInModal
+                title="SARANSIRI PRACHAUTHIT 90"
+                coverImage="/mockup/project.jpg"
+                className="social-share-sticky"
+              />
+              <div className="bg-gray-light-2">
+                {children}
+                <div className="mt-4 flex gap-x-2.5 px-4 pb-4 lg:hidden">
+                  {prevHref ? (
+                    <Link
+                      href={prevHref}
+                      className={buttonSquareVariants({
+                        className: 'hover-icon-stroke-white',
+                      })}
+                    >
+                      <ChevronLeftColor />
+                    </Link>
+                  ) : null}
+                  <DialogClose
                     className={buttonSquareVariants({
-                      className: 'hover-icon-stroke-white',
+                      className: 'hover-icon-stroke-white flex-1',
                     })}
                   >
-                    <ChevronLeftColor />
-                  </Link>
-                ) : null}
-                <DialogClose
-                  className={buttonSquareVariants({
-                    className: 'hover-icon-stroke-white flex-1',
-                  })}
-                >
-                  <CloseColor />
-                  <span>CLOSE</span>
-                </DialogClose>
-                {nextHref ? (
-                  <Link
-                    href={nextHref}
-                    className={buttonSquareVariants({
-                      className: 'hover-icon-stroke-white',
-                    })}
-                  >
-                    <ChevronRightColor />
-                  </Link>
-                ) : null}
+                    <CloseColor />
+                    <span>CLOSE</span>
+                  </DialogClose>
+                  {nextHref ? (
+                    <Link
+                      href={nextHref}
+                      className={buttonSquareVariants({
+                        className: 'hover-icon-stroke-white',
+                      })}
+                    >
+                      <ChevronRightColor />
+                    </Link>
+                  ) : null}
+                </div>
               </div>
-            </div>
+            </SocialShareProvider>
             {prevHref ? (
               <Link
                 href={prevHref}
-                className={buttonSquareVariants({ theme: 'gray', className: 'fixed bottom-0 left-0 max-lg:hidden' })}
+                className={buttonSquareVariants({
+                  theme: 'gray',
+                  className: 'fixed bottom-0 left-0 focus-visible:ring-white max-lg:hidden',
+                })}
               >
                 <ChevronLeft />
               </Link>
@@ -97,11 +105,22 @@ const PageDetailModal = ({
             {nextHref ? (
               <Link
                 href={nextHref}
-                className={buttonSquareVariants({ theme: 'gray', className: 'fixed right-0 bottom-0 max-lg:hidden' })}
+                className={buttonSquareVariants({
+                  theme: 'gray',
+                  className: 'fixed right-0 bottom-0 focus-visible:ring-white max-lg:hidden',
+                })}
               >
                 <ChevronRight />
               </Link>
             ) : null}
+            <DialogClose
+              className={buttonSquareVariants({
+                theme: 'gray',
+                className: 'fixed top-0 right-0 focus-visible:ring-white max-lg:hidden',
+              })}
+            >
+              <Close />
+            </DialogClose>
           </DialogContent>
         </DialogOverlay>
       </DialogPortal>

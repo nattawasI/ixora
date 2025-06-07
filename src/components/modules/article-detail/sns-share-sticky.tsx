@@ -8,7 +8,6 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@r
 import { useSocialShareContext } from '@/components/modules/article-detail/sns-share-context'
 
 type SnsShareStickyProps = SnsShareItemsProps & {
-  isInModal?: boolean
   className?: string
 }
 
@@ -36,12 +35,15 @@ const SnsShareSticky = ({ title, coverImage, isInModal, className }: SnsShareSti
       <AccordionItem value="share" className="flex flex-col items-center">
         <AccordionTrigger
           type="button"
-          className={cn('group typo-body-2 order-2 space-y-1.25 font-bold uppercase', isInModal ? 'text-white' : '')}
+          className={cn(
+            'group/social-sticky-trigger typo-body-2 order-2 space-y-1.25 font-bold uppercase',
+            isInModal ? 'text-white focus-visible:ring-white' : '',
+          )}
         >
           <span
             className={cn(
               'flex size-11.5 items-center justify-center transition-colors',
-              'group-hover:bg-blue group-hover:[&>svg]:text-white',
+              'group-hover/social-sticky-trigger:bg-blue group-hover/social-sticky-trigger:[&>svg]:text-white',
               isInModal ? 'bg-gray' : 'bg-transition border-gray-light-1 border',
             )}
           >
@@ -53,9 +55,9 @@ const SnsShareSticky = ({ title, coverImage, isInModal, className }: SnsShareSti
           </span>
           <span>{isOpen ? 'CLOSE' : 'SHARE'}</span>
         </AccordionTrigger>
-        <AccordionContent className="group data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down order-1 overflow-hidden">
+        <AccordionContent className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down order-1 overflow-hidden">
           <div className="mb-2 space-y-2.5 px-0.5">
-            <SnsShareItems title={title} coverImage={coverImage} />
+            <SnsShareItems title={title} coverImage={coverImage} isInModal={isInModal} />
           </div>
         </AccordionContent>
       </AccordionItem>
