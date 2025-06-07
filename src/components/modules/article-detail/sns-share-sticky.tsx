@@ -8,10 +8,11 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@r
 import { useSocialShareContext } from '@/components/modules/article-detail/sns-share-context'
 
 type SnsShareStickyProps = SnsShareItemsProps & {
-  inLayout: 'page' | 'modal'
+  isInModal?: boolean
+  className?: string
 }
 
-const SnsShareSticky = ({ title, coverImage, inLayout }: SnsShareStickyProps) => {
+const SnsShareSticky = ({ title, coverImage, isInModal, className }: SnsShareStickyProps) => {
   const [value, setValue] = useState('')
 
   const isOpen = value === 'share'
@@ -25,39 +26,35 @@ const SnsShareSticky = ({ title, coverImage, inLayout }: SnsShareStickyProps) =>
       value={value}
       onValueChange={setValue}
       className={cn(
-        'fixed top-[3.75rem] z-10 w-12 pt-0.5 max-lg:hidden lg:top-[6.25rem]',
-        'max-[88.75rem]:right-5',
-        'min-[88.75rem]:right-1/2 min-[88.75rem]:translate-x-[calc(38.75rem+4.125rem)]',
+        'fixed z-10 w-12 max-lg:hidden',
+        isInModal ? 'top-[5.625rem]' : 'top-[6.25rem]',
         'transition-opacity duration-300',
         hideSnsShareSticky ? 'pointer-events-none opacity-0' : '',
+        className,
       )}
     >
       <AccordionItem value="share" className="flex flex-col items-center">
         <AccordionTrigger
           type="button"
-          className={cn(
-            'group typo-body-2 order-2 space-y-1.25 font-bold uppercase',
-            inLayout === 'modal' ? 'text-white' : '',
-          )}
+          className={cn('group typo-body-2 order-2 space-y-1.25 font-bold uppercase', isInModal ? 'text-white' : '')}
         >
           <span
             className={cn(
-              'border-gray-light-1 flex size-11.5 items-center justify-center border transition-colors',
+              'flex size-11.5 items-center justify-center transition-colors',
               'group-hover:bg-blue group-hover:[&>svg]:text-white',
-              inLayout === 'page' ? 'bg-transition' : '',
-              inLayout === 'modal' ? 'bg-gray' : '',
+              isInModal ? 'bg-gray' : 'bg-transition border-gray-light-1 border',
             )}
           >
             {isOpen ? (
-              <Close className={cn(inLayout === 'page' ? 'text-blue' : '', inLayout === 'modal' ? 'text-white' : '')} />
+              <Close className={cn(isInModal ? 'text-white' : 'text-blue')} />
             ) : (
-              <Share className={cn(inLayout === 'page' ? 'text-blue' : '', inLayout === 'modal' ? 'text-white' : '')} />
+              <Share className={cn(isInModal ? 'text-white' : 'text-blue')} />
             )}
           </span>
           <span>{isOpen ? 'CLOSE' : 'SHARE'}</span>
         </AccordionTrigger>
         <AccordionContent className="group data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down order-1 overflow-hidden">
-          <div className="mb-2 space-y-2.5 p-0.5">
+          <div className="mb-2 space-y-2.5 px-0.5">
             <SnsShareItems title={title} coverImage={coverImage} />
           </div>
         </AccordionContent>

@@ -1,6 +1,7 @@
 export { ChevronDown } from './chevron-down'
 export { ChevronLeft } from './chevron-left'
 export { ChevronRight } from './chevron-right'
+export { Close } from './close'
 export { FullLogo } from './full-logo'
 export { FullLogoGray } from './full-logo-gray'
 export { IconLogo } from './icon-logo'

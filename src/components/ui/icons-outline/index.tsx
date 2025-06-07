@@ -1,5 +1,7 @@
 export { ArrowLeft } from './arrow-left'
 export { ArrowRight } from './arrow-right'
+export { ChevronLeft } from './chevron-left'
+export { ChevronRight } from './chevron-right'
 export { Close } from './close'
 export { Copy } from './copy'
 export { CopyLink } from './copy-link'

@@ -9,7 +9,7 @@ const ProjectList = () => {
     <CursorProvider>
       <div className="list-project">
         {Array.from({ length: 21 }).map((_, index) => (
-          <Link href="/projects/residential/1" className="block" key={index}>
+          <Link href="/projects/residential/2" className="block" key={index}>
             <ProjectCard
               image={{
                 src: '/mockup/project.jpg',

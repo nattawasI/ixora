@@ -1,0 +1,112 @@
+'use client'
+
+import { cn } from '@/libs/utils/cn'
+import { useRouter } from 'next/navigation'
+import {
+  Dialog,
+  DialogPortal,
+  DialogOverlay,
+  DialogContent,
+  DialogClose,
+  DialogTitle,
+  DialogDescription,
+} from '@radix-ui/react-dialog'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
+import { buttonSquareVariants } from '@/components/ui/button-square'
+import { Close, ChevronLeft, ChevronRight } from '@/components/ui/icons-outline'
+import {
+  Close as CloseColor,
+  ChevronLeft as ChevronLeftColor,
+  ChevronRight as ChevronRightColor,
+} from '@/components/ui/icons-color'
+import Link from 'next/link'
+
+const DetailModal = ({
+  contentSize,
+  noDescription,
+  prevHref,
+  nextHref,
+  children,
+}: {
+  contentSize: 'small' | 'large'
+  noDescription?: boolean
+  prevHref: string
+  nextHref: string
+  children?: React.ReactNode
+}) => {
+  const router = useRouter()
+  return (
+    <Dialog
+      defaultOpen
+      onOpenChange={() => {
+        router.back() /** logic ตรงนี้อาจจะเปลี่ยนทีหลัง เพราะ modal เรามี prev, next ทำให้ไม่สามารถใช้ router.back() ได้ */
+      }}
+    >
+      <DialogPortal>
+        <DialogOverlay className="lg:scrollbar-hidden fixed inset-0 z-30 bg-black/50 max-lg:overflow-hidden lg:overflow-y-auto">
+          <DialogContent
+            {...(noDescription && { 'aria-describedby': undefined })}
+            className={cn(
+              contentSize === 'large' ? 'article-detail-container-large' : 'article-detail-container-small',
+              'max-lg:scrollbar-hidden outline-none max-lg:mt-[3.75rem] max-lg:h-[calc(100svh-3.75rem)] max-lg:overflow-hidden max-lg:overflow-y-auto lg:my-[5.625rem]',
+            )}
+          >
+            <DialogClose
+              className={buttonSquareVariants({ theme: 'gray', className: 'fixed top-0 right-0 max-lg:hidden' })}
+            >
+              <Close />
+            </DialogClose>
+            <VisuallyHidden>
+              <DialogTitle>Project Detail</DialogTitle>
+              <DialogDescription>Project Detail</DialogDescription>
+            </VisuallyHidden>
+            <div className="bg-gray-light-2">
+              {children}
+              <div className="mt-4 flex gap-x-2.5 px-4 pb-4 lg:hidden">
+                <Link
+                  href={prevHref}
+                  className={buttonSquareVariants({
+                    className: '[&_path]:transition-colors hover:[&_path]:stroke-white',
+                  })}
+                >
+                  <ChevronLeftColor />
+                </Link>
+                <Link
+                  href={prevHref}
+                  className={buttonSquareVariants({
+                    className: 'flex-1 [&_path]:transition-colors hover:[&_path]:stroke-white',
+                  })}
+                >
+                  <CloseColor />
+                  <span>CLOSE</span>
+                </Link>
+                <Link
+                  href={nextHref}
+                  className={buttonSquareVariants({
+                    className: '[&_path]:transition-colors hover:[&_path]:stroke-white',
+                  })}
+                >
+                  <ChevronRightColor />
+                </Link>
+              </div>
+            </div>
+            <Link
+              href={prevHref}
+              className={buttonSquareVariants({ theme: 'gray', className: 'fixed bottom-0 left-0 max-lg:hidden' })}
+            >
+              <ChevronLeft />
+            </Link>
+            <Link
+              href={nextHref}
+              className={buttonSquareVariants({ theme: 'gray', className: 'fixed right-0 bottom-0 max-lg:hidden' })}
+            >
+              <ChevronRight />
+            </Link>
+          </DialogContent>
+        </DialogOverlay>
+      </DialogPortal>
+    </Dialog>
+  )
+}
+
+export { DetailModal }
