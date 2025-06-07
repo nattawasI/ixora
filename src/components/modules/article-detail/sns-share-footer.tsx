@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { useInView } from 'motion/react'
 import { cn } from '@/libs/utils/cn'
 import { SnsShareItems, type SnsShareItemsProps } from '@/components/modules/article-detail/sns-share-items'
 import { useSocialShareContext } from '@/components/modules/article-detail/sns-share-context'
@@ -10,13 +9,24 @@ const SnsShareFooter = ({ label, title, coverImage }: { label: string } & SnsSha
   const { setHideSnsShareSticky } = useSocialShareContext()
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const isInView = useInView(containerRef, {
-    amount: 'all',
-  })
-
   useEffect(() => {
-    setHideSnsShareSticky(isInView)
-  }, [isInView, setHideSnsShareSticky])
+    const checkIfInView = () => {
+      if (!containerRef.current) return
+
+      const rect = containerRef.current.getBoundingClientRect()
+      // ตรวจสอบว่า element ยังอยู่เหนือขอบล่างของหน้าจอ
+      const isAboveBottom = rect.top < window.innerHeight
+      setHideSnsShareSticky(isAboveBottom)
+    }
+
+    // ตรวจสอบตอนโหลดและเมื่อมีการ scroll
+    checkIfInView()
+    window.addEventListener('scroll', checkIfInView, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', checkIfInView)
+    }
+  }, [setHideSnsShareSticky])
 
   return (
     <div
