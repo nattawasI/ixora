@@ -2,16 +2,7 @@
 
 import { cn } from '@/libs/utils/cn'
 import { useRouter } from 'next/navigation'
-import {
-  Dialog,
-  DialogPortal,
-  DialogOverlay,
-  DialogContent,
-  DialogClose,
-  DialogTitle,
-  DialogDescription,
-} from '@radix-ui/react-dialog'
-import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
+import { Dialog, DialogPortal, DialogOverlay, DialogContent, DialogClose } from '@radix-ui/react-dialog'
 import { buttonSquareVariants } from '@/components/ui/button-square'
 import { Close, ChevronLeft, ChevronRight } from '@/components/ui/icons-outline'
 import {
@@ -62,11 +53,7 @@ const PageDetailModal = ({
             >
               <Close />
             </DialogClose>
-            <VisuallyHidden>
-              <DialogTitle>Project Detail</DialogTitle>
-              <DialogDescription>Project Detail</DialogDescription>
-            </VisuallyHidden>
-            <div className="bg-gray-light-2 group-data-[state=open]:animate-in group-data-[state=closed]:animate-out group-data-[state=closed]:fade-out-0 group-data-[state=open]:fade-in-0 group-data-[state=open]:zoom-in-95 group-data-[state=closed]:zoom-out-95">
+            <div className="bg-gray-light-2">
               {children}
               <div className="mt-4 flex gap-x-2.5 px-4 pb-4 lg:hidden">
                 {prevHref ? (

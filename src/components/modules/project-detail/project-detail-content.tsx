@@ -1,3 +1,5 @@
+import { cn } from '@/libs/utils/cn'
+import { DialogTitle } from '@radix-ui/react-dialog'
 import { ReadMore, ReadMoreTrigger, ReadMoreContent } from '@/components/ui/read-more'
 import { SingleImage } from '@/components/modules/article-detail/single-image'
 import { ColumnImages } from '@/components/modules/article-detail/column-images'
@@ -7,7 +9,6 @@ import { SnsShareSticky } from '@/components/modules/article-detail/sns-share-st
 import { SocialShareProvider } from '@/components/modules/article-detail/sns-share-context'
 import { ProjectExploreMore } from '@/components/modules/project-detail/project-explore-more'
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
-import { cn } from '@/libs/utils/cn'
 
 const ProjectDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
   return (
@@ -22,7 +23,11 @@ const ProjectDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
         <section className="bg-white p-4 lg:p-12.5 lg:pb-7">
           <div className="space-y-5">
             <div className="space-y-2.5 lg:mb-[3.75rem]">
-              <h1 className="typo-title-1 font-bold uppercase">SARANSIRI PRACHAUTHIT 90</h1>
+              {isInModal ? (
+                <DialogTitle className="typo-title-1 font-bold uppercase">SARANSIRI PRACHAUTHIT 90</DialogTitle>
+              ) : (
+                <h1 className="typo-title-1 font-bold uppercase">SARANSIRI PRACHAUTHIT 90</h1>
+              )}
               <p className="typo-body-2 uppercase">BANGKOK , THAILAND</p>
             </div>
             <div className="grid max-md:gap-y-5 md:grid-cols-12 md:gap-x-7.5">
