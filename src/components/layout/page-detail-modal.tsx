@@ -43,10 +43,16 @@ const PageDetailModal = ({
       }}
     >
       <DialogPortal>
-        <DialogOverlay className="lg:scrollbar-hidden fixed inset-0 z-30 bg-black/70 max-lg:overflow-hidden lg:overflow-y-auto">
+        <DialogOverlay
+          className={cn(
+            'lg:scrollbar-hidden fixed inset-0 z-30 bg-black/70 max-lg:overflow-hidden lg:overflow-y-auto',
+            'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+          )}
+        >
           <DialogContent
             {...(noDescription && { 'aria-describedby': undefined })}
             className={cn(
+              'group',
               contentSize === 'large' ? 'article-detail-container-large' : 'article-detail-container-small',
               'max-lg:scrollbar-hidden outline-none max-lg:mt-[3.75rem] max-lg:h-[calc(100svh-3.75rem)] max-lg:overflow-hidden max-lg:overflow-y-auto lg:my-[5.625rem]',
             )}
@@ -60,7 +66,7 @@ const PageDetailModal = ({
               <DialogTitle>Project Detail</DialogTitle>
               <DialogDescription>Project Detail</DialogDescription>
             </VisuallyHidden>
-            <div className="bg-gray-light-2">
+            <div className="bg-gray-light-2 group-data-[state=open]:animate-in group-data-[state=closed]:animate-out group-data-[state=closed]:fade-out-0 group-data-[state=open]:fade-in-0 group-data-[state=open]:zoom-in-95 group-data-[state=closed]:zoom-out-95">
               {children}
               <div className="mt-4 flex gap-x-2.5 px-4 pb-4 lg:hidden">
                 {prevHref ? (
