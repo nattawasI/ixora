@@ -7,12 +7,14 @@ import { SnsShareSticky } from '@/components/modules/article-detail/sns-share-st
 import { SocialShareProvider } from '@/components/modules/article-detail/sns-share-context'
 import { ProjectExploreMore } from '@/components/modules/project-detail/project-explore-more'
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
+import { cn } from '@/libs/utils/cn'
 
 const ProjectDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
   return (
     <>
       <SocialShareProvider>
         <SnsShareSticky
+          isInModal={isInModal}
           title="SARANSIRI PRACHAUTHIT 90"
           coverImage="/mockup/project.jpg"
           className="social-share-sticky"
@@ -78,7 +80,7 @@ const ProjectDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
           </div>
         </section>
       </SocialShareProvider>
-      <section className="max-lg:px-4 max-lg:pt-4">
+      <section className={cn('max-lg:px-4 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
         <ProjectExploreMore />
       </section>
       {!isInModal ? (

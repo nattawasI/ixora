@@ -9,7 +9,7 @@ const PressList = async () => {
     <CursorProvider>
       <div className="list-awards-press">
         {Array.from({ length: 4 }).map((_, index) => (
-          <Link href="#" className="block" key={index}>
+          <Link href="/press/2" className="block" key={index}>
             <PressCard
               image={{
                 src: '/mockup/press-1.jpg',

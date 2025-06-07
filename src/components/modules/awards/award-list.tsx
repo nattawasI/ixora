@@ -25,7 +25,7 @@ const AwardList = async () => {
           type={'RESIDENTIAL'}
           year={'2025'}
           action={
-            <ButtonArrowLink href="/projects/1" isFullWidth>
+            <ButtonArrowLink href="/projects/residential/2" isFullWidth>
               See this project
             </ButtonArrowLink>
           }

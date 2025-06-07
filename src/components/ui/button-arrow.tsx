@@ -6,9 +6,10 @@ import { ChevronLeft, ChevronRight } from '@/components/ui/icons-color'
 
 const buttonArrowVariants = cva(
   cn(
-    'border-gray-light-1 group/button-arrow relative inline-flex h-14 items-center justify-center gap-x-[0.938rem] border px-[1.625rem] font-bold whitespace-nowrap transition-colors duration-300',
+    'border-gray-light-1 relative inline-flex h-14 items-center justify-center gap-x-[0.938rem] border px-[1.625rem] font-bold whitespace-nowrap transition-colors duration-300',
     'hover:border-blue hover:text-white',
     'before:bg-blue before:absolute before:top-0 before:bottom-0 before:left-0 before:w-0 before:transition-[width] before:duration-300 hover:before:w-full',
+    'hover-icon-stroke-white',
   ),
   {
     variants: {
@@ -20,9 +21,7 @@ const buttonArrowVariants = cva(
   },
 )
 
-const iconClassName = cn(
-  'text-blue relative transition-colors duration-300 group-hover/button-arrow:text-white group-hover/button-arrow:[&_path]:stroke-current',
-)
+const iconClassName = cn('text-blue relative')
 
 type ButtonArrowChildrenProps = {
   arrow?: 'left' | 'right'

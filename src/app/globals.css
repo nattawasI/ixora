@@ -212,3 +212,7 @@
     display: none;
   }
 }
+
+@utility hover-icon-stroke-white {
+  @apply [&_svg_path]:transition-colors hover:[&_svg_path]:stroke-white;
+}

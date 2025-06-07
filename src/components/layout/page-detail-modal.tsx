@@ -21,7 +21,7 @@ import {
 } from '@/components/ui/icons-color'
 import Link from 'next/link'
 
-const DetailModal = ({
+const PageDetailModal = ({
   contentSize,
   noDescription,
   prevHref,
@@ -30,8 +30,8 @@ const DetailModal = ({
 }: {
   contentSize: 'small' | 'large'
   noDescription?: boolean
-  prevHref: string
-  nextHref: string
+  prevHref: string | null | undefined
+  nextHref: string | null | undefined
   children?: React.ReactNode
 }) => {
   const router = useRouter()
@@ -43,7 +43,7 @@ const DetailModal = ({
       }}
     >
       <DialogPortal>
-        <DialogOverlay className="lg:scrollbar-hidden fixed inset-0 z-30 bg-black/50 max-lg:overflow-hidden lg:overflow-y-auto">
+        <DialogOverlay className="lg:scrollbar-hidden fixed inset-0 z-30 bg-black/70 max-lg:overflow-hidden lg:overflow-y-auto">
           <DialogContent
             {...(noDescription && { 'aria-describedby': undefined })}
             className={cn(
@@ -63,45 +63,52 @@ const DetailModal = ({
             <div className="bg-gray-light-2">
               {children}
               <div className="mt-4 flex gap-x-2.5 px-4 pb-4 lg:hidden">
-                <Link
-                  href={prevHref}
+                {prevHref ? (
+                  <Link
+                    href={prevHref}
+                    className={buttonSquareVariants({
+                      className: 'hover-icon-stroke-white',
+                    })}
+                  >
+                    <ChevronLeftColor />
+                  </Link>
+                ) : null}
+                <DialogClose
                   className={buttonSquareVariants({
-                    className: '[&_path]:transition-colors hover:[&_path]:stroke-white',
-                  })}
-                >
-                  <ChevronLeftColor />
-                </Link>
-                <Link
-                  href={prevHref}
-                  className={buttonSquareVariants({
-                    className: 'flex-1 [&_path]:transition-colors hover:[&_path]:stroke-white',
+                    className: 'hover-icon-stroke-white flex-1',
                   })}
                 >
                   <CloseColor />
                   <span>CLOSE</span>
-                </Link>
-                <Link
-                  href={nextHref}
-                  className={buttonSquareVariants({
-                    className: '[&_path]:transition-colors hover:[&_path]:stroke-white',
-                  })}
-                >
-                  <ChevronRightColor />
-                </Link>
+                </DialogClose>
+                {nextHref ? (
+                  <Link
+                    href={nextHref}
+                    className={buttonSquareVariants({
+                      className: 'hover-icon-stroke-white',
+                    })}
+                  >
+                    <ChevronRightColor />
+                  </Link>
+                ) : null}
               </div>
             </div>
-            <Link
-              href={prevHref}
-              className={buttonSquareVariants({ theme: 'gray', className: 'fixed bottom-0 left-0 max-lg:hidden' })}
-            >
-              <ChevronLeft />
-            </Link>
-            <Link
-              href={nextHref}
-              className={buttonSquareVariants({ theme: 'gray', className: 'fixed right-0 bottom-0 max-lg:hidden' })}
-            >
-              <ChevronRight />
-            </Link>
+            {prevHref ? (
+              <Link
+                href={prevHref}
+                className={buttonSquareVariants({ theme: 'gray', className: 'fixed bottom-0 left-0 max-lg:hidden' })}
+              >
+                <ChevronLeft />
+              </Link>
+            ) : null}
+            {nextHref ? (
+              <Link
+                href={nextHref}
+                className={buttonSquareVariants({ theme: 'gray', className: 'fixed right-0 bottom-0 max-lg:hidden' })}
+              >
+                <ChevronRight />
+              </Link>
+            ) : null}
           </DialogContent>
         </DialogOverlay>
       </DialogPortal>
@@ -109,4 +116,4 @@ const DetailModal = ({
   )
 }
 
-export { DetailModal }
+export { PageDetailModal }
