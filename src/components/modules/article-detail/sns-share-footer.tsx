@@ -4,10 +4,10 @@ import { useEffect, useRef } from 'react'
 import { useInView } from 'motion/react'
 import { cn } from '@/libs/utils/cn'
 import { SnsShareItems, type SnsShareItemsProps } from '@/components/modules/article-detail/sns-share-items'
-import { useSocialShareContext } from '@/components/modules/article-detail/sns-share-context'
+import { useSnsShareContext } from '@/components/modules/article-detail/sns-share-context'
 
 const SnsShareFooter = ({ label, title, coverImage }: { label: string } & SnsShareItemsProps) => {
-  const { setHideSnsShareSticky } = useSocialShareContext()
+  const { setHideSnsShareSticky } = useSnsShareContext()
   const containerRef = useRef<HTMLDivElement>(null)
 
   const isInView = useInView(containerRef, {

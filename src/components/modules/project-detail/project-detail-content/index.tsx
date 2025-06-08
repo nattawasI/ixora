@@ -7,10 +7,18 @@ import { VideoPlayer } from '@/components/modules/article-detail/video-player'
 import { SnsShareFooter } from '@/components/modules/article-detail/sns-share-footer'
 import { ProjectExploreMore } from '@/components/modules/project-detail/project-explore-more'
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
+import { SnsShareProvider } from '@/components/modules/article-detail/sns-share-context'
+import { SnsShareSticky } from '@/components/modules/article-detail/sns-share-sticky'
 
 const ProjectDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
   return (
-    <>
+    <SnsShareProvider>
+      <SnsShareSticky
+        isInModal={isInModal}
+        title="SARANSIRI PRACHAUTHIT 90"
+        coverImage="/mockup/project.jpg"
+        className="social-share-sticky"
+      />
       <section className="bg-white p-4 lg:p-12.5 lg:pb-7">
         <div className="space-y-5">
           <div className="space-y-2.5 lg:mb-[3.75rem]">
@@ -86,7 +94,7 @@ const ProjectDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
           >{`SEE ALL ${'RESIDENTIAL'} PROJECTS`}</ButtonArrowLink>
         </div>
       ) : null}
-    </>
+    </SnsShareProvider>
   )
 }
 

@@ -1,18 +1,14 @@
-import { SocialShareProvider } from '@/components/modules/article-detail/sns-share-context'
-import { SnsShareSticky } from '@/components/modules/article-detail/sns-share-sticky'
 import { ProjectDetailContent } from '@/components/modules/project-detail/project-detail-content'
 
-export default function ProjectDetail() {
+export default async function ProjectDetail({ params }: { params: Promise<{ category: string; slug: string }> }) {
+  const { category, slug } = await params
+
+  console.log(category, slug)
+
+  /** fetch here */
   return (
-    <SocialShareProvider>
-      <div className="article-detail-container-large">
-        <SnsShareSticky
-          title="SARANSIRI PRACHAUTHIT 90"
-          coverImage="/mockup/project.jpg"
-          className="social-share-sticky"
-        />
-        <ProjectDetailContent />
-      </div>
-    </SocialShareProvider>
+    <div className="article-detail-container-large">
+      <ProjectDetailContent />
+    </div>
   )
 }

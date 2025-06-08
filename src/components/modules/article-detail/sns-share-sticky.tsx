@@ -5,7 +5,7 @@ import { cn } from '@/libs/utils/cn'
 import { Share, Close } from '@/components/ui/icons-outline'
 import { SnsShareItems, type SnsShareItemsProps } from '@/components/modules/article-detail/sns-share-items'
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@radix-ui/react-accordion'
-import { useSocialShareContext } from '@/components/modules/article-detail/sns-share-context'
+import { useSnsShareContext } from '@/components/modules/article-detail/sns-share-context'
 
 type SnsShareStickyProps = SnsShareItemsProps & {
   className?: string
@@ -16,7 +16,7 @@ const SnsShareSticky = ({ title, coverImage, isInModal, className }: SnsShareSti
 
   const isOpen = value === 'share'
 
-  const { hideSnsShareSticky } = useSocialShareContext()
+  const { hideSnsShareSticky } = useSnsShareContext()
 
   return (
     <Accordion
