@@ -8,6 +8,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@r
 import { useSnsShareContext } from '@/components/modules/article-detail/sns-share-context'
 
 type SnsShareStickyProps = SnsShareItemsProps & {
+  isInModal?: boolean
   className?: string
 }
 
