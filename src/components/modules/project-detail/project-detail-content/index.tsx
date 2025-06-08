@@ -16,12 +16,12 @@ const ProjectDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
       <SnsShareSticky
         isInModal={isInModal}
         title="SARANSIRI PRACHAUTHIT 90"
-        coverImage="/mockup/project.jpg"
+        coverImage="/mockup/project-detail-1.jpg"
         className="social-share-sticky"
       />
-      <section className="bg-white p-4 lg:p-12.5 lg:pb-7">
-        <div className="space-y-5">
-          <div className="space-y-2.5 lg:mb-[3.75rem]">
+      <section className="bg-white px-4 pt-4 lg:px-12.5 lg:pt-12.5">
+        <article>
+          <div className="mb-5 space-y-2.5 lg:mb-[3.75rem]">
             {isInModal ? (
               <DialogTitle className="typo-title-1 font-bold uppercase">SARANSIRI PRACHAUTHIT 90</DialogTitle>
             ) : (
@@ -29,7 +29,7 @@ const ProjectDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
             )}
             <p className="typo-body-2 uppercase">BANGKOK , THAILAND</p>
           </div>
-          <div className="grid max-md:gap-y-5 md:grid-cols-12 md:gap-x-7.5">
+          <div className="mb-5 grid max-md:gap-y-5 md:grid-cols-12 md:gap-x-7.5 lg:mb-12.5">
             <div className="flex flex-col gap-y-5 md:col-span-4 md:gap-y-7.5">
               <div className="space-y-1.25">
                 <p className="typo-body-2 text-gray">Client :</p>
@@ -67,21 +67,22 @@ const ProjectDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
             </div>
           </div>
           <div className="space-y-2.5">
-            <SingleImage src="/mockup/project.jpg" alt="SARANSIRI PRACHAUTHIT 90" />
+            <SingleImage src="/mockup/project-detail-1.jpg" alt="SARANSIRI PRACHAUTHIT 90" />
             <ColumnImages
               images={[
-                { src: '/mockup/project.jpg', alt: 'SARANSIRI PRACHAUTHIT 90' },
-                { src: '/mockup/project.jpg', alt: 'SARANSIRI PRACHAUTHIT 90' },
+                { src: '/mockup/project-detail-2.jpg', alt: 'SARANSIRI PRACHAUTHIT 90' },
+                { src: '/mockup/project-detail-3.jpg', alt: 'SARANSIRI PRACHAUTHIT 90' },
               ]}
             />
             <VideoPlayer src="/mockup/video.mp4" />
           </div>
-          <SnsShareFooter
-            label="Share this project"
-            title="SARANSIRI PRACHAUTHIT 90"
-            coverImage="/mockup/project.jpg"
-          />
-        </div>
+        </article>
+        <SnsShareFooter
+          className="py-7"
+          label="Share this project"
+          title="SARANSIRI PRACHAUTHIT 90"
+          coverImage="/mockup/project-detail-1.jpg"
+        />
       </section>
       <section className={cn('max-lg:px-4 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
         <ProjectExploreMore />

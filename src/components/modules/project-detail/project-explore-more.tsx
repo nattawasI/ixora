@@ -7,7 +7,7 @@ const ProjectExploreMore = () => {
     <ExploreMoreAccordion type="single" collapsible>
       <div className="grid gap-2.5 md:grid-cols-3 md:pb-7.5">
         {Array.from({ length: 3 }).map((_, index) => (
-          <Link href="/projects/residential/1" className="block" key={index}>
+          <Link href="/projects/residential/4" className="block" key={index}>
             <ProjectCard
               image={{
                 src: '/mockup/project.jpg',
@@ -15,7 +15,7 @@ const ProjectExploreMore = () => {
                 sizes: '100vw, (min-width: 768px) 33vw',
               }}
               title={{
-                tag: 'h2',
+                tag: 'h3',
                 text: 'XT HUAIKHWANG',
               }}
               location={'BANGKOK, THAILAND'}
