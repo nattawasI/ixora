@@ -20,22 +20,22 @@ const CardPress = ({ image, date, title, description, isImageRight, className, .
   const { src, alt, ...restImageProps } = image
 
   return (
-    <div className={cn('group/card grid lg:grid-cols-2', className)} {...props}>
+    <div className={cn('group/card grid md:grid-cols-2', className)} {...props}>
       <div
         className={cn(
           'bg-gray-light-1 card-hover-image relative aspect-[10/7] overflow-hidden',
-          isImageRight ? 'lg:order-2' : '',
+          isImageRight ? 'md:order-2' : '',
         )}
       >
         <Image src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />
       </div>
-      <div className={cn('flex flex-col bg-white p-5 lg:p-10', isImageRight ? 'lg:order-1' : '')}>
+      <div className={cn('flex flex-col bg-white p-5 md:p-10', isImageRight ? 'md:order-1' : '')}>
         <p className="typo-body-3 text-gray">{date}</p>
         <Separator className="mt-2.5 mb-5" />
         <TitleTag className="typo-title-2 group-hover/card:text-blue font-bold transition-colors duration-300">
           {title.text}
         </TitleTag>
-        <p className="typo-body-2 mt-auto whitespace-pre-line max-lg:mt-2.5">{description}</p>
+        <p className="typo-body-2 mt-auto line-clamp-5 whitespace-pre-line max-md:mt-2.5">{description}</p>
       </div>
     </div>
   )
