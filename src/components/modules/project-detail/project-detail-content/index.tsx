@@ -5,10 +5,10 @@ import { SingleImage } from '@/components/modules/article-detail/single-image'
 import { ColumnImages } from '@/components/modules/article-detail/column-images'
 import { VideoPlayer } from '@/components/modules/article-detail/video-player'
 import { SnsShareFooter } from '@/components/modules/article-detail/sns-share-footer'
-import { ProjectExploreMore } from '@/components/modules/project-detail/project-explore-more'
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
 import { SnsShareProvider } from '@/components/modules/article-detail/sns-share-context'
 import { SnsShareSticky } from '@/components/modules/article-detail/sns-share-sticky'
+import { ProjectExploreMore } from '@/components/modules/project-detail/project-explore-more'
 
 const ProjectDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
   return (
@@ -85,7 +85,7 @@ const ProjectDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
         />
       </section>
       <section className={cn('max-lg:px-4 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
-        <ProjectExploreMore />
+        <ProjectExploreMore isInModal={isInModal} />
       </section>
       {!isInModal ? (
         <div className="mt-4 max-lg:px-4 md:mt-10">

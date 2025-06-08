@@ -1,12 +1,12 @@
-import { ProjectDetailContent } from '@/components/modules/project-detail/project-detail-content'
+import { PressDetailContent } from '@/components/modules/press-detail/press-detail-content'
 import { PageModalButtonsMobile, PageModalPrev, PageModalNext, PageModalClose } from '@/components/ui/page-modal'
-// import { ProjectDetailModalContentLoading } from './loading'
+// import { PressDetailModalContentLoading } from './loading'
 
-const ProjectDetailModalContent = () => {
+const PressDetailModalContent = () => {
   return (
     <div className="bg-gray-light-2">
-      {/* <ProjectDetailModalContentLoading /> */}
-      <ProjectDetailContent isInModal />
+      {/* <PressDetailModalContentLoading /> */}
+      <PressDetailContent isInModal />
       <PageModalButtonsMobile>
         <PageModalPrev variant="mobile" href="" />
         <PageModalClose variant="mobile" label="CLOSE" />
@@ -19,4 +19,4 @@ const ProjectDetailModalContent = () => {
   )
 }
 
-export { ProjectDetailModalContent }
+export { PressDetailModalContent }

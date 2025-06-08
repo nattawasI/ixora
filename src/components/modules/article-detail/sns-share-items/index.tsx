@@ -12,9 +12,9 @@ import {
 } from 'react-share'
 import { CopyLinkButton } from './copy-link-button'
 
-type SnsShareItemsProps = { title: string; coverImage: string; isInModal?: boolean }
+type SnsShareItemsProps = { title: string; coverImage: string }
 
-const SnsShareItems = ({ title, coverImage, isInModal }: SnsShareItemsProps) => {
+const SnsShareItems = ({ title, coverImage }: SnsShareItemsProps) => {
   const pathname = usePathname()
   const shareUrl = `${process.env.NEXT_PUBLIC_BASE_URL}${pathname}`
 
@@ -24,7 +24,7 @@ const SnsShareItems = ({ title, coverImage, isInModal }: SnsShareItemsProps) => 
         resetButtonStyle={false}
         aria-label="Facebook Share"
         url={shareUrl}
-        className={buttonSquareVariants({ className: isInModal ? 'focus-visible:ring-white' : '' })}
+        className={buttonSquareVariants()}
       >
         <Facebook />
       </FacebookShareButton>
@@ -33,7 +33,7 @@ const SnsShareItems = ({ title, coverImage, isInModal }: SnsShareItemsProps) => 
         aria-label="Line Share"
         url={shareUrl}
         title={title}
-        className={buttonSquareVariants({ className: isInModal ? 'focus-visible:ring-white' : '' })}
+        className={buttonSquareVariants()}
       >
         <Line />
       </LineShareButton>
@@ -42,7 +42,7 @@ const SnsShareItems = ({ title, coverImage, isInModal }: SnsShareItemsProps) => 
         aria-label="X Share"
         url={shareUrl}
         title={title}
-        className={buttonSquareVariants({ className: isInModal ? 'focus-visible:ring-white' : '' })}
+        className={buttonSquareVariants()}
       >
         <X />
       </TwitterShareButton>
@@ -51,7 +51,7 @@ const SnsShareItems = ({ title, coverImage, isInModal }: SnsShareItemsProps) => 
         aria-label="Pinterest Share"
         url={shareUrl}
         media={coverImage}
-        className={buttonSquareVariants({ className: isInModal ? 'focus-visible:ring-white' : '' })}
+        className={buttonSquareVariants()}
       >
         <Pinterest />
       </PinterestShareButton>
@@ -62,7 +62,7 @@ const SnsShareItems = ({ title, coverImage, isInModal }: SnsShareItemsProps) => 
         url={shareUrl}
         subject="Subject"
         body="Body"
-        className={buttonSquareVariants({ className: isInModal ? 'focus-visible:ring-white' : '' })}
+        className={buttonSquareVariants()}
       >
         <Email />
       </EmailShareButton>

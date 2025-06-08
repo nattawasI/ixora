@@ -37,7 +37,7 @@ const SnsShareSticky = ({ title, coverImage, isInModal, className }: SnsShareSti
           type="button"
           className={cn(
             'group/social-sticky-trigger typo-body-2 order-2 space-y-1.25 font-bold uppercase',
-            isInModal ? 'text-white focus-visible:ring-white' : '',
+            isInModal ? 'text-white' : '',
           )}
         >
           <span
@@ -57,7 +57,7 @@ const SnsShareSticky = ({ title, coverImage, isInModal, className }: SnsShareSti
         </AccordionTrigger>
         <AccordionContent className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down order-1 overflow-hidden">
           <div className="mb-2 space-y-2.5 px-0.5">
-            <SnsShareItems title={title} coverImage={coverImage} isInModal={isInModal} />
+            <SnsShareItems title={title} coverImage={coverImage} />
           </div>
         </AccordionContent>
       </AccordionItem>

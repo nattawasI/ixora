@@ -1,11 +1,12 @@
+import { cn } from '@/libs/utils/cn'
 import { ExploreMoreAccordion } from '@/components/modules/article-detail/explore-more-accordion'
 import { PressCard } from '@/components/modules/press/press-card'
 import Link from 'next/link'
 
-const PressExploreMore = () => {
+const PressExploreMore = ({ isInModal }: { isInModal?: boolean }) => {
   return (
     <ExploreMoreAccordion type="single" collapsible>
-      <div className="space-y-4 lg:space-y-5">
+      <div className={cn('space-y-4 max-lg:pt-4 lg:space-y-5', isInModal ? 'lg:pb-12.5' : '')}>
         {Array.from({ length: 3 }).map((_, index) => (
           <Link href="/press/4" className="block" key={index}>
             <PressCard

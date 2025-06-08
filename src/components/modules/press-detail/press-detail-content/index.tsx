@@ -32,7 +32,7 @@ const PressDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
             )}
           </div>
           <div className="detail-content mb-5 lg:mb-7.5">
-            {parse(`<p>A new campus community redefines suburban living with the concept of "<strong>Convergent with The Divergent Design.</strong>"
+            {parse(`<p>A new campus community redefines suburban living with the concept of <strong>"Convergent with The Divergent Design."</strong>
             This approach uses experimental designs reflecting distinctive personality traits, linked by a convergent
             iconic bridge that seamlessly connects diverse characteristics, offering an unparalleled living
             experience.</p><br /><br /><p>A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits, linked by a convergent iconic bridge that seamlessly connects diverse characteristics, offering an unparalleled living experience.</p>`)}
@@ -57,7 +57,7 @@ const PressDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
         />
       </div>
       <section className={cn('max-lg:px-4 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
-        <PressExploreMore />
+        <PressExploreMore isInModal={isInModal} />
       </section>
       {!isInModal ? (
         <div className="mt-4 max-lg:px-4 md:mt-10">

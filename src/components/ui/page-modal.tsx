@@ -68,9 +68,7 @@ const PageModalPrev = ({
       className={buttonSquareVariants({
         theme: variant === 'desktop' ? 'gray' : 'default',
         className: cn(
-          variant === 'desktop'
-            ? 'fixed bottom-0 left-0 focus-visible:ring-white max-lg:hidden'
-            : 'hover-icon-stroke-white',
+          variant === 'desktop' ? 'fixed bottom-0 left-0 max-lg:hidden' : 'hover-icon-stroke-white',
           className,
         ),
       })}
@@ -91,7 +89,7 @@ const PageModalNext = ({
       className={buttonSquareVariants({
         theme: variant === 'desktop' ? 'gray' : 'default',
         className: cn(
-          variant === 'desktop' ? 'fixed right-0 bottom-0 focus-visible:ring-white max-lg:hidden' : '',
+          variant === 'desktop' ? 'fixed right-0 bottom-0 max-lg:hidden' : 'hover-icon-stroke-white',
           className,
         ),
       })}
@@ -105,20 +103,22 @@ const PageModalNext = ({
 const PageModalClose = ({
   variant,
   className,
+  label,
   ...props
-}: Omit<React.ComponentProps<typeof DialogClose>, 'asChild'> & { variant: 'desktop' | 'mobile' }) => {
+}: Omit<React.ComponentProps<typeof DialogClose>, 'asChild'> & { variant: 'desktop' | 'mobile'; label?: string }) => {
   return (
     <DialogClose
       className={buttonSquareVariants({
         theme: variant === 'desktop' ? 'gray' : 'default',
         className: cn(
-          variant === 'desktop' ? 'fixed top-0 right-0 focus-visible:ring-white max-lg:hidden' : 'flex-1',
+          variant === 'desktop' ? 'fixed top-0 right-0 max-lg:hidden' : 'hover-icon-stroke-white flex-1',
           className,
         ),
       })}
       {...props}
     >
       {variant === 'desktop' ? <Close /> : <CloseColor />}
+      {label}
     </DialogClose>
   )
 }
