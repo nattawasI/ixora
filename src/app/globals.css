@@ -178,15 +178,15 @@
     }
 
     ul {
-      @apply space-y-2;
+      @apply space-y-1;
 
       & > li {
-        @apply relative list-none pl-6 before:absolute before:top-2.5 before:left-2.5 before:size-0.75 before:rounded-full before:bg-black before:content-[''];
+        @apply relative list-none pl-6 before:absolute before:top-2.5 before:left-2.5 before:size-0.75 before:rounded-full before:bg-current before:content-[''];
       }
     }
 
     ol {
-      @apply space-y-2;
+      @apply space-y-1;
 
       & > li {
         @apply ml-6 list-decimal;
@@ -195,6 +195,10 @@
 
     a {
       @apply decoration-gray-light-1 hover:decoration-blue inline-block underline underline-offset-4 transition-colors;
+    }
+
+    img {
+      @apply h-auto max-w-full;
     }
   }
 }

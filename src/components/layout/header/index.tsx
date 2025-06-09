@@ -25,11 +25,15 @@ const Header = () => {
       <GlobalNavigation />
       <HeaderNavigation
         projectCategoriesNav={
-          <ProjectCategoriesNav layout="horizontal" categories={mockupProjectCategories} className="max-lg:hidden" />
+          <ProjectCategoriesNav
+            layout="horizontal"
+            categories={mockupProjectCategories}
+            className="absolute top-1/2 left-0 -translate-y-1/2 max-lg:hidden"
+          />
         }
         awardsAndPressNav={<AwardsAndPressNav className="max-lg:hidden" />}
       />
-      <Link href="/" aria-label="Home" className="block w-[6.75rem] lg:w-[9.375rem]">
+      <Link href="/" aria-label="Home" className="relative z-[1] block w-[6.75rem] lg:w-[9.375rem]">
         <FullLogo className="h-auto w-full" />
       </Link>
     </header>

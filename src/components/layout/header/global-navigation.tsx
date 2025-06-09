@@ -43,7 +43,10 @@ const GlobalNavigation = () => {
         }
       }}
     >
-      <DialogTrigger aria-label="Open global navigation" className="flex size-[1.625rem] items-center justify-center">
+      <DialogTrigger
+        aria-label="Open global navigation"
+        className="relative z-[1] flex size-[1.625rem] items-center justify-center"
+      >
         <HamburgerMenu isShowMenu={isShowMenu} />
       </DialogTrigger>
       <DialogPortal>
