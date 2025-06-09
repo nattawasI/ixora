@@ -28,6 +28,7 @@ const VideoPlayer = ({ src }: { src: string }) => {
       {!isPlaying ? (
         <div className="absolute inset-0 z-[1] flex items-center justify-center" onClick={handlePlay}>
           <button
+            type="button"
             className="typo-body-2 group/play-button flex flex-col gap-y-1.25 font-bold uppercase"
             onClick={handlePlay}
           >
