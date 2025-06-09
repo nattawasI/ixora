@@ -2,6 +2,7 @@
 
 import { use, useState, createContext, ReactNode, useEffect } from 'react'
 import { motion, useMotionValue } from 'framer-motion'
+import { useMediaQuery } from '../hooks/use-media-query'
 
 type CursorType = 'default' | 'hovered'
 
@@ -16,6 +17,9 @@ const CursorContext = createContext<CursorContextType>({
 })
 
 const CursorProvider = ({ children }: { children: ReactNode }) => {
+  /** hook */
+  const isTablet = useMediaQuery('(max-width: 1024px)')
+  /** states */
   const [cursorType, setCursorType] = useState<CursorType>('default')
 
   const cursorSize = 70
@@ -40,6 +44,8 @@ const CursorProvider = ({ children }: { children: ReactNode }) => {
       window.removeEventListener('mousemove', handleMouseMove)
     }
   }, [mouse.x, mouse.y, mouse.scale, cursorSize])
+
+  if (isTablet) return <>{children}</>
 
   return (
     <CursorContext.Provider value={{ cursorType, setCursorType }}>
