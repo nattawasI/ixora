@@ -34,16 +34,22 @@ const AboutSlider = () => {
           setIsSliderEnd(swiper.isEnd)
           setActiveIndex(swiper.activeIndex)
         }}
-        className="h-[calc(100dvh-6.25rem)] w-screen"
+        className="h-[calc(100dvh-6.25rem)] w-dvh"
       >
         <SwiperSlide>
-          <SlideWhoWeAre />
+          <div className="flex h-full items-center pb-[6.25rem]">
+            <SlideWhoWeAre />
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <SlideWhatWeDo />
+          <div className="flex h-full items-center pb-[6.25rem]">
+            <SlideWhatWeDo />
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <SlideOurCommitment />
+          <div className="flex h-full items-center pb-[6.25rem]">
+            <SlideOurCommitment />
+          </div>
         </SwiperSlide>
       </Swiper>
 

@@ -4,56 +4,66 @@ import 'swiper/css/navigation'
 /** swiper */
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
-import CategoryCard from './category-card'
+
+/** components */
+import { CategoryCard } from './card'
 
 const items = [
   {
-    title: 'Landscape Architecture',
-    href: '/about/landscape-architecture',
+    title: 'RESIDENTIAL',
+    href: '/projects/residential',
     description:
       'Explore the art of landscape architecture and its role in creating sustainable and functional spaces.',
+    image: {
+      src: '/images/about/residential.png',
+      alt: 'RESIDENTIAL',
+    },
   },
   {
-    title: 'Urban Design',
-    href: '/about/urban-design',
+    title: 'CONDOMINIUM',
+    href: '/projects/condominium',
     description: 'Explore the art of urban design and its role in creating sustainable and functional spaces.',
+    image: {
+      src: '/images/about/condominium.png',
+      alt: 'CONDOMINIUM',
+    },
   },
   {
-    title: 'Interior Design',
-    href: '/about/interior-design',
+    title: 'HOSPITALITY',
+    href: '/projects/hospitality',
     description: 'Explore the art of interior design and its role in creating sustainable and functional spaces.',
+    image: {
+      src: '/images/about/hospitality.png',
+      alt: 'HOSPITALITY',
+    },
   },
   {
-    title: 'Landscape Architecture',
-    href: '/about/landscape-architecture',
+    title: 'COMMERCIAL',
+    href: '/projects/commercial',
     description:
       'Explore the art of landscape architecture and its role in creating sustainable and functional spaces.',
+    image: {
+      src: '/images/about/commercial.png',
+      alt: 'COMMERCIAL',
+    },
   },
   {
-    title: 'Urban Design',
-    href: '/about/urban-design',
+    title: 'MASTER PLANNING',
+    href: '/projects/master-planning',
     description: 'Explore the art of urban design and its role in creating sustainable and functional spaces.',
+    image: {
+      src: '/images/about/master-planning.png',
+      alt: 'MASTER PLANNING',
+    },
   },
   {
-    title: 'Interior Design',
-    href: '/about/interior-design',
+    title: 'PUBLIC SPACE',
+    href: '/projects/public-space',
     description: 'Explore the art of interior design and its role in creating sustainable and functional spaces.',
-  },
-  {
-    title: 'Landscape Architecture',
-    href: '/about/landscape-architecture',
-    description:
-      'Explore the art of landscape architecture and its role in creating sustainable and functional spaces.',
-  },
-  {
-    title: 'Urban Design',
-    href: '/about/urban-design',
-    description: 'Explore the art of urban design and its role in creating sustainable and functional spaces.',
-  },
-  {
-    title: 'Interior Design',
-    href: '/about/interior-design',
-    description: 'Explore the art of interior design and its role in creating sustainable and functional spaces.',
+    image: {
+      src: '/images/about/public-space.png',
+      alt: 'PUBLIC SPACE',
+    },
   },
 ]
 
