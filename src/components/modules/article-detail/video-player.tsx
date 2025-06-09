@@ -24,11 +24,11 @@ const VideoPlayer = ({ src }: { src: string }) => {
         <div className="absolute inset-0 z-[1] flex items-center justify-center">
           <button
             type="button"
-            className="typo-body-2 flex flex-col gap-y-1.25 font-bold uppercase"
+            className="typo-body-2 group/play-button flex flex-col gap-y-1.25 font-bold uppercase"
             onClick={handlePlay}
           >
-            <span className="flex size-11.5 items-center justify-center bg-white">
-              <Video className="text-blue" />
+            <span className="group-hover/play-button:bg-blue flex size-11.5 items-center justify-center bg-white transition-colors duration-300">
+              <Video className="text-blue transition-colors duration-300 group-hover/play-button:text-white" />
             </span>
             <span className="text-white">PLAY</span>
           </button>

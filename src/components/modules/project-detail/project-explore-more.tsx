@@ -1,13 +1,14 @@
 import { ExploreMoreAccordion } from '@/components/modules/article-detail/explore-more-accordion'
 import { ProjectCard } from '@/components/modules/projects/project-card'
 import Link from 'next/link'
+import { cn } from '@/libs/utils/cn'
 
-const ProjectExploreMore = () => {
+const ProjectExploreMore = ({ isInModal }: { isInModal?: boolean }) => {
   return (
     <ExploreMoreAccordion type="single" collapsible>
-      <div className="grid gap-2.5 md:grid-cols-3 md:pb-7.5">
+      <div className={cn('grid gap-2.5 max-lg:pt-4 md:grid-cols-3', isInModal ? 'lg:pb-10' : 'md:pb-7.5')}>
         {Array.from({ length: 3 }).map((_, index) => (
-          <Link href="/projects/residential/1" className="block" key={index}>
+          <Link href="/projects/residential/4" className="block" key={index}>
             <ProjectCard
               image={{
                 src: '/mockup/project.jpg',
@@ -15,7 +16,7 @@ const ProjectExploreMore = () => {
                 sizes: '100vw, (min-width: 768px) 33vw',
               }}
               title={{
-                tag: 'h2',
+                tag: 'h3',
                 text: 'XT HUAIKHWANG',
               }}
               location={'BANGKOK, THAILAND'}

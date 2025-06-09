@@ -1,15 +1,14 @@
-import { CardPressLoading } from '@/components/ui/card-press'
+import { cn } from '@/libs/utils/cn'
+import { ExploreMoreAccordion } from '@/components/modules/article-detail/explore-more-accordion'
 import { PressCard } from '@/components/modules/press/press-card'
 import Link from 'next/link'
-import { CursorProvider } from '@/libs/context/cursor'
 
-const PressList = async () => {
-  /** fetch here */
+const PressExploreMore = ({ isInModal }: { isInModal?: boolean }) => {
   return (
-    <CursorProvider>
-      <div className="list-awards-press">
-        {Array.from({ length: 4 }).map((_, index) => (
-          <Link href="/press/2" className="block" key={index}>
+    <ExploreMoreAccordion type="single" collapsible>
+      <div className={cn('space-y-4 max-lg:pt-4 lg:space-y-5', isInModal ? 'lg:pb-12.5' : '')}>
+        {Array.from({ length: 3 }).map((_, index) => (
+          <Link href="/press/4" className="block" key={index}>
             <PressCard
               image={{
                 src: '/mockup/press-1.jpg',
@@ -18,7 +17,7 @@ const PressList = async () => {
               }}
               date={'April, 2025'}
               title={{
-                tag: 'h2',
+                tag: 'h3',
                 text: 'Topic of press Abc...',
               }}
               description={
@@ -29,18 +28,8 @@ const PressList = async () => {
           </Link>
         ))}
       </div>
-    </CursorProvider>
+    </ExploreMoreAccordion>
   )
 }
 
-const PressListLoading = () => {
-  return (
-    <div className="list-awards-press">
-      {Array.from({ length: 2 }).map((_, index) => (
-        <CardPressLoading key={index} isImageRight={index % 2 === 0} />
-      ))}
-    </div>
-  )
-}
-
-export { PressList, PressListLoading }
+export { PressExploreMore }

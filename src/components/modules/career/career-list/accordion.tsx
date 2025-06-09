@@ -24,14 +24,14 @@ const AccordionTrigger = ({
   return (
     <AccordionPrimitiveHeader>
       <AccordionPrimitiveTrigger
-        className={cn('group/accordion-trigger flex w-full gap-x-5 pb-5', className)}
+        className={cn('group/accordion-trigger hover-icon-stroke-white flex w-full gap-x-5 pb-5', className)}
         {...props}
       >
         {children}
         <span
           className={cn(
             'border-blue ml-auto flex size-7 items-center justify-center rounded-full border transition-all duration-300',
-            'group-hover/accordion-trigger:bg-blue group-hover/accordion-trigger:text-white group-hover/accordion-trigger:[&_path]:stroke-current',
+            'group-hover/accordion-trigger:bg-blue group-hover/accordion-trigger:text-white',
             'group-data-[state=open]/accordion-trigger:rotate-180',
           )}
         >

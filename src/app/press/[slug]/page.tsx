@@ -1,19 +1,13 @@
-export default function PressDetail() {
+import { PressDetailContent } from '@/components/modules/press-detail/press-detail-content'
+
+export default async function PressDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+
+  console.log(slug)
+
   return (
-    <div className="c-container">
-      <h1>Press Detail</h1>
-      <p>
-        We are dedicated to exploring the limitless possibilities of landscape architectural design, crafting spaces
-        that seamlessly integrate the beauty of nature with human needs.
-      </p>
-      <p>
-        We are dedicated to exploring the limitless possibilities of landscape architectural design, crafting spaces
-        that seamlessly integrate the beauty of nature with human needs.
-      </p>
-      <p>
-        We are dedicated to exploring the limitless possibilities of landscape architectural design, crafting spaces
-        that seamlessly integrate the beauty of nature with human needs.
-      </p>
+    <div className="article-detail-container-small">
+      <PressDetailContent />
     </div>
   )
 }

@@ -2,31 +2,31 @@
 
 import { createContext, useContext, useState, ReactNode } from 'react'
 
-type SocialShareContextType = {
+type SnsShareContextType = {
   hideSnsShareSticky: boolean
   setHideSnsShareSticky: (hide: boolean) => void
 }
 
-const SocialShareContext = createContext<SocialShareContextType | undefined>(undefined)
+const SnsShareContext = createContext<SnsShareContextType | undefined>(undefined)
 
-type SocialShareProviderProps = {
+type SnsShareProviderProps = {
   children: ReactNode
 }
 
-export const SocialShareProvider = ({ children }: SocialShareProviderProps) => {
+export const SnsShareProvider = ({ children }: SnsShareProviderProps) => {
   const [hideSnsShareSticky, setHideSnsShareSticky] = useState(false)
 
   return (
-    <SocialShareContext.Provider value={{ hideSnsShareSticky, setHideSnsShareSticky }}>
+    <SnsShareContext.Provider value={{ hideSnsShareSticky, setHideSnsShareSticky }}>
       {children}
-    </SocialShareContext.Provider>
+    </SnsShareContext.Provider>
   )
 }
 
-export const useSocialShareContext = (): SocialShareContextType => {
-  const context = useContext(SocialShareContext)
+export const useSnsShareContext = (): SnsShareContextType => {
+  const context = useContext(SnsShareContext)
   if (context === undefined) {
-    throw new Error('useSocialShare must be used within a SocialShareProvider')
+    throw new Error('useSnsShare must be used within a SnsShareProvider')
   }
   return context
 }

@@ -1,15 +1,18 @@
-import { DetailModal } from '@/components/modules/common/detail-modal'
-import { ProjectDetailContent } from '@/components/modules/project-detail/project-detail-content'
+import { ProjectDetailModal } from '@/components/modules/project-detail/project-detail-modal'
+import { ProjectDetailModalContent } from '@/components/modules/project-detail/project-detail-modal-content'
 
-export default function ProjectDetailModal() {
+export default async function ProjectDetailIntercepting({
+  params,
+}: {
+  params: Promise<{ category: string; slug: string }>
+}) {
+  const { category, slug } = await params
+
+  console.log(category, slug)
+
   return (
-    <DetailModal
-      contentSize="large"
-      noDescription
-      prevHref="/projects/residential/1"
-      nextHref="/projects/residential/3"
-    >
-      <ProjectDetailContent isInModal />
-    </DetailModal>
+    <ProjectDetailModal>
+      <ProjectDetailModalContent />
+    </ProjectDetailModal>
   )
 }
