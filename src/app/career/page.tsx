@@ -3,8 +3,17 @@ import { CareerList } from '@/components/modules/career/career-list'
 import { CardOther } from '@/components/ui/card-other'
 import { FullLogoGray } from '@/components/ui/icons-color/full-logo-gray'
 import { CopyEmail } from '@/components/modules/career/copy-email'
+import { directus } from '@/libs/directus'
+import { readSingleton } from '@directus/sdk'
 
-export default function Career() {
+export default async function Career() {
+  const career = await directus.request(
+    readSingleton('career', {
+      fields: ['*'],
+    }),
+  )
+  console.log(career)
+
   return (
     <>
       <HeadingPage className="c-container">CAREER</HeadingPage>
@@ -18,8 +27,8 @@ export default function Career() {
             <div className="flex flex-col">
               <div className="flex-1">
                 <p className="typo-body-1 text-white">
-                  We’d love to hear from you! Please send your CV and portfolio to our email if you&apos;re interested
-                  in this opportunity.
+                  We&apos;d love to hear from you! Please send your CV and portfolio to our email if you&apos;re
+                  interested in this opportunity.
                 </p>
                 <div className="mt-5 flex flex-col items-start gap-2.5 lg:flex-row lg:items-center">
                   <p className="typo-body-1 text-white">Email : ixora@ixoradesign.com</p>
