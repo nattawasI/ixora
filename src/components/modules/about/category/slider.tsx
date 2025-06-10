@@ -7,6 +7,7 @@ import { Navigation } from 'swiper/modules'
 
 /** components */
 import { CategoryCard } from './card'
+import { Next, Previous } from '@/components/ui/icons-outline'
 
 const items = [
   {
@@ -77,6 +78,13 @@ const CategorySlider = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      <div>
+        <div>
+          <Previous />
+          <Next />
+        </div>
+      </div>
     </div>
   )
 }
