@@ -44,7 +44,8 @@ const CardAward = ({
     >
       <div
         className={cn(
-          'bg-gray-light-1 relative aspect-square overflow-hidden',
+          'bg-gray-light-1 relative aspect-square w-full overflow-hidden',
+          'max-lg:mx-auto max-lg:max-w-[25rem]',
           'lg:w-[20rem] lg:shrink-0 lg:self-start',
         )}
       >
