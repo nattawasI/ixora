@@ -15,6 +15,7 @@ import {
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { HamburgerMenu } from '@/components/layout/header/hamburger-menu'
 import { NavigationLink } from '@/components/ui/navigation-link'
+import { ContactNav } from '@/components/layout/header/contact-nav'
 import type { NavigationItemType } from '@/components/layout/type'
 
 const menuItems: NavigationItemType[] = [
@@ -22,7 +23,6 @@ const menuItems: NavigationItemType[] = [
   { label: 'AWARDS & PRESS', href: '/awards', rootOf: ['/awards', '/press'] },
   { label: 'PEOPLE', href: '/people' },
   { label: 'CAREER', href: '/career' },
-  { label: 'CONTACT', href: '/contact' },
 ]
 
 const GlobalNavigation = () => {
@@ -43,7 +43,10 @@ const GlobalNavigation = () => {
         }
       }}
     >
-      <DialogTrigger aria-label="Open global navigation" className="flex size-[1.625rem] items-center justify-center">
+      <DialogTrigger
+        aria-label="Open global navigation"
+        className="relative z-[1] flex size-[1.625rem] items-center justify-center"
+      >
         <HamburgerMenu isShowMenu={isShowMenu} />
       </DialogTrigger>
       <DialogPortal>
@@ -88,15 +91,13 @@ const GlobalNavigation = () => {
                         ? item.rootOf.some((root) => pathname.startsWith(root)) || pathname === item.href
                         : pathname === item.href
                     }
-                    onClick={() => {
-                      setOpen(false)
-                      setIsShowMenu(false)
-                    }}
+                    onClick={() => setIsShowMenu(false)}
                   >
                     {item.label}
                   </NavigationLink>
                 </div>
               ))}
+              <ContactNav onClick={() => setIsShowMenu(false)} />
             </nav>
           </div>
         </DialogContent>

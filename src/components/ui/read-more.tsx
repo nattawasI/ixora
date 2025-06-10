@@ -19,15 +19,25 @@ const ReadMoreTrigger = ({ className, ...props }: React.ComponentProps<typeof Co
     </CollapsibleTrigger>
   )
 }
-const ReadMoreContent = ({ className, ...props }: React.ComponentProps<typeof CollapsibleContent>) => {
+const ReadMoreContent = ({ className, children, ...props }: React.ComponentProps<typeof CollapsibleContent>) => {
   return (
     <CollapsibleContent
       className={cn(
-        'data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up overflow-hidden',
+        'group/read-more-content data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up overflow-hidden',
         className,
       )}
       {...props}
-    />
+    >
+      <div
+        className={cn(
+          'pt-5 transition-opacity duration-500 ease-in-out',
+          'group-data-[state=closed]/read-more-content:animate-out group-data-[state=open]/read-more-content:animate-in',
+          'group-data-[state=closed]/read-more-content:fade-out-0 group-data-[state=open]/read-more-content:fade-in-0',
+        )}
+      >
+        {children}
+      </div>
+    </CollapsibleContent>
   )
 }
 

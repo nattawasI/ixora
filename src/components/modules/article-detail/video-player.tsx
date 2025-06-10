@@ -17,11 +17,16 @@ const VideoPlayer = ({ src }: { src: string }) => {
 
   return (
     <div className="relative aspect-[1.47]">
-      <video ref={videoRef} className="size-full object-cover object-center" controls={isPlaying}>
+      <video
+        ref={videoRef}
+        className="size-full object-cover object-center"
+        controls={isPlaying}
+        onPause={() => setIsPlaying(false)}
+      >
         <source src={src} type="video/mp4" />
       </video>
       {!isPlaying ? (
-        <div className="absolute inset-0 z-[1] flex items-center justify-center">
+        <div className="absolute inset-0 z-[1] flex items-center justify-center" onClick={handlePlay}>
           <button
             type="button"
             className="typo-body-2 group/play-button flex flex-col gap-y-1.25 font-bold uppercase"
