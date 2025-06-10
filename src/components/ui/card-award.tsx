@@ -3,7 +3,7 @@ import { cn } from '@/libs/utils/cn'
 import Image, { type ImageProps } from 'next/image'
 import { Separator } from '@/components/ui/separator'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
-import { ReadMore, ReadMoreTrigger, ReadMoreContent } from '@/components/ui/read-more'
+import { ReadMoreBlock } from '@/components/ui/read-more-block'
 
 type CardAwardProps = Omit<ComponentProps<'div'>, 'title'> & {
   image: Omit<ImageProps, 'fill'>
@@ -55,17 +55,10 @@ const CardAward = ({
       <div className="flex-1 space-y-2">
         <p className="text-gray typo-body-2">{date}</p>
         <TitleTag className="typo-title-2 font-bold">{title.text}</TitleTag>
-        <ReadMore>
-          <p className="typo-body-2 whitespace-pre-line">{description}</p>
-          {descriptionMore ? (
-            <>
-              <ReadMoreContent>
-                <p className="typo-body-2 whitespace-pre-line">{descriptionMore}</p>
-              </ReadMoreContent>
-              <ReadMoreTrigger className="mt-4" />
-            </>
-          ) : null}
-        </ReadMore>
+        <ReadMoreBlock
+          showContentSlot={<p className="typo-body-2 whitespace-pre-line">{description}</p>}
+          hiddenContentSlot={<p className="typo-body-2 whitespace-pre-line">{descriptionMore}</p>}
+        />
       </div>
       <Separator orientation="horizontal" className="lg:hidden" />
       <Separator orientation="vertical" className="max-lg:hidden" />

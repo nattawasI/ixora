@@ -1,6 +1,6 @@
 import { cn } from '@/libs/utils/cn'
 import { DialogTitle } from '@radix-ui/react-dialog'
-import { ReadMore, ReadMoreTrigger, ReadMoreContent } from '@/components/ui/read-more'
+import { ReadMoreBlock } from '@/components/ui/read-more-block'
 import { SingleImage } from '@/components/modules/article-detail/single-image'
 import { ColumnImages } from '@/components/modules/article-detail/column-images'
 import { VideoPlayer } from '@/components/modules/article-detail/video-player'
@@ -41,21 +41,22 @@ const ProjectDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
               </div>
             </div>
             <div className="flex flex-col gap-y-5 md:col-span-8 md:gap-y-7.5 md:pl-7.5">
-              <ReadMore>
-                <p className="typo-body-2 whitespace-pre-line">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat.
-                </p>
-                <ReadMoreContent>
+              <ReadMoreBlock
+                showContentSlot={
                   <p className="typo-body-2 whitespace-pre-line">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                     aliquip ex ea commodo consequat.
                   </p>
-                </ReadMoreContent>
-                <ReadMoreTrigger className="mt-4" />
-              </ReadMore>
+                }
+                hiddenContentSlot={
+                  <p className="typo-body-2 whitespace-pre-line">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat.
+                  </p>
+                }
+              />
               <div>
                 <p className="typo-body-2">
                   Landscape Architect <span className="text-blue">•</span> <strong>Flix Landscape</strong>
