@@ -39,12 +39,13 @@ const CardAward = ({
 
   return (
     <div
-      className={cn('flex flex-col gap-5 bg-white p-4', 'lg:flex-row lg:gap-9 lg:p-10', 'xl:gap-[3.125rem]', className)}
+      className={cn('flex flex-col gap-5 bg-white p-4', 'lg:flex-row lg:gap-9 lg:p-10', 'xl:gap-12.5', className)}
       {...props}
     >
       <div
         className={cn(
           'bg-gray-light-1 relative aspect-square w-full overflow-hidden',
+          'max-[27rem]:max-w-full',
           'max-lg:mx-auto max-lg:max-w-[25rem]',
           'lg:w-[20rem] lg:shrink-0 lg:self-start',
         )}
@@ -59,7 +60,7 @@ const CardAward = ({
           {descriptionMore ? (
             <>
               <ReadMoreContent>
-                <p className="typo-body-2 mt-5 whitespace-pre-line">{descriptionMore}</p>
+                <p className="typo-body-2 whitespace-pre-line">{descriptionMore}</p>
               </ReadMoreContent>
               <ReadMoreTrigger className="mt-4" />
             </>
@@ -91,8 +92,15 @@ const CardAward = ({
 
 const CardAwardLoading = () => {
   return (
-    <div className={cn('flex flex-col gap-5 bg-white p-4', 'lg:flex-row lg:gap-9 lg:p-10', 'xl:gap-[3.125rem]')}>
-      <div className={cn('skeleton aspect-square', 'lg:w-[20rem] lg:shrink-0 lg:self-start')} />
+    <div className={cn('flex flex-col gap-5 bg-white p-4', 'lg:flex-row lg:gap-9 lg:p-10', 'xl:gap-12.5')}>
+      <div
+        className={cn(
+          'skeleton aspect-square w-full',
+          'max-[27rem]:max-w-full',
+          'max-lg:mx-auto max-lg:max-w-[25rem]',
+          'lg:w-[20rem] lg:shrink-0 lg:self-start',
+        )}
+      />
       <div className="flex-1 space-y-2">
         <TextSkeleton variant="typo-body-2" className="w-28" />
         <TextSkeleton variant="typo-title-2" className="w-1/2" />

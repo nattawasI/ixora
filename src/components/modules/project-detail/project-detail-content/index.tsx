@@ -48,7 +48,7 @@ const ProjectDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
                   aliquip ex ea commodo consequat.
                 </p>
                 <ReadMoreContent>
-                  <p className="typo-body-2 mt-5 whitespace-pre-line">
+                  <p className="typo-body-2 whitespace-pre-line">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                     aliquip ex ea commodo consequat.
