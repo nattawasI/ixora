@@ -1,8 +1,8 @@
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './accordion'
-import { BackToTop } from './back-to-top'
-import Link from 'next/link'
-import { External } from '@/components/ui/icons-outline/external'
 import { cn } from '@/libs/utils/cn'
+import { BackToTop } from './back-to-top'
+import { FooterAccordion } from './footer-accordion'
+import { External } from '@/components/ui/icons-outline/external'
+import Link, { type LinkProps } from 'next/link'
 
 const emails: { label: string; email: string }[] = [
   {
@@ -46,10 +46,6 @@ const socials: { label: string; href: string }[] = [
 ]
 
 const Footer = () => {
-  const footerLinkClassName = cn(
-    'group/footer-link typo-body-2 decoration-gray-light-1 hover:decoration-blue inline-flex items-center gap-x-2.5 underline underline-offset-4 transition-colors',
-  )
-
   return (
     <footer
       id="contact"
@@ -58,47 +54,50 @@ const Footer = () => {
         'lg:min-h-[28.875rem] lg:px-10 lg:pt-[7.125rem] lg:pb-5',
       )}
     >
-      <Accordion className="lg:flex-1">
-        <AccordionItem value="email">
-          <AccordionTrigger>EMAIL</AccordionTrigger>
-          <AccordionContent>
-            <div className="space-y-2">
-              {emails.map((item) => (
-                <BlockItem key={item.label} label={item.label}>
-                  <Link href={`mailto:${item.email}`} className={footerLinkClassName}>
-                    {item.email}
-                  </Link>
-                </BlockItem>
-              ))}
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="offices">
-          <AccordionTrigger>OFFICES</AccordionTrigger>
-          <AccordionContent>
-            <div className="space-y-2">
-              {offices.map((item) => (
-                <BlockItem key={item.label} label={item.label}>
-                  <p>{item.content}</p>
-                </BlockItem>
-              ))}
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="social">
-          <AccordionTrigger>SOCIAL</AccordionTrigger>
-          <AccordionContent>
-            <div className="inline-flex flex-col gap-y-1.25 pl-0.5">
-              {socials.map((item) => (
-                <Link key={item.label} href={item.href} className={footerLinkClassName} target="_blank">
-                  {item.label}
-                  <External className="group-hover/footer-link:text-blue" />
-                </Link>
-              ))}
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
+      <FooterAccordion
+        className="lg:flex-1"
+        items={[
+          {
+            id: 'email',
+            title: 'EMAIL',
+            content: (
+              <div className="space-y-2">
+                {emails.map((item) => (
+                  <BlockItem key={item.label} label={item.label}>
+                    <FooterLink href={`mailto:${item.email}`}>{item.email}</FooterLink>
+                  </BlockItem>
+                ))}
+              </div>
+            ),
+          },
+          {
+            id: 'offices',
+            title: 'OFFICES',
+            content: (
+              <div className="space-y-2">
+                {offices.map((item) => (
+                  <BlockItem key={item.label} label={item.label}>
+                    <p>{item.content}</p>
+                  </BlockItem>
+                ))}
+              </div>
+            ),
+          },
+          {
+            id: 'social',
+            title: 'SOCIAL',
+            content: (
+              <div className="inline-flex flex-col gap-y-1.25 pl-0.5">
+                {socials.map((item) => (
+                  <FooterLink key={item.label} href={item.href} isExternal>
+                    {item.label}
+                  </FooterLink>
+                ))}
+              </div>
+            ),
+          },
+        ]}
+      />
       <div className="mt-auto flex shrink-0 justify-center max-lg:mt-[6.25rem]">
         <BackToTop />
       </div>
@@ -112,6 +111,27 @@ const BlockItem = ({ label, children }: { label: string; children?: React.ReactE
       <div className="typo-body-2 text-blue w-20 shrink-0">{label}</div>
       <div className="typo-body-2 flex-1 whitespace-pre-line">{children}</div>
     </div>
+  )
+}
+
+const FooterLink = ({
+  isExternal,
+  className,
+  children,
+  ...props
+}: Omit<React.ComponentProps<'a'>, keyof LinkProps> & LinkProps & { isExternal?: boolean }) => {
+  return (
+    <Link
+      className={cn(
+        'group/footer-link typo-body-2 decoration-gray-light-1 hover:decoration-blue inline-flex items-center gap-x-2.5 underline underline-offset-4 transition-colors',
+        className,
+      )}
+      target={isExternal ? '_blank' : undefined}
+      {...props}
+    >
+      {children}
+      {isExternal ? <External className="group-hover/footer-link:text-blue" /> : null}
+    </Link>
   )
 }
 
