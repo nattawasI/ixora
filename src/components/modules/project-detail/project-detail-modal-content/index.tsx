@@ -8,12 +8,12 @@ const ProjectDetailModalContent = () => {
       {/* <ProjectDetailModalContentLoading /> */}
       <ProjectDetailContent isInModal />
       <PageModalButtonsMobile>
-        <PageModalPrev variant="mobile" href="" />
+        <PageModalPrev variant="mobile" />
         <PageModalClose variant="mobile" label="CLOSE" />
-        <PageModalNext variant="mobile" href="" />
+        <PageModalNext variant="mobile" />
       </PageModalButtonsMobile>
-      <PageModalPrev variant="desktop" href="" />
-      <PageModalNext variant="desktop" href="" />
+      <PageModalPrev variant="desktop" />
+      <PageModalNext variant="desktop" />
       <PageModalClose variant="desktop" />
     </div>
   )

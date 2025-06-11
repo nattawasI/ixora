@@ -15,7 +15,6 @@ import {
   ChevronLeft as ChevronLeftColor,
   ChevronRight as ChevronRightColor,
 } from '@/components/ui/icons-color'
-import Link, { type LinkProps } from 'next/link'
 import { ComponentProps } from 'react'
 
 const PageDetailModal = Dialog
@@ -62,9 +61,10 @@ const PageModalPrev = ({
   variant,
   className,
   ...props
-}: LinkProps & Omit<ComponentProps<'a'>, keyof LinkProps> & { variant: 'desktop' | 'mobile' }) => {
+}: ComponentProps<'button'> & { variant: 'desktop' | 'mobile' }) => {
   return (
-    <Link
+    <button
+      type="button"
       className={buttonSquareVariants({
         theme: variant === 'desktop' ? 'gray' : 'default',
         className: cn(
@@ -75,7 +75,7 @@ const PageModalPrev = ({
       {...props}
     >
       {variant === 'desktop' ? <ChevronLeft /> : <ChevronLeftColor />}
-    </Link>
+    </button>
   )
 }
 
@@ -83,9 +83,10 @@ const PageModalNext = ({
   variant,
   className,
   ...props
-}: LinkProps & Omit<ComponentProps<'a'>, keyof LinkProps> & { variant: 'desktop' | 'mobile' }) => {
+}: ComponentProps<'button'> & { variant: 'desktop' | 'mobile' }) => {
   return (
-    <Link
+    <button
+      type="button"
       className={buttonSquareVariants({
         theme: variant === 'desktop' ? 'gray' : 'default',
         className: cn(
@@ -96,7 +97,7 @@ const PageModalNext = ({
       {...props}
     >
       {variant === 'desktop' ? <ChevronRight /> : <ChevronRightColor />}
-    </Link>
+    </button>
   )
 }
 
