@@ -33,7 +33,7 @@ const Header = () => {
         }
         awardsAndPressNav={<AwardsAndPressNav className="max-lg:hidden" />}
       />
-      <Link href="/" aria-label="Home" className="relative z-[1] block w-[6.75rem] lg:w-[9.375rem]">
+      <Link href="/" aria-label="Home" className="relative z-[1] block w-[6.75rem] xl:w-[9.375rem]">
         <FullLogo className="h-auto w-full" />
       </Link>
     </header>

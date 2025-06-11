@@ -25,7 +25,7 @@ const ExploreMoreCollapsible = ({ children, ...props }: React.ComponentProps<'di
           }}
           className="overflow-hidden"
         >
-          <div className="p-0.5">{children}</div>
+          {children}
         </motion.div>
       </CollapsibleContent>
     </Collapsible>
