@@ -3,21 +3,28 @@ import { CareerList } from '@/components/modules/career/career-list'
 import { CardOther } from '@/components/ui/card-other'
 import { FullLogoGray } from '@/components/ui/icons-color/full-logo-gray'
 import { CopyEmail } from '@/components/modules/career/copy-email'
-import { directus } from '@/libs/directus'
+
+/** directus */
 import { readSingleton } from '@directus/sdk'
+import { directus } from '@/libs/directus'
+import { CareerResponse } from '@/libs/directus/type'
 
 export default async function Career() {
-  const career = await directus.request(
+  const data = await directus.request<CareerResponse[]>(
     readSingleton('career', {
-      fields: ['*'],
+      filter: {
+        status: {
+          _eq: 'published',
+        },
+      },
+      fields: ['id', 'status', 'title', 'position_required', 'requirement'],
     }),
   )
-  console.log(career)
 
   return (
     <>
       <HeadingPage className="c-container">CAREER</HeadingPage>
-      <CareerList />
+      <CareerList data={data} />
       <div className="relative flex h-[37.5rem] items-center justify-center bg-[url('/images/career/how-to-apply-portrait.jpg')] bg-cover bg-center lg:h-[40rem] lg:bg-[url('/images/career/how-to-apply-landscape.jpg')] lg:bg-cover lg:bg-center">
         <div className="c-container">
           <div className="min-h-[25rem] bg-black/70 p-10 lg:grid lg:grid-cols-2 lg:p-[3.75rem]">
