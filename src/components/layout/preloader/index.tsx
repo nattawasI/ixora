@@ -40,13 +40,13 @@ const Preloader = () => {
 
   const handleMouseEnter = () => {
     if (!isClicked) {
-      boxTextControls.start({ width: '100%', transition: { duration: 0.25, ease: 'easeOut' } })
+      boxTextControls.start({ width: '100%', transition: { duration: 0.4, ease: 'easeOut' } })
     }
   }
 
   const handleMouseLeave = () => {
     if (!isClicked) {
-      boxTextControls.start({ width: '37.05%', transition: { duration: 0.25, ease: 'easeOut' } })
+      boxTextControls.start({ width: '37.05%', transition: { duration: 0.4, ease: 'easeOut' } })
     }
   }
 
@@ -59,7 +59,7 @@ const Preloader = () => {
       height: 26,
       top: isMobile ? 16 : 37,
       left: isMobile ? 16 : 40,
-      transition: { duration: 1, ease: 'easeInOut' },
+      transition: { duration: 1.2, ease: [0.455, 0.03, 0.515, 0.955] },
     }
 
     logoControls.start(logoTarget)
@@ -160,7 +160,7 @@ const Preloader = () => {
 
           <div className="space-y-2 text-center">
             <motion.div animate={boxTextControls} className="mx-auto w-[37.05%] overflow-hidden whitespace-nowrap">
-              <p className={cn('typo-title-3 text-gray font-bold uppercase', { 'text-blue': isClicked })}>
+              <p className={cn('typo-title-3 text-gray font-bold uppercase hover:text-blue', { 'text-blue': isClicked })}>
                 EXPLORE OUR PROJECTS
               </p>
             </motion.div>
