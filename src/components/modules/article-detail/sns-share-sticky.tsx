@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { cn } from '@/libs/utils/cn'
 import { Share, Close } from '@/components/ui/icons-outline'
 import { SnsShareItems, type SnsShareItemsProps } from '@/components/modules/article-detail/sns-share-items'
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@radix-ui/react-accordion'
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@radix-ui/react-collapsible'
 import { useSnsShareContext } from '@/components/modules/article-detail/sns-share-context'
 
 type SnsShareStickyProps = SnsShareItemsProps & {
@@ -13,18 +13,14 @@ type SnsShareStickyProps = SnsShareItemsProps & {
 }
 
 const SnsShareSticky = ({ title, coverImage, isInModal, className }: SnsShareStickyProps) => {
-  const [value, setValue] = useState('')
-
-  const isOpen = value === 'share'
+  const [open, setOpen] = useState(false)
 
   const { hideSnsShareSticky } = useSnsShareContext()
 
   return (
-    <Accordion
-      type="single"
-      collapsible
-      value={value}
-      onValueChange={setValue}
+    <Collapsible
+      open={open}
+      onOpenChange={setOpen}
       className={cn(
         'fixed z-10 w-12 max-lg:hidden',
         isInModal ? 'top-[5.625rem]' : 'top-[6.25rem]',
@@ -33,8 +29,8 @@ const SnsShareSticky = ({ title, coverImage, isInModal, className }: SnsShareSti
         className,
       )}
     >
-      <AccordionItem value="share" className="flex flex-col items-center">
-        <AccordionTrigger
+      <div className="flex flex-col items-center">
+        <CollapsibleTrigger
           type="button"
           className={cn(
             'group/social-sticky-trigger typo-body-2 order-2 space-y-1.25 font-bold uppercase',
@@ -48,21 +44,21 @@ const SnsShareSticky = ({ title, coverImage, isInModal, className }: SnsShareSti
               isInModal ? 'bg-gray' : 'bg-transition border-gray-light-1 border',
             )}
           >
-            {isOpen ? (
+            {open ? (
               <Close className={cn(isInModal ? 'text-white' : 'text-blue')} />
             ) : (
               <Share className={cn(isInModal ? 'text-white' : 'text-blue')} />
             )}
           </span>
-          <span>{isOpen ? 'CLOSE' : 'SHARE'}</span>
-        </AccordionTrigger>
-        <AccordionContent className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down order-1 overflow-hidden">
+          <span>{open ? 'CLOSE' : 'SHARE'}</span>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down order-1 overflow-hidden">
           <div className="mb-2 space-y-2.5 px-0.5">
             <SnsShareItems title={title} coverImage={coverImage} />
           </div>
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
+        </CollapsibleContent>
+      </div>
+    </Collapsible>
   )
 }
 

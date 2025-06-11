@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@radix-ui/react-collapsible'
-import { motion } from 'motion/react'
+import { cn } from '@/libs/utils/cn'
 
 const ExploreMoreCollapsible = ({ children, ...props }: React.ComponentProps<'div'>) => {
   const [open, setOpen] = useState(false)
@@ -16,17 +16,16 @@ const ExploreMoreCollapsible = ({ children, ...props }: React.ComponentProps<'di
           </span>
         </CollapsibleTrigger>
       </h2>
-      <CollapsibleContent forceMount asChild>
-        <motion.div
-          initial={false}
-          animate={{
-            height: open ? 'auto' : 0,
-            opacity: open ? 1 : 0,
-          }}
-          className="overflow-hidden"
+      <CollapsibleContent className="group data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden">
+        <div
+          className={cn(
+            'p-0.5 transition-opacity duration-500 ease-in-out',
+            'group-data-[state=closed]:animate-out group-data-[state=open]:animate-in',
+            'group-data-[state=closed]:fade-out-0 group-data-[state=open]:fade-in-0',
+          )}
         >
           {children}
-        </motion.div>
+        </div>
       </CollapsibleContent>
     </Collapsible>
   )
