@@ -50,7 +50,7 @@ const Preloader = () => {
     }
   }
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => {
     e.stopPropagation()
     setIsClicked(true)
 
@@ -103,9 +103,12 @@ const Preloader = () => {
     <AnimatePresence mode="wait">
       <motion.div animate={containerControls} className="fixed inset-0 z-[9999] flex flex-col bg-white">
         <div
+          role="button"
+          tabIndex={0}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onClick={handleClick}
+          onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => { if (e.key === 'Enter') handleClick(e) }}
           className={cn('group m-auto flex flex-col items-center justify-center gap-y-8 hover:cursor-pointer', {
             'pointer-events-none': isClicked,
           })}
