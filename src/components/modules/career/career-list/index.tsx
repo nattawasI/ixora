@@ -1,29 +1,44 @@
-import { CareerResponse } from '@/libs/directus/type'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './accordion'
+import { CareerAccordion } from './career-accordion'
+import { TextSkeleton } from '@/components/ui/text-skeleton'
 
-const CareerList = ({ data }: { data: CareerResponse[] }) => {
+/** directus */
+import { readSingleton } from '@directus/sdk'
+import { directus } from '@/libs/directus'
+import { CareerResponse } from '@/libs/directus/type'
+
+
+const CareerList = async () => {
+  /** fetch here... */
+  const items = await directus.request<CareerResponse[]>(
+    readSingleton('career', {
+      filter: {
+        status: {
+          _eq: 'published',
+        },
+      },
+      fields: ['id', 'status', 'title', 'position_required', 'requirement'],
+    }),
+  )
+
   return (
-    <Accordion type="multiple" className="c-container mb-12.5 lg:mb-[6.25rem]">
-      {data.map((item) => (
-        <AccordionItem key={item.id} value={item.id}>
-          <AccordionTrigger>
-            <span className="flex flex-col items-start gap-y-2.5">
-              <span className="typo-title-3 font-bold">{item.title}</span>
-              <span className="typo-body-2 bg-blue-2 inline-flex h-8.5 items-center rounded-full px-4 font-bold">
-                {item.position_required} Position Required
-              </span>
-            </span>
-          </AccordionTrigger>
-          <AccordionContent>
-            <h4 className="text-gray typo-body-1 mb-2.5 font-bold">Requirements</h4>
-            <div className="detail-content">
-              <div dangerouslySetInnerHTML={{ __html: item.requirement }} />
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-      ))}
-    </Accordion>
+    <CareerAccordion items={items} />
   )
 }
 
-export { CareerList }
+
+const CareerListLoading = () => {
+  return (
+    <div className="space-y-5">
+      {Array.from({ length: 3 }).map((_, index) => (
+        <div className="border-gray-light-1 animate-pulse border-b pb-5" key={index}>
+          <div className="space-y-2.5 pb-5">
+            <TextSkeleton variant="typo-title-3" className="w-full max-w-80" />
+            <div className="skeleton h-8.5 w-40 rounded-full" />
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export { CareerList, CareerListLoading }
