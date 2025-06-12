@@ -12,8 +12,7 @@ import {
 import { ChevronDown } from '@/components/ui/icons-color/chevron-down'
 import { motion } from 'motion/react'
 import parse from 'html-react-parser'
-import { CareerResponse } from '@/libs/directus/type'
-
+import type { CareerResponse } from '@/libs/directus/type'
 
 const CareerAccordion = ({ items }: { items: CareerResponse[] }) => {
   const [activeValue, setActiveValue] = useState<string[]>([])
