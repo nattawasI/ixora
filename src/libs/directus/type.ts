@@ -38,4 +38,43 @@ type AwardsResponse = {
   date: string
 }
 
-export type { CareerResponse, PeopleResponse, ImageResponse, AwardsResponse }
+type NewsResponse = {
+  id: string
+  status: StatusType
+  date_created: string
+  date_updated: string
+  title: string
+  published_date: string
+  slug: string
+  discription: string
+  content: string
+  cover: string
+  gallery: NewsGalleryResponse[]
+  video: NewsVideoResponse[]
+}
+
+type NewsGalleryResponse = {
+  id: string
+  news_id: string
+  sort: number
+  directus_files_id: ImageResponse
+}
+
+type NewsVideoResponse = {
+  id: string
+  news_id: string
+  sort: number
+  item: {
+    video: ImageResponse
+  }
+}
+
+export type {
+  CareerResponse,
+  PeopleResponse,
+  ImageResponse,
+  AwardsResponse,
+  NewsResponse,
+  NewsGalleryResponse,
+  NewsVideoResponse,
+}
