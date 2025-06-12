@@ -1,3 +1,4 @@
+import { ComponentProps } from 'react'
 import { cn } from '@/libs/utils/cn'
 import {
   Dialog,
@@ -15,7 +16,6 @@ import {
   ChevronLeft as ChevronLeftColor,
   ChevronRight as ChevronRightColor,
 } from '@/components/ui/icons-color'
-import { ComponentProps } from 'react'
 
 const PageDetailModal = Dialog
 
@@ -30,7 +30,7 @@ const PageDetailModalContent = ({
     <DialogPortal>
       <DialogOverlay
         className={cn(
-          'lg:scrollbar-hidden fixed inset-0 z-30 bg-black/70 max-lg:overflow-hidden lg:overflow-y-auto',
+          'scrollbar-hidden fixed inset-0 z-30 overflow-y-auto bg-black/70',
           'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
         )}
       >
@@ -38,7 +38,7 @@ const PageDetailModalContent = ({
           className={cn(
             'group',
             contentSize === 'large' ? 'article-detail-container-large' : 'article-detail-container-small',
-            'max-lg:scrollbar-hidden outline-none max-lg:mt-[3.75rem] max-lg:h-[calc(100svh-3.75rem)] max-lg:overflow-hidden max-lg:overflow-y-auto lg:my-[5.625rem]',
+            'outline-none max-lg:mt-[3.75rem] max-lg:h-[calc(100svh-3.75rem)] lg:my-[5.625rem]',
           )}
           {...props}
         >

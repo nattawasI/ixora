@@ -55,6 +55,7 @@
 
 @layer base {
   body {
+    background-color: var(--bg-color, var(--color-white));
     @apply min-h-svh text-black antialiased;
   }
 
@@ -63,8 +64,13 @@
     @apply focus-visible:ring-blue cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-none;
   }
 
-  body {
-    background-color: var(--bg-color, var(--color-white));
+  @media (pointer: coarse) {
+    /** fixed ring focus show on smartphone */
+    button:focus-visible,
+    a:focus-visible {
+      outline: none;
+      box-shadow: none;
+    }
   }
 
   #header {
@@ -110,7 +116,7 @@
   }
 
   .list-project {
-    @apply grid gap-5 md:grid-cols-3 lg:grid-cols-3;
+    @apply grid gap-5 md:grid-cols-2 lg:grid-cols-3;
   }
 
   .list-awards-press {
@@ -118,7 +124,7 @@
   }
 
   .list-people {
-    @apply grid grid-cols-2 gap-x-2.5 gap-y-4 md:grid-cols-4 lg:gap-x-7.5 lg:gap-y-2.5;
+    @apply grid grid-cols-2 gap-x-2.5 gap-y-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-x-7.5 lg:gap-y-2.5;
   }
 
   .article-detail-container-large {

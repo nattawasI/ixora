@@ -1,19 +1,26 @@
 import { PressDetailContent } from '@/components/modules/press-detail/press-detail-content'
 import { PageModalButtonsMobile, PageModalPrev, PageModalNext, PageModalClose } from '@/components/ui/page-modal'
-// import { PressDetailModalContentLoading } from './loading'
+import { historyReplaceState } from '@/libs/utils/history'
 
 const PressDetailModalContent = () => {
+  const handlePrev = () => {
+    historyReplaceState('/press/1')
+  }
+
+  const handleNext = () => {
+    historyReplaceState('/press/3')
+  }
+
   return (
     <div className="bg-gray-light-2">
-      {/* <PressDetailModalContentLoading /> */}
       <PressDetailContent isInModal />
       <PageModalButtonsMobile>
-        <PageModalPrev variant="mobile" />
+        <PageModalPrev variant="mobile" onClick={handlePrev} />
         <PageModalClose variant="mobile" label="CLOSE" />
-        <PageModalNext variant="mobile" />
+        <PageModalNext variant="mobile" onClick={handleNext} />
       </PageModalButtonsMobile>
-      <PageModalPrev variant="desktop" />
-      <PageModalNext variant="desktop" />
+      <PageModalPrev variant="desktop" onClick={handlePrev} />
+      <PageModalNext variant="desktop" onClick={handleNext} />
       <PageModalClose variant="desktop" />
     </div>
   )
