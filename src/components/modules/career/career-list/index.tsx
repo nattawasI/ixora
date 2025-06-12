@@ -4,8 +4,7 @@ import { TextSkeleton } from '@/components/ui/text-skeleton'
 /** directus */
 import { readSingleton } from '@directus/sdk'
 import { directus } from '@/libs/directus'
-import { CareerResponse } from '@/libs/directus/type'
-
+import type { CareerResponse } from '@/libs/directus/type'
 
 const CareerList = async () => {
   /** fetch here... */
@@ -20,11 +19,8 @@ const CareerList = async () => {
     }),
   )
 
-  return (
-    <CareerAccordion items={items} />
-  )
+  return <CareerAccordion items={items} />
 }
-
 
 const CareerListLoading = () => {
   return (

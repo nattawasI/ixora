@@ -2,8 +2,8 @@ import { CardPeople, CardPeopleLoading } from '@/components/ui/card-people'
 
 /** directus */
 import { directus } from '@/libs/directus'
-import { PeopleResponse } from '@/libs/directus/type'
 import { readItems } from '@directus/sdk'
+import type { PeopleResponse } from '@/libs/directus/type'
 
 const PeopleList = async () => {
   /** fetch here */
