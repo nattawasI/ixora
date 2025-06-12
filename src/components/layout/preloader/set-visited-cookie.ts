@@ -7,6 +7,6 @@ export async function setVisitedCookie() {
 
   cookieStore.set('hasVisited', 'true', {
     path: '/',
-    maxAge: 60 * 60 * 24 * 30, // 30 days
+    maxAge: 60 * 60 * 24 * 7, // 7 days
   })
 }
