@@ -3,8 +3,14 @@ import { CardProjectLoading } from '@/components/ui/card-project'
 import { ProjectCard } from '@/components/modules/projects/project-card'
 import Link from 'next/link'
 import { CursorProvider } from '@/libs/context/cursor'
+import { projectListQuery } from '@/libs/directus/service/project-list'
 
-const ProjectList = () => {
+const ProjectList = async () => {
+  /** fetch here */
+  const data = await projectListQuery()
+
+  console.log(data)
+
   return (
     <CursorProvider>
       <div className="list-project">

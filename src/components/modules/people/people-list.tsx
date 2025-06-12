@@ -1,35 +1,11 @@
 import { CardPeople, CardPeopleLoading } from '@/components/ui/card-people'
 
 /** directus */
-import { directus } from '@/libs/directus'
-import { readItems } from '@directus/sdk'
-import type { PeopleResponse } from '@/libs/directus/type'
+import { peopleQuery } from '@/libs/directus/service/people'
 
 const PeopleList = async () => {
   /** fetch here */
-  const data = await directus.request<PeopleResponse[]>(
-    readItems('people', {
-      filter: {
-        status: {
-          _eq: 'published',
-        },
-      },
-      fields: [
-        'id',
-        'status',
-        'first_name',
-        'last_name',
-        'position',
-        'image.id',
-        'image.filename_disk',
-        'image.filename_download',
-        'image.width',
-        'image.height',
-        'image.filesize',
-        'image.title',
-      ],
-    }),
-  )
+  const data = await peopleQuery()
 
   return (
     <div className="list-people">

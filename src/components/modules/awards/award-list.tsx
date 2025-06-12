@@ -1,8 +1,13 @@
 import { CardAward, CardAwardLoading } from '@/components/ui/card-award'
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
+import { awardsQuery } from '@/libs/directus/service/awards'
 
 const AwardList = async () => {
   /** fetch here */
+  const data = await awardsQuery()
+
+  console.log(data)
+
   return (
     <div className="list-awards-press">
       {Array.from({ length: 4 }).map((_, index) => (
