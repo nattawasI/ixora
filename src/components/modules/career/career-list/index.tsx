@@ -2,22 +2,11 @@ import { CareerAccordion } from './career-accordion'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
 
 /** directus */
-import { readSingleton } from '@directus/sdk'
-import { directus } from '@/libs/directus'
-import type { CareerResponse } from '@/libs/directus/type'
+import { careerQuery } from '@/libs/directus/service/career'
 
 const CareerList = async () => {
   /** fetch here... */
-  const items = await directus.request<CareerResponse[]>(
-    readSingleton('career', {
-      filter: {
-        status: {
-          _eq: 'published',
-        },
-      },
-      fields: ['id', 'status', 'title', 'position_required', 'requirement'],
-    }),
-  )
+  const items = await careerQuery()
 
   return <CareerAccordion items={items} />
 }
