@@ -54,7 +54,7 @@ const CursorProvider = ({ children }: { children: ReactNode }) => {
         className="bg-blue pointer-events-none fixed z-[9999] size-0 rounded-full opacity-0 backdrop-blur-2xl"
         animate={{
           opacity: cursorType === 'hovered' ? 0.9 : 0,
-          scale: cursorType === 'hovered' ? 1 : 0.7,
+          scale: cursorType === 'hovered' ? 1 : 0,
           width: cursorSize,
           height: cursorSize,
         }}
