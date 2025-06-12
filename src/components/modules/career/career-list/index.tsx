@@ -1,58 +1,30 @@
-import { CareerAccordion, type CareerItemType } from './career-accordion'
+import { CareerAccordion } from './career-accordion'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
 
-const mockupData: CareerItemType[] = [
-  {
-    id: 'item-1',
-    title: 'Senior Horticulturist',
-    numberPositionRequired: 1,
-    content: `<ul>
-      <li>Bachelor's degree in Horticulture or a related field</li>
-      <li>Minimum of 3 years of relevant work experience; experience in international projects is a plus</li>
-      <li>Strong knowledge and expertise in plant species</li>
-      <li>Proficient in planting design and plant-related planning</li>
-      <li>Skilled in using design-related software and tools</li>
-      <li>Good command of English, both written and spoken</li>
-      <li>Able to communicate effectively across various media platforms</li>
-      <li>Flexible and willing to travel as required</li>
-    </ul>`,
-  },
-  {
-    id: 'item-2',
-    title: 'Senior Landscape Architect',
-    numberPositionRequired: 1,
-    content: `<ul>
-      <li>Bachelor's degree in Horticulture or a related field</li>
-      <li>Minimum of 3 years of relevant work experience; experience in international projects is a plus</li>
-      <li>Strong knowledge and expertise in plant species</li>
-      <li>Proficient in planting design and plant-related planning</li>
-      <li>Skilled in using design-related software and tools</li>
-      <li>Good command of English, both written and spoken</li>
-      <li>Able to communicate effectively across various media platforms</li>
-      <li>Flexible and willing to travel as required</li>
-    </ul>`,
-  },
-  {
-    id: 'item-3',
-    title: 'Junior Landscape Architect',
-    numberPositionRequired: 2,
-    content: `<ul>
-      <li>Bachelor's degree in Horticulture or a related field</li>
-      <li>Minimum of 3 years of relevant work experience; experience in international projects is a plus</li>
-      <li>Strong knowledge and expertise in plant species</li>
-      <li>Proficient in planting design and plant-related planning</li>
-      <li>Skilled in using design-related software and tools</li>
-      <li>Good command of English, both written and spoken</li>
-      <li>Able to communicate effectively across various media platforms</li>
-      <li>Flexible and willing to travel as required</li>
-    </ul>`,
-  },
-]
+/** directus */
+import { readSingleton } from '@directus/sdk'
+import { directus } from '@/libs/directus'
+import { CareerResponse } from '@/libs/directus/type'
+
 
 const CareerList = async () => {
   /** fetch here... */
-  return <CareerAccordion items={mockupData} />
+  const items = await directus.request<CareerResponse[]>(
+    readSingleton('career', {
+      filter: {
+        status: {
+          _eq: 'published',
+        },
+      },
+      fields: ['id', 'status', 'title', 'position_required', 'requirement'],
+    }),
+  )
+
+  return (
+    <CareerAccordion items={items} />
+  )
 }
+
 
 const CareerListLoading = () => {
   return (

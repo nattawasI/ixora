@@ -12,10 +12,10 @@ import {
 import { ChevronDown } from '@/components/ui/icons-color/chevron-down'
 import { motion } from 'motion/react'
 import parse from 'html-react-parser'
+import { CareerResponse } from '@/libs/directus/type'
 
-type CareerItemType = { id: string; title: string; numberPositionRequired: number; content: string }
 
-const CareerAccordion = ({ items }: { items: CareerItemType[] }) => {
+const CareerAccordion = ({ items }: { items: CareerResponse[] }) => {
   const [activeValue, setActiveValue] = useState<string[]>([])
 
   return (
@@ -30,7 +30,7 @@ const CareerAccordion = ({ items }: { items: CareerItemType[] }) => {
                 <span className="flex flex-col items-start gap-y-2.5">
                   <span className="typo-title-3 font-bold">{item.title}</span>
                   <span className="typo-body-2 bg-blue-2 inline-flex h-8.5 items-center rounded-full px-4 font-bold">
-                    {item.numberPositionRequired} Position Required
+                    {item.position_required} Position Required
                   </span>
                 </span>
                 <span
@@ -53,7 +53,7 @@ const CareerAccordion = ({ items }: { items: CareerItemType[] }) => {
                 }}
                 className="overflow-hidden"
               >
-                <div className="detail-content py-5">{parse(item.content)}</div>
+                <div className="detail-content py-5">{parse(item.requirement)}</div>
               </motion.div>
             </AccordionContent>
           </AccordionItem>
@@ -63,4 +63,4 @@ const CareerAccordion = ({ items }: { items: CareerItemType[] }) => {
   )
 }
 
-export { CareerAccordion, type CareerItemType }
+export { CareerAccordion }

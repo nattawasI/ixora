@@ -23,8 +23,8 @@ export default function Career() {
             <div className="flex flex-col">
               <div className="flex-1">
                 <p className="typo-body-1 text-white">
-                  We’d love to hear from you! Please send your CV and portfolio to our email if you&apos;re interested
-                  in this opportunity.
+                  We&apos;d love to hear from you! Please send your CV and portfolio to our email if you&apos;re
+                  interested in this opportunity.
                 </p>
                 <div className="mt-5 flex flex-col items-start gap-2.5 lg:flex-row lg:items-center">
                   <p className="typo-body-1 text-white">Email : ixora@ixoradesign.com</p>
