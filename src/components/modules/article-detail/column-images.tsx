@@ -6,7 +6,7 @@ const ColumnImages = ({ images }: { images: ImageProps[] }) => {
       {images.map((item, index) => {
         const { alt, ...restProps } = item
         return (
-          <div className="relative aspect-[0.81]" key={index}>
+          <div className="bg-gray-light-1 relative aspect-[0.81]" key={index}>
             <Image alt={alt} fill className="object-cover object-center" {...restProps} />
           </div>
         )
