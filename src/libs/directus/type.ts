@@ -27,4 +27,15 @@ type ImageResponse = {
   title: string
 }
 
-export type { CareerResponse, PeopleResponse, ImageResponse }
+type AwardsResponse = {
+  id: string
+  status: StatusType
+  title: string
+  project: string
+  image: ImageResponse | null
+  content_lead: string
+  content_more: string
+  date: string
+}
+
+export type { CareerResponse, PeopleResponse, ImageResponse, AwardsResponse }
