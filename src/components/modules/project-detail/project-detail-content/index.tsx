@@ -42,14 +42,14 @@ const ProjectDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
             </div>
             <div className="flex flex-col gap-y-5 md:col-span-8 md:gap-y-7.5 md:pl-7.5">
               <ReadMoreBlock
-                showContentSlot={
+                contentLead={
                   <p className="typo-body-2 whitespace-pre-line">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                     aliquip ex ea commodo consequat.
                   </p>
                 }
-                hiddenContentSlot={
+                contentMore={
                   <p className="typo-body-2 whitespace-pre-line">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut

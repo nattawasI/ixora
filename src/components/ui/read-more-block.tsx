@@ -7,15 +7,15 @@ import { motion } from 'motion/react'
 import { cn } from '@/libs/utils/cn'
 
 type ReadMoreBlockProps = React.ComponentProps<'div'> & {
-  showContentSlot: React.ReactNode
-  hiddenContentSlot: React.ReactNode
+  contentLead: React.ReactNode
+  contentMore: React.ReactNode
 }
-const ReadMoreBlock = ({ showContentSlot, hiddenContentSlot, ...props }: ReadMoreBlockProps) => {
+const ReadMoreBlock = ({ contentLead, contentMore, ...props }: ReadMoreBlockProps) => {
   const [open, setOpen] = useState(false)
 
   return (
     <Collapsible open={open} onOpenChange={setOpen} {...props}>
-      {showContentSlot}
+      {contentLead}
       <CollapsibleContent forceMount asChild>
         <motion.div
           initial={false}
@@ -25,7 +25,7 @@ const ReadMoreBlock = ({ showContentSlot, hiddenContentSlot, ...props }: ReadMor
           }}
           className="overflow-hidden"
         >
-          <div className="pt-5">{hiddenContentSlot}</div>
+          <div className="pt-5">{contentMore}</div>
         </motion.div>
       </CollapsibleContent>
       <CollapsibleTrigger className="typo-body-3 text-gray mt-4 inline-flex items-center gap-x-1.25 font-bold uppercase">

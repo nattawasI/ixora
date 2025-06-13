@@ -22,8 +22,8 @@ const AwardList = async () => {
               }}
               date={item.date}
               title={{ tag: 'h2', text: item.title }}
-              description={item.content_lead}
-              descriptionMore={item.content_more}
+              descriptionLead={item.content_lead ?? ''}
+              descriptionMore={item.content_more ?? ''}
               projectName={item.project.title}
               category={item.project.category.title}
               year={item.project.year}

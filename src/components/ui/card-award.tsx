@@ -13,7 +13,7 @@ type CardAwardProps = Omit<ComponentProps<'div'>, 'title'> & {
     tag?: 'h2' | 'h3'
     text: string
   }
-  description: string
+  descriptionLead: string
   descriptionMore: string
   date: string
   projectName: string
@@ -25,7 +25,7 @@ type CardAwardProps = Omit<ComponentProps<'div'>, 'title'> & {
 const CardAward = ({
   image,
   title,
-  description,
+  descriptionLead,
   descriptionMore,
   date,
   projectName,
@@ -57,15 +57,15 @@ const CardAward = ({
       <div className="flex-1 space-y-2">
         <p className="text-gray typo-body-2">{format(new Date(date), 'MMMM, yyyy')}</p>
         <TitleTag className="typo-title-2 font-bold">{title.text}</TitleTag>
-        {descriptionMore ? (
+        {descriptionLead && descriptionMore ? (
           <ReadMoreBlock
             className="typo-body-2"
-            showContentSlot={parse(description)}
-            hiddenContentSlot={parse(descriptionMore)}
+            contentLead={parse(descriptionLead)}
+            contentMore={parse(descriptionMore)}
           />
-        ) : (
-          <div className="typo-body-2">{parse(description)}</div>
-        )}
+        ) : descriptionLead || descriptionMore ? (
+          <div className="typo-body-2">{parse(descriptionLead || descriptionMore)}</div>
+        ) : null}
       </div>
       <Separator orientation="horizontal" className="lg:hidden" />
       <Separator orientation="vertical" className="max-lg:hidden" />
