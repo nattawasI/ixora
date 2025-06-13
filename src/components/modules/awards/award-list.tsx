@@ -1,42 +1,48 @@
 import { CardAward, CardAwardLoading } from '@/components/ui/card-award'
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
 import { getAwards } from '@/libs/directus/service/awards'
+import { EmptyData } from '@/components/ui/empty-data'
 
 const AwardList = async () => {
   /** fetch here */
   const data = await getAwards()
 
-  console.log(data)
-
   return (
-    <div className="list-awards-press">
-      {Array.from({ length: 4 }).map((_, index) => (
-        <CardAward
-          key={index}
-          image={{
-            src: '/mockup/award-1.jpg',
-            alt: 'Award',
-            sizes: '100vw, (min-width: 1024px) 320px',
-          }}
-          title={{ tag: 'h2', text: 'Architecture Master Prize 2025 | Winner' }}
-          description={
-            'A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits.'
-          }
-          descriptionMore={
-            'A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits.'
-          }
-          date={'April, 2025'}
-          projectName={'PANYA INDRA RESIDENCE'}
-          type={'RESIDENTIAL'}
-          year={'2025'}
-          action={
-            <ButtonArrowLink href="/projects/residential/2" isFullWidth target="_blank">
-              See this project
-            </ButtonArrowLink>
-          }
-        />
-      ))}
-    </div>
+    <>
+      {data.length > 0 ? (
+        <div className="list-awards-press">
+          {data.map((item, index) => (
+            <CardAward
+              key={item.id}
+              image={{
+                src: `${process.env.DIRECTUS_URL}/assets/${item.image?.id}`,
+                alt: item.title,
+                sizes: '100vw, (min-width: 1024px) 320px',
+                priority: index <= 2,
+              }}
+              date={item.date}
+              title={{ tag: 'h2', text: item.title }}
+              description={item.content_lead}
+              descriptionMore={item.content_more}
+              projectName={item.project.title}
+              category={item.project.category.title}
+              year={item.project.year}
+              action={
+                <ButtonArrowLink
+                  href={`/projects/${item.project.category.slug}/${item.project.slug}`}
+                  isFullWidth
+                  target="_blank"
+                >
+                  See this project
+                </ButtonArrowLink>
+              }
+            />
+          ))}
+        </div>
+      ) : (
+        <EmptyData />
+      )}
+    </>
   )
 }
 

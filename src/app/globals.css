@@ -210,11 +210,7 @@
 }
 
 @utility c-container {
-  @apply mx-auto max-w-[77.5rem] px-4 lg:px-[3.125rem];
-}
-
-@utility c-container-2 {
-  @apply mx-auto max-w-[77.5rem] max-lg:px-4;
+  @apply mx-auto max-w-[82.5rem] px-4 lg:px-10;
 }
 
 @utility scrollbar-hidden {

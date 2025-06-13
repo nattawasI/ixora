@@ -31,7 +31,9 @@ const Header = () => {
             className="absolute top-1/2 left-0 -translate-y-1/2 max-lg:hidden"
           />
         }
-        awardsAndPressNav={<AwardsAndPressNav className="max-lg:hidden" />}
+        awardsAndPressNav={
+          <AwardsAndPressNav className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-lg:hidden" />
+        }
       />
       <Link href="/" aria-label="Home" className="relative z-[1] block w-[6.75rem] xl:w-[9.375rem]">
         <FullLogo className="h-auto w-full" />

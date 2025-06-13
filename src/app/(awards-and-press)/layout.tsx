@@ -6,7 +6,7 @@ export default function AwardsAndPressLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div className="c-container-2 max-lg:pt-5">
+    <div className="c-container max-lg:pt-5">
       <AwardsAndPressNav className="mb-5 justify-center lg:hidden" />
       {children}
     </div>

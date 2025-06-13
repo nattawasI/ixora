@@ -7,8 +7,8 @@ import { motion } from 'motion/react'
 import { cn } from '@/libs/utils/cn'
 
 type ReadMoreBlockProps = React.ComponentProps<'div'> & {
-  showContentSlot?: React.ReactNode
-  hiddenContentSlot?: React.ReactNode
+  showContentSlot: React.ReactNode
+  hiddenContentSlot: React.ReactNode
 }
 const ReadMoreBlock = ({ showContentSlot, hiddenContentSlot, ...props }: ReadMoreBlockProps) => {
   const [open, setOpen] = useState(false)

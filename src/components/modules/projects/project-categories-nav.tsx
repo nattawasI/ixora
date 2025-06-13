@@ -23,9 +23,7 @@ const ProjectCategoriesNav = ({
   return (
     <nav
       className={cn(
-        layout === 'horizontal'
-          ? 'flex w-full items-center justify-center gap-x-4 min-[73.75rem]:gap-x-5 xl:gap-x-10'
-          : '',
+        layout === 'horizontal' ? 'flex w-full justify-center gap-x-4 min-[73.75rem]:gap-x-5 xl:gap-x-10' : '',
         layout === 'vertical' ? 'space-y-1.25' : '',
         className,
       )}

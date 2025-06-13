@@ -1,5 +1,7 @@
 import { ComponentProps, ReactElement } from 'react'
 import { cn } from '@/libs/utils/cn'
+import parse from 'html-react-parser'
+import { format } from 'date-fns'
 import Image, { type ImageProps } from 'next/image'
 import { Separator } from '@/components/ui/separator'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
@@ -12,10 +14,10 @@ type CardAwardProps = Omit<ComponentProps<'div'>, 'title'> & {
     text: string
   }
   description: string
-  descriptionMore?: string
+  descriptionMore: string
   date: string
   projectName: string
-  type: string
+  category: string
   year: string
   action: ReactElement
 }
@@ -27,7 +29,7 @@ const CardAward = ({
   descriptionMore,
   date,
   projectName,
-  type,
+  category,
   year,
   action,
   className,
@@ -53,12 +55,17 @@ const CardAward = ({
         <Image src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />
       </div>
       <div className="flex-1 space-y-2">
-        <p className="text-gray typo-body-2">{date}</p>
+        <p className="text-gray typo-body-2">{format(new Date(date), 'MMMM, yyyy')}</p>
         <TitleTag className="typo-title-2 font-bold">{title.text}</TitleTag>
-        <ReadMoreBlock
-          showContentSlot={<p className="typo-body-2 whitespace-pre-line">{description}</p>}
-          hiddenContentSlot={<p className="typo-body-2 whitespace-pre-line">{descriptionMore}</p>}
-        />
+        {descriptionMore ? (
+          <ReadMoreBlock
+            className="typo-body-2"
+            showContentSlot={parse(description)}
+            hiddenContentSlot={parse(descriptionMore)}
+          />
+        ) : (
+          <div className="typo-body-2">{parse(description)}</div>
+        )}
       </div>
       <Separator orientation="horizontal" className="lg:hidden" />
       <Separator orientation="vertical" className="max-lg:hidden" />
@@ -70,7 +77,7 @@ const CardAward = ({
           </div>
           <div className="space-y-1.25">
             <p className="typo-body-2 text-gray">Type :</p>
-            <p className="typo-body-2 font-bold uppercase">{type}</p>
+            <p className="typo-body-2 font-bold uppercase">{category}</p>
           </div>
           <div className="space-y-1.25">
             <p className="typo-body-2 text-gray">Year :</p>
