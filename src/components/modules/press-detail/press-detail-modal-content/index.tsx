@@ -1,3 +1,5 @@
+'use client'
+
 import { PressDetailContent } from '@/components/modules/press-detail/press-detail-content'
 import { PageModalButtonsMobile, PageModalPrev, PageModalNext, PageModalClose } from '@/components/ui/page-modal'
 import { historyReplaceState } from '@/libs/utils/history'

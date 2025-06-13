@@ -1,6 +1,6 @@
 import { PressDetailContent } from '@/components/modules/press-detail/press-detail-content'
 
-export default async function PressDetail({ params }: { params: Promise<{ slug: string }> }) {
+export default async function PressAndNewsDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
 
   console.log(slug)

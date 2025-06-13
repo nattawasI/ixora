@@ -7,7 +7,7 @@ import type { NavigationItemType } from '@/components/layout/type'
 
 const items: NavigationItemType[] = [
   { label: 'AWARDS', href: '/awards' },
-  { label: 'PRESS & NEWS', href: '/press' },
+  { label: 'PRESS & NEWS', href: '/press-and-news' },
 ]
 
 const AwardsAndPressNav = ({ className, ...props }: React.ComponentProps<'nav'>) => {

@@ -1,4 +1,4 @@
-export default function PressLayout({
+export default function PressAndNewsLayout({
   children,
   modal,
 }: Readonly<{
