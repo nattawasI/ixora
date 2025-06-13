@@ -2,11 +2,11 @@ import { CareerAccordion } from './career-accordion'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
 
 /** directus */
-import { careerQuery } from '@/libs/directus/service/career'
+import { getCareers } from '@/libs/directus/service/career'
 
 const CareerList = async () => {
   /** fetch here... */
-  const items = await careerQuery()
+  const items = await getCareers()
 
   return <CareerAccordion items={items} />
 }

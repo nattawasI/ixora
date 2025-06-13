@@ -1,10 +1,10 @@
 import { CardAward, CardAwardLoading } from '@/components/ui/card-award'
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
-import { awardsQuery } from '@/libs/directus/service/awards'
+import { getAwards } from '@/libs/directus/service/awards'
 
 const AwardList = async () => {
   /** fetch here */
-  const data = await awardsQuery()
+  const data = await getAwards()
 
   console.log(data)
 

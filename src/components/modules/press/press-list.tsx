@@ -2,11 +2,11 @@ import { CardPressLoading } from '@/components/ui/card-press'
 import { PressCard } from '@/components/modules/press/press-card'
 import Link from 'next/link'
 import { CursorProvider } from '@/libs/context/cursor'
-import { newsQuery } from '@/libs/directus/service/news'
+import { getNews } from '@/libs/directus/service/news'
 
 const PressList = async () => {
   /** fetch here */
-  const data = await newsQuery()
+  const data = await getNews()
 
   console.log(data)
 

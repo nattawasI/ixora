@@ -2,7 +2,7 @@ import { directus } from '@/libs/directus'
 import { readItems } from '@directus/sdk'
 import { notFound } from 'next/navigation'
 
-export const projectDetailQuery = async ({ slug, category }: { slug: string; category: string }) => {
+export const getProjectDetail = async ({ slug, category }: { slug: string; category: string }) => {
   try {
     const data = await directus.request(
       readItems('projects', {

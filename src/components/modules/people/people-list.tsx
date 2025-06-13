@@ -1,11 +1,11 @@
 import { CardPeople, CardPeopleLoading } from '@/components/ui/card-people'
 
 /** directus */
-import { peopleQuery } from '@/libs/directus/service/people'
+import { getPeople } from '@/libs/directus/service/people'
 
 const PeopleList = async () => {
   /** fetch here */
-  const data = await peopleQuery()
+  const data = await getPeople()
 
   return (
     <div className="list-people">
