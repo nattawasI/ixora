@@ -2,7 +2,7 @@ import { readItems } from '@directus/sdk'
 import { directus } from '@/libs/directus'
 import type { AwardsResponse } from '@/libs/directus/type'
 
-export const awardsQuery = async () => {
+export const getAwards = async () => {
   const data = await directus.request<AwardsResponse[]>(
     readItems('awards', {
       filter: {

@@ -2,7 +2,7 @@ import { directus } from '@/libs/directus'
 import { readItems } from '@directus/sdk'
 import type { NewsResponse } from '@/libs/directus/type'
 
-export const newsQuery = async () => {
+export const getNews = async () => {
   const data = await directus.request<NewsResponse[]>(
     readItems('news', {
       filter: {
