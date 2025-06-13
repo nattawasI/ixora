@@ -49,7 +49,7 @@ const CardAward = ({
           'bg-gray-light-1 relative aspect-square w-full overflow-hidden',
           'max-[27rem]:max-w-full',
           'max-lg:mx-auto max-lg:max-w-[25rem]',
-          'lg:w-[20rem] lg:shrink-0 lg:self-start',
+          'lg:w-[27.6%] lg:max-w-[20rem] lg:min-w-[15rem] lg:self-start',
         )}
       >
         <Image src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />

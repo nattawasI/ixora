@@ -20,7 +20,7 @@ import type { NavigationItemType } from '@/components/layout/type'
 
 const menuItems: NavigationItemType[] = [
   { label: 'PROJECTS', href: '/', rootOf: ['/projects'] },
-  { label: 'AWARDS & PRESS', href: '/awards', rootOf: ['/awards', '/press'] },
+  { label: 'AWARDS & PRESS', href: '/awards', rootOf: ['/awards', '/press-and-news'] },
   { label: 'PEOPLE', href: '/people' },
   { label: 'CAREER', href: '/career' },
 ]
