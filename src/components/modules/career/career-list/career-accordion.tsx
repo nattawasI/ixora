@@ -9,6 +9,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@radix-ui/react-accordion'
+import { AccordionContentInner } from '@/components/ui/accordion-content-inner'
 import { ChevronDown } from '@/components/ui/icons-color/chevron-down'
 import { motion } from 'motion/react'
 import parse from 'html-react-parser'
@@ -52,7 +53,9 @@ const CareerAccordion = ({ items }: { items: CareerResponse[] }) => {
                 }}
                 className="overflow-hidden"
               >
-                <div className="detail-content py-5">{parse(item.requirement)}</div>
+                <AccordionContentInner open={open} className="detail-content py-5">
+                  {parse(item.requirement)}
+                </AccordionContentInner>
               </motion.div>
             </AccordionContent>
           </AccordionItem>

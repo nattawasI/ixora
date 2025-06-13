@@ -11,6 +11,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@radix-ui/react-accordion'
+import { AccordionContentInner } from '@/components/ui/accordion-content-inner'
 import { motion } from 'motion/react'
 
 type FooterAccordionProps = {
@@ -62,7 +63,9 @@ const FooterAccordion = ({ items, className }: FooterAccordionProps) => {
                 }}
                 className="overflow-hidden"
               >
-                <div className="py-5">{item.content}</div>
+                <AccordionContentInner open={open} className="py-5">
+                  {item.content}
+                </AccordionContentInner>
               </motion.div>
             </AccordionContent>
           </AccordionItem>
