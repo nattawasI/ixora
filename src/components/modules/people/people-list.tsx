@@ -1,4 +1,5 @@
 import { CardPeople, CardPeopleLoading } from '@/components/ui/card-people'
+import { EmptyData } from '@/components/ui/empty-data'
 
 /** directus */
 import { getPeople } from '@/libs/directus/service/people'
@@ -8,19 +9,25 @@ const PeopleList = async () => {
   const data = await getPeople()
 
   return (
-    <div className="list-people">
-      {data?.map((item, index) => (
-        <CardPeople
-          key={index}
-          image={{
-            src: `${process.env.DIRECTUS_URL}/assets/${item.image?.id}`,
-            alt: `${item.first_name} ${item.last_name}`,
-          }}
-          name={`${item.first_name} ${item.last_name}`}
-          position={item.position}
-        />
-      ))}
-    </div>
+    <>
+      {data.length > 0 ? (
+        <div className="list-people">
+          {data?.map((item, index) => (
+            <CardPeople
+              key={index}
+              image={{
+                src: `${process.env.DIRECTUS_URL}/assets/${item.image?.id}`,
+                alt: `${item.first_name} ${item.last_name}`,
+              }}
+              name={`${item.first_name} ${item.last_name}`}
+              position={item.position}
+            />
+          ))}
+        </div>
+      ) : (
+        <EmptyData />
+      )}
+    </>
   )
 }
 

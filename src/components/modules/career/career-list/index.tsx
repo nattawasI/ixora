@@ -1,5 +1,6 @@
 import { CareerAccordion } from './career-accordion'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
+import { EmptyData } from '@/components/ui/empty-data'
 
 /** directus */
 import { getCareers } from '@/libs/directus/service/career'
@@ -8,7 +9,7 @@ const CareerList = async () => {
   /** fetch here... */
   const items = await getCareers()
 
-  return <CareerAccordion items={items} />
+  return <>{items.length > 0 ? <CareerAccordion items={items} /> : <EmptyData />}</>
 }
 
 const CareerListLoading = () => {
