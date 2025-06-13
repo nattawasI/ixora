@@ -1,8 +1,9 @@
 import { directus } from '@/libs/directus'
 import { readItems } from '@directus/sdk'
+import type { ProjectResponse } from '@/libs/directus/type'
 
 export const projectListQuery = async () => {
-  const data = await directus.request(
+  const data = await directus.request<ProjectResponse[]>(
     readItems('projects', {
       filter: {
         status: {
