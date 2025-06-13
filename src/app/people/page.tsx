@@ -7,8 +7,8 @@ import { ButtonArrowLink } from '@/components/ui/button-arrow'
 export default function People() {
   return (
     <>
-      <HeadingPage className="c-container">PEOPLE</HeadingPage>
-      <div className="c-container">
+      <HeadingPage className="c-container-sm">PEOPLE</HeadingPage>
+      <div className="c-container-sm">
         <Suspense fallback={<PeopleListLoading />}>
           <PeopleList />
         </Suspense>
@@ -18,6 +18,7 @@ export default function People() {
           image={{
             src: '/images/people/culture.jpg',
             alt: 'CULTURE',
+            sizes: '100vw, (min-width: 768px) 50vw, (min-width: 1280px) 620px',
           }}
           title={{ text: 'CULTURE' }}
           description={`We value collaboration, creativity, and purpose-driven design — turning every space into something meaningful through thoughtful ideas and teamwork.`}

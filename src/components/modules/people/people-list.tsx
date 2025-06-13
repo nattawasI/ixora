@@ -18,6 +18,7 @@ const PeopleList = async () => {
               image={{
                 src: `${process.env.DIRECTUS_URL}/assets/${item.image?.id}`,
                 alt: `${item.first_name} ${item.last_name}`,
+                sizes: '50vw, (min-width: 768px) 33vw, (min-width: 1024px) 263px',
               }}
               name={`${item.first_name} ${item.last_name}`}
               position={item.position}
