@@ -84,7 +84,7 @@ const PressDetailContent = ({ isInModal, data }: PressDetailContentProps) => {
       </section>
       {!isInModal ? (
         <div className="mt-4 max-lg:px-4 md:mt-10">
-          <ButtonArrowLink href={'/press'} className="w-full">
+          <ButtonArrowLink href={'/press-and-news'} className="w-full">
             SEE ALL PRESS & NEWS
           </ButtonArrowLink>
         </div>

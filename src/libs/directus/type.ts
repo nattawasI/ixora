@@ -105,8 +105,8 @@ type ProjectResponse = {
   content_more: string
   cover: string
   client: string
-  category: CategoryResponse
   title: string
+  category: CategoryResponse
   gallery: (GalleryResponse & { project_id: string })[]
   video: (VideoResponse & { project_id: string })[]
 }
