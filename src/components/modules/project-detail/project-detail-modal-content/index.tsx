@@ -4,9 +4,9 @@ import { ProjectDetailContent } from '@/components/modules/project-detail/projec
 import { PageModalButtonsMobile, PageModalPrev, PageModalNext, PageModalClose } from '@/components/ui/page-modal'
 import { historyReplaceState } from '@/libs/utils/history'
 // import { ProjectDetailModalContentLoading } from './loading'
-import type { ProjectResponse } from '@/libs/directus/type'
+import type { ProjectDetailResponse } from '@/libs/directus/type'
 
-const ProjectDetailModalContent = ({ data }: { data: ProjectResponse }) => {
+const ProjectDetailModalContent = ({ data }: { data: ProjectDetailResponse }) => {
   // const handlePrev = () => {
   const handlePrev = () => {
     historyReplaceState('/projects/residential/1')

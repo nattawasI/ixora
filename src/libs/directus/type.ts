@@ -78,6 +78,11 @@ type VideoResponse = {
   }
 }
 
+type GalleryGroupImage = {
+  type: 'landscape' | 'portrait-stack'
+  images: MediaResponse[]
+}
+
 type ProjectResponse = {
   id: string
   sort: number
@@ -99,4 +104,17 @@ type ProjectResponse = {
   video: (VideoResponse & { project_id: string })[]
 }
 
-export type { CareerResponse, PeopleResponse, MediaResponse, AwardsResponse, NewsResponse, ProjectResponse }
+type ProjectDetailResponse = Omit<ProjectResponse, 'gallery'> & {
+  gallery: GalleryGroupImage[]
+}
+
+export type {
+  CareerResponse,
+  PeopleResponse,
+  MediaResponse,
+  GalleryGroupImage,
+  AwardsResponse,
+  NewsResponse,
+  ProjectResponse,
+  ProjectDetailResponse,
+}

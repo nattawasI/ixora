@@ -11,8 +11,6 @@ export default async function ProjectDetailIntercepting({
 
   const data = await getProjectDetail({ slug, category })
 
-  console.log(data)
-
   return (
     <ProjectDetailModal>
       <ProjectDetailModalContent data={data} />

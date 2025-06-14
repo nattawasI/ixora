@@ -12,9 +12,9 @@ import { SnsShareSticky } from '@/components/modules/article-detail/sns-share-st
 import { ProjectExploreMore } from '@/components/modules/project-detail/project-explore-more'
 
 /** type */
-import { ProjectResponse } from '@/libs/directus/type'
+import type { ProjectDetailResponse } from '@/libs/directus/type'
 
-type ProjectDetailContentProps = ProjectResponse & {
+type ProjectDetailContentProps = ProjectDetailResponse & {
   isInModal?: boolean
 }
 
@@ -30,6 +30,7 @@ const ProjectDetailContent = ({
   landscape_architect,
   photo_credit,
   gallery,
+  video,
 }: ProjectDetailContentProps) => {
   return (
     <SnsShareProvider>
@@ -76,11 +77,32 @@ const ProjectDetailContent = ({
             </div>
           </div>
           <div className="space-y-2.5">
-            {/* <SingleImage src={`${process.env.DIRECTUS_URL}/assets/${cover}`} alt={title} />
-            <ColumnImages
-              images={gallery.map((item) => ({ src: `${process.env.DIRECTUS_URL}/assets/${item}`, alt: title }))}
-            /> */}
-            <VideoPlayer src="/mockup/video.mp4" />
+            {gallery.map((item, index) => {
+              if (item.type === 'landscape') {
+                return (
+                  <SingleImage
+                    key={`gallery-${index}`}
+                    src={`${process.env.DIRECTUS_URL}/assets/${item.images[0].id}`}
+                    alt={title}
+                  />
+                )
+              } else {
+                return (
+                  <ColumnImages
+                    key={`gallery-${index}`}
+                    images={item.images.map((img) => ({
+                      src: `${process.env.DIRECTUS_URL}/assets/${img.id}`,
+                      alt: title,
+                    }))}
+                  />
+                )
+              }
+            })}
+            {video.map((item, index) => {
+              return (
+                <VideoPlayer key={`video-${index}`} src={`${process.env.DIRECTUS_URL}/assets/${item.item.video.id}`} />
+              )
+            })}
           </div>
         </article>
         <SnsShareFooter
