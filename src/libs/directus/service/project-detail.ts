@@ -37,6 +37,13 @@ export const getProjectDetail = async ({ slug, category }: { slug: string; categ
           'content_lead',
           'content_more',
           'cover',
+          'cover.id',
+          'cover.filename_disk',
+          'cover.filename_download',
+          'cover.width',
+          'cover.height',
+          'cover.filesize',
+          'cover.title',
           'client',
           'title',
           'category.id',
@@ -67,6 +74,10 @@ export const getProjectDetail = async ({ slug, category }: { slug: string; categ
     const rearrangeData = data.map((item) => ({
       ...item,
       gallery: groupImages(item.gallery.map((item) => item.directus_files_id)),
+      video: item.video.map((item) => ({
+        ...item,
+        src: `${process.env.DIRECTUS_URL}/assets/${item.item.video?.id}`,
+      })),
     }))
 
     return rearrangeData[0] as ProjectDetailResponse

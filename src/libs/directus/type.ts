@@ -65,8 +65,9 @@ type NewsResponse = {
   video: (VideoResponse & { news_id: string })[]
 }
 
-type NewsDetailResponse = Omit<NewsResponse, 'gallery'> & {
+type NewsDetailResponse = Omit<NewsResponse, 'gallery' | 'video'> & {
   gallery: GalleryGroupImage[]
+  video: (VideoResponse & { news_id: string; src: string })[]
 }
 
 type GalleryResponse = {
@@ -81,13 +82,13 @@ type VideoResponse = {
   item: {
     title: string
     embed_code?: string
-    video?: MediaResponse
+    video?: MediaResponse & { src: string }
   }
 }
 
 type GalleryGroupImage = {
   type: 'landscape' | 'portrait-stack'
-  images: MediaResponse[]
+  images: (MediaResponse & { src: string })[]
 }
 
 type ProjectResponse = {
@@ -103,7 +104,7 @@ type ProjectResponse = {
   photo_credit: string
   content_lead: string
   content_more: string
-  cover: string
+  cover: MediaResponse & { src: string }
   client: string
   title: string
   category: CategoryResponse
@@ -111,8 +112,9 @@ type ProjectResponse = {
   video: (VideoResponse & { project_id: string })[]
 }
 
-type ProjectDetailResponse = Omit<ProjectResponse, 'gallery'> & {
+type ProjectDetailResponse = Omit<ProjectResponse, 'gallery' | 'video'> & {
   gallery: GalleryGroupImage[]
+  video: (VideoResponse & { project_id: string; src: string })[]
 }
 
 export type {
