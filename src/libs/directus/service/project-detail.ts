@@ -1,10 +1,11 @@
 import { directus } from '@/libs/directus'
 import { readItems } from '@directus/sdk'
 import { notFound } from 'next/navigation'
+import type { ProjectResponse } from '@/libs/directus/type'
 
 export const getProjectDetail = async ({ slug, category }: { slug: string; category: string }) => {
   try {
-    const data = await directus.request(
+    const data = await directus.request<ProjectResponse[]>(
       readItems('projects', {
         filter: {
           slug: {
@@ -24,7 +25,7 @@ export const getProjectDetail = async ({ slug, category }: { slug: string; categ
       }),
     )
 
-    return data
+    return data[0]
   } catch (_error) {
     console.error(_error)
     notFound()

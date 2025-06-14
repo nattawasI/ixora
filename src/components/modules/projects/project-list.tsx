@@ -3,30 +3,30 @@ import { CardProjectLoading } from '@/components/ui/card-project'
 import { ProjectCard } from '@/components/modules/projects/project-card'
 import Link from 'next/link'
 import { CursorProvider } from '@/libs/context/cursor'
-import { getProjectList } from '@/libs/directus/service/project-list'
+import { getProjectByCategory } from '@/libs/directus/service/project-category'
 
-const ProjectList = async () => {
+const ProjectList = async ({ category }: { category: string }) => {
   /** fetch here */
-  const data = await getProjectList()
+  const data = await getProjectByCategory({ category })
 
-  console.log(data)
+  console.log(data, category)
 
   return (
     <CursorProvider>
       <div className="list-project">
-        {Array.from({ length: 21 }).map((_, index) => (
-          <Link href="/projects/residential/2" className="block" key={index}>
+        {data.map((item, index) => (
+          <Link href={`/projects/${item.category.slug}/${item.slug}`} className="block" key={index}>
             <ProjectCard
               image={{
-                src: '/mockup/project.jpg',
-                alt: 'XT HUAIKHWANG',
+                src: `${process.env.DIRECTUS_URL}/assets/${item.cover}`,
+                alt: item.title,
                 sizes: '100vw, (min-width: 768px) 33vw',
               }}
               title={{
                 tag: 'h2',
-                text: 'XT HUAIKHWANG',
+                text: item.title,
               }}
-              location={'BANGKOK, THAILAND'}
+              location={item.location}
             />
           </Link>
         ))}

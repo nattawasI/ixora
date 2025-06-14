@@ -14,10 +14,10 @@ type PeopleResponse = {
   first_name: string
   last_name: string
   position: string
-  image: ImageResponse | null
+  image: MediaResponse | null
 }
 
-type ImageResponse = {
+type MediaResponse = {
   id: string
   filename_disk: string
   filename_download: string
@@ -30,7 +30,7 @@ type ImageResponse = {
 type CategoryResponse = {
   id: string
   title: string
-  slug: string
+  slug: 'residential' | 'condominium' | 'hospitality' | 'commercial' | 'master-planning' | 'public-space'
 }
 
 type AwardsResponse = {
@@ -43,7 +43,7 @@ type AwardsResponse = {
     year: string
     category: CategoryResponse
   }
-  image: ImageResponse | null
+  image: MediaResponse | null
   content_lead: string
   content_more: string
   date: string
@@ -67,19 +67,20 @@ type NewsResponse = {
 type GalleryResponse = {
   id: string
   sort: number
-  directus_files_id: ImageResponse
+  directus_files_id: MediaResponse
 }
 
 type VideoResponse = {
   id: string
   sort: number
   item: {
-    video: ImageResponse
+    video: MediaResponse
   }
 }
 
 type ProjectResponse = {
   id: string
+  sort: number
   status: StatusType
   date_created: string
   date_updated: string
@@ -98,4 +99,4 @@ type ProjectResponse = {
   video: (VideoResponse & { project_id: string })[]
 }
 
-export type { CareerResponse, PeopleResponse, ImageResponse, AwardsResponse, NewsResponse, ProjectResponse }
+export type { CareerResponse, PeopleResponse, MediaResponse, AwardsResponse, NewsResponse, ProjectResponse }

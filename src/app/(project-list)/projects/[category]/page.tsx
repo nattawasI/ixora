@@ -8,7 +8,7 @@ export default async function ProjectListCategory({ params }: { params: Promise<
     <>
       <h1 className="sr-only">{category}</h1>
       <Suspense fallback={<ProjectListLoading />}>
-        <ProjectList />
+        <ProjectList category={category} />
       </Suspense>
     </>
   )
