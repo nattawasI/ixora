@@ -76,10 +76,10 @@ const ProjectDetailContent = ({
             </div>
           </div>
           <div className="space-y-2.5">
-            <SingleImage src={`${process.env.DIRECTUS_URL}/assets/${cover}`} alt={title} />
+            {/* <SingleImage src={`${process.env.DIRECTUS_URL}/assets/${cover}`} alt={title} />
             <ColumnImages
               images={gallery.map((item) => ({ src: `${process.env.DIRECTUS_URL}/assets/${item}`, alt: title }))}
-            />
+            /> */}
             <VideoPlayer src="/mockup/video.mp4" />
           </div>
         </article>
