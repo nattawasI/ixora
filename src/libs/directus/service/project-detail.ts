@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { directus } from '@/libs/directus'
 import { groupImages } from '@/libs/utils/group-images'
 import { readItems } from '@directus/sdk'

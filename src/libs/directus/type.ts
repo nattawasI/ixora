@@ -1,4 +1,5 @@
 type StatusType = 'draft' | 'published'
+type CategoryType = 'residential' | 'condominium' | 'hospitality' | 'commercial' | 'master-planning' | 'public-space'
 
 type CareerResponse = {
   id: string
@@ -30,7 +31,7 @@ type MediaResponse = {
 type CategoryResponse = {
   id: string
   title: string
-  slug: 'residential' | 'condominium' | 'hospitality' | 'commercial' | 'master-planning' | 'public-space'
+  slug: CategoryType
 }
 
 type AwardsResponse = {
@@ -109,6 +110,7 @@ type ProjectDetailResponse = Omit<ProjectResponse, 'gallery'> & {
 }
 
 export type {
+  CategoryType,
   CareerResponse,
   PeopleResponse,
   MediaResponse,

@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { directus } from '@/libs/directus'
 import { readItems } from '@directus/sdk'
 import type { PeopleResponse } from '@/libs/directus/type'

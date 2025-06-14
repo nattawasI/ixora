@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { readItems } from '@directus/sdk'
 import { directus } from '@/libs/directus'
 import type { AwardsResponse } from '@/libs/directus/type'

@@ -1,9 +1,11 @@
+import 'server-only'
+
 import { directus } from '@/libs/directus'
 import { readItems } from '@directus/sdk'
-import type { ProjectResponse } from '@/libs/directus/type'
+import type { ProjectResponse, CategoryType } from '@/libs/directus/type'
 
-export const getProjectByCategory = async ({ category }: { category: string }) => {
-  const filteredCategory = category === '' ? {} : { category: { slug: { _eq: category } } }
+export const getProjectByCategory = async ({ category }: { category: CategoryType | (string & {}) }) => {
+  const filteredCategory = category !== '' ? { category: { slug: { _eq: category } } } : {}
   const data = await directus.request<ProjectResponse[]>(
     readItems('projects', {
       filter: {
