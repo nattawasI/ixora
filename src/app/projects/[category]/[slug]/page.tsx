@@ -7,11 +7,9 @@ export default async function ProjectDetail({ params }: { params: Promise<{ cate
   /** fetch here */
   const data = await getProjectDetail({ slug, category })
 
-  console.log(data)
-
   return (
     <div className="article-detail-container-large">
-      <ProjectDetailContent {...data} />
+      <ProjectDetailContent data={data} />
     </div>
   )
 }

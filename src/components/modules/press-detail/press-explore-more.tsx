@@ -1,28 +1,35 @@
-import { cn } from '@/libs/utils/cn'
-import { ExploreMoreCollapsible } from '@/components/modules/article-detail/explore-more-collapsible'
-import { PressCard } from '@/components/modules/press/press-card'
 import Link from 'next/link'
+import { format } from 'date-fns'
+import { PressCard } from '@/components/modules/press/press-card'
+import { ExploreMoreCollapsible } from '@/components/modules/article-detail/explore-more-collapsible'
+import { cn } from '@/libs/utils/cn'
+import { getNewsDetailExploreMore } from '@/libs/directus/service/news-detail'
 
-const PressExploreMore = ({ isInModal }: { isInModal?: boolean }) => {
+type PressExploreMoreProps = {
+  isInModal?: boolean
+  slug: string
+}
+
+const PressExploreMore = async ({ isInModal, slug }: PressExploreMoreProps) => {
+  const data = await getNewsDetailExploreMore({ slug })
+
   return (
     <ExploreMoreCollapsible>
       <div className={cn('space-y-4 max-lg:pt-4 lg:space-y-5', isInModal ? 'lg:pb-12.5' : '')}>
-        {Array.from({ length: 3 }).map((_, index) => (
-          <Link href="/press/4" className="block" key={index}>
+        {data.map((item, index) => (
+          <Link href={`/press-and-news/${item.slug}`} className="block" key={index}>
             <PressCard
               image={{
-                src: '/mockup/press-1.jpg',
-                alt: 'Topic of press Abc...',
+                src: `${process.env.DIRECTUS_URL}/assets/${item.cover}`,
+                alt: item.title,
                 sizes: '100vw, (min-width: 1024px) 50vw',
               }}
-              date={'April, 2025'}
+              date={format(new Date(item.published_date), 'MMMM, yyyy')}
               title={{
                 tag: 'h3',
-                text: 'Topic of press Abc...',
+                text: item.title,
               }}
-              description={
-                'A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits.'
-              }
+              description={item.description}
               isImageRight={index % 2 === 0}
             />
           </Link>

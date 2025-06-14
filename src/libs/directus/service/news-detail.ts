@@ -1,48 +1,34 @@
 import 'server-only'
 
+import { notFound } from 'next/navigation'
+import { readItems } from '@directus/sdk'
 import { directus } from '@/libs/directus'
 import { groupImages } from '@/libs/utils/group-images'
-import { readItems } from '@directus/sdk'
-import { notFound } from 'next/navigation'
-import type { ProjectDetailResponse, ProjectResponse } from '@/libs/directus/type'
+import type { NewsResponse, NewsDetailResponse } from '@/libs/directus/type'
 
-export const getProjectDetail = async ({ slug, category }: { slug: string; category: string }) => {
+export const getNewsDetail = async ({ slug }: { slug: string }) => {
   try {
-    const data = await directus.request<ProjectResponse[]>(
-      readItems('projects', {
+    const data = await directus.request<NewsResponse[]>(
+      readItems('news', {
         filter: {
-          slug: {
-            _eq: slug,
-          },
           status: {
             _eq: 'published',
           },
-          category: {
-            slug: {
-              _eq: category,
-            },
+          slug: {
+            _eq: slug,
           },
         },
         fields: [
           'id',
-          'sort',
           'status',
           'date_created',
           'date_updated',
-          'slug',
-          'location',
-          'year',
-          'landscape_architect',
-          'photo_credit',
-          'content_lead',
-          'content_more',
-          'cover',
-          'client',
           'title',
-          'category.id',
-          'category.title',
-          'category.slug',
-          'gallery.*',
+          'published_date',
+          'slug',
+          'description',
+          'content',
+          'cover',
           'gallery.directus_files_id.id',
           'gallery.directus_files_id.filename_disk',
           'gallery.directus_files_id.filename_download',
@@ -52,6 +38,7 @@ export const getProjectDetail = async ({ slug, category }: { slug: string; categ
           'gallery.directus_files_id.title',
           'video.*',
           'video.item.*',
+          'video.item.video.id',
           'video.item.video.id',
           'video.item.video.filename_disk',
           'video.item.video.filename_download',
@@ -69,40 +56,35 @@ export const getProjectDetail = async ({ slug, category }: { slug: string; categ
       gallery: groupImages(item.gallery.map((item) => item.directus_files_id)),
     }))
 
-    return rearrangeData[0] as ProjectDetailResponse
+    return rearrangeData[0] as NewsDetailResponse
   } catch (_error) {
     console.error(_error)
     notFound()
   }
 }
 
-export const getProjectDetailExploreMore = async ({ slug, category }: { slug: string; category: string }) => {
-  const data = await directus.request<ProjectResponse[]>(
-    readItems('projects', {
+export const getNewsDetailExploreMore = async ({ slug }: { slug: string }) => {
+  const data = await directus.request<NewsResponse[]>(
+    readItems('news', {
       filter: {
-        slug: {
-          _neq: slug,
-        },
         status: {
           _eq: 'published',
         },
-        category: {
-          slug: {
-            _eq: category,
-          },
+        slug: {
+          _neq: slug,
         },
       },
       fields: [
         'id',
-        'sort',
         'status',
-        'slug',
-        'location',
-        'cover',
+        'date_created',
+        'date_updated',
         'title',
-        'category.id',
-        'category.title',
-        'category.slug',
+        'published_date',
+        'slug',
+        'description',
+        'content',
+        'cover',
       ],
       limit: 3,
     }),

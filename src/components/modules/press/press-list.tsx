@@ -1,6 +1,6 @@
+import Link from 'next/link'
 import { CardPressLoading } from '@/components/ui/card-press'
 import { PressCard } from '@/components/modules/press/press-card'
-import Link from 'next/link'
 import { CursorProvider } from '@/libs/context/cursor'
 import { getNews } from '@/libs/directus/service/news'
 
@@ -8,27 +8,23 @@ const PressList = async () => {
   /** fetch here */
   const data = await getNews()
 
-  console.log(data)
-
   return (
     <CursorProvider>
       <div className="list-awards-press">
-        {Array.from({ length: 4 }).map((_, index) => (
-          <Link href="/press-and-news/2" className="block" key={index}>
+        {data.map((item, index) => (
+          <Link href={`/press-and-news/${item.slug}`} className="block" key={index}>
             <PressCard
               image={{
-                src: '/mockup/press-1.jpg',
-                alt: 'Topic of press Abc...',
+                src: `${process.env.DIRECTUS_URL}/assets/${item.cover}`,
+                alt: item.title,
                 sizes: '100vw, (min-width: 1024px) 50vw',
               }}
-              date={'April, 2025'}
+              date={item.published_date}
               title={{
                 tag: 'h2',
-                text: 'Topic of press Abc...',
+                text: item.title,
               }}
-              description={
-                'A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits.'
-              }
+              description={item.description}
               isImageRight={index % 2 === 0}
             />
           </Link>

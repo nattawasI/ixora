@@ -20,7 +20,7 @@ export const getNews = async () => {
         'title',
         'published_date',
         'slug',
-        'discription',
+        'description',
         'content',
         'cover',
         'gallery.directus_files_id.id',

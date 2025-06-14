@@ -10,8 +10,15 @@ import { PressExploreMore } from '@/components/modules/press-detail/press-explor
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
 import { SnsShareProvider } from '@/components/modules/article-detail/sns-share-context'
 import { SnsShareSticky } from '@/components/modules/article-detail/sns-share-sticky'
+import { NewsDetailResponse } from '@/libs/directus/type'
+import { format } from 'date-fns'
 
-const PressDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
+type PressDetailContentProps = {
+  isInModal?: boolean
+  data: NewsDetailResponse
+}
+
+const PressDetailContent = ({ isInModal, data }: PressDetailContentProps) => {
   return (
     <SnsShareProvider>
       <SnsShareSticky
@@ -23,41 +30,57 @@ const PressDetailContent = ({ isInModal }: { isInModal?: boolean }) => {
       <div className="bg-white px-4 pt-4 lg:px-12.5 lg:pt-12.5">
         <article>
           <div className="mb-2.5 lg:mb-5">
-            <p className="typo-body-2 text-gray">April, 2025</p>
+            <p className="typo-body-2 text-gray">{format(new Date(data.published_date), 'MMMM, yyyy')}</p>
             <Separator className="mt-2.5 mb-5" />
             {isInModal ? (
-              <DialogTitle className="typo-title-2 font-bold">Topic of press Abc...</DialogTitle>
+              <DialogTitle className="typo-title-2 font-bold">{data.title}</DialogTitle>
             ) : (
-              <h1 className="typo-title-2 font-bold">Topic of press Abc...</h1>
+              <h1 className="typo-title-2 font-bold">{data.title}</h1>
             )}
           </div>
-          <div className="detail-content mb-5 lg:mb-7.5">
-            {parse(`<p>A new campus community redefines suburban living with the concept of <strong>"Convergent with The Divergent Design."</strong>
-            This approach uses experimental designs reflecting distinctive personality traits, linked by a convergent
-            iconic bridge that seamlessly connects diverse characteristics, offering an unparalleled living
-            experience.</p><br /><br /><p>A new campus community redefines suburban living with the concept of "Convergent with The Divergent Design." This approach uses experimental designs reflecting distinctive personality traits, linked by a convergent iconic bridge that seamlessly connects diverse characteristics, offering an unparalleled living experience.</p>`)}
-          </div>
+          <div className="detail-content mb-5 lg:mb-7.5">{parse(data.content)}</div>
           <div className="space-y-2.5">
-            <SingleImage src="/mockup/press-detail-1.jpg" alt="Topic of press Abc..." />
-            <SingleImage src="/mockup/press-detail-2.jpg" alt="Topic of press Abc..." />
-            <ColumnImages
-              images={[
-                { src: '/mockup/press-detail-3.jpg', alt: 'Topic of press Abc...' },
-                { src: '/mockup/press-detail-4.jpg', alt: 'Topic of press Abc...' },
-              ]}
-            />
-            <VideoPlayer src="/mockup/video.mp4" />
+            {data.gallery.map((item, index) => {
+              if (item.type === 'landscape') {
+                return (
+                  <SingleImage
+                    key={`gallery-${index}`}
+                    src={`${process.env.DIRECTUS_URL}/assets/${item.images[0].id}`}
+                    alt={data.title}
+                  />
+                )
+              } else {
+                return (
+                  <ColumnImages
+                    key={`gallery-${index}`}
+                    images={item.images.map((img) => ({
+                      src: `${process.env.DIRECTUS_URL}/assets/${img.id}`,
+                      alt: data.title,
+                    }))}
+                  />
+                )
+              }
+            })}
+            {data.video.map(({ item }, index) => {
+              if (item.embed_code) {
+                return <div key={`video-${index}`}>{parse(item.embed_code)}</div>
+              } else {
+                return (
+                  <VideoPlayer key={`video-${index}`} src={`${process.env.DIRECTUS_URL}/assets/${item.video?.id}`} />
+                )
+              }
+            })}
           </div>
         </article>
         <SnsShareFooter
           className="py-7"
           label="Share this article"
-          title="Topic of press Abc..."
-          coverImage="/mockup/press-detail-1.jpg"
+          title={data.title}
+          coverImage={`${process.env.DIRECTUS_URL}/assets/${data.cover}`}
         />
       </div>
       <section className={cn('max-lg:px-4 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
-        <PressExploreMore isInModal={isInModal} />
+        <PressExploreMore isInModal={isInModal} slug={data.slug} />
       </section>
       {!isInModal ? (
         <div className="mt-4 max-lg:px-4 md:mt-10">

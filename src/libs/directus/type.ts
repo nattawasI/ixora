@@ -58,11 +58,15 @@ type NewsResponse = {
   title: string
   published_date: string
   slug: string
-  discription: string
+  description: string
   content: string
   cover: string
   gallery: (GalleryResponse & { news_id: string })[]
   video: (VideoResponse & { news_id: string })[]
+}
+
+type NewsDetailResponse = Omit<NewsResponse, 'gallery'> & {
+  gallery: GalleryGroupImage[]
 }
 
 type GalleryResponse = {
@@ -75,7 +79,9 @@ type VideoResponse = {
   id: string
   sort: number
   item: {
-    video: MediaResponse
+    title: string
+    embed_code?: string
+    video?: MediaResponse
   }
 }
 
@@ -117,6 +123,7 @@ export type {
   GalleryGroupImage,
   AwardsResponse,
   NewsResponse,
+  NewsDetailResponse,
   ProjectResponse,
   ProjectDetailResponse,
 }
