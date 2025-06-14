@@ -6,7 +6,7 @@ export default function Home() {
     <>
       <h1 className="sr-only">PROJECTS</h1>
       <Suspense fallback={<ProjectListLoading />}>
-        <ProjectList />
+        <ProjectList category="" />
       </Suspense>
     </>
   )

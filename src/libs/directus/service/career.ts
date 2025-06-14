@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { directus } from '@/libs/directus'
 import { readSingleton } from '@directus/sdk'
 import type { CareerResponse } from '@/libs/directus/type'

@@ -1,5 +1,6 @@
 import { ProjectDetailModal } from '@/components/modules/project-detail/project-detail-modal'
 import { ProjectDetailModalContent } from '@/components/modules/project-detail/project-detail-modal-content'
+import { getProjectDetail } from '@/libs/directus/service/project-detail'
 
 export default async function ProjectDetailIntercepting({
   params,
@@ -8,11 +9,11 @@ export default async function ProjectDetailIntercepting({
 }) {
   const { category, slug } = await params
 
-  console.log(category, slug)
+  const data = await getProjectDetail({ slug, category })
 
   return (
     <ProjectDetailModal>
-      <ProjectDetailModalContent />
+      <ProjectDetailModalContent data={data} />
     </ProjectDetailModal>
   )
 }
