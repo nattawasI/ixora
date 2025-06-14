@@ -35,7 +35,9 @@ const CardPress = ({ image, date, title, description, isImageRight, className, .
         <TitleTag className="typo-title-2 group-hover/card:text-blue font-bold transition-colors duration-300">
           {title.text}
         </TitleTag>
-        <p className="typo-body-2 mt-auto line-clamp-5 whitespace-pre-line max-md:mt-2.5">{description}</p>
+        <p className="typo-body-2 mt-auto line-clamp-5 whitespace-pre-line max-md:mt-2.5 md:line-clamp-3">
+          {description}
+        </p>
       </div>
     </div>
   )

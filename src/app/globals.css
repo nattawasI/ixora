@@ -128,18 +128,18 @@
   }
 
   .article-detail-container-large {
-    @apply mx-auto max-w-[88.75rem] lg:px-[5.625rem];
+    @apply mx-auto w-full lg:w-[calc(100%-11.25rem)] lg:max-w-[77.5rem];
 
     & .social-share-sticky {
-      @apply max-[88.75rem]:right-5 min-[88.75rem]:right-1/2 min-[88.75rem]:translate-x-[calc(38.75rem+4.125rem)];
+      @apply max-[88.75rem]:right-5 min-[88.75rem]:right-1/2 min-[88.75rem]:translate-x-[calc(38.75rem+4.375rem)];
     }
   }
 
   .article-detail-container-small {
-    @apply mx-auto max-w-[70.313rem] lg:px-[5.625rem];
+    @apply mx-auto w-full lg:w-[calc(100%-11.25rem)] lg:max-w-[59.063rem];
 
     & .social-share-sticky {
-      @apply max-[70.313rem]:right-5 min-[70.313rem]:right-1/2 min-[70.313rem]:translate-x-[calc(29.531rem+4.125rem)];
+      @apply max-[70.313rem]:right-5 min-[70.313rem]:right-1/2 min-[70.313rem]:translate-x-[calc(29.531rem+4.375rem)];
     }
   }
 

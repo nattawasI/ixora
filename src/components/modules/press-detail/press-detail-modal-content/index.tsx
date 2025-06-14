@@ -6,11 +6,11 @@ import { historyReplaceState } from '@/libs/utils/history'
 
 const PressDetailModalContent = () => {
   const handlePrev = () => {
-    historyReplaceState('/press/1')
+    historyReplaceState('/press-and-news/1')
   }
 
   const handleNext = () => {
-    historyReplaceState('/press/3')
+    historyReplaceState('/press-and-news/3')
   }
 
   return (
