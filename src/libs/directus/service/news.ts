@@ -35,5 +35,8 @@ export const getNews = async () => {
     }),
   )
 
-  return data
+  return data.map((item) => ({
+    ...item,
+    cover: item.cover ? `${process.env.DIRECTUS_URL}/assets/${item.cover}` : '',
+  }))
 }

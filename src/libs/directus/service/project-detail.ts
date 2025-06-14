@@ -73,6 +73,7 @@ export const getProjectDetail = async ({ slug, category }: { slug: string; categ
 
     const rearrangeData = data.map((item) => ({
       ...item,
+      cover: item.cover ? `${process.env.DIRECTUS_URL}/assets/${item.cover}` : '',
       gallery: groupImages(item.gallery.map((item) => item.directus_files_id)),
       video: item.video.map((item) => ({
         ...item,
@@ -119,5 +120,8 @@ export const getProjectDetailExploreMore = async ({ slug, category }: { slug: st
     }),
   )
 
-  return data
+  return data.map((item) => ({
+    ...item,
+    cover: item.cover ? `${process.env.DIRECTUS_URL}/assets/${item.cover}` : '',
+  }))
 }

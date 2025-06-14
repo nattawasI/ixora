@@ -9,8 +9,6 @@ const ProjectList = async ({ category }: { category: string }) => {
   /** fetch here */
   const data = await getProjectByCategory({ category })
 
-  console.log(data, category)
-
   return (
     <CursorProvider>
       <div className="list-project">

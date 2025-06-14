@@ -104,7 +104,7 @@ type ProjectResponse = {
   photo_credit: string
   content_lead: string
   content_more: string
-  cover: MediaResponse & { src: string }
+  cover: string
   client: string
   title: string
   category: CategoryResponse
