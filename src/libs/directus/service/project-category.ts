@@ -3,6 +3,7 @@ import 'server-only'
 import { directus } from '@/libs/directus'
 import { readItems } from '@directus/sdk'
 import type { ProjectResponse, CategoryType } from '@/libs/directus/type'
+import { groupImages } from '@/libs/utils/group-images'
 
 export const getProjectByCategory = async ({ category }: { category: CategoryType | (string & {}) }) => {
   const filteredCategory = category !== '' ? { category: { slug: { _eq: category } } } : {}
@@ -53,5 +54,13 @@ export const getProjectByCategory = async ({ category }: { category: CategoryTyp
     }),
   )
 
-  return data
+  return data.map((item) => ({
+    ...item,
+    cover: item.cover ? `${process.env.DIRECTUS_URL}/assets/${item.cover}` : '',
+    gallery: groupImages(item.gallery.map((item) => item.directus_files_id)),
+    video: item.video.map((item) => ({
+      ...item,
+      src: `${process.env.DIRECTUS_URL}/assets/${item.item.video?.id}`,
+    })),
+  }))
 }
