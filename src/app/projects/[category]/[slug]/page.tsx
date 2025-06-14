@@ -11,7 +11,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ cate
 
   return (
     <div className="article-detail-container-large">
-      <ProjectDetailContent />
+      <ProjectDetailContent {...data} />
     </div>
   )
 }

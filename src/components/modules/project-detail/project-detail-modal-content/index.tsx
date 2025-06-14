@@ -1,12 +1,20 @@
 import { ProjectDetailContent } from '@/components/modules/project-detail/project-detail-content'
 import { PageModalButtonsMobile, PageModalPrev, PageModalNext, PageModalClose } from '@/components/ui/page-modal'
 // import { ProjectDetailModalContentLoading } from './loading'
+import type { ProjectResponse } from '@/libs/directus/type'
 
-const ProjectDetailModalContent = () => {
+const ProjectDetailModalContent = ({ data }: { data: ProjectResponse }) => {
+  // const handlePrev = () => {
+  //   historyReplaceState('/projects/residential/1')
+  // }
+
+  // const handleNext = () => {
+  //   historyReplaceState('/projects/residential/3')
+  // }
+
   return (
     <div className="bg-gray-light-2">
-      {/* <ProjectDetailModalContentLoading /> */}
-      <ProjectDetailContent isInModal />
+      <ProjectDetailContent isInModal {...data} />
       <PageModalButtonsMobile>
         <PageModalPrev variant="mobile" />
         <PageModalClose variant="mobile" label="CLOSE" />
