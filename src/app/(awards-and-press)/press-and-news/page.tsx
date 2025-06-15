@@ -1,15 +1,14 @@
-import { getNews } from '@/libs/directus/service/news'
+import { Suspense } from 'react'
 import { PressList } from '@/components/modules/press/press-list'
-import { UpdatePressListContext } from '@/components/modules/press/update-press-list-context'
+import { PressListLoading } from '@/components/modules/press/press-list'
 
 export default async function PressAndNews() {
-  const data = await getNews()
-
   return (
     <>
       <h1 className="sr-only">PRESS & NEWS</h1>
-      <PressList data={data} />
-      <UpdatePressListContext data={data} />
+      <Suspense fallback={<PressListLoading />}>
+        <PressList />
+      </Suspense>
     </>
   )
 }

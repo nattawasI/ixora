@@ -45,13 +45,13 @@ const CardPress = ({ image, date, title, description, isImageRight, className, .
 
 const CardPressLoading = ({ isImageRight }: { isImageRight?: boolean }) => {
   return (
-    <div className="grid lg:grid-cols-2">
-      <div className={cn('skeleton mb-2.5 aspect-[10/7]', isImageRight ? 'lg:order-2' : '')} />
-      <div className={cn('flex flex-col bg-white p-5 lg:p-10', isImageRight ? 'lg:order-1' : '')}>
+    <div className="grid md:grid-cols-2">
+      <div className={cn('skeleton mb-2.5 aspect-[10/7]', isImageRight ? 'md:order-2' : '')} />
+      <div className={cn('flex flex-col bg-white p-5 md:p-10', isImageRight ? 'md:order-1' : '')}>
         <TextSkeleton variant="typo-body-3" className="w-1/4" />
         <Separator className="mt-2.5 mb-5 animate-pulse" />
         <TextSkeleton variant="typo-title-2" className="w-2/4" />
-        <div className="mt-auto max-lg:mt-2.5">
+        <div className="mt-auto max-md:mt-2.5">
           <TextSkeleton variant="typo-body-2" />
           <TextSkeleton variant="typo-body-2" className="w-2/3" />
         </div>
