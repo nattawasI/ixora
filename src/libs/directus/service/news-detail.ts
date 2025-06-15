@@ -6,13 +6,13 @@ import { directus } from '@/libs/directus'
 import { groupImages } from '@/libs/utils/group-images'
 import type { NewsResponse, NewsDetailResponse } from '@/libs/directus/type'
 
-export const getNewsDetail = async ({ slug }: { slug: string }) => {
+export const getNewsDetail = async ({ slug, isDraft }: { slug: string; isDraft: boolean }) => {
   try {
     const data = await directus.request<NewsResponse[]>(
       readItems('news', {
         filter: {
           status: {
-            _eq: 'published',
+            _eq: isDraft ? 'draft' : 'published',
           },
           slug: {
             _eq: slug,

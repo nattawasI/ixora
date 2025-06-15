@@ -6,7 +6,15 @@ import { readItems } from '@directus/sdk'
 import { notFound } from 'next/navigation'
 import type { ProjectDetailResponse, ProjectResponse } from '@/libs/directus/type'
 
-export const getProjectDetail = async ({ slug, category }: { slug: string; category: string }) => {
+export const getProjectDetail = async ({
+  slug,
+  category,
+  isDraft,
+}: {
+  slug: string
+  category: string
+  isDraft: boolean
+}) => {
   try {
     const data = await directus.request<ProjectResponse[]>(
       readItems('projects', {
@@ -15,7 +23,7 @@ export const getProjectDetail = async ({ slug, category }: { slug: string; categ
             _eq: slug,
           },
           status: {
-            _eq: 'published',
+            _eq: isDraft ? 'draft' : 'published',
           },
           category: {
             slug: {
