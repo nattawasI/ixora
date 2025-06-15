@@ -20,7 +20,7 @@ const PressExploreMore = async ({ isInModal, slug }: PressExploreMoreProps) => {
           <Link href={`/press-and-news/${item.slug}`} className="block" key={index}>
             <PressCard
               image={{
-                src: `${process.env.DIRECTUS_URL}/assets/${item.cover}`,
+                src: item.cover,
                 alt: item.title,
                 sizes: '100vw, (min-width: 1024px) 50vw',
               }}
