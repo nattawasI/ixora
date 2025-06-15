@@ -206,9 +206,13 @@
     img {
       @apply h-auto max-w-full;
     }
+  }
+
+  .detail-media {
+    @apply space-y-2.5;
 
     iframe {
-      @apply aspect-square h-auto w-full;
+      @apply aspect-video h-auto w-full;
     }
   }
 }

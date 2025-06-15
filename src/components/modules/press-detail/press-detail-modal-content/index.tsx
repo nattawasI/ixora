@@ -13,9 +13,11 @@ const PressDetailModalContent = ({ slug, exploreMoreData }: { slug: string; expl
 
   return (
     <div className="bg-gray-light-2">
-      {/* {data ? <PressDetailContent isInModal data={data} exploreMoreData={exploreMoreData} />:  <DialogTitle>Press Detail</DialogTitle>} */}
-
-      {/* <PressDetailContent isInModal data={null} exploreMoreData={exploreMoreData} /> */}
+      {data ? (
+        <PressDetailContent isInModal data={data} exploreMoreData={exploreMoreData} />
+      ) : (
+        <DialogTitle>Press Detail</DialogTitle>
+      )}
       <PressDetailModalClient />
     </div>
   )

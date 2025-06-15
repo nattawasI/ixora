@@ -10,7 +10,7 @@ type PressExploreMoreProps = {
   data: NewsResponse[]
 }
 
-const PressExploreMore = async ({ isInModal, data }: PressExploreMoreProps) => {
+const PressExploreMore = ({ isInModal, data }: PressExploreMoreProps) => {
   return (
     <>
       {data.length > 0 ? (

@@ -1,20 +1,18 @@
 import parse from 'html-react-parser'
+import { format } from 'date-fns'
 import { DialogTitle } from '@radix-ui/react-dialog'
 import { Separator } from '@/components/ui/separator'
-// import { SingleImage } from '@/components/modules/article-detail/single-image'
-// import { ColumnImages } from '@/components/modules/article-detail/column-images'
-// import { VideoPlayer } from '@/components/modules/article-detail/video-player'
 import { SnsShareFooter } from '@/components/modules/article-detail/sns-share-footer'
 import { PressExploreMore } from '@/components/modules/press-detail/press-explore-more'
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
 import { SnsShareProvider } from '@/components/modules/article-detail/sns-share-context'
 import { SnsShareSticky } from '@/components/modules/article-detail/sns-share-sticky'
-import { format } from 'date-fns'
+import { MediaContent } from '@/components/modules/article-detail/media-content'
 import type { NewsDetailResponse, NewsResponse } from '@/libs/directus/type'
 
 type PressDetailContentProps = {
   isInModal?: boolean
-  data: NewsDetailResponse
+  data: NewsResponse
   exploreMoreData: NewsResponse[]
 }
 
@@ -39,38 +37,7 @@ const PressDetailContent = ({ isInModal, data, exploreMoreData }: PressDetailCon
             )}
           </div>
           <div className="detail-content mb-5 lg:mb-7.5">{parse(data.content)}</div>
-          {/* <div className="space-y-2.5">
-            {data.gallery.map((item, index) => {
-              if (item.type === 'landscape') {
-                return (
-                  <SingleImage
-                    key={`gallery-${index}`}
-                    src={`${process.env.DIRECTUS_URL}/assets/${item.images[0].id}`}
-                    alt={data.title}
-                  />
-                )
-              } else {
-                return (
-                  <ColumnImages
-                    key={`gallery-${index}`}
-                    images={item.images.map((img) => ({
-                      src: `${process.env.DIRECTUS_URL}/assets/${img.id}`,
-                      alt: data.title,
-                    }))}
-                  />
-                )
-              }
-            })}
-            {data.video.map(({ item }, index) => {
-              if (item.embed_code) {
-                return <div key={`video-${index}`}>{parse(item.embed_code)}</div>
-              } else {
-                return (
-                  <VideoPlayer key={`video-${index}`} src={`${process.env.DIRECTUS_URL}/assets/${item.video?.id}`} />
-                )
-              }
-            })}
-          </div> */}
+          <MediaContent data={data} />
         </article>
         <SnsShareFooter className="py-7" label="Share this article" title={data.title} coverImage={data.cover} />
       </div>
