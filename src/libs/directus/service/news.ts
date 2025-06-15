@@ -2,6 +2,7 @@ import 'server-only'
 
 import { directus } from '@/libs/directus'
 import { readItems } from '@directus/sdk'
+import { groupImages } from '@/libs/utils/group-images'
 import type { NewsResponse } from '@/libs/directus/type'
 
 export const getNews = async () => {
@@ -38,6 +39,17 @@ export const getNews = async () => {
   const newData = data.map((item) => ({
     ...item,
     cover: item.cover ? `${process.env.DIRECTUS_URL}/assets/${item.cover}` : '',
+    gallery: groupImages(item.gallery.map((item) => item.directus_files_id)),
+    video: item.video.map((item) => ({
+      ...item,
+      item: {
+        ...item.item,
+        video: {
+          ...item.item.video,
+          src: `${process.env.DIRECTUS_URL}/assets/${item.item.video?.id}`,
+        },
+      },
+    })),
   }))
 
   return newData as NewsResponse[]

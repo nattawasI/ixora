@@ -2,13 +2,13 @@ import type { MediaResponse, GalleryGroupImage } from '@/libs/directus/type'
 
 const groupImages = (images: MediaResponse[]): GalleryGroupImage[] => {
   const result: GalleryGroupImage[] = []
-  const portraitBuffer: MediaResponse[] = []
+  const portraitBuffer: (MediaResponse & { src: string })[] = []
 
   for (const img of images) {
     const isPortrait = img.height > img.width
 
     if (isPortrait) {
-      portraitBuffer.push(img)
+      portraitBuffer.push({ ...img, src: `${process.env.DIRECTUS_URL}/assets/${img.id}` })
     } else {
       // Flush portrait buffer if needed
       while (portraitBuffer.length >= 2) {
@@ -21,7 +21,7 @@ const groupImages = (images: MediaResponse[]): GalleryGroupImage[] => {
       // If one portrait is left in the buffer, we keep it for now
 
       // Push landscape image
-      result.push({ type: 'landscape', images: [img] })
+      result.push({ type: 'landscape', images: [{ ...img, src: `${process.env.DIRECTUS_URL}/assets/${img.id}` }] })
     }
   }
 

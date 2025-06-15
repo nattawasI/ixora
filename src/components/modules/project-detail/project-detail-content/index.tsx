@@ -25,7 +25,7 @@ const ProjectDetailContent = ({ isInModal, data }: ProjectDetailContentProps) =>
       <SnsShareSticky
         isInModal={isInModal}
         title={data.title}
-        coverImage={`${process.env.DIRECTUS_URL}/assets/${data.cover}`}
+        coverImage={data.cover}
         className="social-share-sticky"
       />
       <section className="bg-white px-4 pt-4 lg:px-12.5 lg:pt-12.5">
@@ -64,19 +64,13 @@ const ProjectDetailContent = ({ isInModal, data }: ProjectDetailContentProps) =>
           <div className="space-y-2.5">
             {data.gallery.map((item, index) => {
               if (item.type === 'landscape') {
-                return (
-                  <SingleImage
-                    key={`gallery-${index}`}
-                    src={`${process.env.DIRECTUS_URL}/assets/${item.images[0].id}`}
-                    alt={data.title}
-                  />
-                )
+                return <SingleImage key={`gallery-${index}`} src={item.images[0].src} alt={data.title} />
               } else {
                 return (
                   <ColumnImages
                     key={`gallery-${index}`}
                     images={item.images.map((img) => ({
-                      src: `${process.env.DIRECTUS_URL}/assets/${img.id}`,
+                      src: img.src,
                       alt: data.title,
                     }))}
                   />
@@ -87,19 +81,12 @@ const ProjectDetailContent = ({ isInModal, data }: ProjectDetailContentProps) =>
               if (item.embed_code) {
                 return <div key={`video-${index}`}>{parse(item.embed_code)}</div>
               } else {
-                return (
-                  <VideoPlayer key={`video-${index}`} src={`${process.env.DIRECTUS_URL}/assets/${item.video?.id}`} />
-                )
+                return <VideoPlayer key={`video-${index}`} src={item.video?.src as string} />
               }
             })}
           </div>
         </article>
-        <SnsShareFooter
-          className="py-7"
-          label="Share this project"
-          title={data.title}
-          coverImage={`${process.env.DIRECTUS_URL}/assets/${data.cover}`}
-        />
+        <SnsShareFooter className="py-7" label="Share this project" title={data.title} coverImage={data.cover} />
       </section>
       <section className={cn('max-lg:px-4 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
         <ProjectExploreMore isInModal={isInModal} slug={data.slug} category={data.category.slug} />

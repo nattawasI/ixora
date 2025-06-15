@@ -60,7 +60,13 @@ export const getProjectByCategory = async ({ category }: { category: CategoryTyp
     gallery: groupImages(item.gallery.map((item) => item.directus_files_id)),
     video: item.video.map((item) => ({
       ...item,
-      src: `${process.env.DIRECTUS_URL}/assets/${item.item.video?.id}`,
+      item: {
+        ...item.item,
+        video: {
+          ...item.item.video,
+          src: `${process.env.DIRECTUS_URL}/assets/${item.item.video?.id}`,
+        },
+      },
     })),
   }))
 }

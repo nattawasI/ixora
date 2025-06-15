@@ -9,8 +9,6 @@ const ProjectList = async ({ category }: { category: string }) => {
   /** fetch here */
   const data = await getProjectByCategory({ category })
 
-  console.log('projects: ', data)
-
   return (
     <CursorProvider>
       <div className="list-project">
@@ -18,7 +16,7 @@ const ProjectList = async ({ category }: { category: string }) => {
           <Link href={`/projects/${item.category.slug}/${item.slug}`} className="block" key={index}>
             <ProjectCard
               image={{
-                src: `${process.env.DIRECTUS_URL}/assets/${item.cover}`,
+                src: item.cover,
                 alt: item.title,
                 sizes: '100vw, (min-width: 768px) 33vw',
               }}
