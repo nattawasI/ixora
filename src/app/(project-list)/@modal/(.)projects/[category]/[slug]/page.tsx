@@ -9,7 +9,7 @@ export default async function ProjectDetailIntercepting({
 }) {
   const { category, slug } = await params
 
-  const data = await getProjectDetail({ slug, category })
+  const data = await getProjectDetail({ slug, category, isDraft: false })
 
   return (
     <ProjectDetailModal>

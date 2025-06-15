@@ -3,10 +3,10 @@ import 'server-only'
 import { notFound } from 'next/navigation'
 import { readItems } from '@directus/sdk'
 import { directus } from '@/libs/directus'
-import { groupImages } from '@/libs/utils/group-images'
+import { mapCoverImage, mapMediaSource } from '@/libs/directus/util'
 import type { NewsResponse, NewsDetailResponse } from '@/libs/directus/type'
 
-export const getNewsDetail = async ({ slug, isDraft }: { slug: string; isDraft: boolean }) => {
+const getNewsDetail = async ({ slug, isDraft }: { slug: string; isDraft: boolean }) => {
   try {
     const data = await directus.request<NewsResponse[]>(
       readItems('news', {
@@ -50,30 +50,16 @@ export const getNewsDetail = async ({ slug, isDraft }: { slug: string; isDraft: 
         limit: 1,
       }),
     )
-    const rearrangeData = data.map((item) => ({
-      ...item,
-      cover: item.cover ? `${process.env.DIRECTUS_URL}/assets/${item.cover}` : '',
-      gallery: groupImages(item.gallery.map((item) => item.directus_files_id)),
-      video: item.video.map((item) => ({
-        ...item,
-        item: {
-          ...item.item,
-          video: {
-            ...item.item.video,
-            src: `${process.env.DIRECTUS_URL}/assets/${item.item.video?.id}`,
-          },
-        },
-      })),
-    }))
+    const rearrangeData = mapMediaSource<NewsResponse[], NewsDetailResponse[]>(data)
 
-    return rearrangeData[0] as NewsDetailResponse
+    return rearrangeData[0]
   } catch (_error) {
     console.error(_error)
     notFound()
   }
 }
 
-export const getNewsDetailExploreMore = async ({ slug }: { slug: string }) => {
+const getNewsDetailExploreMore = async ({ slug }: { slug: string }) => {
   const data = await directus.request<NewsResponse[]>(
     readItems('news', {
       filter: {
@@ -100,8 +86,7 @@ export const getNewsDetailExploreMore = async ({ slug }: { slug: string }) => {
     }),
   )
 
-  return data.map((item) => ({
-    ...item,
-    cover: item.cover ? `${process.env.DIRECTUS_URL}/assets/${item.cover}` : '',
-  }))
+  return mapCoverImage<NewsResponse[]>(data)
 }
+
+export { getNewsDetail, getNewsDetailExploreMore }

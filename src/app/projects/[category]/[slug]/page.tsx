@@ -9,6 +9,8 @@ export default async function ProjectDetail({ params }: { params: Promise<{ cate
   /** fetch here */
   const data = await getProjectDetail({ slug, category, isDraft: isEnabled })
 
+  console.log('fetch detail', { data, isEnabled })
+
   return (
     <div className="article-detail-container-large">
       {isEnabled ? (

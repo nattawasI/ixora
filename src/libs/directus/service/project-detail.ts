@@ -1,20 +1,12 @@
 import 'server-only'
 
 import { directus } from '@/libs/directus'
-import { groupImages } from '@/libs/utils/group-images'
 import { readItems } from '@directus/sdk'
 import { notFound } from 'next/navigation'
+import { mapCoverImage, mapMediaSource } from '@/libs/directus/util'
 import type { ProjectDetailResponse, ProjectResponse } from '@/libs/directus/type'
 
-export const getProjectDetail = async ({
-  slug,
-  category,
-  isDraft,
-}: {
-  slug: string
-  category: string
-  isDraft: boolean
-}) => {
+const getProjectDetail = async ({ slug, category, isDraft }: { slug: string; category: string; isDraft: boolean }) => {
   try {
     const data = await directus.request<ProjectResponse[]>(
       readItems('projects', {
@@ -79,30 +71,16 @@ export const getProjectDetail = async ({
       }),
     )
 
-    const rearrangeData = data.map((item) => ({
-      ...item,
-      cover: item.cover ? `${process.env.DIRECTUS_URL}/assets/${item.cover}` : '',
-      gallery: groupImages(item.gallery.map((item) => item.directus_files_id)),
-      video: item.video.map((item) => ({
-        ...item,
-        item: {
-          ...item.item,
-          video: {
-            ...item.item.video,
-            src: `${process.env.DIRECTUS_URL}/assets/${item.item.video?.id}`,
-          },
-        },
-      })),
-    }))
+    const rearrangeData = mapMediaSource<ProjectResponse[], ProjectDetailResponse[]>(data)
 
-    return rearrangeData[0] as ProjectDetailResponse
+    return rearrangeData[0]
   } catch (_error) {
     console.error(_error)
     notFound()
   }
 }
 
-export const getProjectDetailExploreMore = async ({ slug, category }: { slug: string; category: string }) => {
+const getProjectDetailExploreMore = async ({ slug, category }: { slug: string; category: string }) => {
   const data = await directus.request<ProjectResponse[]>(
     readItems('projects', {
       filter: {
@@ -134,8 +112,7 @@ export const getProjectDetailExploreMore = async ({ slug, category }: { slug: st
     }),
   )
 
-  return data.map((item) => ({
-    ...item,
-    cover: item.cover ? `${process.env.DIRECTUS_URL}/assets/${item.cover}` : '',
-  }))
+  return mapCoverImage<ProjectResponse[]>(data)
 }
+
+export { getProjectDetail, getProjectDetailExploreMore }
