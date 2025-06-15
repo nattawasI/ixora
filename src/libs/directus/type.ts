@@ -114,7 +114,7 @@ type ProjectResponse = {
 
 type ProjectDetailResponse = Omit<ProjectResponse, 'gallery' | 'video'> & {
   gallery: GalleryGroupImage[]
-  video: (VideoResponse & { project_id: string; src: string })[]
+  video: (VideoResponse & { project_id: string })[]
 }
 
 export type {
