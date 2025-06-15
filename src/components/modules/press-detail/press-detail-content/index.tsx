@@ -23,7 +23,7 @@ const PressDetailContent = ({ isInModal, data }: PressDetailContentProps) => {
     <SnsShareProvider>
       <SnsShareSticky
         isInModal={isInModal}
-        title="Topic of press Abc..."
+        title={data.title}
         coverImage={data.cover}
         className="social-share-sticky"
       />

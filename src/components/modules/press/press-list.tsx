@@ -8,8 +8,6 @@ const PressList = async () => {
   /** fetch here */
   const data = await getNews()
 
-  console.log('news: ', data)
-
   return (
     <CursorProvider>
       <div className="list-awards-press">

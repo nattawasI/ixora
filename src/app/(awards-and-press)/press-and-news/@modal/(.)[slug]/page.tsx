@@ -4,7 +4,7 @@ import { getNewsDetail } from '@/libs/directus/service/news-detail'
 
 export default async function PressAndNewsDetailIntercepting({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const data = await getNewsDetail({ slug })
+  const data = await getNewsDetail({ slug, isDraft: false })
 
   return (
     <PressDetailModal>

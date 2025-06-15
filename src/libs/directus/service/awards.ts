@@ -36,8 +36,6 @@ export const getAwards = async () => {
     }),
   )
 
-  console.log({ data })
-
   return data.map((item) => ({
     ...item,
     image: item.image ? `${process.env.DIRECTUS_URL}/assets/${item.image.id}` : '',

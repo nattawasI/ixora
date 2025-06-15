@@ -1,6 +1,23 @@
 import { draftMode } from 'next/headers'
 import { ProjectDetailContent } from '@/components/modules/project-detail/project-detail-content'
 import { getProjectDetail } from '@/libs/directus/service/project-detail'
+import { directus } from '@/libs/directus'
+import { readItems } from '@directus/sdk'
+import { ProjectResponse } from '@/libs/directus/type'
+
+export async function generateStaticParams() {
+  const data = await directus.request<ProjectResponse[]>(
+    readItems('projects', {
+      fields: ['*', 'category.*'],
+      limit: -1,
+    }),
+  )
+
+  return data.map((item) => ({
+    category: item.category.slug,
+    slug: item.slug,
+  }))
+}
 
 export default async function ProjectDetail({ params }: { params: Promise<{ category: string; slug: string }> }) {
   const { category, slug } = await params
@@ -8,8 +25,6 @@ export default async function ProjectDetail({ params }: { params: Promise<{ cate
 
   /** fetch here */
   const data = await getProjectDetail({ slug, category, isDraft: isEnabled })
-
-  console.log('fetch detail', { data, isEnabled })
 
   return (
     <div className="article-detail-container-large">
