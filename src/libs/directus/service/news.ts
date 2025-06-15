@@ -3,7 +3,7 @@ import 'server-only'
 import { directus } from '@/libs/directus'
 import { readItems } from '@directus/sdk'
 import { groupImages } from '@/libs/utils/group-images'
-import type { NewsResponse } from '@/libs/directus/type'
+import type { NewsResponse, NewsDetailResponse } from '@/libs/directus/type'
 
 export const getNews = async () => {
   const data = await directus.request<NewsResponse[]>(
@@ -52,5 +52,5 @@ export const getNews = async () => {
     })),
   }))
 
-  return newData as NewsResponse[]
+  return newData as NewsDetailResponse[]
 }

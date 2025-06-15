@@ -12,7 +12,7 @@ import type { NewsDetailResponse, NewsResponse } from '@/libs/directus/type'
 
 type PressDetailContentProps = {
   isInModal?: boolean
-  data: NewsResponse
+  data: NewsDetailResponse
   exploreMoreData: NewsResponse[]
 }
 
