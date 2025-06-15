@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { readItems } from '@directus/sdk'
 import { directus } from '@/libs/directus'
 import { groupImages } from '@/libs/utils/group-images'
-import type { NewsResponse, NewsDetailResponse } from '@/libs/directus/type'
+import type { NewsResponse, NewsResponse } from '@/libs/directus/type'
 
 export const getNewsDetail = async ({ slug }: { slug: string }) => {
   try {
@@ -60,7 +60,7 @@ export const getNewsDetail = async ({ slug }: { slug: string }) => {
       })),
     }))
 
-    return rearrangeData[0] as NewsDetailResponse
+    return rearrangeData[0] as NewsResponse
   } catch (_error) {
     console.error(_error)
     notFound()
@@ -94,8 +94,15 @@ export const getNewsDetailExploreMore = async ({ slug }: { slug: string }) => {
     }),
   )
 
-  return data.map((item) => ({
+  const newData = data.map((item) => ({
     ...item,
     cover: item.cover ? `${process.env.DIRECTUS_URL}/assets/${item.cover}` : '',
+    gallery: groupImages(item.gallery.map((item) => item.directus_files_id)),
+    video: item.video.map((item) => ({
+      ...item,
+      src: `${process.env.DIRECTUS_URL}/assets/${item.item.video?.id}`,
+    })),
   }))
+
+  return newData as NewsResponse[]
 }

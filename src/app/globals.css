@@ -206,6 +206,10 @@
     img {
       @apply h-auto max-w-full;
     }
+
+    iframe {
+      @apply aspect-square h-auto w-full;
+    }
   }
 }
 

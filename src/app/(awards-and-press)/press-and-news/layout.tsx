@@ -1,3 +1,5 @@
+import { PressListProvider } from '@/components/modules/press/press-list-context'
+
 export default function PressAndNewsLayout({
   children,
   modal,
@@ -6,9 +8,9 @@ export default function PressAndNewsLayout({
   modal: React.ReactNode
 }>) {
   return (
-    <>
+    <PressListProvider>
       {children}
       {modal}
-    </>
+    </PressListProvider>
   )
 }

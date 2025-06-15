@@ -1,30 +1,30 @@
-import { cn } from '@/libs/utils/cn'
 import parse from 'html-react-parser'
 import { DialogTitle } from '@radix-ui/react-dialog'
 import { Separator } from '@/components/ui/separator'
-import { SingleImage } from '@/components/modules/article-detail/single-image'
-import { ColumnImages } from '@/components/modules/article-detail/column-images'
-import { VideoPlayer } from '@/components/modules/article-detail/video-player'
+// import { SingleImage } from '@/components/modules/article-detail/single-image'
+// import { ColumnImages } from '@/components/modules/article-detail/column-images'
+// import { VideoPlayer } from '@/components/modules/article-detail/video-player'
 import { SnsShareFooter } from '@/components/modules/article-detail/sns-share-footer'
 import { PressExploreMore } from '@/components/modules/press-detail/press-explore-more'
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
 import { SnsShareProvider } from '@/components/modules/article-detail/sns-share-context'
 import { SnsShareSticky } from '@/components/modules/article-detail/sns-share-sticky'
-import { NewsDetailResponse } from '@/libs/directus/type'
 import { format } from 'date-fns'
+import type { NewsDetailResponse, NewsResponse } from '@/libs/directus/type'
 
 type PressDetailContentProps = {
   isInModal?: boolean
   data: NewsDetailResponse
+  exploreMoreData: NewsResponse[]
 }
 
-const PressDetailContent = ({ isInModal, data }: PressDetailContentProps) => {
+const PressDetailContent = ({ isInModal, data, exploreMoreData }: PressDetailContentProps) => {
   return (
     <SnsShareProvider>
       <SnsShareSticky
         isInModal={isInModal}
-        title="Topic of press Abc..."
-        coverImage="/mockup/press-detail-1.jpg"
+        title={data.title}
+        coverImage={data.cover}
         className="social-share-sticky"
       />
       <div className="bg-white px-4 pt-4 lg:px-12.5 lg:pt-12.5">
@@ -39,7 +39,7 @@ const PressDetailContent = ({ isInModal, data }: PressDetailContentProps) => {
             )}
           </div>
           <div className="detail-content mb-5 lg:mb-7.5">{parse(data.content)}</div>
-          <div className="space-y-2.5">
+          {/* <div className="space-y-2.5">
             {data.gallery.map((item, index) => {
               if (item.type === 'landscape') {
                 return (
@@ -70,18 +70,11 @@ const PressDetailContent = ({ isInModal, data }: PressDetailContentProps) => {
                 )
               }
             })}
-          </div>
+          </div> */}
         </article>
-        <SnsShareFooter
-          className="py-7"
-          label="Share this article"
-          title={data.title}
-          coverImage={`${process.env.DIRECTUS_URL}/assets/${data.cover}`}
-        />
+        <SnsShareFooter className="py-7" label="Share this article" title={data.title} coverImage={data.cover} />
       </div>
-      <section className={cn('max-lg:px-4 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
-        <PressExploreMore isInModal={isInModal} slug={data.slug} />
-      </section>
+      <PressExploreMore isInModal={isInModal} data={exploreMoreData} />
       {!isInModal ? (
         <div className="mt-4 max-lg:px-4 md:mt-10">
           <ButtonArrowLink href={'/press-and-news'} className="w-full">

@@ -2,14 +2,9 @@ import Link from 'next/link'
 import { CardPressLoading } from '@/components/ui/card-press'
 import { PressCard } from '@/components/modules/press/press-card'
 import { CursorProvider } from '@/libs/context/cursor'
-import { getNews } from '@/libs/directus/service/news'
+import type { NewsResponse } from '@/libs/directus/type'
 
-const PressList = async () => {
-  /** fetch here */
-  const data = await getNews()
-
-  console.log('news: ', data)
-
+const PressList = ({ data }: { data: NewsResponse[] }) => {
   return (
     <CursorProvider>
       <div className="list-awards-press">
@@ -17,7 +12,7 @@ const PressList = async () => {
           <Link href={`/press-and-news/${item.slug}`} className="block" key={index}>
             <PressCard
               image={{
-                src: `${process.env.DIRECTUS_URL}/assets/${item.cover}`,
+                src: item.cover,
                 alt: item.title,
                 sizes: '100vw, (min-width: 1024px) 50vw',
               }}

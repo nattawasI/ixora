@@ -35,8 +35,10 @@ export const getNews = async () => {
     }),
   )
 
-  return data.map((item) => ({
+  const newData = data.map((item) => ({
     ...item,
     cover: item.cover ? `${process.env.DIRECTUS_URL}/assets/${item.cover}` : '',
   }))
+
+  return newData as NewsResponse[]
 }

@@ -15,7 +15,7 @@ const AwardList = async () => {
             <CardAward
               key={item.id}
               image={{
-                src: `${process.env.DIRECTUS_URL}/assets/${item.image?.id}`,
+                src: item.image,
                 alt: item.title,
                 sizes: '100vw, (min-width: 1024px) 320px',
                 priority: index <= 2,

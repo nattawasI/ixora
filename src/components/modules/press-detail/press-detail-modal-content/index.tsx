@@ -1,11 +1,21 @@
+'use client'
+
+import { usePressList } from '@/components/modules/press/press-list-context'
+import { DialogTitle } from '@radix-ui/react-dialog'
 import { PressDetailContent } from '@/components/modules/press-detail/press-detail-content'
 import { PressDetailModalClient } from './client'
-import { NewsDetailResponse } from '@/libs/directus/type'
+import type { NewsDetailResponse, NewsResponse } from '@/libs/directus/type'
 
-const PressDetailModalContent = ({ data }: { data: NewsDetailResponse }) => {
+const PressDetailModalContent = ({ slug, exploreMoreData }: { slug: string; exploreMoreData: NewsResponse[] }) => {
+  const { pressList } = usePressList()
+
+  const data = pressList.find((item) => item.slug === slug)
+
   return (
     <div className="bg-gray-light-2">
-      <PressDetailContent isInModal data={data} />
+      {/* {data ? <PressDetailContent isInModal data={data} exploreMoreData={exploreMoreData} />:  <DialogTitle>Press Detail</DialogTitle>} */}
+
+      {/* <PressDetailContent isInModal data={null} exploreMoreData={exploreMoreData} /> */}
       <PressDetailModalClient />
     </div>
   )
