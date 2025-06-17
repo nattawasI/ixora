@@ -13,7 +13,7 @@ const ProjectList = async ({ category }: { category: string }) => {
     <CursorProvider>
       <div className="list-project">
         {data.map((item, index) => (
-          <Link href={`/projects/${item.category.slug}/${item.slug}`} className="block" key={index}>
+          <Link href={`/projects/${item.category.slug}/${item.slug}`} className="block" key={index} scroll={false}>
             <ProjectCard
               image={{
                 src: item.cover,

@@ -1,3 +1,4 @@
+import { format } from 'date-fns'
 import { getNews } from '@/libs/directus/service/news'
 import Link from 'next/link'
 import { CardPressLoading } from '@/components/ui/card-press'
@@ -19,14 +20,14 @@ const PressList = async () => {
       <CursorProvider>
         <div className="list-awards-press">
           {data.map((item, index) => (
-            <Link href={`/press-and-news/${item.slug}`} className="block" key={index}>
+            <Link href={`/press-and-news/${item.slug}`} className="block" key={index} scroll={false}>
               <PressCard
                 image={{
                   src: item.cover,
                   alt: item.title,
                   sizes: '100vw, (min-width: 1024px) 50vw',
                 }}
-                date={item.published_date}
+                date={format(new Date(item.published_date), 'MMMM, yyyy')}
                 title={{
                   tag: 'h2',
                   text: item.title,

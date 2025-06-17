@@ -3,7 +3,7 @@ import 'server-only'
 import { directus } from '@/libs/directus'
 import { readItems } from '@directus/sdk'
 import { groupImages } from '@/libs/utils/group-images'
-import type { NewsResponse } from '@/libs/directus/type'
+import type { NewsResponse, NewsDetailResponse } from '@/libs/directus/type'
 
 export const getNews = async () => {
   const data = await directus.request<NewsResponse[]>(
@@ -36,7 +36,7 @@ export const getNews = async () => {
     }),
   )
 
-  return data.map((item) => ({
+  const rearrangeData = data.map((item) => ({
     ...item,
     cover: item.cover ? `${process.env.DIRECTUS_URL}/assets/${item.cover}` : '',
     gallery: groupImages(item.gallery.map((item) => item.directus_files_id)),
@@ -51,4 +51,6 @@ export const getNews = async () => {
       },
     })),
   }))
+
+  return rearrangeData as NewsDetailResponse[]
 }

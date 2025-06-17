@@ -1,3 +1,4 @@
+import { format } from 'date-fns'
 import { CardAward, CardAwardLoading } from '@/components/ui/card-award'
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
 import { getAwards } from '@/libs/directus/service/awards'
@@ -20,7 +21,7 @@ const AwardList = async () => {
                 sizes: '100vw, (min-width: 1024px) 320px',
                 priority: index <= 2,
               }}
-              date={item.date}
+              date={format(new Date(item.date), 'MMMM, yyyy')}
               title={{ tag: 'h2', text: item.title }}
               descriptionLead={item.content_lead ?? ''}
               descriptionMore={item.content_more ?? ''}

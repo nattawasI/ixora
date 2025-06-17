@@ -1,4 +1,6 @@
 export const historyReplaceState = (pathname: string) => {
+  const overlayElement = document.getElementById('page-dialog-overlay')
+
   // 1. จำ scroll position ปัจจุบันไว้
   const currentScroll = window.scrollY
 
@@ -11,7 +13,8 @@ export const historyReplaceState = (pathname: string) => {
 
   // 4. รอให้ browser เปลี่ยนเสร็จ แล้ว scroll กลับ และเปิด scroll คืน
   requestAnimationFrame(() => {
-    window.scrollTo({ top: currentScroll, behavior: 'auto' })
+    window.scrollTo({ top: currentScroll })
+    overlayElement?.scrollTo({ top: 0 }) /** reset scroll ใน modal content หลังจากที่ url เปลี่ยน */
 
     // 5. เปิด scroll คืน
     document.body.style.overflow = ''

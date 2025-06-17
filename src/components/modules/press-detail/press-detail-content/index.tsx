@@ -3,20 +3,19 @@ import { format } from 'date-fns'
 import { DialogTitle } from '@radix-ui/react-dialog'
 import { Separator } from '@/components/ui/separator'
 import { SnsShareFooter } from '@/components/modules/article-detail/sns-share-footer'
-import { PressExploreMore } from '@/components/modules/press-detail/press-explore-more'
+// import { PressExploreMore } from '@/components/modules/press-detail/press-explore-more'
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
 import { SnsShareProvider } from '@/components/modules/article-detail/sns-share-context'
 import { SnsShareSticky } from '@/components/modules/article-detail/sns-share-sticky'
 import { MediaContent } from '@/components/modules/article-detail/media-content'
-import type { NewsDetailResponse, NewsResponse } from '@/libs/directus/type'
+import type { NewsDetailResponse } from '@/libs/directus/type'
 
 type PressDetailContentProps = {
   isInModal?: boolean
   data: NewsDetailResponse
-  exploreMoreData: NewsResponse[]
 }
 
-const PressDetailContent = ({ isInModal, data, exploreMoreData }: PressDetailContentProps) => {
+const PressDetailContent = ({ isInModal, data }: PressDetailContentProps) => {
   return (
     <SnsShareProvider>
       <SnsShareSticky
@@ -37,11 +36,11 @@ const PressDetailContent = ({ isInModal, data, exploreMoreData }: PressDetailCon
             )}
           </div>
           <div className="detail-content mb-5 lg:mb-7.5">{parse(data.content)}</div>
-          <MediaContent data={data} />
+          <MediaContent type="press-and-news" data={data} />
         </article>
         <SnsShareFooter className="py-7" label="Share this article" title={data.title} coverImage={data.cover} />
       </div>
-      <PressExploreMore isInModal={isInModal} data={exploreMoreData} />
+      {/* <PressExploreMore isInModal={isInModal} data={exploreMoreData} /> */}
       {!isInModal ? (
         <div className="mt-4 max-lg:px-4 md:mt-10">
           <ButtonArrowLink href={'/press-and-news'} className="w-full">

@@ -17,9 +17,9 @@ import {
   ChevronRight as ChevronRightColor,
 } from '@/components/ui/icons-color'
 
-const PageDetailModal = Dialog
+const PageModal = Dialog
 
-const PageDetailModalContent = ({
+const PageModalContent = ({
   contentSize,
   children,
   ...props
@@ -29,12 +29,14 @@ const PageDetailModalContent = ({
   return (
     <DialogPortal>
       <DialogOverlay
+        id="page-dialog-overlay"
         className={cn(
           'scrollbar-hidden fixed inset-0 z-30 overflow-y-auto bg-black/70',
           'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
         )}
       >
         <DialogContent
+          id="page-dialog-content"
           className={cn(
             'group',
             contentSize === 'large' ? 'article-detail-container-large' : 'article-detail-container-small',
@@ -49,9 +51,9 @@ const PageDetailModalContent = ({
   )
 }
 
-const PageDetailModalTitle = DialogTitle
+const PageModalTitle = DialogTitle
 
-const PageDetailModalDescription = DialogDescription
+const PageModalDescription = DialogDescription
 
 const PageModalButtonsMobile = ({ className, ...props }: React.ComponentProps<'div'>) => {
   return <div className={cn('mt-4 flex gap-x-2.5 px-4 pb-4 lg:hidden', className)} {...props} />
@@ -125,10 +127,10 @@ const PageModalClose = ({
 }
 
 export {
-  PageDetailModal,
-  PageDetailModalContent,
-  PageDetailModalTitle,
-  PageDetailModalDescription,
+  PageModal,
+  PageModalContent,
+  PageModalTitle,
+  PageModalDescription,
   PageModalPrev,
   PageModalNext,
   PageModalClose,

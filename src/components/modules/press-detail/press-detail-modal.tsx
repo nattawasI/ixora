@@ -1,22 +1,22 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { PageDetailModal, PageDetailModalContent } from '@/components/ui/page-modal'
+import { PageModal, PageModalContent } from '@/components/ui/page-modal'
 
 const PressDetailModal = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter()
 
   return (
-    <PageDetailModal
+    <PageModal
       defaultOpen
       onOpenChange={() => {
         router.back()
       }}
     >
-      <PageDetailModalContent aria-describedby={undefined} contentSize="small">
+      <PageModalContent aria-describedby={undefined} contentSize="small">
         {children}
-      </PageDetailModalContent>
-    </PageDetailModal>
+      </PageModalContent>
+    </PageModal>
   )
 }
 

@@ -5,12 +5,30 @@ import { ColumnImages } from '@/components/modules/article-detail/column-images'
 import { VideoPlayer } from '@/components/modules/article-detail/video-player'
 import type { ProjectDetailResponse, NewsDetailResponse } from '@/libs/directus/type'
 
-const MediaContent = ({ data }: { data: NewsDetailResponse | ProjectDetailResponse }) => {
+const MediaContent = ({
+  type,
+  data,
+}: {
+  type: 'project' | 'press-and-news'
+  data: NewsDetailResponse | ProjectDetailResponse
+}) => {
+  console.log(data)
+
   return (
     <div className="detail-media">
       {data.gallery.map((item, index) => {
+        const isPriority = index <= 2
+
         if (item.type === 'landscape') {
-          return <SingleImage key={`gallery-${index}`} src={item.images[0].src} alt={data.title} />
+          return (
+            <SingleImage
+              key={`gallery-${index}`}
+              src={item.images[0].src}
+              alt={data.title}
+              sizes={type === 'project' ? '100vw, (min-width: 1024px) 1140px' : '100vw, (min-width: 1024px) 845px'}
+              priority={isPriority}
+            />
+          )
         } else {
           return (
             <ColumnImages
@@ -18,6 +36,8 @@ const MediaContent = ({ data }: { data: NewsDetailResponse | ProjectDetailRespon
               images={item.images.map((img) => ({
                 src: img.src,
                 alt: data.title,
+                sizes: type === 'project' ? '50vw, (min-width: 1024px) 565px' : '50vw, (min-width: 1024px) 418px',
+                priority: isPriority,
               }))}
             />
           )

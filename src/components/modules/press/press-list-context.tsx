@@ -1,22 +1,22 @@
 'use client'
 
 import { createContext, useContext, useState, ReactNode } from 'react'
-import type { NewsResponse } from '@/libs/directus/type'
+import type { NewsDetailResponse } from '@/libs/directus/type'
 
 type PressListContextType = {
-  pressList: NewsResponse[]
-  setPressList: (pressList: NewsResponse[]) => void
+  pressList: NewsDetailResponse[]
+  setPressList: (pressList: NewsDetailResponse[]) => void
 }
 
 const PressListContext = createContext<PressListContextType | undefined>(undefined)
 
 type PressListProviderProps = {
   children: ReactNode
-  initialPressList?: NewsResponse[]
+  initialPressList?: NewsDetailResponse[]
 }
 
 export const PressListProvider = ({ children, initialPressList = [] }: PressListProviderProps) => {
-  const [pressList, setPressList] = useState<NewsResponse[]>(initialPressList)
+  const [pressList, setPressList] = useState<NewsDetailResponse[]>(initialPressList)
   return <PressListContext.Provider value={{ pressList, setPressList }}>{children}</PressListContext.Provider>
 }
 
