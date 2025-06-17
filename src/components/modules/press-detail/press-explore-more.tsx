@@ -1,16 +1,21 @@
+'use client'
+
 import Link from 'next/link'
 import { format } from 'date-fns'
 import { PressCard } from '@/components/modules/press/press-card'
 import { ExploreMoreCollapsible } from '@/components/modules/article-detail/explore-more-collapsible'
 import { cn } from '@/libs/utils/cn'
+import useSWR from 'swr'
 import type { NewsResponse } from '@/libs/directus/type'
 
-type PressExploreMoreProps = {
-  isInModal?: boolean
-  data: NewsResponse[]
-}
+const PressExploreMore = ({ isInModal, slug }: { isInModal?: boolean; slug: string }) => {
+  const { data, error } = useSWR<NewsResponse[]>(`/api/news-detail-explore-more?slug=${slug}`, (url: string) =>
+    fetch(url).then((res) => res.json()),
+  )
 
-const PressExploreMore = ({ isInModal, data }: PressExploreMoreProps) => {
+  if (error) return <p className="text-gray text-center">failed to load</p>
+  if (!data) return null
+
   return (
     <>
       {data.length > 0 ? (

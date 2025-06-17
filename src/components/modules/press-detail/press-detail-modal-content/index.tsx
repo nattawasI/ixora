@@ -14,6 +14,8 @@ const PressDetailModalContent = () => {
   const params = useParams()
   const initSlug = params.slug
 
+  console.log('initSlug: ', initSlug)
+
   const initIndex = pressList.findIndex((item) => item.slug === initSlug)
 
   const [index, setIndex] = useState(initIndex)

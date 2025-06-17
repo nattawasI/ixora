@@ -12,8 +12,6 @@ const MediaContent = ({
   type: 'project' | 'press-and-news'
   data: NewsDetailResponse | ProjectDetailResponse
 }) => {
-  console.log(data)
-
   return (
     <div className="detail-media">
       {data.gallery.map((item, index) => {

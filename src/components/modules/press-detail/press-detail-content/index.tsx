@@ -3,7 +3,7 @@ import { format } from 'date-fns'
 import { DialogTitle } from '@radix-ui/react-dialog'
 import { Separator } from '@/components/ui/separator'
 import { SnsShareFooter } from '@/components/modules/article-detail/sns-share-footer'
-// import { PressExploreMore } from '@/components/modules/press-detail/press-explore-more'
+import { PressExploreMore } from '@/components/modules/press-detail/press-explore-more'
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
 import { SnsShareProvider } from '@/components/modules/article-detail/sns-share-context'
 import { SnsShareSticky } from '@/components/modules/article-detail/sns-share-sticky'
@@ -40,7 +40,7 @@ const PressDetailContent = ({ isInModal, data }: PressDetailContentProps) => {
         </article>
         <SnsShareFooter className="py-7" label="Share this article" title={data.title} coverImage={data.cover} />
       </div>
-      {/* <PressExploreMore isInModal={isInModal} data={exploreMoreData} /> */}
+      <PressExploreMore isInModal={isInModal} slug={data.slug} />
       {!isInModal ? (
         <div className="mt-4 max-lg:px-4 md:mt-10">
           <ButtonArrowLink href={'/press-and-news'} className="w-full">
