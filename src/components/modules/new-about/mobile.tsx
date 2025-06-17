@@ -9,13 +9,13 @@ const MobileSliderLayout = () => {
   return (
     <div className="embla overflow-hidden" ref={emblaRef}>
       <div className="flex">
-        <div className="h-dvh flex-[0_0_100%]">
+        <div className="h-[calc(100dvh-3.75rem)] flex-[0_0_100%] md:h-[calc(100dvh-6.25rem)]">
           <SlideWhoWeAre />
         </div>
-        <div className="h-dvh flex-[0_0_100%]">
+        <div className="h-[calc(100dvh-3.75rem)] flex-[0_0_100%] md:h-[calc(100dvh-6.25rem)]">
           <SlideWhatWeDo />
         </div>
-        <div className="h-dvh flex-[0_0_100%]">
+        <div className="h-[calc(100dvh-3.75rem)] flex-[0_0_100%] md:h-[calc(100dvh-6.25rem)]">
           <SlideOurCommitment />
         </div>
       </div>

@@ -36,23 +36,13 @@ const DesktopFullPageLayout = () => {
           trigger: `.section:nth-child(${i + 1})`,
           start: 'top top+=100',
           end: 'bottom top+=100',
+          markers: true,
           onEnter: () => scrollToSection(i + 1),
           onEnterBack: () => scrollToSection(i),
         })
       })
-
-      const onKey = (e: KeyboardEvent) => {
-        if (isLocked.current) return
-        const idx = Math.round(window.scrollY / window.innerHeight)
-        if (e.key === 'ArrowDown' && idx < sections.length - 1) scrollToSection(idx + 1)
-        if (e.key === 'ArrowUp' && idx > 0) scrollToSection(idx - 1)
-      }
-      window.addEventListener('keydown', onKey)
-
-      return () => {
-        window.removeEventListener('keydown', onKey)
-      }
     },
+
     { scope: containerRef },
   )
 
