@@ -4,6 +4,7 @@ import { getNewsDetail } from '@/libs/directus/service/news-detail'
 import { draftMode } from 'next/headers'
 import { NewsResponse } from '@/libs/directus/type'
 import { readItems } from '@directus/sdk'
+import { PressExploreMore } from '@/components/modules/press-detail/press-explore-more'
 
 export async function generateStaticParams() {
   const data = await directus.request<NewsResponse[]>(
@@ -28,7 +29,7 @@ export default async function PressAndNewsDetail({ params }: { params: Promise<{
       {isEnabled ? (
         <h2 className="typo-title-1 mb-2 text-center font-bold text-red-500 uppercase">draft mode</h2>
       ) : null}
-      <PressDetailContent data={data} />
+      <PressDetailContent data={data} exploreMore={<PressExploreMore slug={data.slug} />} />
     </div>
   )
 }

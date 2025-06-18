@@ -13,9 +13,10 @@ import type { NewsDetailResponse } from '@/libs/directus/type'
 type PressDetailContentProps = {
   isInModal?: boolean
   data: NewsDetailResponse
+  exploreMore?: React.ReactElement
 }
 
-const PressDetailContent = ({ isInModal, data }: PressDetailContentProps) => {
+const PressDetailContent = ({ isInModal, data, exploreMore }: PressDetailContentProps) => {
   return (
     <SnsShareProvider>
       <SnsShareSticky
@@ -40,7 +41,7 @@ const PressDetailContent = ({ isInModal, data }: PressDetailContentProps) => {
         </article>
         <SnsShareFooter className="py-7" label="Share this article" title={data.title} coverImage={data.cover} />
       </div>
-      <PressExploreMore isInModal={isInModal} slug={data.slug} />
+      {exploreMore}
       {!isInModal ? (
         <div className="mt-4 max-lg:px-4 md:mt-10">
           <ButtonArrowLink href={'/press-and-news'} className="w-full">

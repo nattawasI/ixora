@@ -20,7 +20,7 @@ const PressList = async () => {
       <CursorProvider>
         <div className="list-awards-press">
           {data.map((item, index) => (
-            <Link href={`/press-and-news/${item.slug}`} className="block" key={index} scroll={false}>
+            <Link href={`/press-and-news/${item.slug}`} className="block" key={index} scroll={false} prefetch={false}>
               <PressCard
                 image={{
                   src: item.cover,

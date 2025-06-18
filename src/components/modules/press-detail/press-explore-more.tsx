@@ -1,29 +1,53 @@
 'use client'
 
-import Link from 'next/link'
 import { format } from 'date-fns'
 import { PressCard } from '@/components/modules/press/press-card'
-import { ExploreMoreCollapsible } from '@/components/modules/article-detail/explore-more-collapsible'
+import {
+  ExploreMoreCollapsible,
+  type ExploreMoreCollapsibleProps,
+} from '@/components/modules/article-detail/explore-more-collapsible'
 import { cn } from '@/libs/utils/cn'
 import useSWR from 'swr'
 import type { NewsResponse } from '@/libs/directus/type'
 
-const PressExploreMore = ({ isInModal, slug }: { isInModal?: boolean; slug: string }) => {
+const PressExploreMore = ({
+  isInModal,
+  slug,
+  onClickLink,
+  ...props
+}: {
+  isInModal?: boolean
+  slug: string
+  onClickLink?: (slug: string) => void
+} & Pick<ExploreMoreCollapsibleProps, 'open' | 'onOpenChange'>) => {
   const { data, error } = useSWR<NewsResponse[]>(`/api/news-detail-explore-more?slug=${slug}`, (url: string) =>
     fetch(url).then((res) => res.json()),
   )
 
-  if (error) return <p className="text-gray text-center">failed to load</p>
+  if (error) {
+    console.error(error)
+    return null
+  }
   if (!data) return null
 
   return (
     <>
       {data.length > 0 ? (
         <section className={cn('max-lg:px-4 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
-          <ExploreMoreCollapsible>
+          <ExploreMoreCollapsible {...props}>
             <div className={cn('space-y-4 max-lg:pt-4 lg:space-y-5', isInModal ? 'lg:pb-12.5' : '')}>
               {data.map((item, index) => (
-                <Link href={`/press-and-news/${item.slug}`} className="block" key={index}>
+                <a
+                  href={`/press-and-news/${item.slug}`}
+                  className="block"
+                  key={index}
+                  onClick={(e) => {
+                    if (onClickLink) {
+                      e.preventDefault()
+                      onClickLink(item.slug)
+                    }
+                  }}
+                >
                   <PressCard
                     image={{
                       src: item.cover,
@@ -38,7 +62,7 @@ const PressExploreMore = ({ isInModal, slug }: { isInModal?: boolean; slug: stri
                     description={item.description}
                     isImageRight={index % 2 === 0}
                   />
-                </Link>
+                </a>
               ))}
             </div>
           </ExploreMoreCollapsible>

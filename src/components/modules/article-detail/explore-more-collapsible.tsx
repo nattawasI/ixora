@@ -1,14 +1,13 @@
 'use client'
 
-import { useState } from 'react'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@radix-ui/react-collapsible'
+import { Collapsible, CollapsibleContent, CollapsibleTrigger, type CollapsibleProps } from '@radix-ui/react-collapsible'
 import { cn } from '@/libs/utils/cn'
 
-const ExploreMoreCollapsible = ({ children, ...props }: React.ComponentProps<'div'>) => {
-  const [open, setOpen] = useState(false)
+type ExploreMoreCollapsibleProps = CollapsibleProps
 
+const ExploreMoreCollapsible = ({ children, ...props }: ExploreMoreCollapsibleProps) => {
   return (
-    <Collapsible open={open} onOpenChange={setOpen} {...props}>
+    <Collapsible {...props}>
       <h2>
         <CollapsibleTrigger className="typo-title-3 flex h-[3.75rem] w-full items-center justify-center font-bold ring-offset-0 lg:h-[5.625rem]">
           <span className="underline-gray-light-1 decoration-gray-light-1 underline underline-offset-8">
@@ -31,4 +30,4 @@ const ExploreMoreCollapsible = ({ children, ...props }: React.ComponentProps<'di
   )
 }
 
-export { ExploreMoreCollapsible }
+export { ExploreMoreCollapsible, type ExploreMoreCollapsibleProps }
