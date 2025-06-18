@@ -1,20 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import { useParams } from 'next/navigation'
 import { usePressList } from '@/components/modules/press/press-list-context'
 import { DialogTitle } from '@radix-ui/react-dialog'
 import { PressDetailContent } from '@/components/modules/press-detail/press-detail-content'
 import { PageModalButtonsMobile, PageModalClose, PageModalNext, PageModalPrev } from '@/components/ui/page-modal'
 import { historyReplaceState } from '@/libs/utils/history'
 
-const PressDetailModalContent = () => {
+const PressDetailModalContent = ({ initSlug }: { initSlug: string }) => {
   const { pressList } = usePressList()
-
-  const params = useParams()
-  const initSlug = params.slug
-
-  console.log('initSlug: ', initSlug)
 
   const initIndex = pressList.findIndex((item) => item.slug === initSlug)
 
