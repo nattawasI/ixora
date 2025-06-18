@@ -15,10 +15,13 @@ const mapMediaSource = <
       ...item,
       item: {
         ...item.item,
-        video: {
-          ...item.item.video,
-          src: `${process.env.DIRECTUS_URL}/assets/${item.item.video?.id}`,
-        },
+        embed_code: item.item.embed_code ?? null,
+        video: item.item.video
+          ? {
+              ...item.item.video,
+              src: `${process.env.DIRECTUS_URL}/assets/${item.item.video.id}`,
+            }
+          : null,
       },
     })),
   })) as U
