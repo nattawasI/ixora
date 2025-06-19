@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useRef, useCallback } from 'react'
-import { useScroll } from 'motion/react'
 import { cn } from '@/libs/utils/cn'
 import { SnsShareItems, type SnsShareItemsProps } from '@/components/modules/article-detail/sns-share-items'
 import { useSnsShareContext } from '@/components/modules/article-detail/sns-share-context'
@@ -15,16 +14,6 @@ const SnsShareFooter = ({
 }: React.ComponentProps<'div'> & SnsShareItemsProps & { label: string }) => {
   const { setHideSnsShareSticky } = useSnsShareContext()
   const containerRef = useRef<HTMLDivElement>(null)
-  const overlayRef = useRef<HTMLElement | null>(null)
-
-  useEffect(() => {
-    overlayRef.current = document.getElementById('page-dialog-overlay')
-  }, [])
-
-  const { scrollY } = useScroll({
-    // Use the overlay element if it exists, otherwise fall back to window
-    target: overlayRef.current ? { current: overlayRef.current } : undefined,
-  })
 
   const checkIfInView = useCallback(() => {
     if (!containerRef.current) return
@@ -43,13 +32,21 @@ const SnsShareFooter = ({
   useEffect(() => {
     if (!containerRef.current) return
 
-    checkIfInView()
-    const unsubscribeScroll = scrollY.on('change', checkIfInView)
+    // Check if overlay exists
+    const overlay = document.getElementById('page-dialog-overlay')
+    const scrollTarget = overlay || window
 
+    // Initial check
+    checkIfInView()
+
+    // Add scroll event listener
+    scrollTarget.addEventListener('scroll', checkIfInView, { passive: true })
+
+    // Cleanup
     return () => {
-      unsubscribeScroll()
+      scrollTarget.removeEventListener('scroll', checkIfInView)
     }
-  }, [scrollY, checkIfInView])
+  }, [checkIfInView])
 
   return (
     <div
