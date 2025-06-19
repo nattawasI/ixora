@@ -1,4 +1,4 @@
-import { PressDetailModal } from '@/components/modules/press-detail/press-detail-modal'
+import { ArticleDetailModal } from '@/components/modules/article-detail-modal'
 import { PressDetailModalContent } from '@/components/modules/press-detail/press-detail-modal-content'
 
 export default async function PressAndNewsDetailIntercepting({
@@ -7,8 +7,8 @@ export default async function PressAndNewsDetailIntercepting({
   const { slug } = await params
 
   return (
-    <PressDetailModal>
+    <ArticleDetailModal>
       <PressDetailModalContent initSlug={slug} />
-    </PressDetailModal>
+    </ArticleDetailModal>
   )
 }

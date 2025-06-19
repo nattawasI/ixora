@@ -1,14 +1,15 @@
 'use client'
 
 /** libs */
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { usePressList } from '@/components/modules/press/press-list-context'
 import { historyReplaceState } from '@/libs/utils/history'
 
 /** components */
 import { DialogTitle } from '@radix-ui/react-dialog'
+import { ArticleDetailModalActions } from '@/components/modules/article-detail-modal'
+import { UpdateMetadataTitleClient } from '@/components/modules/common/update-metadata-title-client'
 import { PressDetailContent } from '@/components/modules/press-detail/press-detail-content'
-import { PageModalButtonsMobile, PageModalClose, PageModalNext, PageModalPrev } from '@/components/ui/page-modal'
 import { PressExploreMore } from '@/components/modules/press-detail/press-explore-more'
 
 const PressDetailModalContent = ({ initSlug }: { initSlug: string }) => {
@@ -20,11 +21,6 @@ const PressDetailModalContent = ({ initSlug }: { initSlug: string }) => {
   const [index, setIndex] = useState(initIndex)
 
   const pressDetailData = pressList[index]
-
-  useEffect(() => {
-    if (!pressDetailData) return
-    document.title = pressDetailData.title
-  }, [pressDetailData])
 
   if (!pressDetailData) {
     return (
@@ -57,6 +53,7 @@ const PressDetailModalContent = ({ initSlug }: { initSlug: string }) => {
 
   return (
     <>
+      <UpdateMetadataTitleClient title={pressDetailData.title} />
       <div className="bg-gray-light-2">
         <PressDetailContent
           isInModal
@@ -71,14 +68,12 @@ const PressDetailModalContent = ({ initSlug }: { initSlug: string }) => {
             />
           }
         />
-        <PageModalButtonsMobile>
-          {showPrevButton ? <PageModalPrev variant="mobile" onClick={handlePrev} /> : null}
-          <PageModalClose variant="mobile" label="CLOSE" />
-          {showNextButton ? <PageModalNext variant="mobile" onClick={handleNext} /> : null}
-        </PageModalButtonsMobile>
-        {showPrevButton ? <PageModalPrev variant="desktop" onClick={handlePrev} /> : null}
-        {showNextButton ? <PageModalNext variant="desktop" onClick={handleNext} /> : null}
-        <PageModalClose variant="desktop" />
+        <ArticleDetailModalActions
+          showPrevButton={showPrevButton}
+          showNextButton={showNextButton}
+          handlePrev={handlePrev}
+          handleNext={handleNext}
+        />
       </div>
     </>
   )

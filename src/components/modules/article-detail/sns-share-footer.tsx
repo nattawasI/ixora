@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { useInView } from 'motion/react'
+import { useScroll } from 'motion/react'
 import { cn } from '@/libs/utils/cn'
 import { SnsShareItems, type SnsShareItemsProps } from '@/components/modules/article-detail/sns-share-items'
 import { useSnsShareContext } from '@/components/modules/article-detail/sns-share-context'
@@ -16,14 +16,31 @@ const SnsShareFooter = ({
   const { setHideSnsShareSticky } = useSnsShareContext()
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const isInView = useInView(containerRef, {
-    amount: 'all',
-    margin: '100% 0px 0px 0px',
-  })
+  const { scrollY } = useScroll()
 
   useEffect(() => {
-    setHideSnsShareSticky(isInView)
-  }, [isInView, setHideSnsShareSticky])
+    if (!containerRef.current) return
+
+    const checkIfInView = () => {
+      if (!containerRef.current) return
+      const rect = containerRef.current.getBoundingClientRect()
+      const isBottomBelowViewport = rect.bottom > window.innerHeight
+      const isTopAboveViewportBottom = rect.top < window.innerHeight
+
+      if (isBottomBelowViewport) {
+        setHideSnsShareSticky(false)
+      } else if (isTopAboveViewportBottom) {
+        setHideSnsShareSticky(true)
+      }
+    }
+
+    checkIfInView()
+    const unsubscribeScroll = scrollY.on('change', checkIfInView)
+
+    return () => {
+      unsubscribeScroll()
+    }
+  }, [scrollY, setHideSnsShareSticky])
 
   return (
     <div

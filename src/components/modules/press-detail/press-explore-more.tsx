@@ -61,6 +61,7 @@ const PressExploreMore = ({
                     }}
                     description={item.description}
                     isImageRight={index % 2 === 0}
+                    isInModal
                   />
                 </a>
               ))}

@@ -13,9 +13,19 @@ type CardPressProps = Omit<ComponentProps<'div'>, 'title'> & {
   }
   description: string
   isImageRight?: boolean
+  isInModal?: boolean
 }
 
-const CardPress = ({ image, date, title, description, isImageRight, className, ...props }: CardPressProps) => {
+const CardPress = ({
+  image,
+  date,
+  title,
+  description,
+  isImageRight,
+  isInModal,
+  className,
+  ...props
+}: CardPressProps) => {
   const TitleTag = title.tag ?? 'h2'
   const { src, alt, ...restImageProps } = image
 
@@ -32,7 +42,12 @@ const CardPress = ({ image, date, title, description, isImageRight, className, .
       <div className={cn('flex flex-col bg-white p-5 md:p-10', isImageRight ? 'md:order-1' : '')}>
         <p className="typo-body-3 text-gray">{date}</p>
         <Separator className="mt-2.5 mb-5" />
-        <TitleTag className="typo-title-2 group-hover/card:text-blue font-bold transition-colors duration-300">
+        <TitleTag
+          className={cn(
+            'group-hover/card:text-blue line-clamp-3 font-bold transition-colors duration-300',
+            isInModal ? 'typo-title-3' : 'typo-title-2',
+          )}
+        >
           {title.text}
         </TitleTag>
         <p className="typo-body-2 mt-auto line-clamp-5 pt-2.5 whitespace-pre-line md:line-clamp-3">{description}</p>
