@@ -1,4 +1,5 @@
 import { ButtonArrow } from '@/components/ui/button-arrow'
+import Link from 'next/link'
 
 const SlideOurCommitment = () => {
   return (
@@ -14,7 +15,9 @@ const SlideOurCommitment = () => {
         </p>
       </div>
 
-      <ButtonArrow>Award & Press</ButtonArrow>
+      <Link href="/awards">
+        <ButtonArrow>Award & Press</ButtonArrow>
+      </Link>
     </div>
   )
 }
