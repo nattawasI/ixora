@@ -12,7 +12,7 @@ const MobileSliderLayout = () => {
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi)
 
   return (
-    <div className="embla relative h-full overflow-hidden pt-[3.75rem] pb-11" ref={emblaRef}>
+    <div className="relative overflow-hidden pt-[3.75rem] pb-11" ref={emblaRef}>
       <div className="flex">
         <div className="flex-[0_0_100%]">
           <SlideWhoWeAre />
