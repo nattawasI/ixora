@@ -16,7 +16,7 @@ if (!process.env.DIRECTUS_API_KEY) {
 const directus = createDirectus(process.env.DIRECTUS_URL)
   .with(
     rest({
-      onRequest: (opts) => ({ ...opts, cache: 'no-store' }),
+      onRequest: (opts) => ({ ...opts, cache: 'force-cache', next: { revalidate: 20 } }),
     }),
   )
   .with(staticToken(process.env.DIRECTUS_API_KEY))
