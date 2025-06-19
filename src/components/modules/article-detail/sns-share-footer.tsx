@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import { useScroll } from 'motion/react'
 import { cn } from '@/libs/utils/cn'
 import { SnsShareItems, type SnsShareItemsProps } from '@/components/modules/article-detail/sns-share-items'
@@ -12,27 +12,28 @@ const SnsShareFooter = ({
   coverImage,
   className,
   ...props
-}: { label: string } & SnsShareItemsProps & React.ComponentProps<'div'>) => {
+}: React.ComponentProps<'div'> & SnsShareItemsProps & { label: string }) => {
   const { setHideSnsShareSticky } = useSnsShareContext()
   const containerRef = useRef<HTMLDivElement>(null)
 
   const { scrollY } = useScroll()
 
-  useEffect(() => {
+  const checkIfInView = useCallback(() => {
     if (!containerRef.current) return
 
-    const checkIfInView = () => {
-      if (!containerRef.current) return
-      const rect = containerRef.current.getBoundingClientRect()
-      const isBottomBelowViewport = rect.bottom > window.innerHeight
-      const isTopAboveViewportBottom = rect.top < window.innerHeight
+    const rect = containerRef.current.getBoundingClientRect()
+    const isBottomBelowViewport = rect.bottom > window.innerHeight
+    const isTopAboveViewportBottom = rect.top < window.innerHeight
 
-      if (isBottomBelowViewport) {
-        setHideSnsShareSticky(false)
-      } else if (isTopAboveViewportBottom) {
-        setHideSnsShareSticky(true)
-      }
+    if (isBottomBelowViewport) {
+      setHideSnsShareSticky(false)
+    } else if (isTopAboveViewportBottom) {
+      setHideSnsShareSticky(true)
     }
+  }, [setHideSnsShareSticky])
+
+  useEffect(() => {
+    if (!containerRef.current) return
 
     checkIfInView()
     const unsubscribeScroll = scrollY.on('change', checkIfInView)
@@ -40,7 +41,7 @@ const SnsShareFooter = ({
     return () => {
       unsubscribeScroll()
     }
-  }, [scrollY, setHideSnsShareSticky])
+  }, [scrollY, checkIfInView])
 
   return (
     <div
