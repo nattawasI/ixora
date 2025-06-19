@@ -15,8 +15,16 @@ const SnsShareFooter = ({
 }: React.ComponentProps<'div'> & SnsShareItemsProps & { label: string }) => {
   const { setHideSnsShareSticky } = useSnsShareContext()
   const containerRef = useRef<HTMLDivElement>(null)
+  const overlayRef = useRef<HTMLElement | null>(null)
 
-  const { scrollY } = useScroll()
+  useEffect(() => {
+    overlayRef.current = document.getElementById('page-dialog-overlay')
+  }, [])
+
+  const { scrollY } = useScroll({
+    // Use the overlay element if it exists, otherwise fall back to window
+    target: overlayRef.current ? { current: overlayRef.current } : undefined,
+  })
 
   const checkIfInView = useCallback(() => {
     if (!containerRef.current) return
