@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 
 const UpdateMetadataTitleClient = ({ title }: { title: string }) => {
   useEffect(() => {
-    document.title = title
+    document.title = `${title} | IXORA DESIGN`
   }, [title])
 
   return null

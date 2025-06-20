@@ -12,15 +12,20 @@ type OpenGraphImageType = {
   alt?: string
 }
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+const SITE_NAME = 'IXORA DESIGN'
+const DEFAULT_OG_IMAGE = ''
+// const DEFAULT_OG_IMAGE = `${BASE_URL}/ogimage.jpg`
+
 export const defaultOpenGraphImage: OpenGraphImageType = {
-  url: `${process.env.NEXT_PUBLIC_BASE_URL}/ogimage.jpg`, // og image default url
-  alt: 'IXORA DESIGN', // og image default alt
+  url: DEFAULT_OG_IMAGE,
+  alt: SITE_NAME,
 }
 
 export const defaultOpenGraph: Metadata['openGraph'] = {
-  url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
-  siteName: 'IXORA DESIGN',
-  locale: 'th_TH',
+  url: BASE_URL,
+  siteName: SITE_NAME,
+  locale: 'en_US',
   type: 'website',
   images: [defaultOpenGraphImage],
 }
@@ -34,7 +39,7 @@ export const getOpenGraph = ({
 }): Metadata['openGraph'] => {
   return {
     ...defaultOpenGraph,
-    url: `${process.env.NEXT_PUBLIC_BASE_URL}${pathname}`,
+    url: `${BASE_URL}${pathname}`,
     images: [
       {
         url: image?.url || defaultOpenGraphImage.url,
@@ -45,24 +50,36 @@ export const getOpenGraph = ({
 }
 
 export const getMetadata = ({ pathname, data }: { pathname: string; data: SeoType | null }): Metadata => {
-  const title = data?.title as string
-  const description = data?.description
+  const baseTitle = data?.title?.trim() || ''
+  const title = baseTitle ? `${baseTitle} - ${SITE_NAME}` : SITE_NAME
+  const description = data?.description?.trim() || ''
 
   const openGraph = getOpenGraph({
     pathname,
     image: {
-      url: data?.ogImage ?? '',
-      alt: title,
+      url: data?.ogImage || DEFAULT_OG_IMAGE,
+      alt: baseTitle || SITE_NAME,
     },
   })
 
   return {
     title,
-    description: description || '',
+    description,
+    metadataBase: new URL(BASE_URL!),
+    alternates: {
+      canonical: `${BASE_URL}${pathname}`,
+    },
     openGraph: {
       ...openGraph,
       title,
-      description: description || '',
+      description,
     },
+    twitter: {
+      card: 'summary',
+      title,
+      description,
+      images: [data?.ogImage || DEFAULT_OG_IMAGE],
+    },
+    robots: 'index, follow',
   }
 }

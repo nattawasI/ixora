@@ -3,6 +3,20 @@ import { HeadingPage } from '@/components/ui/heading-page'
 import { PeopleList, PeopleListLoading } from '@/components/modules/people/people-list'
 import { CardOther } from '@/components/ui/card-other'
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
+import { getMetadata } from '@/libs/data/metadata'
+import type { Metadata } from 'next'
+
+export function generateMetadata(): Metadata {
+  return getMetadata({
+    pathname: `/people`,
+    data: {
+      title: 'People',
+      description:
+        'Our team of seasoned professionals brings international experience and a shared passion for sustainable landscape design that transforms spaces with purpose.',
+      ogImage: null,
+    },
+  })
+}
 
 export default function People() {
   return (

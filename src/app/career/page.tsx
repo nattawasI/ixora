@@ -4,6 +4,20 @@ import { CareerList, CareerListLoading } from '@/components/modules/career/caree
 import { CardOther } from '@/components/ui/card-other'
 import { FullLogoGray } from '@/components/ui/icons-color/full-logo-gray'
 import { CopyEmail } from '@/components/modules/career/copy-email'
+import { getMetadata } from '@/libs/data/metadata'
+import type { Metadata } from 'next'
+
+export function generateMetadata(): Metadata {
+  return getMetadata({
+    pathname: `/career`,
+    data: {
+      title: 'Career',
+      description:
+        'Explore career opportunities at IXORA DESIGN—where passionate professionals collaborate to create award-winning, sustainable landscape solutions worldwide.',
+      ogImage: null,
+    },
+  })
+}
 
 export default function Career() {
   return (
