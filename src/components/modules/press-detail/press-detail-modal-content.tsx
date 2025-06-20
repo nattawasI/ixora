@@ -32,7 +32,7 @@ const PressDetailModalContent = ({ initSlug }: { initSlug: string }) => {
 
   const handleChangeIndex = (index: number) => {
     setIndex(index)
-    historyReplaceState(`/press-and-news/${pressList[index].slug}`)
+    historyReplaceState(`/press-and-news/${pressDetailData.slug}`)
     setOpen(false)
   }
 

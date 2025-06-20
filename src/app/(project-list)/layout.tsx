@@ -1,4 +1,5 @@
 import { ProjectCategoriesFilter } from '@/components/modules/projects/project-categories-filter'
+import { ProjectListProvider } from '@/components/modules/projects/project-list-context'
 import type { NavigationItemType } from '@/components/layout/type'
 
 const mockupProjectCategories: NavigationItemType[] = [
@@ -17,13 +18,13 @@ export default function ProjectListLayout({
   children: React.ReactNode
   modal: React.ReactNode
 }>) {
-  /** fetch product categories here... */
-
   return (
-    <div className="px-4 max-lg:pt-5 max-lg:pb-6 lg:px-10">
-      <ProjectCategoriesFilter categories={mockupProjectCategories} />
-      {children}
-      {modal}
-    </div>
+    <ProjectListProvider>
+      <div className="px-4 max-lg:pt-5 max-lg:pb-6 lg:px-10">
+        <ProjectCategoriesFilter categories={mockupProjectCategories} />
+        {children}
+        {modal}
+      </div>
+    </ProjectListProvider>
   )
 }

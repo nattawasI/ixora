@@ -29,7 +29,7 @@ export default async function RootLayout({
   const hasVisited = (await cookies()).get('hasVisited')
   return (
     <html lang="en">
-      <body className={cn('typo-body-1 flex min-h-screen flex-col', montserrat.className)}>
+      <body className={cn('typo-body-1 bg-gray-light-2 flex min-h-screen flex-col', montserrat.className)}>
         {hasVisited?.value !== 'true' ? <Preloader /> : null}
         <Header />
         <main className="flex-1">{children}</main>

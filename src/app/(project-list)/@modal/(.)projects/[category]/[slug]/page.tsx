@@ -1,19 +1,12 @@
-import { ProjectDetailModal } from '@/components/modules/project-detail/project-detail-modal'
+import { ArticleDetailModal } from '@/components/modules/article-detail-modal'
 import { ProjectDetailModalContent } from '@/components/modules/project-detail/project-detail-modal-content'
-import { getProjectDetail } from '@/libs/directus/service/project-detail'
 
-export default async function ProjectDetailIntercepting({
-  params,
-}: {
-  params: Promise<{ category: string; slug: string }>
-}) {
-  const { category, slug } = await params
-
-  const data = await getProjectDetail({ slug, category, isDraft: false })
+export default async function ProjectDetailIntercepting({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
 
   return (
-    <ProjectDetailModal>
-      <ProjectDetailModalContent data={data} />
-    </ProjectDetailModal>
+    <ArticleDetailModal>
+      <ProjectDetailModalContent initSlug={slug} />
+    </ArticleDetailModal>
   )
 }

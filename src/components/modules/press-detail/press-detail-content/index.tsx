@@ -2,8 +2,8 @@ import parse from 'html-react-parser'
 import { format } from 'date-fns'
 import { DialogTitle } from '@radix-ui/react-dialog'
 import { Separator } from '@/components/ui/separator'
-import { SnsShareFooter } from '@/components/modules/article-detail/sns-share-footer'
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
+import { SnsShareFooter } from '@/components/modules/article-detail/sns-share-footer'
 import { SnsShareProvider } from '@/components/modules/article-detail/sns-share-context'
 import { SnsShareSticky } from '@/components/modules/article-detail/sns-share-sticky'
 import { MediaContent } from '@/components/modules/article-detail/media-content'
@@ -43,7 +43,7 @@ const PressDetailContent = ({ isInModal, data, exploreMore }: PressDetailContent
       {exploreMore}
       {!isInModal ? (
         <div className="mt-4 max-lg:px-4 md:mt-10">
-          <ButtonArrowLink href={'/press-and-news'} className="w-full">
+          <ButtonArrowLink href={'/press-and-news'} className="w-full uppercase">
             SEE ALL PRESS & NEWS
           </ButtonArrowLink>
         </div>

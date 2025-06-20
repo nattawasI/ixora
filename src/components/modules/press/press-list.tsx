@@ -26,6 +26,7 @@ const PressList = async () => {
                   src: item.cover,
                   alt: item.title,
                   sizes: '100vw, (min-width: 1024px) 50vw',
+                  priority: index <= 2,
                 }}
                 date={format(new Date(item.published_date), 'MMMM, yyyy')}
                 title={{
