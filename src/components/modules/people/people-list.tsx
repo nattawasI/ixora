@@ -5,7 +5,6 @@ import { EmptyData } from '@/components/ui/empty-data'
 import { getPeople } from '@/libs/directus/service/people'
 
 const PeopleList = async () => {
-  /** fetch here */
   const data = await getPeople()
 
   return (

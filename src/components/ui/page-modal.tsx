@@ -21,6 +21,7 @@ const PageModal = Dialog
 
 const PageModalContent = ({
   contentSize,
+  onAnimationEnd,
   children,
   ...props
 }: {
@@ -34,6 +35,7 @@ const PageModalContent = ({
           'scrollbar-hidden fixed inset-0 z-30 overflow-y-auto bg-black/70',
           'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
         )}
+        onAnimationEnd={onAnimationEnd}
       >
         <DialogContent
           id="page-dialog-content"
