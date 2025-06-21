@@ -3,7 +3,7 @@ import { HeadingPage } from '@/components/ui/heading-page'
 import { PeopleList, PeopleListLoading } from '@/components/modules/people/people-list'
 import { CardOther } from '@/components/ui/card-other'
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
-import { getMetadata } from '@/libs/data/metadata'
+import { getMetadata } from '@/libs/utils/metadata'
 import type { Metadata } from 'next'
 
 export function generateMetadata(): Metadata {

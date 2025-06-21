@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { getMetadata } from '@/libs/data/metadata'
+import { getMetadata } from '@/libs/utils/metadata'
 import { ProjectList, ProjectListLoading } from '@/components/modules/projects/project-list'
 import type { Metadata } from 'next'
 

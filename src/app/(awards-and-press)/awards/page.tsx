@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { AwardList, AwardListLoading } from '@/components/modules/awards/award-list'
-import { getMetadata } from '@/libs/data/metadata'
+import { getMetadata } from '@/libs/utils/metadata'
 import type { Metadata } from 'next'
 
 export function generateMetadata(): Metadata {

@@ -14,18 +14,12 @@ import {
   DialogClose,
 } from '@radix-ui/react-dialog'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
-import {
-  ProjectCategoriesNav,
-  type ProjectCategoriesNavProps,
-} from '@/components/modules/projects/project-categories-nav'
+import { ProjectCategoriesNav } from '@/components/modules/projects/project-categories-nav'
+import { projectCategories } from '@/libs/data/project-categories'
 
-const ProjectCategoriesFilter = ({
-  categories,
-  className,
-  ...props
-}: React.ComponentProps<'div'> & Pick<ProjectCategoriesNavProps, 'categories'>) => {
+const ProjectCategoriesFilter = ({ className, ...props }: React.ComponentProps<'div'>) => {
   const pathname = usePathname()
-  const current = categories.find((item) => item.href === pathname)
+  const current = projectCategories.find((item) => item.href === pathname)
 
   const isLaptopUp = useMediaQuery('(min-width: 1024px)')
 
@@ -75,7 +69,7 @@ const ProjectCategoriesFilter = ({
                 </svg>
               </DialogClose>
             </div>
-            <ProjectCategoriesNav layout="vertical" categories={categories} onSelect={() => setOpen(false)} />
+            <ProjectCategoriesNav layout="vertical" onSelect={() => setOpen(false)} />
           </DialogContent>
         </DialogPortal>
       </Dialog>

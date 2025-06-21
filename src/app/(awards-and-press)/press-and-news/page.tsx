@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { PressList } from '@/components/modules/press/press-list'
 import { PressListLoading } from '@/components/modules/press/press-list'
-import { getMetadata } from '@/libs/data/metadata'
+import { getMetadata } from '@/libs/utils/metadata'
 
 export async function generateMetadata() {
   return getMetadata({

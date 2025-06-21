@@ -4,7 +4,7 @@ import { getProjectDetail } from '@/libs/directus/service/project-detail'
 import { directus } from '@/libs/directus'
 import { readItems } from '@directus/sdk'
 import { ProjectResponse } from '@/libs/directus/type'
-import { getMetadata } from '@/libs/data/metadata'
+import { getMetadata } from '@/libs/utils/metadata'
 import type { Metadata } from 'next'
 
 export async function generateStaticParams() {

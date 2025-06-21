@@ -25,8 +25,8 @@ const CareerAccordion = ({ items }: { items: CareerResponse[] }) => {
 
         return (
           <AccordionItem className="border-gray-light-1 border-b pb-5" key={item.id} value={item.id}>
-            <AccordionHeader>
-              <AccordionTrigger className="group/accordion-trigger hover-icon-stroke-white flex w-full gap-x-5 pb-5 text-left">
+            <AccordionHeader className="pb-5">
+              <AccordionTrigger className="group/accordion-trigger hover-icon-stroke-white flex w-full gap-x-5 text-left">
                 <span className="flex flex-col items-start gap-y-2.5">
                   <span className="typo-title-3 font-bold">{item.title}</span>
                   <span className="typo-body-2 bg-blue-2 inline-flex h-8.5 items-center rounded-full px-4 font-bold">
@@ -53,7 +53,8 @@ const CareerAccordion = ({ items }: { items: CareerResponse[] }) => {
                 }}
                 className="overflow-hidden"
               >
-                <AccordionContentInner open={open} className="detail-content py-5">
+                <AccordionContentInner open={open} className="detail-content pb-5">
+                  <p className="typo-body-1 text-gray font-bold">Requirements</p>
                   {parse(item.requirement)}
                 </AccordionContentInner>
               </motion.div>

@@ -1,4 +1,4 @@
-import { getMetadata } from '@/libs/data/metadata'
+import { getMetadata } from '@/libs/utils/metadata'
 import { directus } from '@/libs/directus'
 import { getNewsDetail } from '@/libs/directus/service/news-detail'
 import { draftMode } from 'next/headers'

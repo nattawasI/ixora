@@ -4,7 +4,7 @@ import { CareerList, CareerListLoading } from '@/components/modules/career/caree
 import { CardOther } from '@/components/ui/card-other'
 import { FullLogoGray } from '@/components/ui/icons-color/full-logo-gray'
 import { CopyEmail } from '@/components/modules/career/copy-email'
-import { getMetadata } from '@/libs/data/metadata'
+import { getMetadata } from '@/libs/utils/metadata'
 import type { Metadata } from 'next'
 
 export function generateMetadata(): Metadata {

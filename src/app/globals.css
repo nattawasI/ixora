@@ -54,11 +54,6 @@
 }
 
 @layer base {
-  body {
-    background-color: var(--bg-color, var(--color-white));
-    @apply min-h-svh text-black antialiased;
-  }
-
   a,
   button {
     @apply focus-visible:ring-blue cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-none;
