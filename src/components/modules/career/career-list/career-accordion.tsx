@@ -11,6 +11,7 @@ import {
 } from '@radix-ui/react-accordion'
 import { AccordionContentInner } from '@/components/ui/accordion-content-inner'
 import { ChevronDown } from '@/components/ui/icons-color/chevron-down'
+import { EmptyData } from '@/components/ui/empty-data'
 import { motion } from 'motion/react'
 import parse from 'html-react-parser'
 import type { CareerResponse } from '@/libs/directus/type'
@@ -53,9 +54,13 @@ const CareerAccordion = ({ items }: { items: CareerResponse[] }) => {
                 }}
                 className="overflow-hidden"
               >
-                <AccordionContentInner open={open} className="detail-content pb-5">
+                <AccordionContentInner open={open} className="pb-5">
                   <p className="typo-body-1 text-gray font-bold">Requirements</p>
-                  {parse(item.requirement)}
+                  {item.requirement ? (
+                    <div className="detail-content mt-2.5">{parse(item.requirement)}</div>
+                  ) : (
+                    <EmptyData label="No requirements" />
+                  )}
                 </AccordionContentInner>
               </motion.div>
             </AccordionContent>

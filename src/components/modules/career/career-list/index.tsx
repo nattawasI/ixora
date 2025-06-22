@@ -6,7 +6,6 @@ import { EmptyData } from '@/components/ui/empty-data'
 import { getCareers } from '@/libs/directus/service/career'
 
 const CareerList = async () => {
-  /** fetch here... */
   const items = await getCareers()
 
   return <>{items.length > 0 ? <CareerAccordion items={items} /> : <EmptyData />}</>

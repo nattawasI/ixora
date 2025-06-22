@@ -26,7 +26,6 @@ type PageProps = { params: Promise<{ category: string; slug: string }> }
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { category, slug } = await params
 
-  /** fetch here */
   const data = await getProjectDetail({ slug, category, isDraft: false })
 
   if (!data) return {}
@@ -45,7 +44,6 @@ export default async function ProjectDetail({ params }: PageProps) {
   const { category, slug } = await params
   const { isEnabled } = await draftMode()
 
-  /** fetch here */
   const data = await getProjectDetail({ slug, category, isDraft: isEnabled })
 
   return (
