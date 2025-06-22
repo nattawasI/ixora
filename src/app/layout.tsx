@@ -4,11 +4,11 @@ import { Montserrat } from 'next/font/google'
 /** components */
 import { Body } from '@/components/layout/body'
 import { Header } from '@/components/layout/header'
-import { Footer } from '@/components/layout/footer'
 import { Preloader } from '@/components/layout/preloader'
 
 import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
+import { Footer } from '@/components/layout/footer'
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
