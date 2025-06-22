@@ -1,26 +1,25 @@
 'use client'
 
+import { cn } from '@/libs/utils/cn'
+import useSWR from 'swr'
 import { format } from 'date-fns'
+
 import { PressCard } from '@/components/modules/press/press-card'
 import {
   ExploreMoreCollapsible,
   type ExploreMoreCollapsibleProps,
 } from '@/components/modules/article-detail/explore-more-collapsible'
-import { cn } from '@/libs/utils/cn'
-import useSWR from 'swr'
+
 import type { NewsResponse } from '@/libs/directus/type'
 
-const PressExploreMore = ({
-  isInModal,
-  slug,
-  onClickLink,
-  ...props
-}: {
+type PressExploreMoreProps = {
   isInModal?: boolean
   slug: string
   onClickLink?: (slug: string) => void
-} & Pick<ExploreMoreCollapsibleProps, 'open' | 'onOpenChange'>) => {
-  const { data, error } = useSWR<NewsResponse[]>(`/api/news-detail-explore-more?slug=${slug}`, (url: string) =>
+} & Pick<ExploreMoreCollapsibleProps, 'open' | 'onOpenChange'>
+
+const PressExploreMore = ({ isInModal, slug, onClickLink, ...props }: PressExploreMoreProps) => {
+  const { data, error } = useSWR<NewsResponse[]>(`/api/news-explore-more?slug=${slug}`, (url: string) =>
     fetch(url).then((res) => res.json()),
   )
 

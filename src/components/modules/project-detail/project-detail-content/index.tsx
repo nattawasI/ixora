@@ -1,15 +1,11 @@
 import parse from 'html-react-parser'
-import { cn } from '@/libs/utils/cn'
 import { DialogTitle } from '@radix-ui/react-dialog'
 import { ReadMoreBlock } from '@/components/ui/read-more-block'
-import { SingleImage } from '@/components/modules/article-detail/single-image'
-import { ColumnImages } from '@/components/modules/article-detail/column-images'
-import { VideoPlayer } from '@/components/modules/article-detail/video-player'
-import { SnsShareFooter } from '@/components/modules/article-detail/sns-share-footer'
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
+import { SnsShareFooter } from '@/components/modules/article-detail/sns-share-footer'
 import { SnsShareProvider } from '@/components/modules/article-detail/sns-share-context'
 import { SnsShareSticky } from '@/components/modules/article-detail/sns-share-sticky'
-import { ProjectExploreMore } from '@/components/modules/project-detail/project-explore-more'
+import { MediaContent } from '@/components/modules/article-detail/media-content'
 
 /** type */
 import type { ProjectDetailResponse } from '@/libs/directus/type'
@@ -17,9 +13,10 @@ import type { ProjectDetailResponse } from '@/libs/directus/type'
 type ProjectDetailContentProps = {
   isInModal?: boolean
   data: ProjectDetailResponse
+  exploreMore?: React.ReactElement
 }
 
-const ProjectDetailContent = ({ isInModal, data }: ProjectDetailContentProps) => {
+const ProjectDetailContent = ({ isInModal, data, exploreMore }: ProjectDetailContentProps) => {
   return (
     <SnsShareProvider>
       <SnsShareSticky
@@ -61,42 +58,17 @@ const ProjectDetailContent = ({ isInModal, data }: ProjectDetailContentProps) =>
               </div>
             </div>
           </div>
-          <div className="space-y-2.5">
-            {data.gallery.map((item, index) => {
-              if (item.type === 'landscape') {
-                return <SingleImage key={`gallery-${index}`} src={item.images[0].src} alt={data.title} />
-              } else {
-                return (
-                  <ColumnImages
-                    key={`gallery-${index}`}
-                    images={item.images.map((img) => ({
-                      src: img.src,
-                      alt: data.title,
-                    }))}
-                  />
-                )
-              }
-            })}
-            {data.video.map(({ item }, index) => {
-              if (item.embed_code) {
-                return <div key={`video-${index}`}>{parse(item.embed_code)}</div>
-              } else {
-                return <VideoPlayer key={`video-${index}`} src={item.video?.src as string} />
-              }
-            })}
-          </div>
+          <MediaContent type="project" data={data} />
         </article>
         <SnsShareFooter className="py-7" label="Share this project" title={data.title} coverImage={data.cover} />
       </section>
-      <section className={cn('max-lg:px-4 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
-        <ProjectExploreMore isInModal={isInModal} slug={data.slug} category={data.category.slug} />
-      </section>
+      {exploreMore}
       {!isInModal ? (
         <div className="mt-4 max-lg:px-4 md:mt-10">
           <ButtonArrowLink
-            href={'/projects/residential'}
-            className="w-full"
-          >{`SEE ALL ${'RESIDENTIAL'} PROJECTS`}</ButtonArrowLink>
+            href={`/projects/${data.category.slug}`}
+            className="w-full uppercase"
+          >{`SEE ALL ${data.category.title} PROJECTS`}</ButtonArrowLink>
         </div>
       ) : null}
     </SnsShareProvider>

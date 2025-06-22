@@ -4,6 +4,8 @@ import { getProjectDetail } from '@/libs/directus/service/project-detail'
 import { directus } from '@/libs/directus'
 import { readItems } from '@directus/sdk'
 import { ProjectResponse } from '@/libs/directus/type'
+import { getMetadata } from '@/libs/utils/metadata'
+import type { Metadata } from 'next'
 
 export async function generateStaticParams() {
   const data = await directus.request<ProjectResponse[]>(
@@ -19,7 +21,27 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function ProjectDetail({ params }: { params: Promise<{ category: string; slug: string }> }) {
+type PageProps = { params: Promise<{ category: string; slug: string }> }
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { category, slug } = await params
+
+  /** fetch here */
+  const data = await getProjectDetail({ slug, category, isDraft: false })
+
+  if (!data) return {}
+
+  return getMetadata({
+    pathname: `/projects/${category}/${slug}/${data.slug}`,
+    data: {
+      title: data.title,
+      description: data.content_lead,
+      ogImage: data.cover,
+    },
+  })
+}
+
+export default async function ProjectDetail({ params }: PageProps) {
   const { category, slug } = await params
   const { isEnabled } = await draftMode()
 

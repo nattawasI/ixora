@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { PageModal, PageModalContent } from '@/components/ui/page-modal'
 import { PageModalButtonsMobile, PageModalClose, PageModalNext, PageModalPrev } from '@/components/ui/page-modal'
@@ -7,14 +8,19 @@ import { PageModalButtonsMobile, PageModalClose, PageModalNext, PageModalPrev } 
 const ArticleDetailModal = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter()
 
+  const [open, setOpen] = useState(true)
+
   return (
-    <PageModal
-      defaultOpen
-      onOpenChange={() => {
-        router.back()
-      }}
-    >
-      <PageModalContent aria-describedby={undefined} contentSize="small">
+    <PageModal open={open} onOpenChange={setOpen}>
+      <PageModalContent
+        aria-describedby={undefined}
+        contentSize="small"
+        onAnimationEnd={() => {
+          if (!open) {
+            router.back()
+          }
+        }}
+      >
         {children}
       </PageModalContent>
     </PageModal>
