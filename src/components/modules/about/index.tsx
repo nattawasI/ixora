@@ -28,28 +28,27 @@ const AboutSlider = () => {
       <Swiper
         direction={isMobile ? 'horizontal' : 'vertical'}
         slidesPerView={1}
-        mousewheel={!isMobile}
+        mousewheel={{
+          enabled: !isMobile,
+          releaseOnEdges: true,
+          forceToAxis: true,
+          eventsTarget: 'body',
+        }}
         modules={[Mousewheel]}
         onSlideChange={(swiper) => {
           setIsSliderEnd(swiper.isEnd)
           setActiveIndex(swiper.activeIndex)
         }}
-        className="h-[calc(100dvh-6.25rem)] w-dvh"
+        className="pt-6.25rem h-dvh w-dvh"
       >
-        <SwiperSlide>
-          <div className="flex h-full items-center pb-[6.25rem]">
-            <SlideWhoWeAre />
-          </div>
+        <SwiperSlide className="h-dvh pt-[6.25rem]">
+          <SlideWhoWeAre />
         </SwiperSlide>
-        <SwiperSlide>
-          <div className="flex h-full items-center pb-[6.25rem]">
-            <SlideWhatWeDo />
-          </div>
+        <SwiperSlide className="h-dvh pt-[6.25rem]">
+          <SlideWhatWeDo />
         </SwiperSlide>
-        <SwiperSlide>
-          <div className="flex h-full items-center pb-[6.25rem]">
-            <SlideOurCommitment />
-          </div>
+        <SwiperSlide className="h-dvh pt-[6.25rem]">
+          <SlideOurCommitment />
         </SwiperSlide>
       </Swiper>
 

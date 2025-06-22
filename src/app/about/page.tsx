@@ -1,9 +1,9 @@
-import { About } from '@/components/modules/new-about'
+import { AboutSlider } from '@/components/modules/about'
 
 export default function AboutPage() {
   return (
     <>
-      <About />
+      <AboutSlider />
     </>
   )
 }
