@@ -1,3 +1,5 @@
+'use client'
+
 import { cn } from '@/libs/utils/cn'
 import useSWR from 'swr'
 
@@ -11,12 +13,12 @@ import type { ProjectResponse } from '@/libs/directus/type'
 
 type ProjectExploreMoreProps = {
   isInModal?: boolean
-  slug: string
   category: string
+  slug: string
   onClickLink?: (slug: string) => void
 } & Pick<ExploreMoreCollapsibleProps, 'open' | 'onOpenChange'>
 
-const ProjectExploreMore = ({ isInModal, slug, category, onClickLink, ...props }: ProjectExploreMoreProps) => {
+const ProjectExploreMore = ({ isInModal, category, slug, onClickLink, ...props }: ProjectExploreMoreProps) => {
   const { data, error } = useSWR<ProjectResponse[]>(
     `/api/projects-explore-more?category=${category}&slug=${slug}`,
     (url: string) => fetch(url).then((res) => res.json()),

@@ -1,5 +1,6 @@
 import { draftMode } from 'next/headers'
 import { ProjectDetailContent } from '@/components/modules/project-detail/project-detail-content'
+import { ProjectExploreMore } from '@/components/modules/project-detail/project-explore-more'
 import { getProjectDetail } from '@/libs/directus/service/project-detail'
 import { directus } from '@/libs/directus'
 import { readItems } from '@directus/sdk'
@@ -51,7 +52,7 @@ export default async function ProjectDetail({ params }: PageProps) {
       {isEnabled ? (
         <h2 className="typo-title-1 mb-2 text-center font-bold text-red-500 uppercase">draft mode</h2>
       ) : null}
-      <ProjectDetailContent data={data} />
+      <ProjectDetailContent data={data} exploreMore={<ProjectExploreMore category={category} slug={slug} />} />
     </div>
   )
 }
