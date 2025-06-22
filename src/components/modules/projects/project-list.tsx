@@ -1,11 +1,15 @@
+/** libs */
 import { cn } from '@/libs/utils/cn'
-import { CardProjectLoading } from '@/components/ui/card-project'
-import { ProjectCard } from '@/components/modules/projects/project-card'
-import { UpdateProjectListContext } from '@/components/modules/projects/update-project-list-context'
-import { EmptyData } from '@/components/ui/empty-data'
-import Link from 'next/link'
 import { CursorProvider } from '@/libs/context/cursor'
 import { getProjectByCategory } from '@/libs/directus/service/project-category'
+
+/** components */
+import Link from 'next/link'
+import { CardProjectLoading } from '@/components/ui/card-project'
+import { EmptyData } from '@/components/ui/empty-data'
+import { ProjectCard } from '@/components/modules/projects/project-card'
+import { UpdateProjectListContext } from '@/components/modules/projects/update-project-list-context'
+import { MotionStaggerRoot, MotionStaggerItem } from '@/components/modules/common/motion'
 
 const ProjectList = async ({ category }: { category: string }) => {
   const data = await getProjectByCategory({ category })
@@ -18,30 +22,33 @@ const ProjectList = async ({ category }: { category: string }) => {
     <>
       <UpdateProjectListContext data={data} />
       <CursorProvider>
-        <div className="list-project">
-          {data.map((item, index) => (
-            <Link
-              href={`/projects/${item.category.slug}/${item.slug}`}
-              className="block"
-              key={index}
-              prefetch={false}
-              scroll={false}
-            >
-              <ProjectCard
-                image={{
-                  src: item.cover,
-                  alt: item.title,
-                  sizes: '100vw, (min-width: 768px) 33vw',
-                }}
-                title={{
-                  tag: 'h2',
-                  text: item.title,
-                }}
-                location={item.location}
-              />
-            </Link>
-          ))}
-        </div>
+        <MotionStaggerRoot>
+          <div className="list-project">
+            {data.map((item, index) => (
+              <MotionStaggerItem key={index}>
+                <Link
+                  className="block"
+                  href={`/projects/${item.category.slug}/${item.slug}`}
+                  prefetch={false}
+                  scroll={false}
+                >
+                  <ProjectCard
+                    image={{
+                      src: item.cover,
+                      alt: item.title,
+                      sizes: '100vw, (min-width: 768px) 33vw',
+                    }}
+                    title={{
+                      tag: 'h2',
+                      text: item.title,
+                    }}
+                    location={item.location}
+                  />
+                </Link>
+              </MotionStaggerItem>
+            ))}
+          </div>
+        </MotionStaggerRoot>
       </CursorProvider>
     </>
   )
