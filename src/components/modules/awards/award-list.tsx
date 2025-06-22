@@ -5,7 +5,6 @@ import { getAwards } from '@/libs/directus/service/awards'
 import { EmptyData } from '@/components/ui/empty-data'
 
 const AwardList = async () => {
-  /** fetch here */
   const data = await getAwards()
 
   return (
