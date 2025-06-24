@@ -7,7 +7,7 @@ const SlideWhoWeAre = () => {
   const [isShowMore, setIsShowMore] = useState(false)
 
   return (
-    <div className="c-container relative">
+    <div className="c-container about-page-container relative">
       <div className="space-y-7">
         <div className="space-y-5">
           <h2 className="typo-title-2 font-bold">WHO WE AREA</h2>

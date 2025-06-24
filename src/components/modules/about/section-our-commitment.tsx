@@ -2,7 +2,7 @@ import { ButtonArrow } from '@/components/ui/button-arrow'
 
 const SlideOurCommitment = () => {
   return (
-    <div className="c-container space-y-16">
+    <div className="c-container about-page-container space-y-16">
       <div className="space-y-5">
         <h2 className="typo-title-2 font-bold">OUR COMMITMENT</h2>
         <p className="typo-title-3">

@@ -1,12 +1,22 @@
+'use client'
+
 /** styles */
+import '../style.css'
+import 'swiper/css'
 import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+
+/** libs */
+import { useRef } from 'react'
 
 /** swiper */
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation } from 'swiper/modules'
+import { Navigation, Pagination } from 'swiper/modules'
 
 /** components */
+import { ArrowPrev, ArrowNext } from '@/components/ui/icons-outline'
 import { CategoryCard } from './card'
+import { useMediaQuery } from '@/libs/hooks/use-media-query'
 
 const items = [
   {
@@ -68,15 +78,61 @@ const items = [
 ]
 
 const CategorySlider = () => {
-  return (
-    <div className="relative">
-      <Swiper slidesPerView={3} spaceBetween={30} centeredSlides={false} modules={[Navigation]}>
+  const isMobile = useMediaQuery('(max-width: 768px)')
+  const prevRef = useRef<HTMLButtonElement>(null)
+  const nextRef = useRef<HTMLButtonElement>(null)
+  const paginationRef = useRef<HTMLDivElement>(null)
+
+  return isMobile ? (
+    <div className="grid grid-cols-2 gap-2.5">
+      {items.map((item, i) => (
+        <div key={i}>
+          <CategoryCard {...item} />
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div className="custom-slider relative space-y-14">
+      <Swiper
+        slidesPerView={3}
+        spaceBetween={30}
+        centeredSlides={false}
+        modules={[Pagination, Navigation]}
+        navigation={{
+          prevEl: prevRef.current,
+          nextEl: nextRef.current,
+        }}
+        pagination={{
+          type: 'progressbar',
+          el: paginationRef.current,
+        }}
+        className="!overflow-visible"
+        onInit={(swiper) => {
+          swiper.navigation.init()
+          swiper.navigation.update()
+          swiper.pagination.init()
+          swiper.pagination.render()
+          swiper.pagination.update()
+        }}
+      >
         {items.map((item, i) => (
           <SwiperSlide key={i}>
             <CategoryCard {...item} />
           </SwiperSlide>
         ))}
       </Swiper>
+
+      <div className="custom-navigation">
+        <div className="flex items-center gap-x-5">
+          <button ref={prevRef} className="nav-button">
+            <ArrowPrev />
+          </button>
+          <button ref={nextRef} className="nav-button">
+            <ArrowNext />
+          </button>
+        </div>
+        <div ref={paginationRef} className="custom-pagination" />
+      </div>
     </div>
   )
 }

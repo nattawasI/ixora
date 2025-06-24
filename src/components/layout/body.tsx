@@ -7,7 +7,7 @@ const Body = ({ className, ...props }: React.ComponentProps<'body'>) => {
   const bgColor = useBgColorByPathname()
 
   return (
-    <body className={cn('typo-body-1 flex min-h-svh flex-col text-black antialiased', bgColor, className)} {...props} />
+    <body className={cn('typo-body-1 flex min-h-dvh flex-col text-black antialiased', bgColor, className)} {...props} />
   )
 }
 

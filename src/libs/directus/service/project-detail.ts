@@ -7,6 +7,7 @@ import { mapCoverImage, mapMediaSource } from '@/libs/directus/util'
 import type { ProjectDetailResponse, ProjectResponse } from '@/libs/directus/type'
 
 const getProjectDetail = async ({ slug, category, isDraft }: { slug: string; category: string; isDraft: boolean }) => {
+  const filteredDraft = !isDraft ? { status: { _eq: 'published' } } : {}
   try {
     const data = await directus.request<ProjectResponse[]>(
       readItems('projects', {
@@ -14,14 +15,12 @@ const getProjectDetail = async ({ slug, category, isDraft }: { slug: string; cat
           slug: {
             _eq: slug,
           },
-          status: {
-            _eq: isDraft ? 'draft' : 'published',
-          },
           category: {
             slug: {
               _eq: category,
             },
           },
+          ...filteredDraft,
         },
         fields: [
           'id',

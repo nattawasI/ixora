@@ -1,4 +1,12 @@
-import { CategoryCard } from './category/card'
+/** styles */
+import 'swiper/css/navigation'
+
+/** swiper */
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation } from 'swiper/modules'
+
+/** components */
+import { CategoryCard } from './card'
 
 const items = [
   {
@@ -59,29 +67,18 @@ const items = [
   },
 ]
 
-const SlideWhatWeDo = () => {
+const CategorySlider = () => {
   return (
-    <div className="flex items-center">
-      <div className="c-container space-y-16">
-        <div className="grid grid-cols-12 gap-x-4 gap-y-2.5">
-          <div className="col-span-12 md:col-span-4">
-            <h2 className="typo-title-2 font-bold">WHAT WE DO</h2>
-          </div>
-          <div className="col-span-12 md:col-span-8">
-            <p className="typo-title-3">
-              We are dedicated to exploring the limitless possibilities of landscape architectural design, crafting
-              spaces that seamlessly integrate the beauty of nature with human needs.
-            </p>
-          </div>
-        </div>
-        <div className="grid grid-cols-2 gap-2.5">
-          {items.map((item, i) => (
-            <CategoryCard key={i} {...item} />
-          ))}
-        </div>
-      </div>
+    <div className="relative">
+      <Swiper slidesPerView={3} spaceBetween={30} centeredSlides={false} modules={[Navigation]}>
+        {items.map((item, i) => (
+          <SwiperSlide key={i}>
+            <CategoryCard {...item} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   )
 }
 
-export { SlideWhatWeDo }
+export { CategorySlider }
