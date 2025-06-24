@@ -35,12 +35,21 @@ const MobileAboutLayout = () => {
           autoHeight
           slidesPerView={1}
           spaceBetween={0}
+          pagination={pagination}
           modules={[Pagination]}
           className="h-full min-h-[calc(100vh-3.75rem)] w-full"
-          pagination={pagination}
           onInit={(swiper) => {
             swiper.pagination.init()
+            swiper.pagination.render()
             swiper.pagination.update()
+          }}
+          onSwiper={(swiper) => {
+            swiper.on('slideChange', () => {
+              window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+              })
+            })
           }}
         >
           <SwiperSlide>
