@@ -9,7 +9,8 @@
   --color-gray: #939598;
   --color-gray-light-1: #dcdcdc;
   --color-gray-light-2: #f6f6f6;
-
+  --spacing-15: 3.75rem;
+  --spacing-25: 6.25rem;
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
 
@@ -70,6 +71,10 @@
 
   #header {
     background-color: var(--bg-color, var(--color-white));
+  }
+
+  .fp-overflow {
+    @apply scrollbar-hidden;
   }
 }
 
@@ -217,6 +222,10 @@
     iframe {
       @apply aspect-video h-auto w-full;
     }
+  }
+
+  .about-page-container {
+    @apply max-lg:pt-15 max-lg:pb-4;
   }
 }
 

@@ -1,5 +1,6 @@
 import './globals.css'
 import { Montserrat } from 'next/font/google'
+import { cookies } from 'next/headers'
 
 /** components */
 import { Body } from '@/components/layout/body'
@@ -7,8 +8,6 @@ import { Header } from '@/components/layout/header'
 import { Preloader } from '@/components/layout/preloader'
 
 import type { Metadata } from 'next'
-import { cookies } from 'next/headers'
-import { Footer } from '@/components/layout/footer'
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -32,7 +31,6 @@ export default async function RootLayout({
         {hasVisited?.value !== 'true' ? <Preloader /> : null}
         <Header />
         <main className="flex-1">{children}</main>
-        <Footer />
       </Body>
     </html>
   )
