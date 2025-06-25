@@ -35,6 +35,7 @@ const MobileAboutLayout = () => {
           autoHeight
           slidesPerView={1}
           spaceBetween={0}
+          resistanceRatio={0}
           pagination={pagination}
           modules={[Pagination]}
           className="h-full min-h-[calc(100vh-3.75rem)] w-full"

@@ -2,9 +2,22 @@
 
 import { cn } from '@/libs/utils/cn'
 import { useState } from 'react'
+import { useSwiper } from 'swiper/react'
 
 const SlideWhoWeAre = () => {
   const [isShowMore, setIsShowMore] = useState(false)
+  const swiper = useSwiper()
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    setIsShowMore((prev) => !prev)
+
+    if (swiper) {
+      setTimeout(() => {
+        swiper.updateAutoHeight()
+      }, 0)
+    }
+  }
 
   return (
     <div className="c-container about-page-container relative">
@@ -34,7 +47,7 @@ const SlideWhoWeAre = () => {
           environment. We are committed to fostering a sustainable future for people, animals, and the planet.
         </p>
 
-        <button className="uppercase" type="button" onClick={() => setIsShowMore((prev) => !prev)}>
+        <button className="uppercase" type="button" onClick={handleClick}>
           {isShowMore ? 'SHOW LESS' : 'READ MORE'}
         </button>
       </div>
