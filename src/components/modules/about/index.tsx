@@ -5,11 +5,11 @@ import { useMediaQuery } from '@/libs/hooks/use-media-query'
 import { MobileAboutLayout } from './mobile'
 import { DesktopAboutLayout } from './desktop'
 
-const AboutPageContent = () => {
+const AboutPageContent = ({ licenseKey }: { licenseKey: string }) => {
   /** hooks */
   const isMobile = useMediaQuery('(max-width: 768px)')
 
-  return isMobile ? <MobileAboutLayout /> : <DesktopAboutLayout />
+  return isMobile ? <MobileAboutLayout /> : <DesktopAboutLayout licenseKey={licenseKey} />
 }
 
 export { AboutPageContent }

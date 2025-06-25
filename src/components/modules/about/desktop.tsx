@@ -7,11 +7,11 @@ import { SlideWhoWeAre } from './section-who-we-are'
 import { SlideWhatWeDo } from './section-what-we-do'
 import { SlideOurCommitment } from './section-our-commitment'
 
-const DesktopAboutLayout = () => {
+const DesktopAboutLayout = ({ licenseKey }: { licenseKey: string }) => {
   return (
     <ReactFullpage
       credits={{ enabled: false }}
-      licenseKey="xxxxxxxxxxxxxxxxxxxxxxxxx"
+      licenseKey={licenseKey}
       render={() => (
         <ReactFullpage.Wrapper>
           <div className="section pb-25">

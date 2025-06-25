@@ -29,7 +29,7 @@
 .custom-slider .custom-pagination .swiper-pagination-progressbar-fill {
   background-color: #3b82f6;
   height: 100%;
-  width: 0%;
+  width: 100%;
   transform-origin: left;
 }
 

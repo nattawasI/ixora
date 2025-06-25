@@ -84,7 +84,7 @@ const CategorySlider = () => {
   const paginationRef = useRef<HTMLDivElement>(null)
 
   return isMobile ? (
-    <div className="grid grid-cols-2 gap-2.5">
+    <div className="c-container grid grid-cols-2 gap-2.5">
       {items.map((item, i) => (
         <div key={i}>
           <CategoryCard {...item} />
@@ -92,7 +92,7 @@ const CategorySlider = () => {
       ))}
     </div>
   ) : (
-    <div className="custom-slider relative space-y-14">
+    <div className="custom-slider c-container relative space-y-14">
       <Swiper
         slidesPerView={3}
         spaceBetween={30}
