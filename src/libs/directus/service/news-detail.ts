@@ -7,16 +7,15 @@ import { mapCoverImage, mapMediaSource } from '@/libs/directus/util'
 import type { NewsResponse, NewsDetailResponse } from '@/libs/directus/type'
 
 const getNewsDetail = async ({ slug, isDraft }: { slug: string; isDraft: boolean }) => {
+  const filteredDraft = !isDraft ? { status: { _eq: 'published' } } : {}
   try {
     const data = await directus.request<NewsResponse[]>(
       readItems('news', {
         filter: {
-          status: {
-            _eq: isDraft ? 'draft' : 'published',
-          },
           slug: {
             _eq: slug,
           },
+          ...filteredDraft,
         },
         fields: [
           'id',
