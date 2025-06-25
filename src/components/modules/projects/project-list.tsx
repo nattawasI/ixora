@@ -37,6 +37,7 @@ const ProjectList = async ({ category }: { category: string }) => {
                       src: item.cover,
                       alt: item.title,
                       sizes: '100vw, (min-width: 768px) 33vw',
+                      priority: index <= 5,
                     }}
                     title={{
                       tag: 'h2',

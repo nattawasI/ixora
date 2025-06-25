@@ -20,9 +20,7 @@ const PressDetailModalContent = ({ initSlug }: { initSlug: string }) => {
   const [open, setOpen] = useState(false)
   const [index, setIndex] = useState(initIndex)
 
-  const pressDetailData = pressList[index]
-
-  if (!pressDetailData) {
+  if (index < 0) {
     return (
       <div className="bg-gray-light-2">
         <DialogTitle>News Not Found</DialogTitle>
@@ -31,8 +29,10 @@ const PressDetailModalContent = ({ initSlug }: { initSlug: string }) => {
   }
 
   const handleChangeIndex = (index: number) => {
+    const thisPressDetail = pressList[index]
+
     setIndex(index)
-    historyReplaceState(`/press-and-news/${pressDetailData.slug}`)
+    historyReplaceState(`/press-and-news/${thisPressDetail.slug}`)
     setOpen(false)
   }
 
@@ -48,6 +48,7 @@ const PressDetailModalContent = ({ initSlug }: { initSlug: string }) => {
     handleChangeIndex(pressList.findIndex((item) => item.slug === slug))
   }
 
+  const pressDetailData = pressList[index]
   const showPrevButton = index > 0
   const showNextButton = index < pressList.length - 1
 

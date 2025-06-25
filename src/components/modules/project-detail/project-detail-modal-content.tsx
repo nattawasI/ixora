@@ -20,9 +20,7 @@ const ProjectDetailModalContent = ({ initSlug }: { initSlug: string }) => {
   const [open, setOpen] = useState(false)
   const [index, setIndex] = useState(initIndex)
 
-  const projectDetailData = projectList[index]
-
-  if (!projectDetailData) {
+  if (index < 0) {
     return (
       <div className="bg-gray-light-2">
         <DialogTitle>News Not Found</DialogTitle>
@@ -31,8 +29,10 @@ const ProjectDetailModalContent = ({ initSlug }: { initSlug: string }) => {
   }
 
   const handleChangeIndex = (index: number) => {
+    const thisProjectDetail = projectList[index]
+
     setIndex(index)
-    historyReplaceState(`/projects/${projectDetailData.category.slug}/${projectDetailData.slug}`)
+    historyReplaceState(`/projects/${thisProjectDetail.category.slug}/${thisProjectDetail.slug}`)
     setOpen(false)
   }
 
@@ -48,6 +48,7 @@ const ProjectDetailModalContent = ({ initSlug }: { initSlug: string }) => {
     handleChangeIndex(projectList.findIndex((item) => item.slug === slug))
   }
 
+  const projectDetailData = projectList[index]
   const showPrevButton = index > 0
   const showNextButton = index < projectList.length - 1
 
