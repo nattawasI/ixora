@@ -1,34 +1,53 @@
 'use client'
 
-import ReactFullpage from '@fullpage/react-fullpage'
+import { useRef } from 'react'
+import ReactFullpage, { fullpageApi } from '@fullpage/react-fullpage'
 
 import { Footer } from '@/components/layout/footer'
+import { ChevronDown } from '@/components/ui/icons-color'
 import { SlideWhoWeAre } from './section-who-we-are'
 import { SlideWhatWeDo } from './section-what-we-do'
 import { SlideOurCommitment } from './section-our-commitment'
 
-const DesktopAboutLayout = ({ licenseKey }: { licenseKey: string }) => {
+const ChevronDownButton = ({ fullpageApi }: { fullpageApi: fullpageApi }) => {
   return (
-    <ReactFullpage
-      credits={{ enabled: false }}
-      licenseKey={licenseKey}
-      render={() => (
-        <ReactFullpage.Wrapper>
-          <div className="section pb-25">
-            <SlideWhoWeAre />
-          </div>
-          <div className="section pb-25">
-            <SlideWhatWeDo />
-          </div>
-          <div className="section pb-25">
-            <SlideOurCommitment />
-          </div>
-          <div className="section fp-auto-height">
-            <Footer />
-          </div>
-        </ReactFullpage.Wrapper>
-      )}
-    />
+    <button className="absolute bottom-25 left-1/2 z-50 -translate-x-1/2" onClick={() => fullpageApi.moveSectionDown()}>
+      <ChevronDown className="size-10" />
+    </button>
+  )
+}
+
+const DesktopAboutLayout = ({ licenseKey }: { licenseKey: string }) => {
+  const fp = useRef<ReactFullpage>(null)
+
+  return (
+    <div className="relative">
+      <ReactFullpage
+        credits={{ enabled: false }}
+        licenseKey={licenseKey}
+        ref={fp}
+        render={({ fullpageApi }) => {
+          return (
+            <ReactFullpage.Wrapper>
+              <section className="section pb-25">
+                <SlideWhoWeAre />
+                <ChevronDownButton fullpageApi={fullpageApi} />
+              </section>
+              <section className="section pb-25">
+                <SlideWhatWeDo />
+                <ChevronDownButton fullpageApi={fullpageApi} />
+              </section>
+              <section className="section pb-25">
+                <SlideOurCommitment />
+              </section>
+              <section className="section fp-auto-height">
+                <Footer />
+              </section>
+            </ReactFullpage.Wrapper>
+          )
+        }}
+      />
+    </div>
   )
 }
 

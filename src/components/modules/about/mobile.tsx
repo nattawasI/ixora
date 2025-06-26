@@ -13,7 +13,7 @@ import { cn } from '@/libs/utils/cn'
 
 const MobileAboutLayout = () => {
   return (
-    <div className="h-full">
+    <div className="custom-slider h-full">
       <div className="relative">
         <Swiper
           autoHeight
@@ -48,11 +48,12 @@ const MobileAboutLayout = () => {
         </Swiper>
         <div
           className={cn(
-            'absolute !bottom-10 !left-1/2 z-30 -translate-x-1/2',
+            'absolute bottom-10 left-1/2 z-30 -translate-x-1/2',
             'rounded-4xl bg-white/90 px-5 py-3 shadow-2xs',
-            'swiper-pagination flex !w-auto items-center gap-x-5',
           )}
-        ></div>
+        >
+          <div className="swiper-pagination flex items-center gap-x-5" />
+        </div>
       </div>
       <Footer />
     </div>

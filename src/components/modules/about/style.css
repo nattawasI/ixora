@@ -26,6 +26,11 @@
   overflow: hidden;
 }
 
+.custom-slider .swiper-pagination {
+  position: static;
+  width: auto;
+}
+
 .custom-slider .custom-pagination .swiper-pagination-progressbar-fill {
   background-color: #3b82f6;
   height: 100%;

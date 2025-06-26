@@ -1,21 +1,22 @@
 'use client'
 
 import parse from 'html-react-parser'
-// import { useSwiper } from 'swiper/react'
+import { useSwiper } from 'swiper/react'
 import { ReadMoreBlock } from '@/components/ui/read-more-block'
+import { useState } from 'react'
 
 const SlideWhoWeAre = () => {
-  // const swiper = useSwiper()
+  const [open, setOpen] = useState(false)
+  const swiper = useSwiper()
 
-  // const handleShowMore = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   e.stopPropagation()
-
-  //   if (swiper) {
-  //     setTimeout(() => {
-  //       swiper.updateAutoHeight()
-  //     }, 0)
-  //   }
-  // }
+  const handleShowMore = (open: boolean) => {
+    setOpen(open)
+    if (swiper) {
+      setTimeout(() => {
+        swiper.updateAutoHeight()
+      }, 0)
+    }
+  }
 
   return (
     <div className="c-container about-page-container relative">
@@ -40,6 +41,8 @@ const SlideWhoWeAre = () => {
           preservation and restoring balance to natural ecosystems. Ixora Design partners with clients to create
           exceptional landscapes that seamlessly integrate function, technology, and aesthetic design with the natural
           environment. We are committed to fostering a sustainable future for people, animals, and the planet.`)}
+          open={open}
+          onOpenChange={handleShowMore}
         />
       </div>
     </div>
