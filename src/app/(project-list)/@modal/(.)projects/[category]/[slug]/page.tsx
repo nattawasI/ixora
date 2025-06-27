@@ -5,7 +5,7 @@ export default async function ProjectDetailIntercepting({ params }: { params: Pr
   const { slug } = await params
 
   return (
-    <ArticleDetailModal>
+    <ArticleDetailModal contentSize="large">
       <ProjectDetailModalContent initSlug={slug} />
     </ArticleDetailModal>
   )

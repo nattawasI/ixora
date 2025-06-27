@@ -3,9 +3,18 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { PageModal, PageModalContent } from '@/components/ui/page-modal'
-import { PageModalButtonsMobile, PageModalClose, PageModalNext, PageModalPrev } from '@/components/ui/page-modal'
+import {
+  PageModalButtonsMobile,
+  PageModalClose,
+  PageModalNext,
+  PageModalPrev,
+  type PageModalContentProps,
+} from '@/components/ui/page-modal'
 
-const ArticleDetailModal = ({ children }: { children: React.ReactNode }) => {
+const ArticleDetailModal = ({
+  children,
+  contentSize,
+}: { children: React.ReactNode } & Pick<PageModalContentProps, 'contentSize'>) => {
   const router = useRouter()
 
   const [open, setOpen] = useState(true)
@@ -14,7 +23,7 @@ const ArticleDetailModal = ({ children }: { children: React.ReactNode }) => {
     <PageModal open={open} onOpenChange={setOpen}>
       <PageModalContent
         aria-describedby={undefined}
-        contentSize="small"
+        contentSize={contentSize}
         onAnimationEnd={() => {
           if (!open) {
             router.back()

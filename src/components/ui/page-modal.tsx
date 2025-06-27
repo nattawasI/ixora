@@ -8,6 +8,7 @@ import {
   DialogTitle,
   DialogDescription,
   DialogClose,
+  type DialogProps,
 } from '@radix-ui/react-dialog'
 import { buttonSquareVariants } from '@/components/ui/button-square'
 import { Close, ChevronLeft, ChevronRight } from '@/components/ui/icons-outline'
@@ -19,14 +20,11 @@ import {
 
 const PageModal = Dialog
 
-const PageModalContent = ({
-  contentSize,
-  onAnimationEnd,
-  children,
-  ...props
-}: {
+type PageModalContentProps = React.ComponentProps<typeof DialogContent> & {
   contentSize: 'small' | 'large'
-} & React.ComponentProps<typeof DialogContent>) => {
+}
+
+const PageModalContent = ({ contentSize, onAnimationEnd, children, ...props }: PageModalContentProps) => {
   return (
     <DialogPortal>
       <DialogOverlay
@@ -137,4 +135,6 @@ export {
   PageModalNext,
   PageModalClose,
   PageModalButtonsMobile,
+  type DialogProps as PageModalProps,
+  type PageModalContentProps,
 }
