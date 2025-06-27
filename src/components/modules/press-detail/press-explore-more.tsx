@@ -18,7 +18,7 @@ type PressExploreMoreProps = {
   onClickLink?: (slug: string) => void
 } & Pick<ExploreMoreCollapsibleProps, 'open' | 'onOpenChange'>
 
-const PressExploreMore = ({ isInModal, slug, onClickLink, ...props }: PressExploreMoreProps) => {
+const PressExploreMore = ({ isInModal, slug, onClickLink, open, onOpenChange }: PressExploreMoreProps) => {
   const { data, error } = useSWR<NewsResponse[]>(`/api/news-explore-more?slug=${slug}`, (url: string) =>
     fetch(url).then((res) => res.json()),
   )
@@ -33,7 +33,7 @@ const PressExploreMore = ({ isInModal, slug, onClickLink, ...props }: PressExplo
     <>
       {data.length > 0 ? (
         <section className={cn('max-lg:px-4 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
-          <ExploreMoreCollapsible {...props}>
+          <ExploreMoreCollapsible open={open} onOpenChange={onOpenChange}>
             <div className={cn('space-y-4 max-lg:pt-4 lg:space-y-5', isInModal ? 'lg:pb-12.5' : '')}>
               {data.map((item, index) => (
                 <a

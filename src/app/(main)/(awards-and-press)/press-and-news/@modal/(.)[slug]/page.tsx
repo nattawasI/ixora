@@ -7,7 +7,7 @@ export default async function PressAndNewsDetailIntercepting({
   const { slug } = await params
 
   return (
-    <ArticleDetailModal>
+    <ArticleDetailModal contentSize="small">
       <PressDetailModalContent initSlug={slug} />
     </ArticleDetailModal>
   )

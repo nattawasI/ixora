@@ -5,7 +5,7 @@ const AboutLayout = ({
 }: Readonly<{
   children: ReactNode
 }>) => {
-  return <>{children}</>
+  return <main>{children}</main>
 }
 
 export default AboutLayout

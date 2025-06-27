@@ -47,7 +47,11 @@ const ProjectDetailContent = ({ isInModal, data, exploreMore }: ProjectDetailCon
               </div>
             </div>
             <div className="flex flex-col gap-y-5 md:col-span-8 md:gap-y-7.5 md:pl-7.5">
-              <ReadMoreBlock contentLead={parse(data.content_lead)} contentMore={parse(data.content_more)} />
+              <ReadMoreBlock
+                contentLead={parse(data.content_lead)}
+                contentMore={parse(data.content_more)}
+                className="detail-content"
+              />
               <div>
                 <p className="typo-body-2">
                   Landscape Architect <span className="text-blue">•</span> <strong>{data.landscape_architect}</strong>

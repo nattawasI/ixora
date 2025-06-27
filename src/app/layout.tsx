@@ -30,7 +30,7 @@ export default async function RootLayout({
       <Body className={montserrat.className}>
         {hasVisited?.value !== 'true' ? <Preloader /> : null}
         <Header />
-        <main className="flex-1">{children}</main>
+        {children}
       </Body>
     </html>
   )
