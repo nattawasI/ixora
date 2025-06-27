@@ -17,14 +17,14 @@ const ChevronDownButton = ({ fullpageApi }: { fullpageApi: fullpageApi }) => {
   )
 }
 
-const DesktopAboutLayout = ({ licenseKey }: { licenseKey: string }) => {
+const DesktopAboutLayout = () => {
   const fp = useRef<ReactFullpage>(null)
 
   return (
     <div className="relative">
       <ReactFullpage
         credits={{ enabled: false }}
-        licenseKey={licenseKey}
+        licenseKey={process.env.NEXT_PUBLIC_FP_LICENSE_KEY as string}
         ref={fp}
         render={({ fullpageApi }) => {
           return (
