@@ -9,46 +9,36 @@ import { SlideWhoWeAre } from './section-who-we-are'
 import { SlideWhatWeDo } from './section-what-we-do'
 import { SlideOurCommitment } from './section-our-commitment'
 import { Footer } from '@/components/layout/footer'
-import { SwiperOptions } from 'swiper/types'
-import { useRef } from 'react'
 import { cn } from '@/libs/utils/cn'
 
 const MobileAboutLayout = () => {
-  /** ref */
-  const paginationRef = useRef<HTMLDivElement>(null)
-
-  /** swiper pagination options */
-  const pagination: SwiperOptions['pagination'] = {
-    el: paginationRef.current,
-    clickable: true,
-    renderBullet: function (_, className) {
-      return `<span class="${className}"></span>`
-    },
-    bulletClass: 'rounded-full size-2 border border-gray m-0 p-0',
-    bulletActiveClass: 'bg-blue border-blue',
-  }
-
   return (
-    <div className="h-full">
+    <div className="custom-slider h-full">
       <div className="relative">
         <Swiper
           autoHeight
           slidesPerView={1}
           spaceBetween={0}
-          pagination={pagination}
+          pagination={{
+            el: '.swiper-pagination',
+            clickable: true,
+            bulletClass: 'block shrink-0 rounded-full size-2 border border-gray m-0 p-0',
+            bulletActiveClass: 'bg-blue border-blue',
+          }}
           modules={[Pagination]}
           className="h-full min-h-[calc(100vh-3.75rem)] w-full"
-          onInit={(swiper) => {
-            swiper.pagination.init()
-            swiper.pagination.render()
-            swiper.pagination.update()
-          }}
           onSwiper={(swiper) => {
             swiper.on('slideChange', () => {
               window.scrollTo({
                 top: 0,
                 behavior: 'smooth',
               })
+            })
+          }}
+          onSlideChangeTransitionEnd={() => {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
             })
           }}
         >
@@ -68,7 +58,7 @@ const MobileAboutLayout = () => {
             'rounded-4xl bg-white/90 px-5 py-3 shadow-2xs',
           )}
         >
-          <div className="flex items-center gap-x-5" ref={paginationRef} />
+          <div className="swiper-pagination flex items-center gap-x-5" />
         </div>
       </div>
       <Footer />
