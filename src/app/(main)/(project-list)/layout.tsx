@@ -1,4 +1,3 @@
-import { Footer } from '@/components/layout/footer'
 import { ProjectCategoriesFilter } from '@/components/modules/projects/project-categories-filter'
 import { ProjectListProvider } from '@/components/modules/projects/project-list-context'
 
@@ -14,9 +13,8 @@ export default function ProjectListLayout({
       <div className="px-4 max-lg:pt-5 max-lg:pb-6 lg:px-10">
         <ProjectCategoriesFilter />
         {children}
-        <Footer />
-        {modal}
       </div>
+      {modal}
     </ProjectListProvider>
   )
 }

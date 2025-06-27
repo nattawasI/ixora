@@ -8,7 +8,7 @@ const MainLayout = ({
 }>) => {
   return (
     <>
-      {children}
+      <main className="flex-1">{children}</main>
       <Footer />
     </>
   )
