@@ -35,6 +35,12 @@ const MobileAboutLayout = () => {
               })
             })
           }}
+          onSlideChangeTransitionEnd={() => {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            })
+          }}
         >
           <SwiperSlide>
             <SlideWhoWeAre />

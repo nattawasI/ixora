@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger, CollapsibleProps } from '@radix-ui/react-collapsible'
 import { ChevronDown } from '@/components/ui/icons-color/chevron-down'
-import { motion } from 'motion/react'
+import { motion, type AnimationDefinition } from 'motion/react'
 import { cn } from '@/libs/utils/cn'
 
 type ReadMoreBlockProps = CollapsibleProps &
@@ -11,8 +11,9 @@ type ReadMoreBlockProps = CollapsibleProps &
     contentLead: React.ReactNode
     contentMore: React.ReactNode
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
+    onAnimationComplete?: (definition: AnimationDefinition) => void
   }
-const ReadMoreBlock = ({ contentLead, contentMore, ...props }: ReadMoreBlockProps) => {
+const ReadMoreBlock = ({ contentLead, contentMore, onAnimationComplete, ...props }: ReadMoreBlockProps) => {
   const [defaultOpenState, setDefaultOpenState] = useState<boolean>(false)
 
   const openState = props.open || defaultOpenState
@@ -29,6 +30,7 @@ const ReadMoreBlock = ({ contentLead, contentMore, ...props }: ReadMoreBlockProp
             opacity: openState ? 1 : 0,
           }}
           className="overflow-hidden"
+          onAnimationComplete={onAnimationComplete}
         >
           <div className="pt-5">{contentMore}</div>
         </motion.div>

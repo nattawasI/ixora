@@ -3,20 +3,22 @@
 import parse from 'html-react-parser'
 import { useSwiper } from 'swiper/react'
 import { ReadMoreBlock } from '@/components/ui/read-more-block'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const SlideWhoWeAre = () => {
   const [open, setOpen] = useState(false)
   const swiper = useSwiper()
 
-  const handleShowMore = (open: boolean) => {
-    setOpen(open)
-    if (swiper) {
+  useEffect(() => {
+    if (!open) {
       setTimeout(() => {
-        swiper.updateAutoHeight()
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        })
       }, 0)
     }
-  }
+  }, [open])
 
   return (
     <div className="c-container about-page-container relative">
@@ -43,7 +45,10 @@ const SlideWhoWeAre = () => {
           exceptional landscapes that seamlessly integrate function, technology, and aesthetic design with the natural
           environment. We are committed to fostering a sustainable future for people, animals, and the planet.`)}
             open={open}
-            onOpenChange={handleShowMore}
+            onOpenChange={setOpen}
+            onAnimationComplete={() => {
+              swiper.updateAutoHeight()
+            }}
           />
         </div>
       </div>
