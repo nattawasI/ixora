@@ -1,12 +1,12 @@
 'use client'
 
-import parse from 'html-react-parser'
+import { useState, useEffect } from 'react'
 import { useSwiper } from 'swiper/react'
 import { ReadMoreBlock } from '@/components/ui/read-more-block'
-import { useState, useEffect } from 'react'
 
 const SlideWhoWeAre = () => {
   const [open, setOpen] = useState(false)
+
   const swiper = useSwiper()
 
   useEffect(() => {
@@ -32,18 +32,28 @@ const SlideWhoWeAre = () => {
             </h3>
           </div>
           <ReadMoreBlock
-            contentLead={parse(`
-          <span className="font-bold">IXORA DESIGN</span> was founded in 2003, Ixora Design emerged from the
-          collaborative vision of four seasoned landscape architects with a wealth of international experience spanning
-          Thailand, Asia, Australia, and the United States. Driven by a passion to elevate the profession, our dynamic
-          team is committed to delivering innovative and <span className="font-bold">sustainable landscape solutions</span>`)}
-            contentMore={parse(`Over two decades, Ixora Design has not only delivered commercially successful projects but has also cultivated 
-          <span className="font-bold">a deep expertise in sustainable design</span>. Through experimental projects,
-          design competitions, and collaborations with educational, public, and private sectors, we translate ecological
-          design theories into practical, sustainable and impactful solutions. We are dedicated to environmental
-          preservation and restoring balance to natural ecosystems. Ixora Design partners with clients to create
-          exceptional landscapes that seamlessly integrate function, technology, and aesthetic design with the natural
-          environment. We are committed to fostering a sustainable future for people, animals, and the planet.`)}
+            contentLead={
+              <p>
+                <span className="font-bold">IXORA DESIGN</span> was founded in 2003, Ixora Design emerged from the
+                collaborative vision of four seasoned landscape architects with a wealth of international experience
+                spanning Thailand, Asia, Australia, and the United States. Driven by a passion to elevate the
+                profession, our dynamic team is committed to delivering innovative and
+                <span className="font-bold">sustainable landscape solutions</span>
+              </p>
+            }
+            contentMore={
+              <p>
+                Over two decades, Ixora Design has not only delivered commercially successful projects but has also
+                cultivated
+                <span className="font-bold">a deep expertise in sustainable design</span>. Through experimental
+                projects, design competitions, and collaborations with educational, public, and private sectors, we
+                translate ecological design theories into practical, sustainable and impactful solutions. We are
+                dedicated to environmental preservation and restoring balance to natural ecosystems. Ixora Design
+                partners with clients to create exceptional landscapes that seamlessly integrate function, technology,
+                and aesthetic design with the natural environment. We are committed to fostering a sustainable future
+                for people, animals, and the planet.
+              </p>
+            }
             open={open}
             onOpenChange={setOpen}
             onAnimationComplete={() => {
