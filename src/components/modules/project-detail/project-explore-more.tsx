@@ -18,7 +18,14 @@ type ProjectExploreMoreProps = {
   onClickLink?: (slug: string) => void
 } & Pick<ExploreMoreCollapsibleProps, 'open' | 'onOpenChange'>
 
-const ProjectExploreMore = ({ isInModal, category, slug, onClickLink, ...props }: ProjectExploreMoreProps) => {
+const ProjectExploreMore = ({
+  isInModal,
+  category,
+  slug,
+  onClickLink,
+  open,
+  onOpenChange,
+}: ProjectExploreMoreProps) => {
   const { data, error } = useSWR<ProjectResponse[]>(
     `/api/projects-explore-more?category=${category}&slug=${slug}`,
     (url: string) => fetch(url).then((res) => res.json()),
@@ -35,7 +42,7 @@ const ProjectExploreMore = ({ isInModal, category, slug, onClickLink, ...props }
     <>
       {data.length > 0 ? (
         <section className={cn('max-lg:px-4 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
-          <ExploreMoreCollapsible {...props}>
+          <ExploreMoreCollapsible open={open} onOpenChange={onOpenChange}>
             <div className={cn('grid gap-2.5 max-lg:pt-4 md:grid-cols-3', isInModal ? 'lg:pb-10' : 'md:pb-7.5')}>
               {data.map((item, index) => (
                 <a
