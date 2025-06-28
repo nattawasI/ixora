@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react'
+import { ComponentProps, useState } from 'react'
 import { cn } from '@/libs/utils/cn'
 import {
   Dialog,
@@ -25,16 +25,19 @@ type PageModalContentProps = React.ComponentProps<typeof DialogContent> & {
 }
 
 const PageModalContent = ({ contentSize, onAnimationEnd, children, ...props }: PageModalContentProps) => {
+  const [animated, setAnimated] = useState(false)
   return (
     <DialogPortal>
       <DialogOverlay
         id="page-dialog-overlay"
         className={cn(
-          'scrollbar-hidden fixed inset-0 z-30 overflow-y-auto bg-black/70',
+          'fixed inset-0 z-30 bg-black/70',
+          animated ? 'scrollbar-hidden overflow-y-auto' : 'overflow-hidden',
           'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 duration-300',
         )}
         onAnimationEnd={(e) => {
           if (e.target !== e.currentTarget) return
+          setAnimated(true)
           onAnimationEnd?.(e)
         }}
       >
