@@ -10,10 +10,17 @@ type ReadMoreBlockProps = CollapsibleProps &
   React.ComponentProps<'div'> & {
     contentLead: React.ReactNode
     contentMore: React.ReactNode
+    contentMoreRef?: React.Ref<HTMLDivElement>
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
     onAnimationComplete?: (definition: AnimationDefinition) => void
   }
-const ReadMoreBlock = ({ contentLead, contentMore, onAnimationComplete, ...props }: ReadMoreBlockProps) => {
+const ReadMoreBlock = ({
+  contentLead,
+  contentMore,
+  contentMoreRef,
+  onAnimationComplete,
+  ...props
+}: ReadMoreBlockProps) => {
   const [defaultOpenState, setDefaultOpenState] = useState<boolean>(false)
 
   const openState = props.open || defaultOpenState
@@ -32,7 +39,9 @@ const ReadMoreBlock = ({ contentLead, contentMore, onAnimationComplete, ...props
           className="overflow-hidden"
           onAnimationComplete={onAnimationComplete}
         >
-          <div className="pt-5">{contentMore}</div>
+          <div className="pt-5" ref={contentMoreRef}>
+            {contentMore}
+          </div>
         </motion.div>
       </CollapsibleContent>
       <CollapsibleTrigger className="typo-body-3 text-gray mt-4 inline-flex items-center gap-x-1.25 font-bold uppercase">

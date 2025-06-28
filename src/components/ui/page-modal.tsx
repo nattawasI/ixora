@@ -31,14 +31,16 @@ const PageModalContent = ({ contentSize, onAnimationEnd, children, ...props }: P
         id="page-dialog-overlay"
         className={cn(
           'scrollbar-hidden fixed inset-0 z-30 overflow-y-auto bg-black/70',
-          'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+          'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 duration-300',
         )}
-        onAnimationEnd={onAnimationEnd}
+        onAnimationEnd={(e) => {
+          if (e.target !== e.currentTarget) return
+          onAnimationEnd?.(e)
+        }}
       >
         <DialogContent
           id="page-dialog-content"
           className={cn(
-            'group',
             contentSize === 'large' ? 'article-detail-container-large' : 'article-detail-container-small',
             'outline-none max-lg:mt-[3.75rem] max-lg:h-[calc(100svh-3.75rem)] lg:my-[5.625rem]',
           )}

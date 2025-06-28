@@ -28,7 +28,7 @@ const staggerItemVariants: Variants = {
 
 export const MotionStaggerRoot = ({ children }: { children: React.ReactElement }) => {
   return (
-    <MotionSlot variants={staggerRootVariants} initial="initial" whileInView="animate">
+    <MotionSlot variants={staggerRootVariants} initial="initial" animate="animate">
       {children}
     </MotionSlot>
   )
