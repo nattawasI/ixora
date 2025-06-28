@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import ReactFullpage, {type fullpageApi} from '@fullpage/react-fullpage'
+import ReactFullpage, { type fullpageApi } from '@fullpage/react-fullpage'
 
 import { Footer } from '@/components/layout/footer'
 import { ChevronDown } from '@/components/ui/icons-color'
@@ -10,16 +10,25 @@ import { SlideWhatWeDo } from './section-what-we-do'
 import { SlideOurCommitment } from './section-our-commitment'
 
 interface FullpageInstance {
-  fullpageApi: fullpageApi;
+  fullpageApi: fullpageApi
 }
 
-const ChevronDownButton = ({ hideButton, fpRef }: { hideButton: boolean; fpRef: React.RefObject<FullpageInstance | null>  }) => {
+const ChevronDownButton = ({
+  hideButton,
+  fpRef,
+}: {
+  hideButton: boolean
+  fpRef: React.RefObject<FullpageInstance | null>
+}) => {
   return (
-    !hideButton && <button className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2" onClick={() =>
-      fpRef.current?.fullpageApi.moveSectionDown()
-    }>
-      <ChevronDown className="size-10" />
-    </button>
+    !hideButton && (
+      <button
+        className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2"
+        onClick={() => fpRef.current?.fullpageApi.moveSectionDown()}
+      >
+        <ChevronDown className="size-10" />
+      </button>
+    )
   )
 }
 

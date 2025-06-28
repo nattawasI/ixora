@@ -26,23 +26,23 @@ const SlideWhoWeAre = () => {
         <div className="col-span-12 space-y-7 md:col-span-9 md:col-start-4">
           <div className="space-y-5">
             <h2 className="typo-title-2 font-bold">WHO WE AREA</h2>
-            <h3 className="typo-body-2 md:typo-title-3">
+            <h3 className="about-excerpt">
               We are dedicated to exploring the limitless possibilities of landscape architectural design, crafting
               spaces that seamlessly integrate the beauty of nature with human needs.
             </h3>
           </div>
           <ReadMoreBlock
             contentLead={
-              <p>
+              <p className="typo-body-2">
                 <span className="font-bold">IXORA DESIGN</span> was founded in 2003, Ixora Design emerged from the
                 collaborative vision of four seasoned landscape architects with a wealth of international experience
                 spanning Thailand, Asia, Australia, and the United States. Driven by a passion to elevate the
-                profession, our dynamic team is committed to delivering innovative and
+                profession, our dynamic team is committed to delivering innovative and&nbsp;
                 <span className="font-bold">sustainable landscape solutions</span>
               </p>
             }
             contentMore={
-              <p>
+              <p className="typo-body-2">
                 Over two decades, Ixora Design has not only delivered commercially successful projects but has also
                 cultivated
                 <span className="font-bold">a deep expertise in sustainable design</span>. Through experimental

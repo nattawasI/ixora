@@ -226,6 +226,10 @@
 
   .about-page-container {
     @apply max-lg:pt-15 max-lg:pb-4;
+
+    .about-excerpt {
+      @apply text-[0.813rem] leading-[1.125rem] md:text-[1.313rem] md:leading-[1.938rem];
+    }
   }
 }
 
