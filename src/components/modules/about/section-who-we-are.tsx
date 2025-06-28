@@ -21,7 +21,7 @@ const SlideWhoWeAre = () => {
   }, [open])
 
   return (
-    <div className="c-container about-page-container relative">
+    <div className="c-container-sm about-page-container relative">
       <div className="grid grid-cols-12">
         <div className="col-span-12 space-y-7 md:col-span-9 md:col-start-4">
           <div className="space-y-5">

@@ -43,6 +43,7 @@ export const getProjectByCategory = async ({ category }: { category: CategoryTyp
         'gallery.directus_files_id.filesize',
         'gallery.directus_files_id.title',
         'video.*',
+        'video.item.*',
         'video.item.video.id',
         'video.item.video.filename_disk',
         'video.item.video.filename_download',
