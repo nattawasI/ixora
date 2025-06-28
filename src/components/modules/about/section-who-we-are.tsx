@@ -57,7 +57,7 @@ const SlideWhoWeAre = () => {
             open={open}
             onOpenChange={setOpen}
             onAnimationComplete={() => {
-              swiper.updateAutoHeight()
+              swiper?.updateAutoHeight()
             }}
           />
         </div>
