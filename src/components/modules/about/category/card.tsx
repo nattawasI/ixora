@@ -42,7 +42,8 @@ const CategoryCard = ({ title, description, href, image }: CategoryCardProps) =>
         <Image
           {...image}
           alt={title}
-          fill
+          width={360}
+          height={480}
           className={cn('scale-100 object-cover object-center transition-transform duration-300', {
             'scale-110': isHovered,
           })}

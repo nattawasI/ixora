@@ -61,7 +61,7 @@ const CardAward = ({
           <ReadMoreBlock
             className="typo-body-2"
             contentLead={parse(descriptionLead)}
-            contentMore={parse(descriptionMore)}
+            contentMore={<div className="pt-5">{parse(descriptionMore)}</div>}
           />
         ) : descriptionLead || descriptionMore ? (
           <div className="typo-body-2">{parse(descriptionLead || descriptionMore)}</div>

@@ -1,9 +1,9 @@
 import { ButtonArrow } from '@/components/ui/button-arrow'
 import Link from 'next/link'
 
-const SlideOurCommitment = () => {
+const SectionOurCommitment = () => {
   return (
-    <div className="c-container about-page-container space-y-16">
+    <div className="c-container-sm about-page-container space-y-16">
       <div className="grid grid-cols-12 gap-y-20">
         <div className="col-span-12 space-y-5 md:col-span-9 md:col-start-4">
           <h2 className="typo-title-2 font-bold">OUR COMMITMENT</h2>
@@ -23,4 +23,4 @@ const SlideOurCommitment = () => {
   )
 }
 
-export { SlideOurCommitment }
+export { SectionOurCommitment }

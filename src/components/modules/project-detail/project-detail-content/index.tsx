@@ -49,7 +49,7 @@ const ProjectDetailContent = ({ isInModal, data, exploreMore }: ProjectDetailCon
             <div className="flex flex-col gap-y-5 md:col-span-8 md:gap-y-7.5 md:pl-7.5">
               <ReadMoreBlock
                 contentLead={parse(data.content_lead)}
-                contentMore={parse(data.content_more)}
+                contentMore={<div className="pt-5">{parse(data.content_more)}</div>}
                 className="detail-content"
               />
               <div>

@@ -5,9 +5,9 @@ import ReactFullpage, { type fullpageApi } from '@fullpage/react-fullpage'
 
 import { Footer } from '@/components/layout/footer'
 import { ChevronDown } from '@/components/ui/icons-color'
-import { SlideWhoWeAre } from './section-who-we-are'
-import { SlideWhatWeDo } from './section-what-we-do'
-import { SlideOurCommitment } from './section-our-commitment'
+import { SectionWhoWeAre } from './section-who-we-are'
+import { SectionWhatWeDo } from './section-what-we-do'
+import { SectionOurCommitment } from './section-our-commitment'
 
 interface FullpageInstance {
   fullpageApi: fullpageApi
@@ -51,13 +51,13 @@ const DesktopAboutLayout = () => {
           return (
             <ReactFullpage.Wrapper>
               <section className="section pb-25">
-                <SlideWhoWeAre />
+                <SectionWhoWeAre />
               </section>
               <section className="section pb-25">
-                <SlideWhatWeDo />
+                <SectionWhatWeDo />
               </section>
               <section className="section pb-25">
-                <SlideOurCommitment />
+                <SectionOurCommitment />
               </section>
               <section className="section fp-auto-height">
                 <Footer />

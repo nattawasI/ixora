@@ -5,9 +5,9 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination } from 'swiper/modules'
 
 /** components */
-import { SlideWhoWeAre } from './section-who-we-are'
-import { SlideWhatWeDo } from './section-what-we-do'
-import { SlideOurCommitment } from './section-our-commitment'
+import { SectionWhoWeAre } from './section-who-we-are'
+import { SectionWhatWeDo } from './section-what-we-do'
+import { SectionOurCommitment } from './section-our-commitment'
 import { Footer } from '@/components/layout/footer'
 import { cn } from '@/libs/utils/cn'
 
@@ -42,14 +42,14 @@ const MobileAboutLayout = () => {
             })
           }}
         >
-          <SwiperSlide>
-            <SlideWhoWeAre />
+          <SwiperSlide className="min-h-[calc(100vh-3.75rem)]">
+            <SectionWhoWeAre />
           </SwiperSlide>
-          <SwiperSlide>
-            <SlideWhatWeDo />
+          <SwiperSlide className="min-h-[calc(100vh-3.75rem)]">
+            <SectionWhatWeDo />
           </SwiperSlide>
-          <SwiperSlide>
-            <SlideOurCommitment />
+          <SwiperSlide className="min-h-[calc(100vh-3.75rem)]">
+            <SectionOurCommitment />
           </SwiperSlide>
         </Swiper>
         <div
