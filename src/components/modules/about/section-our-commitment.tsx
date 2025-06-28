@@ -15,9 +15,11 @@ const SectionOurCommitment = () => {
             These accolades highlight our dedication to pushing the boundaries of landscape architecture.
           </p>
         </div>
-        <Link href="/awards" className="col-span-12 md:col-span-9 md:col-start-4">
-          <ButtonArrow>Award & Press</ButtonArrow>
-        </Link>
+        <div className="col-span-12 md:col-span-9 md:col-start-4">
+          <Link href="/awards">
+            <ButtonArrow>Award & Press</ButtonArrow>
+          </Link>
+        </div>
       </div>
     </div>
   )
