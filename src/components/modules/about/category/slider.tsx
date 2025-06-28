@@ -92,7 +92,7 @@ const CategorySlider = () => {
       ))}
     </div>
   ) : (
-    <div className="custom-slider c-container relative space-y-14">
+    <div className="custom-slider c-container-sm relative space-y-14">
       <Swiper
         slidesPerView={3}
         spaceBetween={30}

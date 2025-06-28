@@ -2,8 +2,8 @@ import { CategorySlider } from './category/slider'
 
 const SectionWhatWeDo = () => {
   return (
-    <div className="space-y-16 pt-15 pb-4">
-      <div className="c-container">
+    <div className="space-y-16 overflow-hidden pt-15 pb-4">
+      <div className="c-container-sm">
         <div className="grid grid-cols-12 gap-2.5">
           <div className="col-span-12 lg:col-span-4">
             <h2 className="typo-title-2 font-bold">WHAT WE DO</h2>

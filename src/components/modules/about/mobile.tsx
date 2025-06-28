@@ -42,13 +42,13 @@ const MobileAboutLayout = () => {
             })
           }}
         >
-          <SwiperSlide>
+          <SwiperSlide className="min-h-[calc(100vh-3.75rem)]">
             <SectionWhoWeAre />
           </SwiperSlide>
-          <SwiperSlide>
+          <SwiperSlide className="min-h-[calc(100vh-3.75rem)]">
             <SectionWhatWeDo />
           </SwiperSlide>
-          <SwiperSlide>
+          <SwiperSlide className="min-h-[calc(100vh-3.75rem)]">
             <SectionOurCommitment />
           </SwiperSlide>
         </Swiper>
