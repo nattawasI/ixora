@@ -5,9 +5,9 @@ import ReactFullpage, { fullpageApi } from '@fullpage/react-fullpage'
 
 import { Footer } from '@/components/layout/footer'
 import { ChevronDown } from '@/components/ui/icons-color'
-import { SlideWhoWeAre } from './section-who-we-are'
-import { SlideWhatWeDo } from './section-what-we-do'
-import { SlideOurCommitment } from './section-our-commitment'
+import { SectionWhoWeAre } from './section-who-we-are'
+import { SectionWhatWeDo } from './section-what-we-do'
+import { SectionOurCommitment } from './section-our-commitment'
 
 const ChevronDownButton = ({ fullpageApi }: { fullpageApi: fullpageApi }) => {
   return (
@@ -30,15 +30,15 @@ const DesktopAboutLayout = () => {
           return (
             <ReactFullpage.Wrapper>
               <section className="section pb-25">
-                <SlideWhoWeAre />
+                <SectionWhoWeAre isDesktop />
                 <ChevronDownButton fullpageApi={fullpageApi} />
               </section>
               <section className="section pb-25">
-                <SlideWhatWeDo />
+                <SectionWhatWeDo />
                 <ChevronDownButton fullpageApi={fullpageApi} />
               </section>
               <section className="section pb-25">
-                <SlideOurCommitment />
+                <SectionOurCommitment />
               </section>
               <section className="section fp-auto-height">
                 <Footer />

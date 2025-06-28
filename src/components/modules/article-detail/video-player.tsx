@@ -16,7 +16,7 @@ const VideoPlayer = ({ src }: { src: string }) => {
   }
 
   return (
-    <div className="relative aspect-[1.47]">
+    <div className="relative aspect-video">
       <video
         ref={videoRef}
         className="size-full object-cover object-center"

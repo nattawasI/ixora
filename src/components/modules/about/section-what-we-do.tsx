@@ -1,6 +1,6 @@
 import { CategorySlider } from './category/slider'
 
-const SlideWhatWeDo = () => {
+const SectionWhatWeDo = () => {
   return (
     <div className="space-y-16 overflow-hidden pt-15 pb-4">
       <div className="c-container-sm">
@@ -22,4 +22,4 @@ const SlideWhatWeDo = () => {
   )
 }
 
-export { SlideWhatWeDo }
+export { SectionWhatWeDo }

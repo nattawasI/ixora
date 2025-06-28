@@ -9,7 +9,11 @@ const AboutPageContent = () => {
   /** hooks */
   const isMobile = useMediaQuery('(max-width: 768px)')
 
-  return isMobile ? <MobileAboutLayout /> : <DesktopAboutLayout />
+  return (
+    <main className={isMobile === undefined ? 'invisible' : ''}>
+      {isMobile ? <MobileAboutLayout /> : <DesktopAboutLayout />}
+    </main>
+  )
 }
 
 export { AboutPageContent }
