@@ -226,6 +226,26 @@
 
   .about-page-container {
     @apply max-lg:pt-15 max-lg:pb-4;
+
+    .about-excerpt {
+      @apply text-[0.813rem] leading-[1.125rem] md:text-[1.313rem] md:leading-[1.938rem];
+    }
+
+    .about-category-card {
+      @apply space-y-1;
+
+      .title {
+        @apply text-[0.813rem] leading-[1.125rem] font-bold text-white md:text-[1.125rem] md:leading-[1.688rem] lg:text-[1.313rem] lg:leading-[1.938rem];
+      }
+
+      .description {
+        @apply mt-1 overflow-hidden text-[0.625rem] leading-[1rem] font-bold text-white md:text-[0.813rem] md:leading-[1.125rem];
+      }
+
+      .button {
+        @apply text-[0.625rem] leading-[1rem] font-bold text-white md:text-[0.813rem] md:leading-[1.125rem];
+      }
+    }
   }
 }
 

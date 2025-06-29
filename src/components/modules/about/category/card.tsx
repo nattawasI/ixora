@@ -35,7 +35,7 @@ const CategoryCard = ({ title, description, href, image }: CategoryCardProps) =>
     <motion.div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative aspect-[3/4] overflow-hidden"
+      className="about-category-card relative aspect-[3/4] overflow-hidden"
     >
       <Link href={href} className="absolute inset-0 z-20">
         <div className={cn('absolute inset-0 z-10 bg-black/30 transition-colors', { 'bg-black/10': isHovered })} />
@@ -48,13 +48,10 @@ const CategoryCard = ({ title, description, href, image }: CategoryCardProps) =>
             'scale-110': isHovered,
           })}
         />
-        <div className="absolute right-0 bottom-0 left-0 z-10 space-y-1 p-3 md:space-y-4 md:p-7">
-          <div className="space-y-1">
-            <h3 className="md:typo-title-3 typo-body-2 font-bold text-white">{title}</h3>
-            <motion.p
-              className="md:typo-body-2 typo-body-3 overflow-hidden font-bold text-white"
-              animate={{ height: isHovered ? 'auto' : 0 }}
-            >
+        <div className="absolute right-0 bottom-0 left-0 z-10 space-y-1 p-3 md:space-y-3 md:p-7">
+          <div className="overflow-hidden">
+            <h3 className="title">{title}</h3>
+            <motion.p className="description" animate={{ height: isHovered ? 'auto' : 0 }}>
               {description}
             </motion.p>
           </div>
@@ -65,15 +62,15 @@ const CategoryCard = ({ title, description, href, image }: CategoryCardProps) =>
           >
             <motion.span
               className={cn(
-                'border-blue flex size-8 items-center justify-center rounded-full border transition-colors',
+                'border-blue flex size-5 items-center justify-center rounded-full border transition-colors md:size-7',
                 {
                   'bg-blue': isHovered,
                 },
               )}
             >
-              <ArrowRight />
+              <ArrowRight className="max-md:size-3" />
             </motion.span>
-            <span className="md:typo-body-2 typo-body-3">Learn More</span>
+            <span className="button">Learn More</span>
           </motion.p>
         </div>
       </Link>

@@ -3,9 +3,9 @@
   align-items: center;
   gap: 0 20px;
 }
-.custom-slider .custom-pagination {
+.custom-slider .custom-pagination.swiper-pagination-horizontal {
   flex: 1;
-  height: 3px;
+  height: 2px;
   background-color: #eee;
   position: relative;
   overflow: hidden;
