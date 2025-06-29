@@ -79,28 +79,58 @@
 }
 
 @layer components {
-  .typo-title-1 {
-    @apply text-[1.625rem] leading-[2.188rem] lg:text-[2.25rem] lg:leading-[2.875rem];
+  .typo-title-1,
+  .typo-title-1--rps {
+    @apply text-[1.625rem] leading-[2.188rem];
   }
 
-  .typo-title-2 {
-    @apply text-[1.25rem] leading-[1.813rem] lg:text-[1.625rem] lg:leading-[2.25rem];
+  .typo-title-1--rps {
+    @apply lg:text-[2.25rem] lg:leading-[2.875rem];
   }
 
-  .typo-title-3 {
-    @apply text-[1.125rem] leading-[1.688rem] lg:text-[1.313rem] lg:leading-[1.938rem];
+  .typo-title-2,
+  .typo-title-2--rps {
+    @apply text-[1.25rem] leading-[1.813rem];
+  }
+
+  .typo-title-2--rps {
+    @apply lg:text-[1.625rem] lg:leading-[2.25rem];
+  }
+
+  .typo-title-3,
+  .typo-title-3--rps {
+    @apply text-[1.125rem] leading-[1.688rem];
+  }
+
+  .typo-title-3--rps {
+    @apply lg:text-[1.313rem] lg:leading-[1.938rem];
   }
 
   .typo-body-1 {
     @apply text-[0.938rem] leading-[1.563rem];
   }
 
-  .typo-body-2 {
+  .typo-body-2,
+  .typo-body-2--1,
+  .typo-body-2--title-3 {
     @apply text-[0.813rem] leading-[1.125rem];
   }
 
-  .typo-body-3 {
+  .typo-body-2--1 {
+    @apply lg:text-[0.938rem] lg:leading-[1.563rem];
+  }
+
+  .typo-body-2--title-3 {
+    @apply lg:text-[1.125rem] lg:leading-[1.688rem];
+  }
+
+  .typo-body-3,
+  .typo-body-3--2 {
     @apply text-[0.625rem] leading-[1rem];
+  }
+
+  .typo-body-3--2 {
+    @apply lg:text-[0.813rem] lg:leading-[1.125rem];
   }
 
   .card-hover-image {
@@ -151,7 +181,7 @@
     }
   }
 
-  .detail-content {
+  .cms-content {
     .title-1,
     .title-1-bold {
       @apply text-[1.625rem] leading-[2.188rem] lg:text-[2.25rem] lg:leading-[2.875rem];
@@ -188,7 +218,7 @@
     .body-1-bold,
     .body-2-bold,
     .body-3-bold {
-      @apply font-bold;
+      @apply font-semibold;
     }
 
     ul {

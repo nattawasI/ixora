@@ -3,7 +3,7 @@ import { cn } from '@/libs/utils/cn'
 import { cva, type VariantProps } from 'class-variance-authority'
 
 const buttonSquareVariants = cva(
-  cn('typo-body-2 flex size-11.5 items-center justify-center gap-x-2.5 font-bold transition-colors duration-300'),
+  cn('typo-body-2 flex size-11.5 items-center justify-center gap-x-2.5 font-semibold transition-colors duration-300'),
   {
     variants: {
       theme: {

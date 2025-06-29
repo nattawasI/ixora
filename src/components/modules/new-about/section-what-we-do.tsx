@@ -65,7 +65,7 @@ const SlideWhatWeDo = () => {
       <div className="c-container space-y-16">
         <div className="grid grid-cols-12 gap-x-4 gap-y-2.5">
           <div className="col-span-12 md:col-span-4">
-            <h2 className="typo-title-2 font-bold">WHAT WE DO</h2>
+            <h2 className="typo-title-2--rps font-semibold">WHAT WE DO</h2>
           </div>
           <div className="col-span-12 md:col-span-8">
             <p className="typo-title-3">

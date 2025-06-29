@@ -4,7 +4,7 @@ const ProjectDetailContentLoading = () => {
   return (
     <div className="space-y-5">
       <div className="space-y-2.5 lg:mb-[3.75rem]">
-        <TextSkeleton variant="typo-title-1" className="w-1/2" />
+        <TextSkeleton variant="typo-title-1--rps" className="w-1/2" />
         <TextSkeleton variant="typo-body-2" className="w-[9.375rem]" />
       </div>
       <div className="grid max-md:gap-y-5 md:grid-cols-12 md:gap-x-7.5">

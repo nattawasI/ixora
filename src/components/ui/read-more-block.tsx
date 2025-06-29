@@ -35,7 +35,7 @@ const ReadMoreBlock = ({ contentLead, contentMore, onAnimationComplete, ...props
           {contentMore}
         </motion.div>
       </CollapsibleContent>
-      <CollapsibleTrigger className="typo-body-3 text-gray mt-4 inline-flex items-center gap-x-1.25 font-bold uppercase">
+      <CollapsibleTrigger className="typo-body-3 text-gray mt-4 inline-flex items-center gap-x-1.25 font-semibold uppercase">
         <span>{openState ? 'SHOW LESS' : 'READ MORE'}</span>
         <ChevronDown className={cn('-mt-0.5 transition-transform duration-300', openState ? 'rotate-180' : '')} />
       </CollapsibleTrigger>

@@ -31,8 +31,8 @@ export default function Career() {
       <div className="relative flex h-[37.5rem] items-center justify-center bg-[url('/images/career/how-to-apply-portrait.jpg')] bg-cover bg-center lg:h-[40rem] lg:bg-[url('/images/career/how-to-apply-landscape.jpg')] lg:bg-cover lg:bg-center">
         <div className="c-container-sm">
           <div className="min-h-[25rem] bg-black/70 p-10 lg:grid lg:grid-cols-2 lg:p-[3.75rem]">
-            <h2 className="typo-title-2 text-blue-2 uppercase max-lg:mb-5">
-              HOW TO <span className="text-blue font-bold">APPLY</span>
+            <h2 className="typo-title-2--rps text-blue-2 uppercase max-lg:mb-5">
+              HOW TO <span className="text-blue font-semibold">APPLY</span>
             </h2>
             <div className="flex flex-col">
               <div className="flex-1">

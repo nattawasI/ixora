@@ -5,7 +5,7 @@ const SlideOurCommitment = () => {
   return (
     <div className="c-container space-y-16">
       <div className="space-y-5">
-        <h2 className="typo-title-2 font-bold">OUR COMMITMENT</h2>
+        <h2 className="typo-title-2--rps font-semibold">OUR COMMITMENT</h2>
         <p className="typo-title-3">
           Our commitment to excellence is recognized through numerous prestigious awards, including the TALA Design
           Award, Muse Design Award, and the esteemed German Design Award.

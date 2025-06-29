@@ -7,7 +7,7 @@ const PressDetailContentLoading = () => {
       <div className="mb-2.5 lg:mb-5">
         <TextSkeleton variant="typo-body-2" className="w-[9.375rem]" />
         <Separator className="mt-2.5 mb-5 animate-pulse" />
-        <TextSkeleton variant="typo-title-2" className="w-1/2" />
+        <TextSkeleton variant="typo-title-2--rps" className="w-1/2" />
       </div>
       <div className="mb-5 space-y-7.5 lg:mb-7.5">
         <div>

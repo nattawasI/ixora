@@ -3,7 +3,7 @@ import { cva, VariantProps } from 'class-variance-authority'
 import Link, { type LinkProps } from 'next/link'
 
 const navigationLinkVariants = cva(
-  cn('hover:text-blue typo-body-2 inline-flex font-bold uppercase transition-colors duration-300'),
+  cn('hover:text-blue typo-body-2 inline-flex font-semibold uppercase transition-colors duration-300'),
   {
     variants: {
       isCurrent: {

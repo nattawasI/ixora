@@ -6,7 +6,7 @@ const SectionOurCommitment = () => {
     <div className="c-container-sm about-page-container space-y-16">
       <div className="grid grid-cols-12 gap-y-20">
         <div className="col-span-12 space-y-5 md:col-span-9 md:col-start-4">
-          <h2 className="typo-title-2 font-bold">OUR COMMITMENT</h2>
+          <h2 className="typo-title-2--rps font-semibold">OUR COMMITMENT</h2>
           <p className="about-excerpt">
             Our commitment to excellence is recognized through numerous prestigious awards, including the TALA Design
             Award, Muse Design Award, and the esteemed German Design Award.

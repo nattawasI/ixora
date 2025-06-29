@@ -56,7 +56,7 @@ const CardAward = ({
       </div>
       <div className="flex-1 space-y-2">
         <p className="text-gray typo-body-2">{format(new Date(date), 'MMMM, yyyy')}</p>
-        <TitleTag className="typo-title-2 font-bold">{title.text}</TitleTag>
+        <TitleTag className="typo-title-2--rps font-semibold">{title.text}</TitleTag>
         {descriptionLead && descriptionMore ? (
           <ReadMoreBlock
             className="typo-body-2"
@@ -73,15 +73,15 @@ const CardAward = ({
         <div className="flex flex-1 flex-col gap-y-2.5 lg:gap-5">
           <div className="space-y-1.25">
             <p className="typo-body-2 text-gray">Project :</p>
-            <p className="typo-body-2 font-bold uppercase">{projectName}</p>
+            <p className="typo-body-2 font-semibold uppercase">{projectName}</p>
           </div>
           <div className="space-y-1.25">
             <p className="typo-body-2 text-gray">Type :</p>
-            <p className="typo-body-2 font-bold uppercase">{category}</p>
+            <p className="typo-body-2 font-semibold uppercase">{category}</p>
           </div>
           <div className="space-y-1.25">
             <p className="typo-body-2 text-gray">Year :</p>
-            <p className="typo-body-2 font-bold uppercase">{year}</p>
+            <p className="typo-body-2 font-semibold uppercase">{year}</p>
           </div>
         </div>
         <div className="shrink-0 max-lg:mt-5">{action}</div>
@@ -103,7 +103,7 @@ const CardAwardLoading = () => {
       />
       <div className="flex-1 space-y-2">
         <TextSkeleton variant="typo-body-2" className="w-28" />
-        <TextSkeleton variant="typo-title-2" className="w-1/2" />
+        <TextSkeleton variant="typo-title-2--rps" className="w-1/2" />
         <div>
           <TextSkeleton variant="typo-body-2" />
           <TextSkeleton variant="typo-body-2" className="w-3/4" />

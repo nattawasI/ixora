@@ -6,7 +6,7 @@ const SectionWhatWeDo = () => {
       <div className="c-container-sm">
         <div className="grid grid-cols-12 gap-2.5">
           <div className="col-span-12 lg:col-span-4">
-            <h2 className="typo-title-2 font-bold">WHAT WE DO</h2>
+            <h2 className="typo-title-2--rps font-semibold">WHAT WE DO</h2>
           </div>
           <div className="col-span-12 lg:col-span-8">
             <p className="about-excerpt">

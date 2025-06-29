@@ -51,7 +51,7 @@ const DesktopAboutLayout = () => {
           return (
             <ReactFullpage.Wrapper>
               <section className="section pb-25">
-                <SectionWhoWeAre />
+                <SectionWhoWeAre isDesktop />
               </section>
               <section className="section pb-25">
                 <SectionWhatWeDo />

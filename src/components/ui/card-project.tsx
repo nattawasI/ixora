@@ -20,7 +20,7 @@ const CardProject = ({ image, title, location, className, ...props }: CardProjec
       <div className="bg-gray-light-1 card-hover-image relative mb-2.5 aspect-[22/15] overflow-hidden">
         <Image src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />
       </div>
-      <ProjectNameTag className="typo-body-1 font-bold uppercase">{title.text}</ProjectNameTag>
+      <ProjectNameTag className="typo-body-1 font-semibold uppercase">{title.text}</ProjectNameTag>
       <p className="typo-body-3 text-gray">{location}</p>
     </div>
   )

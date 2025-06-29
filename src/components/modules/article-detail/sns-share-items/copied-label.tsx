@@ -22,7 +22,7 @@ const CopiedLabel = ({ copied }: { copied: boolean }) => {
           variants={variants}
           className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2 rounded-full bg-white"
         >
-          <span className="bg-blue/50 typo-body-3 flex size-full h-6.5 items-center rounded-full px-2.5 font-bold text-white uppercase">
+          <span className="bg-blue/50 typo-body-3 flex size-full h-6.5 items-center rounded-full px-2.5 font-semibold text-white uppercase">
             LINK COPIED!
           </span>
         </motion.div>

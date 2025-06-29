@@ -50,7 +50,7 @@ export default async function ProjectDetail({ params }: PageProps) {
   return (
     <div className="article-detail-container-large">
       {isEnabled ? (
-        <h2 className="typo-title-1 mb-2 text-center font-bold text-red-500 uppercase">draft mode</h2>
+        <h2 className="typo-title-1 mb-2 text-center font-semibold text-red-500 uppercase">draft mode</h2>
       ) : null}
       <ProjectDetailContent data={data} exploreMore={<ProjectExploreMore category={category} slug={slug} />} />
     </div>

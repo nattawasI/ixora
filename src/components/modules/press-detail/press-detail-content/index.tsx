@@ -30,12 +30,12 @@ const PressDetailContent = ({ isInModal, data, exploreMore }: PressDetailContent
             <p className="typo-body-2 text-gray">{format(new Date(data.published_date), 'MMMM, yyyy')}</p>
             <Separator className="mt-2.5 mb-5" />
             {isInModal ? (
-              <DialogTitle className="typo-title-2 font-bold">{data.title}</DialogTitle>
+              <DialogTitle className="typo-title-2--rps font-semibold">{data.title}</DialogTitle>
             ) : (
-              <h1 className="typo-title-2 font-bold">{data.title}</h1>
+              <h1 className="typo-title-2--rps font-semibold">{data.title}</h1>
             )}
           </div>
-          <div className="detail-content mb-5 lg:mb-7.5">{parse(data.content)}</div>
+          <div className="cms-content typo-body-2 mb-5 lg:mb-7.5">{parse(data.content)}</div>
           <MediaContent type="press-and-news" data={data} />
         </article>
         <SnsShareFooter className="py-7" label="Share this article" title={data.title} coverImage={data.cover} />
