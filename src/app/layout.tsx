@@ -1,6 +1,6 @@
 import './globals.css'
 import { Montserrat } from 'next/font/google'
-import { cookies } from 'next/headers'
+import { cookies, draftMode } from 'next/headers'
 
 /** components */
 import { Body } from '@/components/layout/body'
@@ -25,10 +25,12 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const hasVisited = (await cookies()).get('hasVisited')
+  const { isEnabled } = await draftMode()
+
   return (
     <html lang="en">
       <Body className={montserrat.className}>
-        {hasVisited?.value !== 'true' ? <Preloader /> : null}
+        {hasVisited?.value !== 'true' && !isEnabled ? <Preloader /> : null}
         <Header />
         {children}
       </Body>
