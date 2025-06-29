@@ -6,6 +6,7 @@ import { directus } from '@/libs/directus'
 import { readItems } from '@directus/sdk'
 import { ProjectResponse } from '@/libs/directus/type'
 import { getMetadata } from '@/libs/utils/metadata'
+import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 
 export async function generateStaticParams() {
@@ -47,11 +48,13 @@ export default async function ProjectDetail({ params }: PageProps) {
 
   const data = await getProjectDetail({ slug, category, isDraft: isEnabled })
 
+  if (!data) notFound()
+
   return (
     <div className="article-detail-container-large">
-      {isEnabled ? (
+      {/* {isEnabled ? (
         <h2 className="typo-title-1 mb-2 text-center font-semibold text-red-500 uppercase">draft mode</h2>
-      ) : null}
+      ) : null} */}
       <ProjectDetailContent data={data} exploreMore={<ProjectExploreMore category={category} slug={slug} />} />
     </div>
   )

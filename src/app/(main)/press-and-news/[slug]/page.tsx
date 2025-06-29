@@ -6,6 +6,7 @@ import { NewsResponse } from '@/libs/directus/type'
 import { readItems } from '@directus/sdk'
 import { PressExploreMore } from '@/components/modules/press-detail/press-explore-more'
 import { PressDetailContent } from '@/components/modules/press-detail/press-detail-content'
+import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 
 export async function generateStaticParams() {
@@ -44,11 +45,13 @@ export default async function PressAndNewsDetail({ params }: PageProps) {
   const { isEnabled } = await draftMode()
   const data = await getNewsDetail({ slug, isDraft: isEnabled })
 
+  if (!data) notFound()
+
   return (
     <div className="article-detail-container-small">
-      {isEnabled ? (
+      {/* {isEnabled ? (
         <h2 className="typo-title-1--rps mb-2 text-center font-semibold text-red-500 uppercase">draft mode</h2>
-      ) : null}
+      ) : null} */}
       <PressDetailContent data={data} exploreMore={<PressExploreMore slug={data.slug} />} />
     </div>
   )
