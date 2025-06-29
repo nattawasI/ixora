@@ -23,9 +23,9 @@ const CardPeople = ({ image, name, position, ...props }: CardPeopleProps) => {
           {...restImageProps}
         />
       </div>
-      <div className="relative min-h-16 space-y-1.25 pl-6 lg:min-h-20">
+      <div className="relative min-h-16.25 space-y-1.25 pl-6 lg:min-h-[6.25rem]">
         <IconLogo className="absolute top-1.25 left-0 size-3.5" />
-        <h2 className="typo-body-2--1 font-semibold break-words uppercase">{name}</h2>
+        <h2 className="typo-body-2--1 font-semibold break-words">{name}</h2>
         <p className="text-gray typo-body-3--2">{position}</p>
       </div>
     </div>
