@@ -33,7 +33,7 @@ const SnsShareSticky = ({ title, coverImage, isInModal, className }: SnsShareSti
         <CollapsibleTrigger
           type="button"
           className={cn(
-            'group/social-sticky-trigger typo-body-2 order-2 space-y-1.25 font-bold uppercase',
+            'group/social-sticky-trigger typo-body-2 order-2 space-y-1.25 font-semibold uppercase',
             isInModal ? 'text-white' : '',
           )}
         >

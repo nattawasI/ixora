@@ -12,7 +12,7 @@ const ButtonCopy = ({
       type="button"
       data-copied={isCopied ? true : undefined}
       className={cn(
-        'typo-body-3 border-blue inline-flex h-[1.625rem] items-center gap-x-[0.188rem] rounded-full border px-2.5 font-bold text-white uppercase transition-colors duration-300',
+        'typo-body-3 border-blue inline-flex h-[1.625rem] items-center gap-x-[0.188rem] rounded-full border px-2.5 font-semibold text-white uppercase transition-colors duration-300',
         'hover:bg-blue hover:text-white',
         'data-[copied=true]:bg-transparent',
         className,

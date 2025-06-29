@@ -49,9 +49,12 @@ const CategoryCard = ({ title, description, href, image }: CategoryCardProps) =>
           })}
         />
         <div className="absolute right-0 bottom-0 left-0 z-10 space-y-1 p-3 md:space-y-3 md:p-7">
-          <div className="overflow-hidden">
-            <h3 className="title">{title}</h3>
-            <motion.p className="description" animate={{ height: isHovered ? 'auto' : 0 }}>
+          <div className="space-y-1">
+            <h3 className="typo-body-2--title-3 font-semibold text-white">{title}</h3>
+            <motion.p
+              className="typo-body-3--2 overflow-hidden font-semibold text-white"
+              animate={{ height: isHovered ? 'auto' : 0 }}
+            >
               {description}
             </motion.p>
           </div>

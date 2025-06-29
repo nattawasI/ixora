@@ -188,7 +188,7 @@ const Preloader = () => {
                 className="mx-auto w-[37.05%] overflow-hidden whitespace-nowrap"
               >
                 <p
-                  className={cn('typo-title-3 text-gray font-bold uppercase', {
+                  className={cn('typo-title-3--rps text-gray font-semibold uppercase', {
                     'text-blue': isClicked || isHovered,
                   })}
                 >

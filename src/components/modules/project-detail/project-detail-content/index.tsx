@@ -29,9 +29,9 @@ const ProjectDetailContent = ({ isInModal, data, exploreMore }: ProjectDetailCon
         <article>
           <div className="mb-5 space-y-2.5 lg:mb-[3.75rem]">
             {isInModal ? (
-              <DialogTitle className="typo-title-1 font-bold uppercase">{data.title}</DialogTitle>
+              <DialogTitle className="typo-title-1--rps font-semibold uppercase">{data.title}</DialogTitle>
             ) : (
-              <h1 className="typo-title-1 font-bold uppercase">{data.title}</h1>
+              <h1 className="typo-title-1--rps font-semibold uppercase">{data.title}</h1>
             )}
             <p className="typo-body-2 uppercase">{data.location}</p>
           </div>
@@ -39,18 +39,18 @@ const ProjectDetailContent = ({ isInModal, data, exploreMore }: ProjectDetailCon
             <div className="flex flex-col gap-y-5 md:col-span-4 md:gap-y-7.5">
               <div className="space-y-1.25">
                 <p className="typo-body-2 text-gray">Client :</p>
-                <p className="typo-body-2 font-bold">{data.client}</p>
+                <p className="typo-body-2 font-semibold">{data.client}</p>
               </div>
               <div className="mt-auto space-y-1.25">
                 <p className="typo-body-2 text-gray">Year :</p>
-                <p className="typo-body-2 font-bold">{data.year}</p>
+                <p className="typo-body-2 font-semibold">{data.year}</p>
               </div>
             </div>
             <div className="flex flex-col gap-y-5 md:col-span-8 md:gap-y-7.5 md:pl-7.5">
               <ReadMoreBlock
                 contentLead={parse(data.content_lead)}
                 contentMore={<div className="pt-5">{parse(data.content_more)}</div>}
-                className="detail-content"
+                className="cms-content typo-body-2"
               />
               <div>
                 <p className="typo-body-2">

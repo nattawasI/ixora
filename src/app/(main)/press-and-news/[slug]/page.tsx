@@ -47,7 +47,7 @@ export default async function PressAndNewsDetail({ params }: PageProps) {
   return (
     <div className="article-detail-container-small">
       {isEnabled ? (
-        <h2 className="typo-title-1 mb-2 text-center font-bold text-red-500 uppercase">draft mode</h2>
+        <h2 className="typo-title-1--rps mb-2 text-center font-semibold text-red-500 uppercase">draft mode</h2>
       ) : null}
       <PressDetailContent data={data} exploreMore={<PressExploreMore slug={data.slug} />} />
     </div>

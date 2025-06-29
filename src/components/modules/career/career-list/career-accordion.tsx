@@ -29,8 +29,8 @@ const CareerAccordion = ({ items }: { items: CareerResponse[] }) => {
             <AccordionHeader className="pb-5">
               <AccordionTrigger className="group/accordion-trigger hover-icon-stroke-white flex w-full gap-x-5 text-left">
                 <span className="flex flex-col items-start gap-y-2.5">
-                  <span className="typo-title-3 font-bold">{item.title}</span>
-                  <span className="typo-body-2 bg-blue-2 inline-flex h-8.5 items-center rounded-full px-4 font-bold">
+                  <span className="typo-title-3--rps font-semibold">{item.title}</span>
+                  <span className="typo-body-2 bg-blue-2 inline-flex h-8.5 items-center rounded-full px-4 font-semibold">
                     {item.position_required} Position Required
                   </span>
                 </span>
@@ -55,9 +55,9 @@ const CareerAccordion = ({ items }: { items: CareerResponse[] }) => {
                 className="overflow-hidden"
               >
                 <AccordionContentInner open={open} className="pb-5">
-                  <p className="typo-body-1 text-gray font-bold">Requirements</p>
+                  <p className="typo-body-1 text-gray font-semibold">Requirements</p>
                   {item.requirement ? (
-                    <div className="detail-content mt-2.5">{parse(item.requirement)}</div>
+                    <div className="cms-content typo-body-1 mt-2.5">{parse(item.requirement)}</div>
                   ) : (
                     <EmptyData label="No requirements" />
                   )}

@@ -9,8 +9,8 @@ const ExploreMoreCollapsible = ({ children, ...props }: ExploreMoreCollapsiblePr
   return (
     <Collapsible {...props}>
       <h2>
-        <CollapsibleTrigger className="typo-title-3 flex h-[3.75rem] w-full items-center justify-center font-bold ring-offset-0 lg:h-[5.625rem]">
-          <span className="underline-gray-light-1 decoration-gray-light-1 underline underline-offset-8">
+        <CollapsibleTrigger className="flex h-[3.75rem] w-full items-center justify-center ring-offset-0 lg:h-[5.625rem]">
+          <span className="underline-gray-light-1 decoration-gray-light-1 typo-title-3 font-semibold underline underline-offset-8">
             EXPLORE MORE
           </span>
         </CollapsibleTrigger>

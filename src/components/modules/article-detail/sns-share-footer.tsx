@@ -59,7 +59,7 @@ const SnsShareFooter = ({
       )}
       {...props}
     >
-      <p className="typo-body-2 text-gray font-bold">{label}</p>
+      <p className="typo-body-2 text-gray font-semibold">{label}</p>
       <div className="flex gap-x-2.5 md:gap-x-3.75">
         <SnsShareItems title={title} coverImage={coverImage} />
       </div>

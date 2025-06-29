@@ -33,7 +33,7 @@ const ProjectCategoriesFilter = ({ className, ...props }: React.ComponentProps<'
 
   return (
     <div className={cn('mb-5 flex items-center justify-between gap-x-5 lg:hidden', className)} {...props}>
-      <p className="typo-body-2 text-blue font-bold uppercase">{current?.label || 'ALL'}</p>
+      <p className="typo-body-2 text-blue font-semibold uppercase">{current?.label || 'ALL'}</p>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger className="size-4" aria-label="Open Project categories filter">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

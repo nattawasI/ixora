@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight } from '@/components/ui/icons-color'
 
 const buttonArrowVariants = cva(
   cn(
-    'border-gray-light-1 relative inline-flex h-14 items-center justify-center gap-x-[0.938rem] border px-[1.625rem] font-bold whitespace-nowrap transition-colors duration-300',
+    'border-gray-light-1 relative inline-flex h-14 items-center justify-center gap-x-[0.938rem] border px-[1.625rem] font-semibold whitespace-nowrap transition-colors duration-300',
     'hover:border-blue hover:text-white',
     'before:bg-blue before:absolute before:top-0 before:bottom-0 before:left-0 before:w-0 before:transition-[width] before:duration-300 hover:before:w-full',
     'hover-icon-stroke-white',
