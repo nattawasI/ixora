@@ -11,6 +11,7 @@ const BackToTop = () => {
   return (
     <button
       type="button"
+      aria-label="back to top"
       className="text-gray hover:text-blue flex size-9 items-center justify-center transition-colors duration-300"
       onClick={handleClick}
     >
