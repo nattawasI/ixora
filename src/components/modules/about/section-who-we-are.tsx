@@ -51,7 +51,7 @@ const SectionWhoWeAre = ({ isDesktop }: { isDesktop?: boolean }) => {
         <div className="col-span-12 space-y-7 md:col-span-9 md:col-start-4">
           <div className="space-y-5">
             <h2 className="typo-title-2--rps font-semibold">WHO WE AREA</h2>
-            <h3 className="about-excerpt">
+            <h3 className="typo-body-2--title-3">
               We are dedicated to exploring the limitless possibilities of landscape architectural design, crafting
               spaces that seamlessly integrate the beauty of nature with human needs.
             </h3>

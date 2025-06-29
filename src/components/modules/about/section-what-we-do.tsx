@@ -9,7 +9,7 @@ const SectionWhatWeDo = () => {
             <h2 className="typo-title-2--rps font-semibold">WHAT WE DO</h2>
           </div>
           <div className="col-span-12 lg:col-span-8">
-            <p className="about-excerpt">
+            <p className="typo-body-2--title-3">
               We are dedicated to exploring the limitless possibilities of landscape architectural design, crafting
               spaces that seamlessly integrate the beauty of nature with human needs.
             </p>
