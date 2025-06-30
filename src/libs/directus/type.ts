@@ -60,7 +60,7 @@ type NewsResponse = {
   slug: string
   description: string
   content: string
-  cover: string
+  cover: MediaResponse & { src: string }
   gallery: (GalleryResponse & { news_id: string })[]
   video: (VideoResponse & { news_id: string })[]
 }
@@ -104,7 +104,7 @@ type ProjectResponse = {
   photo_credit: string
   content_lead: string
   content_more: string
-  cover: string
+  cover: MediaResponse & { src: string }
   client: string
   title: string
   category: CategoryResponse
@@ -113,6 +113,7 @@ type ProjectResponse = {
 }
 
 type ProjectDetailResponse = Omit<ProjectResponse, 'gallery' | 'video'> & {
+  cover: string
   gallery: GalleryGroupImage[]
   video: (VideoResponse & { project_id: string })[]
 }

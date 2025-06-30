@@ -34,7 +34,7 @@ const ProjectList = async ({ category }: { category: string }) => {
                 >
                   <ProjectCard
                     image={{
-                      src: item.cover,
+                      src: item.cover.src,
                       alt: item.title,
                       sizes: '100vw, (min-width: 768px) 33vw',
                       priority: index <= 5,

@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     data: {
       title: data.title,
       description: data.content_lead,
-      ogImage: data.cover,
+      ogImage: data.cover.src,
     },
   })
 }

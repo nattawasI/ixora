@@ -21,7 +21,7 @@ const PressDetailContent = ({ isInModal, data, exploreMore }: PressDetailContent
       <SnsShareSticky
         isInModal={isInModal}
         title={data.title}
-        coverImage={data.cover}
+        coverImage={data.cover.src}
         className="social-share-sticky"
       />
       <div className="bg-white px-4.75 pt-4 lg:px-12.5 lg:pt-12.5">
@@ -38,7 +38,7 @@ const PressDetailContent = ({ isInModal, data, exploreMore }: PressDetailContent
           <div className="cms-content typo-body-2 mb-5 lg:mb-7.5">{parse(data.content)}</div>
           <MediaContent type="press-and-news" data={data} />
         </article>
-        <SnsShareFooter className="py-7" label="Share this article" title={data.title} coverImage={data.cover} />
+        <SnsShareFooter className="py-7" label="Share this article" title={data.title} coverImage={data.cover.src} />
       </div>
       {exploreMore}
       {!isInModal ? (

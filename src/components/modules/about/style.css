@@ -6,7 +6,7 @@
 .custom-slider .custom-pagination.swiper-pagination-horizontal {
   flex: 1;
   height: 2px;
-  background-color: #eee;
+  background-color: #dcdcdc;
   position: relative;
   overflow: hidden;
 }
