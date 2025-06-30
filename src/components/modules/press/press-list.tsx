@@ -23,7 +23,7 @@ const PressList = async () => {
             <Link href={`/press-and-news/${item.slug}`} className="block" key={index} scroll={false} prefetch={false}>
               <PressCard
                 image={{
-                  src: item.cover,
+                  src: item.cover.src,
                   alt: item.title,
                   sizes: '100vw, (min-width: 1024px) 50vw',
                   priority: index <= 2,

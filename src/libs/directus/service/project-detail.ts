@@ -35,7 +35,6 @@ const getProjectDetail = async ({ slug, category, isDraft }: { slug: string; cat
           'photo_credit',
           'content_lead',
           'content_more',
-          'cover',
           'cover.id',
           'cover.filename_disk',
           'cover.filename_download',

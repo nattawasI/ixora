@@ -49,7 +49,7 @@ const PressExploreMore = ({ isInModal, slug, onClickLink, open, onOpenChange }: 
                 >
                   <PressCard
                     image={{
-                      src: item.cover,
+                      src: item.cover.src,
                       alt: item.title,
                       sizes: '100vw, (min-width: 1024px) 50vw',
                     }}
