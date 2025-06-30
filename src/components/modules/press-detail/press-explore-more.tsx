@@ -32,7 +32,7 @@ const PressExploreMore = ({ isInModal, slug, onClickLink, open, onOpenChange }: 
   return (
     <>
       {data.length > 0 ? (
-        <section className={cn('max-lg:px-4 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
+        <section className={cn('max-lg:px-4.75 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
           <ExploreMoreCollapsible open={open} onOpenChange={onOpenChange}>
             <div className={cn('space-y-4 max-lg:pt-4 lg:space-y-5', isInModal ? 'lg:pb-12.5' : '')}>
               {data.map((item, index) => (

@@ -264,11 +264,11 @@
 }
 
 @utility c-container {
-  @apply mx-auto max-w-[82.5rem] px-4 lg:px-10;
+  @apply mx-auto max-w-[82.5rem] px-4.75 lg:px-10;
 }
 
 @utility c-container-sm {
-  @apply mx-auto max-w-[76.25rem] px-4 lg:px-10;
+  @apply mx-auto max-w-[76.25rem] px-4.75 lg:px-10;
 }
 
 @utility scrollbar-hidden {

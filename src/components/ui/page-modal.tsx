@@ -61,7 +61,7 @@ const PageModalTitle = DialogTitle
 const PageModalDescription = DialogDescription
 
 const PageModalButtonsMobile = ({ className, ...props }: React.ComponentProps<'div'>) => {
-  return <div className={cn('mt-4 flex gap-x-2.5 px-4 pb-4 lg:hidden', className)} {...props} />
+  return <div className={cn('mt-4 flex gap-x-2.5 px-4.75 pb-4 lg:hidden', className)} {...props} />
 }
 
 const PageModalPrev = ({

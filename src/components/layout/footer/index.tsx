@@ -50,7 +50,7 @@ const Footer = () => {
     <footer
       id="contact"
       className={cn(
-        'flex shrink-0 flex-col px-4 pt-10 pb-2.5',
+        'flex shrink-0 flex-col px-4.75 pt-10 pb-2.5',
         'lg:min-h-[28.875rem] lg:px-10 lg:pt-[7.125rem] lg:pb-5',
       )}
     >

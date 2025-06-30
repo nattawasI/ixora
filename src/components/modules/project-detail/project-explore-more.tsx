@@ -41,7 +41,7 @@ const ProjectExploreMore = ({
   return (
     <>
       {data.length > 0 ? (
-        <section className={cn('max-lg:px-4 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
+        <section className={cn('max-lg:px-4.75 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
           <ExploreMoreCollapsible open={open} onOpenChange={onOpenChange}>
             <div className={cn('grid gap-2.5 max-lg:pt-4 md:grid-cols-3', isInModal ? 'lg:pb-10' : 'md:pb-7.5')}>
               {data.map((item, index) => (

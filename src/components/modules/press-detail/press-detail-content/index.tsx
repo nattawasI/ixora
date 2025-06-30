@@ -24,7 +24,7 @@ const PressDetailContent = ({ isInModal, data, exploreMore }: PressDetailContent
         coverImage={data.cover}
         className="social-share-sticky"
       />
-      <div className="bg-white px-4 pt-4 lg:px-12.5 lg:pt-12.5">
+      <div className="bg-white px-4.75 pt-4 lg:px-12.5 lg:pt-12.5">
         <article>
           <div className="mb-2.5 lg:mb-5">
             <p className="typo-body-2 text-gray">{format(new Date(data.published_date), 'MMMM, yyyy')}</p>
@@ -42,7 +42,7 @@ const PressDetailContent = ({ isInModal, data, exploreMore }: PressDetailContent
       </div>
       {exploreMore}
       {!isInModal ? (
-        <div className="mt-4 max-lg:px-4 md:mt-10">
+        <div className="mt-4 max-lg:px-4.75 md:mt-10">
           <ButtonArrowLink href={'/press-and-news'} className="w-full uppercase">
             SEE ALL PRESS & NEWS
           </ButtonArrowLink>

@@ -10,7 +10,7 @@ export default function ProjectListLayout({
 }>) {
   return (
     <ProjectListProvider>
-      <div className="px-4 max-lg:pt-5 max-lg:pb-6 lg:px-10">
+      <div className="px-4.75 max-lg:pt-5 max-lg:pb-6 lg:px-10">
         <ProjectCategoriesFilter />
         {children}
       </div>

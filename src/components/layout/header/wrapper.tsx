@@ -10,7 +10,7 @@ const HeaderWrapper = ({ className, ...props }: React.ComponentProps<'header'>) 
     <header
       id="header"
       className={cn(
-        'sticky top-0 z-20 flex h-[3.75rem] shrink-0 items-center justify-between gap-x-[1.25rem] px-4 lg:h-[6.25rem] lg:px-10',
+        'sticky top-0 z-20 flex h-[3.75rem] shrink-0 items-center justify-between gap-x-[1.25rem] px-4.75 lg:h-[6.25rem] lg:px-10',
         bgColor,
         className,
       )}
