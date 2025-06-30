@@ -32,8 +32,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!data) return {}
 
-  console.log({ data })
-
   return getMetadata({
     pathname: `/projects/${category}/${slug}/${data.slug}`,
     data: {
