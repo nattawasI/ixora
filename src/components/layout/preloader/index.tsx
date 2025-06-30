@@ -1,7 +1,7 @@
 'use client'
 
 /** libs */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { RemoveScroll } from 'react-remove-scroll'
 import { AnimatePresence, motion, useAnimation } from 'motion/react'
 
@@ -21,10 +21,12 @@ const Preloader = () => {
   const [isComplete, setIsComplete] = useState<boolean>(false)
   const [isClicked, setIsClicked] = useState<boolean>(false)
   const [isHovered, setIsHovered] = useState<boolean>(false)
+  const [isReady, setIsReady] = useState<boolean>(false)
 
   /** animation */
   const containerControls = useAnimation()
   const logoControls = useAnimation()
+  const footerControls = useAnimation()
   const lineTopLeftControls = useAnimation()
   const lineTopRightControls = useAnimation()
   const lineBottomLeftControls = useAnimation()
@@ -35,7 +37,7 @@ const Preloader = () => {
   const rotatePosition = 45
 
   const logoVariants = {
-    hidden: { scale: 0.5, opacity: 0 },
+    hidden: { scale: 0.5, opacity: 0, transition: { duration: 0.5, ease: 'easeInOut' } },
     visible: () => ({
       scale: 1,
       opacity: 1,
@@ -47,18 +49,19 @@ const Preloader = () => {
   }
 
   const handleMouseEnter = () => {
-    if (!isClicked) {
+    if (!isClicked && isReady) {
       setIsHovered(true)
     }
   }
 
   const handleMouseLeave = () => {
-    if (!isClicked) {
+    if (!isClicked && isReady) {
       setIsHovered(false)
     }
   }
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => {
+    if (!isReady) return
     e.stopPropagation()
 
     setIsClicked(true)
@@ -97,17 +100,30 @@ const Preloader = () => {
       rotate: -rotatePosition,
     })
 
+    footerControls.start({ opacity: 0, transition: { delay: 0.2, duration: 0.4, ease: 'easeInOut' } })
+
     containerControls
       .start({
         opacity: 0,
         pointerEvents: 'all',
-        transition: { delay: 1.5, duration: 0.4, ease: 'easeInOut' },
+        transition: { delay: 1.2, duration: 0.4, ease: 'easeInOut' },
       })
       .then(() => {
         setIsComplete(true)
         setVisitedCookie()
       })
   }
+
+  useEffect(() => {
+    const startAnimations = async () => {
+      await Promise.all([
+        logoControls.start({ opacity: 1, scale: 1, transition: { duration: 0.6, ease: 'easeInOut' } }),
+        footerControls.start({ opacity: 1, transition: { duration: 0.6, delay: 1.2, ease: 'easeInOut' } }),
+      ])
+      setIsReady(true)
+    }
+    startAnimations()
+  }, [logoControls, footerControls])
 
   if (isComplete) return null
 
@@ -125,7 +141,7 @@ const Preloader = () => {
               if (e.key === 'Enter') handleClick(e)
             }}
             className={cn('group m-auto flex flex-col items-center justify-center gap-y-8 hover:cursor-pointer', {
-              'pointer-events-none': isClicked,
+              'pointer-events-none': !isReady || isClicked,
             })}
           >
             <div className="relative size-32">
@@ -134,6 +150,7 @@ const Preloader = () => {
                 height="128"
                 viewBox="0 0 128 128"
                 animate={logoControls}
+                initial="hidden"
                 variants={logoVariants}
                 className="fixed size-32"
               >
@@ -182,26 +199,51 @@ const Preloader = () => {
             >
               <motion.div
                 animate={{
+                  opacity: 1,
                   width: isHovered ? '100%' : '37.05%',
                   transition: { duration: 0.4, ease: 'easeOut' },
                 }}
                 className="mx-auto w-[37.05%] overflow-hidden whitespace-nowrap"
               >
-                <p
+                <motion.p
+                  animate="visible"
+                  initial="hidden"
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: { opacity: 1, transition: { duration: 0.6, delay: 0.4, ease: 'easeOut' } },
+                  }}
                   className={cn('typo-title-3--rps text-gray font-semibold uppercase', {
                     'text-blue': isClicked || isHovered,
                   })}
                 >
                   EXPLORE OUR PROJECTS
-                </p>
+                </motion.p>
               </motion.div>
-              <p className="typo-body-1 text-gray uppercase">LIMITLESS POSSIBILITY</p>
+              <motion.p
+                animate="visible"
+                initial="hidden"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { duration: 0.6, delay: 0.8, ease: 'easeOut' } },
+                }}
+                className="typo-body-1 text-gray uppercase"
+              >
+                LIMITLESS POSSIBILITY
+              </motion.p>
             </motion.div>
           </div>
 
-          <div className="fixed bottom-6 left-1/2 -translate-x-1/2">
+          <motion.div
+            animate={footerControls}
+            initial="hidden"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { duration: 0.6, delay: 1.2, ease: 'easeOut' } },
+            }}
+            className="fixed bottom-6 left-1/2 -translate-x-1/2"
+          >
             <PreloaderFooter />
-          </div>
+          </motion.div>
         </motion.div>
       </AnimatePresence>
     </RemoveScroll>
