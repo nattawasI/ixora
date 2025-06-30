@@ -2,7 +2,7 @@ import { CategorySlider } from './category/slider'
 
 const SectionWhatWeDo = () => {
   return (
-    <div className="about-page-container space-y-16 overflow-hidden pt-15 pb-4">
+    <div className="about-page-container space-y-16 overflow-hidden pt-15 pb-6">
       <div className="c-container-sm">
         <div className="grid grid-cols-12 gap-2.5">
           <div className="col-span-12 lg:col-span-4">

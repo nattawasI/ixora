@@ -23,7 +23,7 @@ const ChevronDownButton = ({
   return (
     !hideButton && (
       <button
-        className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2"
+        className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2"
         onClick={() => fpRef.current?.fullpageApi.moveSectionDown()}
       >
         <ChevronDown className="size-10" />
