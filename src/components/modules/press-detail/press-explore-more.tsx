@@ -37,7 +37,7 @@ const PressExploreMore = ({ isInModal, slug, onClickLink }: PressExploreMoreProp
               {data.map((item, index) => (
                 <a
                   href={`/press-and-news/${item.slug}`}
-                  className="block"
+                  className="block focus-visible:ring-offset-0"
                   key={index}
                   onClick={(e) => {
                     if (onClickLink) {

@@ -40,7 +40,7 @@ const ProjectExploreMore = ({ isInModal, category, slug, onClickLink }: ProjectE
               {data.map((item, index) => (
                 <a
                   href={`/projects/${item.category.slug}/${item.slug}`}
-                  className="block"
+                  className="block focus-visible:ring-offset-0"
                   key={index}
                   onClick={(e) => {
                     if (onClickLink) {
