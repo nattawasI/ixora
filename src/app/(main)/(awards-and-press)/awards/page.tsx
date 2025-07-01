@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import { AwardList, AwardListLoading } from '@/components/modules/awards/award-list'
+import { MotionPageFade } from '@/components/modules/common/motion'
 import { getMetadata } from '@/libs/utils/metadata'
 import type { Metadata } from 'next'
 
@@ -17,11 +18,13 @@ export function generateMetadata(): Metadata {
 
 export default function Awards() {
   return (
-    <>
-      <h1 className="sr-only">AWARDS</h1>
-      <Suspense fallback={<AwardListLoading />}>
-        <AwardList />
-      </Suspense>
-    </>
+    <MotionPageFade>
+      <div>
+        <h1 className="sr-only">AWARDS</h1>
+        <Suspense fallback={<AwardListLoading />}>
+          <AwardList />
+        </Suspense>
+      </div>
+    </MotionPageFade>
   )
 }

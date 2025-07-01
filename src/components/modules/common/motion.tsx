@@ -26,6 +26,16 @@ const staggerItemVariants: Variants = {
   },
 }
 
+const fadeInVariants: Variants = {
+  initial: { opacity: 0 },
+  animate: (custom: { duration: number }) => ({
+    opacity: 1,
+    transition: {
+      duration: custom.duration,
+    },
+  }),
+}
+
 export const MotionStaggerRoot = ({ children }: { children: React.ReactElement }) => {
   return (
     <MotionSlot variants={staggerRootVariants} initial="initial" animate="animate">
@@ -36,4 +46,12 @@ export const MotionStaggerRoot = ({ children }: { children: React.ReactElement }
 
 export const MotionStaggerItem = ({ children }: { children: React.ReactElement }) => {
   return <MotionSlot variants={staggerItemVariants}>{children}</MotionSlot>
+}
+
+export const MotionPageFade = ({ children, duration = 0.7 }: { children: React.ReactElement; duration?: number }) => {
+  return (
+    <MotionSlot variants={fadeInVariants} initial="initial" animate="animate" custom={{ duration }}>
+      {children}
+    </MotionSlot>
+  )
 }
