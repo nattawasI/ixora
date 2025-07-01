@@ -1,9 +1,9 @@
-import Image, { type ImageProps } from 'next/image'
+import { ImageMedia, type ImageMediaProps } from '@/components/ui/image-media'
 
-const SingleImage = ({ alt, ...props }: ImageProps) => {
+const SingleImage = ({ alt, ...props }: ImageMediaProps) => {
   return (
-    <div className="bg-gray-light-1 relative aspect-[1.47]">
-      <Image alt={alt} fill className="object-cover object-center" {...props} />
+    <div className="relative aspect-[1.47]">
+      <ImageMedia alt={alt} fill className="object-cover object-center" {...props} />
     </div>
   )
 }
