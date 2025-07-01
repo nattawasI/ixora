@@ -1,10 +1,10 @@
 import { ComponentProps } from 'react'
 import { cn } from '@/libs/utils/cn'
-import { ImageMedia, type ImageMediaProps } from '@/components/ui/image-media'
+import Image, { type ImageProps } from 'next/image'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
 
 type CardProjectProps = Omit<ComponentProps<'div'>, 'title'> & {
-  image: Omit<ImageMediaProps, 'fill'>
+  image: Omit<ImageProps, 'fill'>
   title: {
     tag?: 'h2' | 'h3'
     text: string
@@ -18,7 +18,7 @@ const CardProject = ({ image, title, location, className, ...props }: CardProjec
   return (
     <div className={cn('group/card block', className)} {...props}>
       <div className="card-hover-image relative mb-2.5 aspect-[22/15] overflow-hidden">
-        <ImageMedia src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />
+        <Image src={src} alt={alt} fill className="bg-gray-light-1 object-cover object-center" {...restImageProps} />
       </div>
       <ProjectNameTag className="typo-body-1 font-semibold uppercase">{title.text}</ProjectNameTag>
       <p className="typo-body-3 text-gray">{location}</p>

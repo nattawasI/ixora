@@ -1,11 +1,11 @@
 import { ComponentProps } from 'react'
 import { cn } from '@/libs/utils/cn'
-import { ImageMedia, type ImageMediaProps } from '@/components/ui/image-media'
+import Image, { type ImageProps } from 'next/image'
 import { Separator } from '@/components/ui/separator'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
 
 type CardPressProps = Omit<ComponentProps<'div'>, 'title'> & {
-  image: Omit<ImageMediaProps, 'fill'>
+  image: Omit<ImageProps, 'fill'>
   date: string
   title: {
     tag?: 'h2' | 'h3'
@@ -32,7 +32,7 @@ const CardPress = ({
   return (
     <div className={cn('group/card grid md:grid-cols-2', className)} {...props}>
       <div className={cn('card-hover-image relative aspect-[10/7] overflow-hidden', isImageRight ? 'md:order-2' : '')}>
-        <ImageMedia src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />
+        <Image src={src} alt={alt} fill className="bg-gray-light-1 object-cover object-center" {...restImageProps} />
       </div>
       <div className={cn('flex flex-col bg-white p-5 md:p-10', isImageRight ? 'md:order-1' : '')}>
         <p className="typo-body-2 text-gray">{date}</p>

@@ -51,6 +51,9 @@ const CareerAccordion = ({ items }: { items: CareerResponse[] }) => {
                 animate={{
                   height: open ? 'auto' : 0,
                   opacity: open ? 1 : 0,
+                  transition: {
+                    ease: 'easeInOut',
+                  },
                 }}
                 className="overflow-hidden"
               >

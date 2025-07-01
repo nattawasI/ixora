@@ -1,10 +1,10 @@
 import { ComponentProps } from 'react'
-import { ImageMedia, type ImageMediaProps } from '@/components/ui/image-media'
+import Image, { type ImageProps } from 'next/image'
 import { IconLogo } from '@/components/ui/icons-color/icon-logo'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
 
 type CardPeopleProps = ComponentProps<'div'> & {
-  image: Omit<ImageMediaProps, 'fill'>
+  image: Omit<ImageProps, 'fill'>
   name: string
   position: string
 }
@@ -15,11 +15,11 @@ const CardPeople = ({ image, name, position, ...props }: CardPeopleProps) => {
   return (
     <div {...props}>
       <div className="relative mb-2.5 aspect-square overflow-hidden">
-        <ImageMedia
+        <Image
           src={src || '/images/people/people-fallback.jpg'}
           alt={alt}
           fill
-          className="object-cover object-center"
+          className="bg-gray-light-1 object-cover object-center"
           {...restImageProps}
         />
       </div>

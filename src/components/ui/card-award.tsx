@@ -2,13 +2,13 @@ import { ComponentProps, ReactElement } from 'react'
 import { cn } from '@/libs/utils/cn'
 import parse from 'html-react-parser'
 import { format } from 'date-fns'
-import { ImageMedia, type ImageMediaProps } from '@/components/ui/image-media'
+import Image, { type ImageProps } from 'next/image'
 import { Separator } from '@/components/ui/separator'
 import { TextSkeleton } from '@/components/ui/text-skeleton'
 import { ReadMoreBlock } from '@/components/ui/read-more-block'
 
 type CardAwardProps = Omit<ComponentProps<'div'>, 'title'> & {
-  image: Omit<ImageMediaProps, 'fill'>
+  image: Omit<ImageProps, 'fill'>
   title: {
     tag?: 'h2' | 'h3'
     text: string
@@ -52,7 +52,7 @@ const CardAward = ({
           'lg:w-[27.6%] lg:max-w-[20rem] lg:min-w-[15rem] lg:self-start',
         )}
       >
-        <ImageMedia src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />
+        <Image src={src} alt={alt} fill className="bg-gray-light-1 object-cover object-center" {...restImageProps} />
       </div>
       <div className="flex-1 space-y-2">
         <p className="text-gray typo-body-2">{format(new Date(date), 'MMMM, yyyy')}</p>

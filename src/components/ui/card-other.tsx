@@ -1,9 +1,9 @@
 import { ComponentProps } from 'react'
 import { cn } from '@/libs/utils/cn'
-import { ImageMedia, type ImageMediaProps } from '@/components/ui/image-media'
+import Image, { type ImageProps } from 'next/image'
 
 type CardOtherProps = Omit<ComponentProps<'div'>, 'title'> & {
-  image: Omit<ImageMediaProps, 'fill'>
+  image: Omit<ImageProps, 'fill'>
   title: {
     tag?: 'h2' | 'h3'
     text: string
@@ -26,7 +26,7 @@ const CardOther = ({ className, image, title, description, action, ...props }: C
         </div>
       </div>
       <div className="relative overflow-hidden max-md:aspect-[172/127] md:min-h-[24.375rem]">
-        <ImageMedia src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />
+        <Image src={src} alt={alt} fill className="bg-gray-light-1 object-cover object-center" {...restImageProps} />
       </div>
       {action ? <div className="md:hidden">{action}</div> : null}
     </div>
