@@ -14,7 +14,7 @@ import {
 import { AccordionContentInner } from '@/components/ui/accordion-content-inner'
 import { motion } from 'motion/react'
 
-const MotionAccordionContentInner = motion(AccordionContentInner)
+const MotionAccordionContentInner = motion.create(AccordionContentInner)
 
 type FooterAccordionProps = {
   items: {
