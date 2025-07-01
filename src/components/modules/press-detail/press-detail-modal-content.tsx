@@ -15,7 +15,11 @@ import { PressExploreMore } from '@/components/modules/press-detail/press-explor
 const PressDetailModalContent = ({ initSlug }: { initSlug: string }) => {
   const { pressList } = usePressList()
 
-  const initIndex = pressList.findIndex((item) => item.slug === initSlug)
+  const findIndexInList = (slug: string) => {
+    return pressList.findIndex((item) => item.slug === slug)
+  }
+
+  const initIndex = findIndexInList(initSlug)
 
   const [index, setIndex] = useState(initIndex)
 
@@ -28,9 +32,9 @@ const PressDetailModalContent = ({ initSlug }: { initSlug: string }) => {
   }
 
   const handleChangeIndex = (idx: number) => {
+    setIndex(idx)
     const thisPressDetail = pressList[idx]
     historyReplaceState(`/press-and-news/${thisPressDetail.slug}`)
-    setIndex(idx)
   }
 
   const handlePrev = () => {
@@ -42,7 +46,7 @@ const PressDetailModalContent = ({ initSlug }: { initSlug: string }) => {
   }
 
   const handleExploreMoreClick = (slug: string) => {
-    const thisIndex = pressList.findIndex((item) => item.slug === slug)
+    const thisIndex = findIndexInList(slug)
 
     if (thisIndex < 0) return
 
