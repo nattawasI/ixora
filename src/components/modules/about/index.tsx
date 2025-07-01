@@ -10,7 +10,7 @@ const AboutPageContent = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
 
   return (
-    <main className={cn(isMobile === undefined ? 'invisible' : '')}>
+    <main className={cn('transition-opacity duration-700', isMobile === undefined ? 'invisible opacity-0' : '')}>
       {isMobile ? <MobileAboutLayout /> : <DesktopAboutLayout />}
     </main>
   )
