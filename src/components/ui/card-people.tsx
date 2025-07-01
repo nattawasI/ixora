@@ -14,12 +14,12 @@ const CardPeople = ({ image, name, position, ...props }: CardPeopleProps) => {
 
   return (
     <div {...props}>
-      <div className="bg-gray-light-1 relative mb-2.5 aspect-square overflow-hidden">
+      <div className="relative mb-2.5 aspect-square overflow-hidden">
         <Image
           src={src || '/images/people/people-fallback.jpg'}
           alt={alt}
           fill
-          className="object-cover object-center"
+          className="bg-gray-light-1 object-cover object-center"
           {...restImageProps}
         />
       </div>

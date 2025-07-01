@@ -17,8 +17,8 @@ const CardProject = ({ image, title, location, className, ...props }: CardProjec
   const { src, alt, ...restImageProps } = image
   return (
     <div className={cn('group/card block', className)} {...props}>
-      <div className="bg-gray-light-1 card-hover-image relative mb-2.5 aspect-[22/15] overflow-hidden">
-        <Image src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />
+      <div className="card-hover-image relative mb-2.5 aspect-[22/15] overflow-hidden">
+        <Image src={src} alt={alt} fill className="bg-gray-light-1 object-cover object-center" {...restImageProps} />
       </div>
       <ProjectNameTag className="typo-body-1 font-semibold uppercase">{title.text}</ProjectNameTag>
       <p className="typo-body-3 text-gray">{location}</p>

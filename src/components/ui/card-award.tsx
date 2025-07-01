@@ -46,13 +46,13 @@ const CardAward = ({
     >
       <div
         className={cn(
-          'bg-gray-light-1 relative aspect-square w-full overflow-hidden',
+          'relative aspect-square w-full overflow-hidden',
           'max-[27rem]:max-w-full',
           'max-lg:mx-auto max-lg:max-w-[25rem]',
           'lg:w-[27.6%] lg:max-w-[20rem] lg:min-w-[15rem] lg:self-start',
         )}
       >
-        <Image src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />
+        <Image src={src} alt={alt} fill className="bg-gray-light-1 object-cover object-center" {...restImageProps} />
       </div>
       <div className="flex-1 space-y-2">
         <p className="text-gray typo-body-2">{format(new Date(date), 'MMMM, yyyy')}</p>

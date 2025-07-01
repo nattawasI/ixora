@@ -18,6 +18,7 @@ const PeopleList = async () => {
                 src: item.image,
                 alt: `${item.first_name} ${item.last_name}`,
                 sizes: '50vw, (min-width: 768px) 33vw, (min-width: 1024px) 263px',
+                priority: index <= 7,
               }}
               name={`${item.first_name} ${item.last_name}`}
               position={item.position}

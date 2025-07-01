@@ -26,12 +26,16 @@ type FooterAccordionProps = {
 const FooterAccordion = ({ items, className }: FooterAccordionProps) => {
   const isLaptopUp = useMediaQuery('(min-width: 1024px)')
 
-  const [activeValue, setActiveValue] = useState<string[]>([])
+  const [activeValue, setActiveValue] = useState<string>('')
+
+  const orientation = isLaptopUp ? 'horizontal' : 'vertical'
+  const isVertical = orientation === 'vertical'
 
   return (
     <Accordion
-      type="multiple"
-      orientation={isLaptopUp ? 'horizontal' : 'vertical'}
+      type="single"
+      collapsible
+      orientation={orientation}
       value={activeValue}
       onValueChange={(value) => setActiveValue(value)}
       className={cn('grid gap-5 lg:grid-cols-3', className)}
@@ -54,24 +58,58 @@ const FooterAccordion = ({ items, className }: FooterAccordionProps) => {
                 <ChevronDown className="text-blue ml-auto transition-transform duration-300" />
               </AccordionTrigger>
             </AccordionHeader>
-            <AccordionContent forceMount asChild>
+            <AccordionContentWrapper isVertical={isVertical} open={open}>
               <motion.div
                 initial={false}
-                animate={{
-                  height: open ? 'auto' : 0,
-                  opacity: open ? 1 : 0,
+                animate={open ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                transition={{
+                  duration: 0.4,
+                  ease: 'easeOut',
+                  opacity: {
+                    duration: 0.3,
+                    delay: open ? 0.1 : 0,
+                  },
+                  y: {
+                    duration: 0.4,
+                    delay: open ? 0 : 0.1,
+                  },
                 }}
-                className="overflow-hidden"
+                className="py-5"
               >
-                <AccordionContentInner open={open} className="py-5">
-                  {item.content}
-                </AccordionContentInner>
+                <AccordionContentInner open={open}>{item.content}</AccordionContentInner>
               </motion.div>
-            </AccordionContent>
+            </AccordionContentWrapper>
           </AccordionItem>
         )
       })}
     </Accordion>
+  )
+}
+
+const AccordionContentWrapper = ({
+  isVertical,
+  open,
+  children,
+}: {
+  isVertical: boolean
+  open?: boolean
+  children: React.ReactElement
+}) => {
+  return (
+    <AccordionContent forceMount asChild>
+      {isVertical ? (
+        <motion.div
+          initial={{ height: 0 }}
+          animate={open ? { height: 'auto' } : { height: 0 }}
+          transition={{ duration: 0.3 }}
+          className="overflow-hidden"
+        >
+          {children}
+        </motion.div>
+      ) : (
+        <div className="data-[state=closed]:pointer-events-none">{children}</div>
+      )}
+    </AccordionContent>
   )
 }
 

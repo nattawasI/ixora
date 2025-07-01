@@ -1,5 +1,6 @@
 import { ProjectCategoriesFilter } from '@/components/modules/projects/project-categories-filter'
 import { ProjectListProvider } from '@/components/modules/projects/project-list-context'
+import { MotionPageFade } from '@/components/modules/common/motion'
 
 export default function ProjectListLayout({
   children,
@@ -10,10 +11,12 @@ export default function ProjectListLayout({
 }>) {
   return (
     <ProjectListProvider>
-      <div className="px-4.75 max-lg:pt-5 max-lg:pb-6 lg:px-10">
-        <ProjectCategoriesFilter />
-        {children}
-      </div>
+      <MotionPageFade>
+        <div className="px-4.75 max-lg:pt-5 max-lg:pb-6 lg:px-10">
+          <ProjectCategoriesFilter />
+          {children}
+        </div>
+      </MotionPageFade>
       {modal}
     </ProjectListProvider>
   )

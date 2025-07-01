@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import { PressList } from '@/components/modules/press/press-list'
 import { PressListLoading } from '@/components/modules/press/press-list'
+import { MotionPageFade } from '@/components/modules/common/motion'
 import { getMetadata } from '@/libs/utils/metadata'
 
 export async function generateMetadata() {
@@ -17,11 +18,13 @@ export async function generateMetadata() {
 
 export default async function PressAndNews() {
   return (
-    <>
-      <h1 className="sr-only">PRESS & NEWS</h1>
-      <Suspense fallback={<PressListLoading />}>
-        <PressList />
-      </Suspense>
-    </>
+    <MotionPageFade>
+      <div>
+        <h1 className="sr-only">PRESS & NEWS</h1>
+        <Suspense fallback={<PressListLoading />}>
+          <PressList />
+        </Suspense>
+      </div>
+    </MotionPageFade>
   )
 }

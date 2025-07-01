@@ -31,13 +31,8 @@ const CardPress = ({
 
   return (
     <div className={cn('group/card grid md:grid-cols-2', className)} {...props}>
-      <div
-        className={cn(
-          'bg-gray-light-1 card-hover-image relative aspect-[10/7] overflow-hidden',
-          isImageRight ? 'md:order-2' : '',
-        )}
-      >
-        <Image src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />
+      <div className={cn('card-hover-image relative aspect-[10/7] overflow-hidden', isImageRight ? 'md:order-2' : '')}>
+        <Image src={src} alt={alt} fill className="bg-gray-light-1 object-cover object-center" {...restImageProps} />
       </div>
       <div className={cn('flex flex-col bg-white p-5 md:p-10', isImageRight ? 'md:order-1' : '')}>
         <p className="typo-body-2 text-gray">{date}</p>

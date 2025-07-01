@@ -25,8 +25,8 @@ const CardOther = ({ className, image, title, description, action, ...props }: C
           {action ? <div className="mt-10 max-md:hidden">{action}</div> : null}
         </div>
       </div>
-      <div className="bg-gray-light-1 relative overflow-hidden max-md:aspect-[172/127] md:min-h-[24.375rem]">
-        <Image src={src} alt={alt} fill className="object-cover object-center" {...restImageProps} />
+      <div className="relative overflow-hidden max-md:aspect-[172/127] md:min-h-[24.375rem]">
+        <Image src={src} alt={alt} fill className="bg-gray-light-1 object-cover object-center" {...restImageProps} />
       </div>
       {action ? <div className="md:hidden">{action}</div> : null}
     </div>
