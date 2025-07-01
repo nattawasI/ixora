@@ -1,14 +1,11 @@
 'use client'
 
 import { cn } from '@/libs/utils/cn'
+import { useState } from 'react'
 import useSWR from 'swr'
 import { format } from 'date-fns'
-
 import { PressCard } from '@/components/modules/press/press-card'
-import {
-  ExploreMoreCollapsible,
-  type ExploreMoreCollapsibleProps,
-} from '@/components/modules/article-detail/explore-more-collapsible'
+import { ExploreMoreCollapsible } from '@/components/modules/article-detail/explore-more-collapsible'
 
 import type { NewsResponse } from '@/libs/directus/type'
 
@@ -16,9 +13,11 @@ type PressExploreMoreProps = {
   isInModal?: boolean
   slug: string
   onClickLink?: (slug: string) => void
-} & Pick<ExploreMoreCollapsibleProps, 'open' | 'onOpenChange'>
+}
 
-const PressExploreMore = ({ isInModal, slug, onClickLink, open, onOpenChange }: PressExploreMoreProps) => {
+const PressExploreMore = ({ isInModal, slug, onClickLink }: PressExploreMoreProps) => {
+  const [open, setOpen] = useState(false)
+
   const { data, error } = useSWR<NewsResponse[]>(`/api/news-explore-more?slug=${slug}`, (url: string) =>
     fetch(url).then((res) => res.json()),
   )
@@ -33,7 +32,7 @@ const PressExploreMore = ({ isInModal, slug, onClickLink, open, onOpenChange }: 
     <>
       {data.length > 0 ? (
         <section className={cn('max-lg:px-4.75 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
-          <ExploreMoreCollapsible open={open} onOpenChange={onOpenChange}>
+          <ExploreMoreCollapsible open={open} onOpenChange={setOpen}>
             <div className={cn('space-y-4 max-lg:pt-4 lg:space-y-5', isInModal ? 'lg:pb-12.5' : '')}>
               {data.map((item, index) => (
                 <a
@@ -44,6 +43,7 @@ const PressExploreMore = ({ isInModal, slug, onClickLink, open, onOpenChange }: 
                     if (onClickLink) {
                       e.preventDefault()
                       onClickLink(item.slug)
+                      setOpen(false)
                     }
                   }}
                 >

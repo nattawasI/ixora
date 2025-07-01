@@ -17,7 +17,6 @@ const ProjectDetailModalContent = ({ initSlug }: { initSlug: string }) => {
 
   const initIndex = projectList.findIndex((item) => item.slug === initSlug)
 
-  const [open, setOpen] = useState(false)
   const [index, setIndex] = useState(initIndex)
 
   if (index < 0) {
@@ -28,12 +27,10 @@ const ProjectDetailModalContent = ({ initSlug }: { initSlug: string }) => {
     )
   }
 
-  const handleChangeIndex = (index: number) => {
-    const thisProjectDetail = projectList[index]
-
-    setIndex(index)
+  const handleChangeIndex = (idx: number) => {
+    const thisProjectDetail = projectList[idx]
     historyReplaceState(`/projects/${thisProjectDetail.category.slug}/${thisProjectDetail.slug}`)
-    setOpen(false)
+    setIndex(idx)
   }
 
   const handlePrev = () => {
@@ -45,7 +42,11 @@ const ProjectDetailModalContent = ({ initSlug }: { initSlug: string }) => {
   }
 
   const handleExploreMoreClick = (slug: string) => {
-    handleChangeIndex(projectList.findIndex((item) => item.slug === slug))
+    const thisIndex = projectList.findIndex((item) => item.slug === slug)
+
+    if (thisIndex < 0) return
+
+    handleChangeIndex(thisIndex)
   }
 
   const projectDetailData = projectList[index]
@@ -62,8 +63,6 @@ const ProjectDetailModalContent = ({ initSlug }: { initSlug: string }) => {
           exploreMore={
             <ProjectExploreMore
               isInModal
-              open={open}
-              onOpenChange={setOpen}
               category={projectDetailData.category.slug}
               slug={projectDetailData.slug}
               onClickLink={handleExploreMoreClick}

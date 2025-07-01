@@ -1,12 +1,10 @@
 'use client'
 
 import { cn } from '@/libs/utils/cn'
+import { useState } from 'react'
 import useSWR from 'swr'
 
-import {
-  ExploreMoreCollapsible,
-  type ExploreMoreCollapsibleProps,
-} from '@/components/modules/article-detail/explore-more-collapsible'
+import { ExploreMoreCollapsible } from '@/components/modules/article-detail/explore-more-collapsible'
 import { ProjectCard } from '@/components/modules/projects/project-card'
 
 import type { ProjectResponse } from '@/libs/directus/type'
@@ -16,16 +14,11 @@ type ProjectExploreMoreProps = {
   category: string
   slug: string
   onClickLink?: (slug: string) => void
-} & Pick<ExploreMoreCollapsibleProps, 'open' | 'onOpenChange'>
+}
 
-const ProjectExploreMore = ({
-  isInModal,
-  category,
-  slug,
-  onClickLink,
-  open,
-  onOpenChange,
-}: ProjectExploreMoreProps) => {
+const ProjectExploreMore = ({ isInModal, category, slug, onClickLink }: ProjectExploreMoreProps) => {
+  const [open, setOpen] = useState(false)
+
   const { data, error } = useSWR<ProjectResponse[]>(
     `/api/projects-explore-more?category=${category}&slug=${slug}`,
     (url: string) => fetch(url).then((res) => res.json()),
@@ -42,7 +35,7 @@ const ProjectExploreMore = ({
     <>
       {data.length > 0 ? (
         <section className={cn('max-lg:px-4.75 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
-          <ExploreMoreCollapsible open={open} onOpenChange={onOpenChange}>
+          <ExploreMoreCollapsible open={open} onOpenChange={setOpen}>
             <div className={cn('grid gap-2.5 max-lg:pt-4 md:grid-cols-3', isInModal ? 'lg:pb-10' : 'md:pb-7.5')}>
               {data.map((item, index) => (
                 <a
@@ -53,6 +46,7 @@ const ProjectExploreMore = ({
                     if (onClickLink) {
                       e.preventDefault()
                       onClickLink(item.slug)
+                      setOpen(false)
                     }
                   }}
                 >

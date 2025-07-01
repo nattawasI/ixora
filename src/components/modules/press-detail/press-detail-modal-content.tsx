@@ -17,7 +17,6 @@ const PressDetailModalContent = ({ initSlug }: { initSlug: string }) => {
 
   const initIndex = pressList.findIndex((item) => item.slug === initSlug)
 
-  const [open, setOpen] = useState(false)
   const [index, setIndex] = useState(initIndex)
 
   if (index < 0) {
@@ -28,12 +27,10 @@ const PressDetailModalContent = ({ initSlug }: { initSlug: string }) => {
     )
   }
 
-  const handleChangeIndex = (index: number) => {
-    const thisPressDetail = pressList[index]
-
-    setIndex(index)
+  const handleChangeIndex = (idx: number) => {
+    const thisPressDetail = pressList[idx]
     historyReplaceState(`/press-and-news/${thisPressDetail.slug}`)
-    setOpen(false)
+    setIndex(idx)
   }
 
   const handlePrev = () => {
@@ -45,7 +42,11 @@ const PressDetailModalContent = ({ initSlug }: { initSlug: string }) => {
   }
 
   const handleExploreMoreClick = (slug: string) => {
-    handleChangeIndex(pressList.findIndex((item) => item.slug === slug))
+    const thisIndex = pressList.findIndex((item) => item.slug === slug)
+
+    if (thisIndex < 0) return
+
+    handleChangeIndex(thisIndex)
   }
 
   const pressDetailData = pressList[index]
@@ -59,15 +60,7 @@ const PressDetailModalContent = ({ initSlug }: { initSlug: string }) => {
         <PressDetailContent
           isInModal
           data={pressDetailData}
-          exploreMore={
-            <PressExploreMore
-              isInModal
-              open={open}
-              onOpenChange={setOpen}
-              slug={pressDetailData.slug}
-              onClickLink={handleExploreMoreClick}
-            />
-          }
+          exploreMore={<PressExploreMore isInModal slug={pressDetailData.slug} onClickLink={handleExploreMoreClick} />}
         />
         <ArticleDetailModalActions
           showPrevButton={showPrevButton}
