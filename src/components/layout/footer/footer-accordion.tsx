@@ -14,6 +14,8 @@ import {
 import { AccordionContentInner } from '@/components/ui/accordion-content-inner'
 import { motion } from 'motion/react'
 
+const MotionAccordionContentInner = motion(AccordionContentInner)
+
 type FooterAccordionProps = {
   items: {
     id: string
@@ -26,11 +28,12 @@ type FooterAccordionProps = {
 const FooterAccordion = ({ items, className }: FooterAccordionProps) => {
   const isLaptopUp = useMediaQuery('(min-width: 1024px)')
 
-  const [activeValue, setActiveValue] = useState<string[]>([])
+  const [activeValue, setActiveValue] = useState<string>('')
 
   return (
     <Accordion
-      type="multiple"
+      type="single"
+      collapsible
       orientation={isLaptopUp ? 'horizontal' : 'vertical'}
       value={activeValue}
       onValueChange={(value) => setActiveValue(value)}
@@ -56,16 +59,31 @@ const FooterAccordion = ({ items, className }: FooterAccordionProps) => {
             </AccordionHeader>
             <AccordionContent forceMount asChild>
               <motion.div
-                initial={false}
-                animate={{
-                  height: open ? 'auto' : 0,
-                  opacity: open ? 1 : 0,
-                }}
+                initial={{ height: 0 }}
+                animate={open ? { height: 'auto' } : undefined}
+                transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <AccordionContentInner open={open} className="py-5">
+                <MotionAccordionContentInner
+                  initial={false}
+                  animate={open ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                  transition={{
+                    duration: 0.4,
+                    ease: 'easeOut',
+                    opacity: {
+                      duration: 0.3,
+                      delay: open ? 0.1 : 0,
+                    },
+                    y: {
+                      duration: 0.4,
+                      delay: open ? 0 : 0.1,
+                    },
+                  }}
+                  open={open}
+                  className="py-5"
+                >
                   {item.content}
-                </AccordionContentInner>
+                </MotionAccordionContentInner>
               </motion.div>
             </AccordionContent>
           </AccordionItem>
