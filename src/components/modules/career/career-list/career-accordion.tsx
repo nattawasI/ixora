@@ -36,7 +36,7 @@ const CareerAccordion = ({ items }: { items: CareerResponse[] }) => {
                 </span>
                 <span
                   className={cn(
-                    'border-blue ml-auto flex size-7 shrink-0 items-center justify-center rounded-full border transition-all duration-300',
+                    'border-blue ml-auto flex size-7 shrink-0 items-center justify-center rounded-full border transition duration-300',
                     'group-hover/accordion-trigger:bg-blue group-hover/accordion-trigger:text-white',
                     'group-data-[state=open]/accordion-trigger:rotate-180',
                   )}
