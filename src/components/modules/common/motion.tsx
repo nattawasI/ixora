@@ -48,7 +48,7 @@ export const MotionStaggerItem = ({ children }: { children: React.ReactElement }
   return <MotionSlot variants={staggerItemVariants}>{children}</MotionSlot>
 }
 
-export const MotionPageFade = ({ children, duration = 0.8 }: { children: React.ReactElement; duration?: number }) => {
+export const MotionPageFade = ({ children, duration = 0.7 }: { children: React.ReactElement; duration?: number }) => {
   return (
     <MotionSlot variants={fadeInVariants} initial="initial" animate="animate" custom={{ duration }}>
       {children}
