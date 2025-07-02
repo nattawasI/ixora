@@ -14,10 +14,10 @@
       overflow: hidden;
     }
 
-    &.swiper-pagination-progressbar-fill {
+    .swiper-pagination-progressbar-fill {
       background-color: #009bc9;
       height: 100%;
-      width: 0%;
+      width: 100%;
       transform-origin: left;
     }
   }
