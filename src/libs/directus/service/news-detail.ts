@@ -5,6 +5,7 @@ import { readItems } from '@directus/sdk'
 import { directus } from '@/libs/directus'
 import { mapCoverImage, mapMediaSource } from '@/libs/directus/util'
 import type { NewsResponse, NewsDetailResponse } from '@/libs/directus/type'
+import { aggregateCount } from './aggregate-count'
 
 const getNewsDetail = async ({ slug, isDraft }: { slug: string; isDraft: boolean }) => {
   const filteredDraft = !isDraft ? { status: { _eq: 'published' } } : {}
@@ -65,39 +66,58 @@ const getNewsDetail = async ({ slug, isDraft }: { slug: string; isDraft: boolean
 }
 
 const getNewsDetailExploreMore = async ({ slug }: { slug: string }) => {
-  const data = await directus.request<NewsResponse[]>(
-    readItems('news', {
-      filter: {
-        status: {
-          _eq: 'published',
-        },
-        slug: {
-          _neq: slug,
-        },
-      },
-      fields: [
-        'id',
-        'status',
-        'date_created',
-        'date_updated',
-        'title',
-        'published_date',
-        'slug',
-        'description',
-        'content',
-        'cover.id',
-        'cover.filename_disk',
-        'cover.filename_download',
-        'cover.width',
-        'cover.height',
-        'cover.filesize',
-        'cover.title',
-      ],
-      limit: 3,
-    }),
-  )
+  const filter = {
+    status: {
+      _eq: 'published',
+    },
+    slug: {
+      _neq: slug,
+    },
+  }
+  const limit = 3
 
-  return mapCoverImage<NewsResponse[]>(data)
+  const total = await aggregateCount({ collection: 'news', filter })
+
+  if (total === 0) return []
+
+  const results: NewsResponse[] = []
+  const seen = new Set<number>()
+
+  while (results.length < limit && seen.size < total) {
+    const offset = Math.floor(Math.random() * total)
+    if (seen.has(offset)) continue
+    seen.add(offset)
+
+    const batch = await directus.request<NewsResponse[]>(
+      readItems('news', {
+        filter,
+        limit: 1,
+        offset,
+        fields: [
+          'id',
+          'status',
+          'date_created',
+          'date_updated',
+          'title',
+          'published_date',
+          'slug',
+          'description',
+          'content',
+          'cover.id',
+          'cover.filename_disk',
+          'cover.filename_download',
+          'cover.width',
+          'cover.height',
+          'cover.filesize',
+          'cover.title',
+        ],
+      }),
+    )
+
+    if (batch[0]) results.push(batch[0])
+  }
+
+  return mapCoverImage<NewsResponse[]>(results)
 }
 
 export { getNewsDetail, getNewsDetailExploreMore }

@@ -5,6 +5,7 @@ import { readItems } from '@directus/sdk'
 import { notFound } from 'next/navigation'
 import { mapCoverImage, mapMediaSource } from '@/libs/directus/util'
 import type { ProjectDetailResponse, ProjectResponse } from '@/libs/directus/type'
+import { aggregateCount } from './aggregate-count'
 
 const getProjectDetail = async ({ slug, category, isDraft }: { slug: string; category: string; isDraft: boolean }) => {
   const filteredDraft = !isDraft ? { status: { _eq: 'published' } } : {}
@@ -79,45 +80,53 @@ const getProjectDetail = async ({ slug, category, isDraft }: { slug: string; cat
 }
 
 const getProjectDetailExploreMore = async ({ slug, category }: { slug: string; category: string }) => {
-  const data = await directus.request<ProjectResponse[]>(
-    readItems('projects', {
-      filter: {
-        slug: {
-          _neq: slug,
-        },
-        status: {
-          _eq: 'published',
-        },
-        category: {
-          slug: {
-            _eq: category,
-          },
-        },
-      },
-      sort: ['?'],
-      fields: [
-        'id',
-        'sort',
-        'status',
-        'slug',
-        'location',
-        'title',
-        'cover.id',
-        'cover.filename_disk',
-        'cover.filename_download',
-        'cover.width',
-        'cover.height',
-        'cover.filesize',
-        'cover.title',
-        'category.id',
-        'category.title',
-        'category.slug',
-      ],
-      limit: 3,
-    }),
-  )
+  const filter = {
+    slug: { _neq: slug },
+    status: { _eq: 'published' },
+    category: { slug: { _eq: category } },
+  }
+  const limit = 3
 
-  return mapCoverImage<ProjectResponse[]>(data)
+  const total = await aggregateCount({ collection: 'projects', filter })
+  if (total === 0) return []
+
+  const results: ProjectResponse[] = []
+  const seen = new Set<number>()
+
+  while (results.length < limit && seen.size < total) {
+    const offset = Math.floor(Math.random() * total)
+    if (seen.has(offset)) continue
+    seen.add(offset)
+
+    const batch = await directus.request<ProjectResponse[]>(
+      readItems('projects', {
+        filter,
+        offset,
+        limit: 1,
+        fields: [
+          'id',
+          'sort',
+          'status',
+          'slug',
+          'location',
+          'title',
+          'cover.id',
+          'cover.filename_disk',
+          'cover.filename_download',
+          'cover.width',
+          'cover.height',
+          'cover.filesize',
+          'cover.title',
+          'category.id',
+          'category.title',
+          'category.slug',
+        ],
+      }),
+    )
+    if (batch[0]) results.push(batch[0])
+  }
+
+  return mapCoverImage<ProjectResponse[]>(results)
 }
 
 export { getProjectDetail, getProjectDetailExploreMore }
