@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 
-import { PressDetailContentLoading } from '@/components/modules/press-detail-server/press-detail-content/loading'
+import { PressDetailContentLoading } from '@/components/modules/press-detail-2/press-detail-content/loading'
 import { DialogTitle } from '@radix-ui/react-dialog'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { overLayScrollToTop } from '@/libs/utils/page-modal'

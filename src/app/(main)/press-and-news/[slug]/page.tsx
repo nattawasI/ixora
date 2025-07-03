@@ -4,8 +4,8 @@ import { getNewsDetail, getNewsDetailExploreMore } from '@/libs/directus/service
 import { draftMode } from 'next/headers'
 import { NewsResponse } from '@/libs/directus/type'
 import { readItems } from '@directus/sdk'
-import { PressDetailContent } from '@/components/modules/press-detail-server/press-detail-content'
-import { PressExploreMore } from '@/components/modules/press-detail-server/press-explore-more'
+import { PressDetailContent } from '@/components/modules/press-detail-2/press-detail-content'
+import { PressExploreMore } from '@/components/modules/press-detail-2/press-explore-more'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 

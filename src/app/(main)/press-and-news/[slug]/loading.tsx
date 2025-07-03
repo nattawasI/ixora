@@ -1,4 +1,4 @@
-import { PressDetailContentLoading } from '@/components/modules/press-detail-server/press-detail-content/loading'
+import { PressDetailContentLoading } from '@/components/modules/press-detail-2/press-detail-content/loading'
 
 export default function Loading() {
   return (

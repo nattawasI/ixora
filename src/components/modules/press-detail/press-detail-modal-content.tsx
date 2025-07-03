@@ -9,8 +9,8 @@ import { historyReplaceState } from '@/libs/utils/history'
 import { DialogTitle } from '@radix-ui/react-dialog'
 import { ArticleDetailModalActions } from '@/components/modules/article-detail-modal'
 import { UpdateMetadataTitleClient } from '@/components/modules/common/update-metadata-title-client'
-import { PressDetailContent } from '@/components/modules/press-detail-server/press-detail-content'
-import { PressExploreMore } from '@/components/modules/press-detail-server/press-explore-more'
+import { PressDetailContent } from '@/components/modules/press-detail/press-detail-content'
+import { PressExploreMore } from '@/components/modules/press-detail/press-explore-more'
 
 const PressDetailModalContent = ({ initSlug }: { initSlug: string }) => {
   const { pressList } = usePressList()

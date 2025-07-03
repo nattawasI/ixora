@@ -1,5 +1,5 @@
 import { ArticleDetailModal } from '@/components/modules/article-detail-modal'
-import { PressDetailModalActions } from '@/components/modules/press-detail-server/press-detail-modal-actions'
+import { PressDetailModalActions } from '@/components/modules/press-detail-2/press-detail-modal-actions'
 
 export default function PressAndNewsDetailModalLayout({
   children,
