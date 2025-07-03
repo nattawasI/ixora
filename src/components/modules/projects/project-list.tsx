@@ -9,7 +9,7 @@ import { CardProjectLoading } from '@/components/ui/card-project'
 import { EmptyData } from '@/components/ui/empty-data'
 import { ProjectCard } from '@/components/modules/projects/project-card'
 import { UpdateProjectListContext } from '@/components/modules/projects/update-project-list-context'
-import { MotionStaggerRoot, MotionStaggerItem } from '@/components/modules/common/motion'
+import { MotionStaggerRoot, MotionStaggerItem } from '@/components/common/motion'
 
 const ProjectList = async ({ category }: { category: string }) => {
   const data = await getProjectByCategory({ category })

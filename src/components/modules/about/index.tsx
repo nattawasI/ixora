@@ -4,7 +4,7 @@ import './style.css'
 import { useMediaQuery } from '@/libs/hooks/use-media-query'
 import { MobileAboutLayout } from './mobile'
 import { DesktopAboutLayout } from './desktop'
-import { MotionPageFade } from '@/components/modules/common/motion'
+import { MotionPageFade } from '@/components/common/motion'
 import { cn } from '@/libs/utils/cn'
 
 const AboutPageContent = () => {

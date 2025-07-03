@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { PressList } from '@/components/modules/press/press-list'
 import { PressListLoading } from '@/components/modules/press/press-list'
-import { MotionPageFade } from '@/components/modules/common/motion'
+import { MotionPageFade } from '@/components/common/motion'
 import { getMetadata } from '@/libs/utils/metadata'
 
 export async function generateMetadata() {

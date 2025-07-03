@@ -1,7 +1,7 @@
 import { draftMode } from 'next/headers'
 import { ProjectDetailContent } from '@/components/modules/project-detail/project-detail-content'
 import { ProjectExploreMore } from '@/components/modules/project-detail/project-explore-more'
-import { getProjectDetail } from '@/libs/directus/service/project-detail'
+import { getProjectDetail, getProjectDetailExploreMore } from '@/libs/directus/service/project-detail'
 import { directus } from '@/libs/directus'
 import { readItems } from '@directus/sdk'
 import { ProjectResponse } from '@/libs/directus/type'
@@ -46,7 +46,10 @@ export default async function ProjectDetail({ params }: PageProps) {
   const { category, slug } = await params
   const { isEnabled } = await draftMode()
 
-  const data = await getProjectDetail({ slug, category, isDraft: isEnabled })
+  const [data, exploreMoreData] = await Promise.all([
+    getProjectDetail({ slug, category, isDraft: isEnabled }),
+    getProjectDetailExploreMore({ category, slug }),
+  ])
 
   if (!data) notFound()
 
@@ -55,7 +58,7 @@ export default async function ProjectDetail({ params }: PageProps) {
       {/* {isEnabled ? (
         <h2 className="typo-title-1 mb-2 text-center font-semibold text-red-500 uppercase">draft mode</h2>
       ) : null} */}
-      <ProjectDetailContent data={data} exploreMore={<ProjectExploreMore category={category} slug={slug} />} />
+      <ProjectDetailContent data={data} exploreMore={<ProjectExploreMore data={exploreMoreData} />} />
     </div>
   )
 }

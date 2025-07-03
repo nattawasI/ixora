@@ -5,7 +5,7 @@ import { CardOther } from '@/components/ui/card-other'
 import { SeparatorIcon } from '@/components/ui/separator'
 import { FullLogoGray } from '@/components/ui/icons-color/full-logo-gray'
 import { CopyEmail } from '@/components/modules/career/copy-email'
-import { MotionPageFade } from '@/components/modules/common/motion'
+import { MotionPageFade } from '@/components/common/motion'
 import { getMetadata } from '@/libs/utils/metadata'
 import type { Metadata } from 'next'
 

@@ -1,8 +1,8 @@
 import { getNewsDetail, getNewsDetailExploreMore } from '@/libs/directus/service/news-detail'
 import { notFound } from 'next/navigation'
 
-import { PressDetailContent } from '@/components/modules/press-detail-2/press-detail-content'
-import { PressExploreMore } from '@/components/modules/press-detail-2/press-explore-more'
+import { PressDetailContent } from '@/components/modules/press-detail/press-detail-content'
+import { PressExploreMore } from '@/components/modules/press-detail/press-explore-more'
 
 type PageProps = {
   params: Promise<{ slug: string }>

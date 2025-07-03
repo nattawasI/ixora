@@ -4,7 +4,7 @@ import { PeopleList, PeopleListLoading } from '@/components/modules/people/peopl
 import { CardOther } from '@/components/ui/card-other'
 import { ButtonArrowLink } from '@/components/ui/button-arrow'
 import { SeparatorIcon } from '@/components/ui/separator'
-import { MotionPageFade } from '@/components/modules/common/motion'
+import { MotionPageFade } from '@/components/common/motion'
 import { getMetadata } from '@/libs/utils/metadata'
 import type { Metadata } from 'next'
 
