@@ -1,26 +1,10 @@
 import { getMetadata } from '@/libs/utils/metadata'
-import { directus } from '@/libs/directus'
 import { getNewsDetail, getNewsDetailExploreMore } from '@/libs/directus/service/news-detail'
 import { draftMode } from 'next/headers'
-import { NewsResponse } from '@/libs/directus/type'
-import { readItems } from '@directus/sdk'
 import { PressDetailContent } from '@/components/modules/press-detail/press-detail-content'
 import { PressExploreMore } from '@/components/modules/press-detail/press-explore-more'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-
-export async function generateStaticParams() {
-  const data = await directus.request<NewsResponse[]>(
-    readItems('news', {
-      fields: ['*'],
-      limit: -1,
-    }),
-  )
-
-  return data.map((item) => ({
-    slug: item.slug,
-  }))
-}
 
 type PageProps = { params: Promise<{ slug: string }> }
 

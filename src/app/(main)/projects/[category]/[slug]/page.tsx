@@ -2,26 +2,9 @@ import { draftMode } from 'next/headers'
 import { ProjectDetailContent } from '@/components/modules/project-detail/project-detail-content'
 import { ProjectExploreMore } from '@/components/modules/project-detail/project-explore-more'
 import { getProjectDetail, getProjectDetailExploreMore } from '@/libs/directus/service/project-detail'
-import { directus } from '@/libs/directus'
-import { readItems } from '@directus/sdk'
-import { ProjectResponse } from '@/libs/directus/type'
 import { getMetadata } from '@/libs/utils/metadata'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-
-export async function generateStaticParams() {
-  const data = await directus.request<ProjectResponse[]>(
-    readItems('projects', {
-      fields: ['*', 'category.*'],
-      limit: -1,
-    }),
-  )
-
-  return data.map((item) => ({
-    category: item.category.slug,
-    slug: item.slug,
-  }))
-}
 
 type PageProps = { params: Promise<{ category: string; slug: string }> }
 
