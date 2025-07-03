@@ -1,8 +1,8 @@
 import { getProjectDetail, getProjectDetailExploreMore } from '@/libs/directus/service/project-detail'
 import { notFound } from 'next/navigation'
 
-import { ProjectDetailContent } from '@/components/modules/project-detail-2/project-detail-content'
-import { ProjectExploreMore } from '@/components/modules/project-detail-2/project-explore-more'
+import { ProjectDetailContent } from '@/components/modules/project-detail/project-detail-content'
+import { ProjectExploreMore } from '@/components/modules/project-detail/project-explore-more'
 
 type PageProps = {
   params: Promise<{ category: string; slug: string }>

@@ -21,14 +21,16 @@ import {
 const PageModal = Dialog
 
 type PageModalContentProps = React.ComponentProps<typeof DialogContent> & {
+  overlayRef?: React.Ref<HTMLDivElement>
   contentSize: 'small' | 'large'
 }
 
-const PageModalContent = ({ contentSize, onAnimationEnd, children, ...props }: PageModalContentProps) => {
+const PageModalContent = ({ overlayRef, contentSize, onAnimationEnd, children, ...props }: PageModalContentProps) => {
   const [animated, setAnimated] = useState(false)
   return (
     <DialogPortal>
       <DialogOverlay
+        ref={overlayRef}
         id="page-dialog-overlay"
         className={cn(
           'fixed inset-0 z-30 bg-black/70',

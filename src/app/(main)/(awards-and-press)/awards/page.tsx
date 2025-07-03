@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { AwardList, AwardListLoading } from '@/components/modules/awards/award-list'
-import { MotionPageFade } from '@/components/modules/common/motion'
+import { MotionPageFade } from '@/components/common/motion'
 import { getMetadata } from '@/libs/utils/metadata'
 import type { Metadata } from 'next'
 

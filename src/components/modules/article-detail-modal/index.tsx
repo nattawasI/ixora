@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRef, useState, useEffect } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
 import { PageModal, PageModalContent } from '@/components/ui/page-modal'
 import {
   PageModalButtonsMobile,
@@ -16,12 +16,24 @@ const ArticleDetailModal = ({
   contentSize,
 }: { children: React.ReactNode } & Pick<PageModalContentProps, 'contentSize'>) => {
   const router = useRouter()
+  const pathname = usePathname()
 
   const [open, setOpen] = useState(true)
+
+  const overlayRef = useRef<HTMLDivElement | null>(null)
+
+  /** scroll to top when pathname changes */
+  useEffect(() => {
+    const overlay = overlayRef.current
+    if (overlay) {
+      overlay.scrollTo({ top: 0 })
+    }
+  }, [pathname])
 
   return (
     <PageModal open={open} onOpenChange={setOpen}>
       <PageModalContent
+        overlayRef={overlayRef}
         aria-describedby={undefined}
         contentSize={contentSize}
         onAnimationEnd={() => {
