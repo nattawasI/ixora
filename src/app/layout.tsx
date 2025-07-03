@@ -19,11 +19,7 @@ export const metadata: Metadata = {
   description: '',
 }
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const hasVisited = (await cookies()).get('hasVisited')
   const { isEnabled } = await draftMode()
 

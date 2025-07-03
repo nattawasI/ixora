@@ -1,10 +1,6 @@
 import { ReactNode } from 'react'
 
-const AboutLayout = ({
-  children,
-}: Readonly<{
-  children: ReactNode
-}>) => {
+const AboutLayout = ({ children }: { children: ReactNode }) => {
   return <>{children}</>
 }
 

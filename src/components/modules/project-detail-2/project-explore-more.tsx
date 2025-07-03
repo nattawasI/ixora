@@ -1,20 +1,19 @@
 'use client'
 
 import { cn } from '@/libs/utils/cn'
-import { format } from 'date-fns'
 import { useRouter } from 'next/navigation'
 
-import { PressCard } from '@/components/modules/press/press-card'
 import { ExploreMoreCollapsible } from '@/components/modules/article-detail/explore-more-collapsible'
+import { ProjectCard } from '@/components/modules/projects/project-card'
 
-import type { NewsResponse } from '@/libs/directus/type'
+import type { ProjectResponse } from '@/libs/directus/type'
 
-type PressExploreMoreProps = {
+type ProjectExploreMoreProps = {
   isInModal?: boolean
-  data: NewsResponse[]
+  data: ProjectResponse[]
 }
 
-const PressExploreMore = ({ isInModal, data }: PressExploreMoreProps) => {
+const ProjectExploreMore = ({ isInModal, data }: ProjectExploreMoreProps) => {
   const router = useRouter()
 
   return (
@@ -22,9 +21,9 @@ const PressExploreMore = ({ isInModal, data }: PressExploreMoreProps) => {
       {data.length > 0 ? (
         <section className={cn('max-lg:px-4.75 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
           <ExploreMoreCollapsible>
-            <div className={cn('space-y-4 max-lg:pt-4 lg:space-y-5', isInModal ? 'lg:pb-12.5' : '')}>
+            <div className={cn('grid gap-2.5 max-lg:pt-4 md:grid-cols-3', isInModal ? 'lg:pb-10' : 'md:pb-7.5')}>
               {data.map((item, index) => {
-                const href = `/press-and-news/${item.slug}`
+                const href = `/projects/${item.category.slug}/${item.slug}`
                 return (
                   <a
                     key={index}
@@ -37,20 +36,17 @@ const PressExploreMore = ({ isInModal, data }: PressExploreMoreProps) => {
                       }
                     }}
                   >
-                    <PressCard
+                    <ProjectCard
                       image={{
                         src: item.cover.src,
                         alt: item.title,
-                        sizes: '100vw, (min-width: 1024px) 50vw',
+                        sizes: '100vw, (min-width: 768px) 33vw',
                       }}
-                      date={format(new Date(item.published_date), 'MMMM, yyyy')}
                       title={{
                         tag: 'h3',
                         text: item.title,
                       }}
-                      description={item.description}
-                      isImageRight={index % 2 === 0}
-                      isInModal
+                      location={item.location}
                     />
                   </a>
                 )
@@ -63,4 +59,4 @@ const PressExploreMore = ({ isInModal, data }: PressExploreMoreProps) => {
   )
 }
 
-export { PressExploreMore }
+export { ProjectExploreMore }

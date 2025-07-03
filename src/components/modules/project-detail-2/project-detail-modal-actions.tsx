@@ -4,23 +4,23 @@
 import { useRouter, useParams } from 'next/navigation'
 
 /** context */
-import { usePressList } from '@/components/modules/press/press-list-context'
+import { useProjectList } from '@/components/modules/projects/project-list-context'
 
 /** components */
 import { ArticleDetailModalActions } from '@/components/modules/article-detail-modal'
 
-const PressDetailModalActions = () => {
-  const { pressList } = usePressList()
-  const pressListLength = pressList.length
+const ProjectDetailModalActions = () => {
+  const { projectList } = useProjectList()
+  const projectListLength = projectList.length
 
   const router = useRouter()
   const { slug } = useParams()
 
-  const currentIndex = pressList.findIndex((item) => item.slug === slug)
+  const currentIndex = projectList.findIndex((item) => item.slug === slug)
 
   const handleRouterReplace = (idx: number) => {
-    const newsDetail = pressList[idx]
-    router.replace(`/press-and-news/${newsDetail.slug}`, { scroll: false })
+    const projectDetail = projectList[idx]
+    router.replace(`/projects/${projectDetail.category.slug}/${projectDetail.slug}`, { scroll: false })
   }
 
   const handlePrev = () => {
@@ -32,7 +32,7 @@ const PressDetailModalActions = () => {
   }
 
   const showPrevButton = currentIndex > 0
-  const showNextButton = currentIndex < pressListLength - 1
+  const showNextButton = currentIndex < projectListLength - 1
 
   return (
     <ArticleDetailModalActions
@@ -44,4 +44,4 @@ const PressDetailModalActions = () => {
   )
 }
 
-export { PressDetailModalActions }
+export { ProjectDetailModalActions }
