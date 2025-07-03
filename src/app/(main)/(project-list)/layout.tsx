@@ -2,13 +2,7 @@ import { ProjectCategoriesFilter } from '@/components/modules/projects/project-c
 import { ProjectListProvider } from '@/components/modules/projects/project-list-context'
 import { MotionPageFade } from '@/components/modules/common/motion'
 
-export default function ProjectListLayout({
-  children,
-  modal,
-}: Readonly<{
-  children: React.ReactNode
-  modal: React.ReactNode
-}>) {
+export default function ProjectListLayout({ children, modal }: { children: React.ReactNode; modal: React.ReactNode }) {
   return (
     <ProjectListProvider>
       <MotionPageFade>

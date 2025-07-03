@@ -1,12 +1,24 @@
-import { ArticleDetailModal } from '@/components/modules/article-detail-modal'
-import { ProjectDetailModalContent } from '@/components/modules/project-detail/project-detail-modal-content'
+import { getProjectDetail, getProjectDetailExploreMore } from '@/libs/directus/service/project-detail'
+import { notFound } from 'next/navigation'
 
-export default async function ProjectDetailIntercepting({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
+import { ProjectDetailContent } from '@/components/modules/project-detail-2/project-detail-content'
+import { ProjectExploreMore } from '@/components/modules/project-detail-2/project-explore-more'
+
+type PageProps = {
+  params: Promise<{ category: string; slug: string }>
+}
+
+export default async function ProjectDetailIntercepting({ params }: PageProps) {
+  const { category, slug } = await params
+
+  const [data, exploreMoreData] = await Promise.all([
+    getProjectDetail({ slug, category, isDraft: false }),
+    getProjectDetailExploreMore({ slug, category }),
+  ])
+
+  if (!data) notFound()
 
   return (
-    <ArticleDetailModal contentSize="large">
-      <ProjectDetailModalContent initSlug={slug} />
-    </ArticleDetailModal>
+    <ProjectDetailContent isInModal data={data} exploreMore={<ProjectExploreMore isInModal data={exploreMoreData} />} />
   )
 }
