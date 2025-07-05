@@ -1,7 +1,8 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
+import { createContext, useContext, useRef, useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
+import { cn } from '@/libs/utils/cn'
 import { PageModal, PageModalContent } from '@/components/ui/page-modal'
 import {
   PageModalButtonsMobile,
@@ -11,15 +12,32 @@ import {
   type PageModalContentProps,
 } from '@/components/ui/page-modal'
 
+// Create context
+type ArticleDetailContextType = {
+  isLoading: boolean
+  setIsLoading: (loading: boolean) => void
+}
+
+const ArticleDetailContext = createContext<ArticleDetailContextType | undefined>(undefined)
+
+export const useArticleDetail = () => {
+  const context = useContext(ArticleDetailContext)
+  if (context === undefined) {
+    throw new Error('useArticleDetail must be used within an ArticleDetailProvider')
+  }
+  return context
+}
+
 const ArticleDetailModal = ({
-  children,
+  content,
+  actions,
   contentSize,
-}: { children: React.ReactNode } & Pick<PageModalContentProps, 'contentSize'>) => {
+}: { content: React.ReactNode; actions: React.ReactNode } & Pick<PageModalContentProps, 'contentSize'>) => {
   const router = useRouter()
   const pathname = usePathname()
 
   const [open, setOpen] = useState(true)
-
+  const [isLoading, setIsLoading] = useState(true)
   const overlayRef = useRef<HTMLDivElement | null>(null)
 
   /** scroll to top when pathname changes */
@@ -42,32 +60,37 @@ const ArticleDetailModal = ({
           }
         }}
       >
-        {children}
+        <ArticleDetailContext.Provider value={{ isLoading, setIsLoading }}>
+          <div className="bg-gray-light-2 flex min-h-full flex-col">
+            <div className="flex-1">{content}</div>
+            <div className={cn('shrink-0', isLoading ? 'pointer-events-none' : '')}>{actions}</div>
+          </div>
+        </ArticleDetailContext.Provider>
       </PageModalContent>
     </PageModal>
   )
 }
 
 const ArticleDetailModalActions = ({
-  showPrevButton,
-  showNextButton,
+  hiddenPrevButton,
+  hiddenNextButton,
   handlePrev,
   handleNext,
 }: {
-  showPrevButton: boolean
-  showNextButton: boolean
+  hiddenPrevButton: boolean
+  hiddenNextButton: boolean
   handlePrev: () => void
   handleNext: () => void
 }) => {
   return (
     <>
       <PageModalButtonsMobile>
-        {showPrevButton ? <PageModalPrev variant="mobile" onClick={handlePrev} /> : null}
+        <PageModalPrev variant="mobile" isInvisible={hiddenPrevButton} onClick={handlePrev} />
         <PageModalClose variant="mobile" label="CLOSE" />
-        {showNextButton ? <PageModalNext variant="mobile" onClick={handleNext} /> : null}
+        <PageModalNext variant="mobile" isInvisible={hiddenNextButton} onClick={handleNext} />
       </PageModalButtonsMobile>
-      {showPrevButton ? <PageModalPrev variant="desktop" onClick={handlePrev} /> : null}
-      {showNextButton ? <PageModalNext variant="desktop" onClick={handleNext} /> : null}
+      <PageModalPrev variant="desktop" isInvisible={hiddenPrevButton} onClick={handlePrev} />
+      <PageModalNext variant="desktop" isInvisible={hiddenNextButton} onClick={handleNext} />
       <PageModalClose variant="desktop" />
     </>
   )

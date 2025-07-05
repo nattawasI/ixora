@@ -31,13 +31,13 @@ const PressDetailModalActions = () => {
     handleRouterReplace(currentIndex + 1)
   }
 
-  const showPrevButton = currentIndex > 0
-  const showNextButton = currentIndex < pressListLength - 1
+  const hiddenPrevButton = currentIndex === 0
+  const hiddenNextButton = currentIndex === pressListLength - 1
 
   return (
     <ArticleDetailModalActions
-      showPrevButton={showPrevButton}
-      showNextButton={showNextButton}
+      hiddenPrevButton={hiddenPrevButton}
+      hiddenNextButton={hiddenNextButton}
       handlePrev={handlePrev}
       handleNext={handleNext}
     />

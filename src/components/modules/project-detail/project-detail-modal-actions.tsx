@@ -11,6 +11,7 @@ import { ArticleDetailModalActions } from '@/components/modules/article-detail-m
 
 const ProjectDetailModalActions = () => {
   const { projectList } = useProjectList()
+
   const projectListLength = projectList.length
 
   const router = useRouter()
@@ -31,13 +32,13 @@ const ProjectDetailModalActions = () => {
     handleRouterReplace(currentIndex + 1)
   }
 
-  const showPrevButton = currentIndex > 0
-  const showNextButton = currentIndex < projectListLength - 1
+  const hiddenPrevButton = currentIndex === 0
+  const hiddenNextButton = currentIndex === projectListLength - 1
 
   return (
     <ArticleDetailModalActions
-      showPrevButton={showPrevButton}
-      showNextButton={showNextButton}
+      hiddenPrevButton={hiddenPrevButton}
+      hiddenNextButton={hiddenNextButton}
       handlePrev={handlePrev}
       handleNext={handleNext}
     />

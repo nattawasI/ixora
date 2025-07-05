@@ -63,21 +63,26 @@ const PageModalTitle = DialogTitle
 const PageModalDescription = DialogDescription
 
 const PageModalButtonsMobile = ({ className, ...props }: React.ComponentProps<'div'>) => {
-  return <div className={cn('mt-4 flex gap-x-2.5 px-4.75 pb-4 lg:hidden', className)} {...props} />
+  return <div className={cn('flex gap-x-2.5 px-4.75 py-4 lg:hidden', className)} {...props} />
 }
+
+type PageModalControlProps = { variant: 'desktop' | 'mobile'; isInvisible?: boolean }
 
 const PageModalPrev = ({
   variant,
+  isInvisible,
   className,
   ...props
-}: ComponentProps<'button'> & { variant: 'desktop' | 'mobile' }) => {
+}: ComponentProps<'button'> & PageModalControlProps) => {
   return (
     <button
       type="button"
+      data-invisible={isInvisible ? true : undefined}
       className={buttonSquareVariants({
         theme: variant === 'desktop' ? 'gray' : 'default',
         className: cn(
           variant === 'desktop' ? 'fixed bottom-0 left-0 max-lg:hidden' : 'hover-icon-stroke-white',
+          'data-[invisible=true]:pointer-events-none data-[invisible=true]:invisible',
           className,
         ),
       })}
@@ -90,16 +95,19 @@ const PageModalPrev = ({
 
 const PageModalNext = ({
   variant,
+  isInvisible,
   className,
   ...props
-}: ComponentProps<'button'> & { variant: 'desktop' | 'mobile' }) => {
+}: ComponentProps<'button'> & PageModalControlProps) => {
   return (
     <button
       type="button"
+      data-invisible={isInvisible ? true : undefined}
       className={buttonSquareVariants({
         theme: variant === 'desktop' ? 'gray' : 'default',
         className: cn(
           variant === 'desktop' ? 'fixed right-0 bottom-0 max-lg:hidden' : 'hover-icon-stroke-white',
+          'data-[invisible=true]:pointer-events-none data-[invisible=true]:invisible',
           className,
         ),
       })}
