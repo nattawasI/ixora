@@ -83,6 +83,7 @@ const PageModalPrev = ({
         className: cn(
           variant === 'desktop' ? 'fixed bottom-0 left-0 max-lg:hidden' : 'hover-icon-stroke-white',
           'data-[invisible=true]:pointer-events-none data-[invisible=true]:invisible',
+          'disabled:cursor-default',
           className,
         ),
       })}
@@ -108,6 +109,7 @@ const PageModalNext = ({
         className: cn(
           variant === 'desktop' ? 'fixed right-0 bottom-0 max-lg:hidden' : 'hover-icon-stroke-white',
           'data-[invisible=true]:pointer-events-none data-[invisible=true]:invisible',
+          'disabled:cursor-default',
           className,
         ),
       })}

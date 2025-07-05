@@ -63,7 +63,7 @@ const ArticleDetailModal = ({
         <ArticleDetailContext.Provider value={{ isLoading, setIsLoading }}>
           <div className="bg-gray-light-2 flex min-h-full flex-col">
             <div className="flex-1">{content}</div>
-            <div className={cn('shrink-0', isLoading ? 'pointer-events-none' : '')}>{actions}</div>
+            <div className="shrink-0">{actions}</div>
           </div>
         </ArticleDetailContext.Provider>
       </PageModalContent>
@@ -82,15 +82,16 @@ const ArticleDetailModalActions = ({
   handlePrev: () => void
   handleNext: () => void
 }) => {
+  const { isLoading } = useArticleDetail()
   return (
     <>
       <PageModalButtonsMobile>
-        <PageModalPrev variant="mobile" isInvisible={hiddenPrevButton} onClick={handlePrev} />
+        <PageModalPrev variant="mobile" isInvisible={hiddenPrevButton} disabled={isLoading} onClick={handlePrev} />
         <PageModalClose variant="mobile" label="CLOSE" />
-        <PageModalNext variant="mobile" isInvisible={hiddenNextButton} onClick={handleNext} />
+        <PageModalNext variant="mobile" isInvisible={hiddenNextButton} disabled={isLoading} onClick={handleNext} />
       </PageModalButtonsMobile>
-      <PageModalPrev variant="desktop" isInvisible={hiddenPrevButton} onClick={handlePrev} />
-      <PageModalNext variant="desktop" isInvisible={hiddenNextButton} onClick={handleNext} />
+      <PageModalPrev variant="desktop" isInvisible={hiddenPrevButton} disabled={isLoading} onClick={handlePrev} />
+      <PageModalNext variant="desktop" isInvisible={hiddenNextButton} disabled={isLoading} onClick={handleNext} />
       <PageModalClose variant="desktop" />
     </>
   )
