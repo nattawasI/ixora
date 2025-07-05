@@ -1,10 +1,11 @@
 'use client'
 
 import { useEffect } from 'react'
-import { PressDetailContentLoading } from '@/components/modules/press-detail/press-detail-content/loading'
+import { useArticleDetail } from '@/components/modules/article-detail-modal'
+
 import { DialogTitle } from '@radix-ui/react-dialog'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
-import { useArticleDetail } from '@/components/modules/article-detail-modal'
+import { PressDetailContentLoading } from '@/components/modules/press-detail/press-detail-content/loading'
 
 export default function Loading() {
   const { setIsLoading } = useArticleDetail()

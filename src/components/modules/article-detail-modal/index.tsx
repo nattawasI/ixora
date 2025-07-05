@@ -36,7 +36,7 @@ const ArticleDetailModal = ({
   const pathname = usePathname()
 
   const [open, setOpen] = useState(true)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const overlayRef = useRef<HTMLDivElement | null>(null)
 
   /** scroll to top when pathname changes */

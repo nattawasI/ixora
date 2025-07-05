@@ -47,7 +47,7 @@ const PageModalContent = ({ overlayRef, contentSize, onAnimationEnd, children, .
           id="page-dialog-content"
           className={cn(
             contentSize === 'large' ? 'article-detail-container-large' : 'article-detail-container-small',
-            'outline-none max-lg:mt-[3.75rem] max-lg:h-[calc(100svh-3.75rem)] lg:my-[5.625rem]',
+            'outline-none max-lg:mt-[3.75rem] max-lg:h-[calc(100dvh-3.75rem)] lg:my-[5.625rem]',
           )}
           {...props}
         >
