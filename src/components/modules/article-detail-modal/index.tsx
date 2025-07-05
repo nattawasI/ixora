@@ -2,7 +2,6 @@
 
 import { createContext, useContext, useRef, useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
-import { cn } from '@/libs/utils/cn'
 import { PageModal, PageModalContent } from '@/components/ui/page-modal'
 import {
   PageModalButtonsMobile,
