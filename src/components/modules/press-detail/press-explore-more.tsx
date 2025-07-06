@@ -20,7 +20,7 @@ const PressExploreMore = ({ isInModal, data }: PressExploreMoreProps) => {
   return (
     <>
       {data.length > 0 ? (
-        <section className={cn('max-lg:px-4.75 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
+        <div className={cn('bg-gray-light-2 max-lg:px-4.75 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
           <ExploreMoreCollapsible>
             <div className={cn('space-y-4 max-lg:pt-4 lg:space-y-5', isInModal ? 'lg:pb-12.5' : '')}>
               {data.map((item, index) => {
@@ -57,7 +57,7 @@ const PressExploreMore = ({ isInModal, data }: PressExploreMoreProps) => {
               })}
             </div>
           </ExploreMoreCollapsible>
-        </section>
+        </div>
       ) : null}
     </>
   )

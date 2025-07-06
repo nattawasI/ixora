@@ -25,7 +25,7 @@ const ProjectDetailContent = ({ isInModal, data, exploreMore }: ProjectDetailCon
         coverImage={data.cover.src}
         className="social-share-sticky"
       />
-      <section className="bg-white px-4.75 pt-4 lg:px-12.5 lg:pt-12.5">
+      <div className="bg-white px-4.75 pt-4 lg:px-12.5 lg:pt-12.5">
         <article>
           <div className="mb-5 space-y-2.5 lg:mb-[3.75rem]">
             {isInModal ? (
@@ -65,7 +65,7 @@ const ProjectDetailContent = ({ isInModal, data, exploreMore }: ProjectDetailCon
           <MediaContent type="project" data={data} />
         </article>
         <SnsShareFooter className="py-7" label="Share this project" title={data.title} coverImage={data.cover.src} />
-      </section>
+      </div>
       {exploreMore}
       {!isInModal ? (
         <div className="mt-4 max-lg:px-4.75 md:mt-10">

@@ -63,7 +63,7 @@ const PageModalTitle = DialogTitle
 const PageModalDescription = DialogDescription
 
 const PageModalButtonsMobile = ({ className, ...props }: React.ComponentProps<'div'>) => {
-  return <div className={cn('flex gap-x-2.5 px-4.75 py-4 lg:hidden', className)} {...props} />
+  return <div className={cn('bg-gray-light-2 flex gap-x-2.5 px-4.75 py-4 lg:hidden', className)} {...props} />
 }
 
 type PageModalControlProps = { variant: 'desktop' | 'mobile'; isInvisible?: boolean }

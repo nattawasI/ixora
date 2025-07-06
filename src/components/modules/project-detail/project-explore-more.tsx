@@ -19,7 +19,7 @@ const ProjectExploreMore = ({ isInModal, data }: ProjectExploreMoreProps) => {
   return (
     <>
       {data.length > 0 ? (
-        <section className={cn('max-lg:px-4.75 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
+        <div className={cn('bg-gray-light-2 max-lg:px-4.75 max-lg:pt-4', isInModal ? 'lg:px-12.5' : '')}>
           <ExploreMoreCollapsible>
             <div className={cn('grid gap-2.5 max-lg:pt-4 md:grid-cols-3', isInModal ? 'lg:pb-10' : 'md:pb-7.5')}>
               {data.map((item, index) => {
@@ -53,7 +53,7 @@ const ProjectExploreMore = ({ isInModal, data }: ProjectExploreMoreProps) => {
               })}
             </div>
           </ExploreMoreCollapsible>
-        </section>
+        </div>
       ) : null}
     </>
   )

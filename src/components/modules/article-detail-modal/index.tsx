@@ -60,7 +60,7 @@ const ArticleDetailModal = ({
         }}
       >
         <ArticleDetailContext.Provider value={{ isLoading, setIsLoading }}>
-          <div className="bg-gray-light-2 flex min-h-full flex-col">
+          <div className="flex min-h-full flex-col bg-white">
             <div className="flex-1">{content}</div>
             <div className="shrink-0">{actions}</div>
           </div>
