@@ -67,10 +67,10 @@ const Preloader = () => {
     setIsClicked(true)
 
     const logoTarget = {
-      width: 26,
-      height: 26,
-      top: isMobile ? 16 : 37,
-      left: isMobile ? 16 : 40,
+      width: 24,
+      height: 24,
+      top: isMobile ? 17 : 37,
+      left: isMobile ? 19 : 40,
       transition: { duration: 1.2, ease: [0.455, 0.03, 0.515, 0.955] },
     }
 
@@ -194,7 +194,10 @@ const Preloader = () => {
             </div>
 
             <motion.div
-              animate={{ opacity: isClicked ? 0 : 1, transition: { duration: 0.4, ease: 'easeOut' } }}
+              animate={{
+                opacity: isClicked ? 0 : 1,
+                transition: { duration: 0.4, delay: isMobile ? 0.8 : 0, ease: 'easeOut' },
+              }}
               className="space-y-2 text-center"
             >
               <motion.div
