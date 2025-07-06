@@ -48,13 +48,15 @@ const Preloader = () => {
     }),
   }
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation()
     if (!isClicked && isReady) {
       setIsHovered(true)
     }
   }
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation()
     if (!isClicked && isReady) {
       setIsHovered(false)
     }
