@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useMemo } from 'react'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/libs/utils/cn'
 import { useMediaQuery } from '@/libs/hooks/use-media-query'
@@ -17,9 +17,30 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { ProjectCategoriesNav } from '@/components/modules/projects/project-categories-nav'
 import { projectCategories } from '@/libs/data/project-categories'
 
+import type { NavigationItemType } from '@/components/layout/type'
+
 const ProjectCategoriesFilter = ({ className, ...props }: React.ComponentProps<'div'>) => {
   const pathname = usePathname()
-  const current = projectCategories.find((item) => item.href === pathname)
+  const previousCategoryRef = useRef<NavigationItemType | null>(null)
+
+  const current = useMemo(() => {
+    if (pathname === '/') {
+      previousCategoryRef.current = null
+      return null
+    }
+
+    const pathnameSplitted = pathname.split('/').filter(Boolean)
+
+    if (pathnameSplitted.length > 2) {
+      return previousCategoryRef.current
+    }
+
+    const found = projectCategories.find((item) => item.href === pathname)
+    if (found) {
+      previousCategoryRef.current = found
+    }
+    return found
+  }, [pathname])
 
   const isLaptopUp = useMediaQuery('(min-width: 1024px)')
 
