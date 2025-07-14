@@ -92,7 +92,7 @@ const GlobalNavigation = () => {
                         ? item.rootOf.some((root) => pathname.startsWith(root)) || pathname === item.href
                         : pathname === item.href
                     }
-                    onClick={() => setIsShowMenu(false)}
+                    onNavigate={() => setIsShowMenu(false)}
                   >
                     {item.label}
                   </NavigationLink>
