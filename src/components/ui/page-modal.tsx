@@ -1,3 +1,5 @@
+'use client'
+
 import { ComponentProps, useState } from 'react'
 import { cn } from '@/libs/utils/cn'
 import {
@@ -62,26 +64,23 @@ const PageModalTitle = DialogTitle
 
 const PageModalDescription = DialogDescription
 
-const PageModalButtonsMobile = ({ className, ...props }: React.ComponentProps<'div'>) => {
-  return <div className={cn('bg-gray-light-2 flex gap-x-2.5 px-4.75 py-4 lg:hidden', className)} {...props} />
-}
+type PageModalChevronProps = { direction: 'prev' | 'next'; isInvisible?: boolean }
 
-type PageModalControlProps = { variant: 'desktop' | 'mobile'; isInvisible?: boolean }
-
-const PageModalPrev = ({
-  variant,
+const PageModalChevron = ({
+  direction,
   isInvisible,
   className,
   ...props
-}: ComponentProps<'button'> & PageModalControlProps) => {
+}: ComponentProps<'button'> & PageModalChevronProps) => {
   return (
     <button
       type="button"
       data-invisible={isInvisible ? true : undefined}
       className={buttonSquareVariants({
-        theme: variant === 'desktop' ? 'gray' : 'default',
+        theme: 'gray',
         className: cn(
-          variant === 'desktop' ? 'fixed bottom-0 left-0 max-lg:hidden' : 'hover-icon-stroke-white',
+          'fixed bottom-0 max-lg:hidden',
+          direction === 'prev' ? 'left-0' : 'right-0',
           'data-[invisible=true]:pointer-events-none data-[invisible=true]:invisible',
           'disabled:cursor-default',
           className,
@@ -89,57 +88,79 @@ const PageModalPrev = ({
       })}
       {...props}
     >
-      {variant === 'desktop' ? <ChevronLeft /> : <ChevronLeftColor />}
-    </button>
-  )
-}
-
-const PageModalNext = ({
-  variant,
-  isInvisible,
-  className,
-  ...props
-}: ComponentProps<'button'> & PageModalControlProps) => {
-  return (
-    <button
-      type="button"
-      data-invisible={isInvisible ? true : undefined}
-      className={buttonSquareVariants({
-        theme: variant === 'desktop' ? 'gray' : 'default',
-        className: cn(
-          variant === 'desktop' ? 'fixed right-0 bottom-0 max-lg:hidden' : 'hover-icon-stroke-white',
-          'data-[invisible=true]:pointer-events-none data-[invisible=true]:invisible',
-          'disabled:cursor-default',
-          className,
-        ),
-      })}
-      {...props}
-    >
-      {variant === 'desktop' ? <ChevronRight /> : <ChevronRightColor />}
+      {direction === 'prev' ? <ChevronLeft /> : <ChevronRight />}
     </button>
   )
 }
 
 const PageModalClose = ({
-  variant,
   className,
-  label,
+  ariaLabel = 'Close Modal',
   ...props
-}: Omit<React.ComponentProps<typeof DialogClose>, 'asChild'> & { variant: 'desktop' | 'mobile'; label?: string }) => {
+}: Omit<React.ComponentProps<typeof DialogClose>, 'asChild'> & { ariaLabel?: string }) => {
   return (
     <DialogClose
+      aria-label={ariaLabel}
       className={buttonSquareVariants({
-        theme: variant === 'desktop' ? 'gray' : 'default',
+        theme: 'gray',
         className: cn(
-          variant === 'desktop' ? 'fixed top-0 right-0 max-lg:hidden' : 'hover-icon-stroke-white flex-1',
+          'absolute lg:fixed',
+          'max-lg:top-5 max-lg:left-1/2 max-lg:size-6.5 max-lg:-translate-x-1/2 max-lg:bg-transparent max-lg:hover:bg-transparent',
+          'lg:top-0 lg:right-0',
           className,
         ),
       })}
       {...props}
     >
-      {variant === 'desktop' ? <Close /> : <CloseColor />}
+      <Close />
+    </DialogClose>
+  )
+}
+
+const PageModalFooterButtons = ({ className, ...props }: React.ComponentProps<'div'>) => {
+  return <div className={cn('bg-gray-light-2 flex gap-x-2.5 px-4.75 py-4 lg:hidden', className)} {...props} />
+}
+
+const PageModalFooterClose = ({
+  className,
+  label,
+  ...props
+}: Omit<React.ComponentProps<typeof DialogClose>, 'asChild'> & { label?: string }) => {
+  return (
+    <DialogClose
+      className={buttonSquareVariants({
+        className: cn('hover-icon-stroke-white flex-1', className),
+      })}
+      {...props}
+    >
+      <CloseColor />
       {label}
     </DialogClose>
+  )
+}
+
+const PageModalFooterChevron = ({
+  direction,
+  isInvisible,
+  className,
+  ...props
+}: ComponentProps<'button'> & PageModalChevronProps) => {
+  return (
+    <button
+      type="button"
+      data-invisible={isInvisible ? true : undefined}
+      className={buttonSquareVariants({
+        className: cn(
+          'hover-icon-stroke-white',
+          'data-[invisible=true]:pointer-events-none data-[invisible=true]:invisible',
+          'disabled:cursor-default',
+          className,
+        ),
+      })}
+      {...props}
+    >
+      {direction === 'prev' ? <ChevronLeftColor /> : <ChevronRightColor />}
+    </button>
   )
 }
 
@@ -148,10 +169,11 @@ export {
   PageModalContent,
   PageModalTitle,
   PageModalDescription,
-  PageModalPrev,
-  PageModalNext,
+  PageModalChevron,
   PageModalClose,
-  PageModalButtonsMobile,
+  PageModalFooterButtons,
+  PageModalFooterClose,
+  PageModalFooterChevron,
   type DialogProps as PageModalProps,
   type PageModalContentProps,
 }

@@ -4,10 +4,11 @@ import { createContext, useContext, useRef, useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { PageModal, PageModalContent } from '@/components/ui/page-modal'
 import {
-  PageModalButtonsMobile,
   PageModalClose,
-  PageModalNext,
-  PageModalPrev,
+  PageModalChevron,
+  PageModalFooterButtons,
+  PageModalFooterChevron,
+  PageModalFooterClose,
   type PageModalContentProps,
 } from '@/components/ui/page-modal'
 
@@ -60,6 +61,7 @@ const ArticleDetailModal = ({
         }}
       >
         <ArticleDetailContext.Provider value={{ isLoading, setIsLoading }}>
+          <PageModalClose aria-label="CLOSE" />
           <div className="flex min-h-full flex-col bg-white">
             <div className="flex-1">{content}</div>
             <div className="shrink-0">{actions}</div>
@@ -84,14 +86,23 @@ const ArticleDetailModalActions = ({
   const { isLoading } = useArticleDetail()
   return (
     <>
-      <PageModalButtonsMobile>
-        <PageModalPrev variant="mobile" isInvisible={hiddenPrevButton} disabled={isLoading} onClick={handlePrev} />
-        <PageModalClose variant="mobile" label="CLOSE" />
-        <PageModalNext variant="mobile" isInvisible={hiddenNextButton} disabled={isLoading} onClick={handleNext} />
-      </PageModalButtonsMobile>
-      <PageModalPrev variant="desktop" isInvisible={hiddenPrevButton} disabled={isLoading} onClick={handlePrev} />
-      <PageModalNext variant="desktop" isInvisible={hiddenNextButton} disabled={isLoading} onClick={handleNext} />
-      <PageModalClose variant="desktop" />
+      <PageModalFooterButtons>
+        <PageModalFooterChevron
+          direction="prev"
+          isInvisible={hiddenPrevButton}
+          disabled={isLoading}
+          onClick={handlePrev}
+        />
+        <PageModalFooterClose label="CLOSE" />
+        <PageModalFooterChevron
+          direction="next"
+          isInvisible={hiddenNextButton}
+          disabled={isLoading}
+          onClick={handleNext}
+        />
+      </PageModalFooterButtons>
+      <PageModalChevron direction="prev" isInvisible={hiddenPrevButton} disabled={isLoading} onClick={handlePrev} />
+      <PageModalChevron direction="next" isInvisible={hiddenNextButton} disabled={isLoading} onClick={handleNext} />
     </>
   )
 }
