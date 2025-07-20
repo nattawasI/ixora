@@ -18,14 +18,11 @@ const SnsShareItems = ({ title, coverImage }: SnsShareItemsProps) => {
   const pathname = usePathname()
   const shareUrl = `${process.env.NEXT_PUBLIC_BASE_URL}${pathname}`
 
+  const buttonStyle = buttonSquareVariants({ className: 'bg-white' })
+
   return (
     <>
-      <FacebookShareButton
-        resetButtonStyle={false}
-        aria-label="Facebook Share"
-        url={shareUrl}
-        className={buttonSquareVariants()}
-      >
+      <FacebookShareButton resetButtonStyle={false} aria-label="Facebook Share" url={shareUrl} className={buttonStyle}>
         <Facebook />
       </FacebookShareButton>
       <LineShareButton
@@ -33,7 +30,7 @@ const SnsShareItems = ({ title, coverImage }: SnsShareItemsProps) => {
         aria-label="Line Share"
         url={shareUrl}
         title={title}
-        className={buttonSquareVariants()}
+        className={buttonStyle}
       >
         <Line />
       </LineShareButton>
@@ -42,7 +39,7 @@ const SnsShareItems = ({ title, coverImage }: SnsShareItemsProps) => {
         aria-label="X Share"
         url={shareUrl}
         title={title}
-        className={buttonSquareVariants()}
+        className={buttonStyle}
       >
         <X />
       </TwitterShareButton>
@@ -51,7 +48,7 @@ const SnsShareItems = ({ title, coverImage }: SnsShareItemsProps) => {
         aria-label="Pinterest Share"
         url={shareUrl}
         media={coverImage}
-        className={buttonSquareVariants()}
+        className={buttonStyle}
       >
         <Pinterest />
       </PinterestShareButton>
@@ -62,7 +59,7 @@ const SnsShareItems = ({ title, coverImage }: SnsShareItemsProps) => {
         url={shareUrl}
         subject="Subject"
         body="Body"
-        className={buttonSquareVariants()}
+        className={buttonStyle}
       >
         <Email />
       </EmailShareButton>

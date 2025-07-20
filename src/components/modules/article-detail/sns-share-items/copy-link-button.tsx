@@ -10,7 +10,7 @@ const CopyLinkButton = () => {
 
   return (
     <>
-      <ButtonSquare aria-label="Copy Link" onClick={() => copy(window.location.href)}>
+      <ButtonSquare className="bg-white" aria-label="Copy Link" onClick={() => copy(window.location.href)}>
         <CopyLinkIcon />
       </ButtonSquare>
       <CopiedLabel copied={copied} />
