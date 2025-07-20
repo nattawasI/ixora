@@ -52,7 +52,7 @@ const SnsShareItems = ({ title, coverImage }: SnsShareItemsProps) => {
       >
         <Pinterest />
       </PinterestShareButton>
-      <CopyLinkButton />
+      <CopyLinkButton className={buttonStyle} />
       <EmailShareButton
         resetButtonStyle={false}
         aria-label="Email Share"
