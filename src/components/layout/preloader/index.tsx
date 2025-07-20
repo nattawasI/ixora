@@ -245,7 +245,7 @@ const Preloader = () => {
               hidden: { opacity: 0 },
               visible: { opacity: 1, transition: { duration: 0.6, delay: 1.2, ease: 'easeOut' } },
             }}
-            className="fixed bottom-6 left-1/2 -translate-x-1/2"
+            className="fixed bottom-6 left-0 flex w-full justify-center px-4"
           >
             <PreloaderFooter />
           </motion.div>
