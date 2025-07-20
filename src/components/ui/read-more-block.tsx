@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger, CollapsibleProps } from '@radix-ui/react-collapsible'
 import { ChevronDown } from '@/components/ui/icons-color/chevron-down'
+import { AccordionContentInner } from '@/components/ui/accordion-content-inner'
 import { motion, type AnimationDefinition } from 'motion/react'
 import { cn } from '@/libs/utils/cn'
 
@@ -32,7 +33,7 @@ const ReadMoreBlock = ({ contentLead, contentMore, onAnimationComplete, ...props
           className="overflow-hidden"
           onAnimationComplete={onAnimationComplete}
         >
-          {contentMore}
+          <AccordionContentInner open={openState}>{contentMore}</AccordionContentInner>
         </motion.div>
       </CollapsibleContent>
       <CollapsibleTrigger className="typo-body-3 text-gray mt-4 inline-flex items-center gap-x-1.25 font-semibold uppercase">

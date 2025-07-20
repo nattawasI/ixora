@@ -1,9 +1,7 @@
-'use client'
-
 import { cn } from '@/libs/utils/cn'
 import { format } from 'date-fns'
-import { useRouter } from 'next/navigation'
 
+import { ExploreMoreLink } from '@/components/modules/article-detail/explore-more-link'
 import { PressCard } from '@/components/modules/press/press-card'
 import { ExploreMoreCollapsible } from '@/components/modules/article-detail/explore-more-collapsible'
 
@@ -15,8 +13,6 @@ type PressExploreMoreProps = {
 }
 
 const PressExploreMore = ({ isInModal, data }: PressExploreMoreProps) => {
-  const router = useRouter()
-
   return (
     <>
       {data.length > 0 ? (
@@ -24,19 +20,8 @@ const PressExploreMore = ({ isInModal, data }: PressExploreMoreProps) => {
           <ExploreMoreCollapsible>
             <div className={cn('space-y-4 max-lg:pt-4 lg:space-y-5', isInModal ? 'lg:pb-12.5' : '')}>
               {data.map((item, index) => {
-                const href = `/press-and-news/${item.slug}`
                 return (
-                  <a
-                    key={index}
-                    href={href}
-                    className="block"
-                    onClick={(e) => {
-                      if (isInModal) {
-                        e.preventDefault()
-                        router.replace(href, { scroll: false })
-                      }
-                    }}
-                  >
+                  <ExploreMoreLink key={index} href={`/press-and-news/${item.slug}`} isInModal={isInModal}>
                     <PressCard
                       image={{
                         src: item.cover.src,
@@ -50,9 +35,9 @@ const PressExploreMore = ({ isInModal, data }: PressExploreMoreProps) => {
                       }}
                       description={item.description}
                       isImageRight={index % 2 === 0}
-                      isInModal
+                      isInModal={isInModal}
                     />
-                  </a>
+                  </ExploreMoreLink>
                 )
               })}
             </div>
