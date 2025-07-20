@@ -6,6 +6,7 @@ import { cookies, draftMode } from 'next/headers'
 import { Body } from '@/components/layout/body'
 import { Header } from '@/components/layout/header'
 import { Preloader } from '@/components/layout/preloader'
+import { GlobalProvider } from '@/components/layout/global-context'
 
 import type { Metadata } from 'next'
 
@@ -27,8 +28,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="en">
       <Body className={montserrat.className}>
         {hasVisited?.value !== 'true' && !isEnabled ? <Preloader /> : null}
-        <Header />
-        {children}
+        <GlobalProvider>
+          <Header />
+          {children}
+        </GlobalProvider>
       </Body>
     </html>
   )

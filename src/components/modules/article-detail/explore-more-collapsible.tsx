@@ -1,3 +1,5 @@
+/** remove this file later */
+
 'use client'
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger, type CollapsibleProps } from '@radix-ui/react-collapsible'

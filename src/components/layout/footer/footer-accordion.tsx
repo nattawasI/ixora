@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
 import { cn } from '@/libs/utils/cn'
 import { useMediaQuery } from '@/libs/hooks/use-media-query'
+import { useGlobalContext } from '@/components/layout/global-context'
 import { ChevronDown } from '@/components/ui/icons-color/chevron-down'
 import {
   Accordion,
@@ -26,7 +26,7 @@ type FooterAccordionProps = {
 const FooterAccordion = ({ items, className }: FooterAccordionProps) => {
   const isLaptopUp = useMediaQuery('(min-width: 1024px)')
 
-  const [activeValue, setActiveValue] = useState<string>('')
+  const { contactActiveValue, handleSetContactActiveValue } = useGlobalContext()
 
   const orientation = isLaptopUp ? 'horizontal' : 'vertical'
   const isVertical = orientation === 'vertical'
@@ -36,15 +36,15 @@ const FooterAccordion = ({ items, className }: FooterAccordionProps) => {
       type="single"
       collapsible
       orientation={orientation}
-      value={activeValue}
-      onValueChange={(value) => setActiveValue(value)}
+      value={contactActiveValue}
+      onValueChange={handleSetContactActiveValue}
       className={cn('grid gap-5 lg:grid-cols-3', className)}
     >
       {items.map((item) => {
-        const open = activeValue.includes(item.id)
+        const open = contactActiveValue === 'contact'
 
         return (
-          <AccordionItem key={item.id} value={item.id}>
+          <AccordionItem key={item.id} value="contact">
             <AccordionHeader>
               <AccordionTrigger
                 className={cn(
