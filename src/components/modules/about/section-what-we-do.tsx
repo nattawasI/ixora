@@ -16,7 +16,6 @@ const SectionWhatWeDo = () => {
           </div>
         </div>
       </div>
-
       <CategorySlider />
     </div>
   )

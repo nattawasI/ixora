@@ -1,5 +1,4 @@
-import { ButtonArrow } from '@/components/ui/button-arrow'
-import Link from 'next/link'
+import { ButtonArrowLink } from '@/components/ui/button-arrow'
 
 const SectionOurCommitment = () => {
   return (
@@ -16,9 +15,7 @@ const SectionOurCommitment = () => {
           </p>
         </div>
         <div className="col-span-12 md:col-span-9 md:col-start-4">
-          <Link href="/awards">
-            <ButtonArrow>Award & Press</ButtonArrow>
-          </Link>
+          <ButtonArrowLink href="/awards">Award & Press</ButtonArrowLink>
         </div>
       </div>
     </div>

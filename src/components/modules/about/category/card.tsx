@@ -32,12 +32,8 @@ const CategoryCard = ({ title, description, href, image }: CategoryCardProps) =>
   }
 
   return (
-    <motion.div
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className="about-category-card relative aspect-[3/4] overflow-hidden"
-    >
-      <Link href={href} className="absolute inset-0 z-20">
+    <motion.div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <Link href={href} className="relative block aspect-[3/4] overflow-hidden">
         <div className={cn('absolute inset-0 z-10 bg-black/30 transition-colors', { 'bg-black/10': isHovered })} />
         <Image
           {...image}
