@@ -22,7 +22,7 @@ const CursorProvider = ({ children }: { children: ReactNode }) => {
   /** states */
   const [cursorType, setCursorType] = useState<CursorType>('default')
 
-  const cursorSize = 70
+  const cursorSize = 40
 
   // Cursor position tracking
   const mouse = { x: useMotionValue(0), y: useMotionValue(0), scale: useMotionValue(1) }
@@ -51,7 +51,7 @@ const CursorProvider = ({ children }: { children: ReactNode }) => {
     <CursorContext.Provider value={{ cursorType, setCursorType }}>
       {children}
       <motion.div
-        className="bg-blue pointer-events-none fixed z-[9999] size-0 rounded-full opacity-0 backdrop-blur-2xl"
+        className="bg-blue pointer-events-none fixed z-[9999] flex size-0 items-center justify-center rounded-full opacity-0"
         animate={{
           opacity: cursorType === 'hovered' ? 0.9 : 0,
           scale: cursorType === 'hovered' ? 1 : 0,
@@ -64,12 +64,12 @@ const CursorProvider = ({ children }: { children: ReactNode }) => {
           top: smoothMouse.y,
         }}
       >
-        <div className="flex size-full items-center justify-center">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7.22266 1H15.0004V8.77778" stroke="white" />
-            <path d="M15 1L1 15" stroke="white" />
-          </svg>
-        </div>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.70703 7.29294L12.9495 3.05047" stroke="white" />
+          <path d="M3.0498 12.9498L7.29227 8.7073" stroke="white" />
+          <path d="M3.0498 3.0502L7.29227 7.29267" stroke="#89CEE7" />
+          <path d="M8.70703 8.70706L12.9495 12.9495" stroke="#89CEE7" />
+        </svg>
       </motion.div>
     </CursorContext.Provider>
   )
