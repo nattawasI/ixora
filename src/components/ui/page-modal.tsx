@@ -101,6 +101,10 @@ const PageModalClose = ({
   return (
     <DialogClose
       aria-label={ariaLabel}
+      onFocus={() => {
+        const overlay = document.getElementById('page-dialog-overlay')
+        overlay?.scrollTo({ top: 0 })
+      }}
       className={buttonSquareVariants({
         theme: 'gray',
         className: cn(
