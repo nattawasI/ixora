@@ -69,9 +69,9 @@ const Preloader = () => {
     setIsClicked(true)
 
     const logoTarget = {
-      width: 24,
+      width: 26,
       height: 24,
-      top: isMobile ? 17 : 37,
+      top: isMobile ? 18 : 38,
       left: isMobile ? 19 : 40,
       transition: { duration: 1.2, ease: [0.455, 0.03, 0.515, 0.955] },
     }
@@ -112,7 +112,7 @@ const Preloader = () => {
       })
       .then(() => {
         setIsComplete(true)
-        setVisitedCookie()
+        // setVisitedCookie()
       })
   }
 
