@@ -111,7 +111,6 @@ const Preloader = () => {
       })
       .then(() => {
         setIsComplete(true)
-        // setVisitedCookie()
       })
   }
 
