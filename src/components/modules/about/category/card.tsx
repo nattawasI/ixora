@@ -20,7 +20,6 @@ type CategoryCardProps = {
 }
 
 const CategoryCard = ({ title, description, href, image }: CategoryCardProps) => {
-  /** state */
   const [isHovered, setIsHovered] = useState(false)
 
   const handleMouseEnter = () => {
