@@ -1,3 +1,5 @@
+import { cn } from '@/libs/utils/cn'
+
 /** swiper */
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -9,7 +11,21 @@ import { SectionWhoWeAre } from './section-who-we-are'
 import { SectionWhatWeDo } from './section-what-we-do'
 import { SectionOurCommitment } from './section-our-commitment'
 import { Footer } from '@/components/layout/footer'
-import { cn } from '@/libs/utils/cn'
+
+const slideItems: { id: string; content: React.ReactElement }[] = [
+  {
+    id: 'who-we-are',
+    content: <SectionWhoWeAre />,
+  },
+  {
+    id: 'what-we-do',
+    content: <SectionWhatWeDo />,
+  },
+  {
+    id: 'our-commitment',
+    content: <SectionOurCommitment />,
+  },
+]
 
 const MobileAboutLayout = () => {
   return (
@@ -42,15 +58,11 @@ const MobileAboutLayout = () => {
             })
           }}
         >
-          <SwiperSlide className="min-h-[calc(100vh-3.75rem)]">
-            <SectionWhoWeAre />
-          </SwiperSlide>
-          <SwiperSlide className="min-h-[calc(100vh-3.75rem)]">
-            <SectionWhatWeDo />
-          </SwiperSlide>
-          <SwiperSlide className="min-h-[calc(100vh-3.75rem)]">
-            <SectionOurCommitment />
-          </SwiperSlide>
+          {slideItems.map((item) => (
+            <SwiperSlide key={item.id} className="min-h-[calc(100vh-3.75rem)]">
+              {item.content}
+            </SwiperSlide>
+          ))}
         </Swiper>
         <div
           className={cn(

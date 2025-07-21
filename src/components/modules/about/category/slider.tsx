@@ -6,6 +6,8 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
+import { cn } from '@/libs/utils/cn'
+
 /** libs */
 import { useRef } from 'react'
 
@@ -83,6 +85,10 @@ const CategorySlider = () => {
   const nextRef = useRef<HTMLButtonElement>(null)
   const paginationRef = useRef<HTMLDivElement>(null)
 
+  const buttonArrowStyle = cn(
+    'nav-button disabled:text-gray-light-1 disabled:cursor-not-allowed [&_svg]:transition-colors [&_svg]:duration-300',
+  )
+
   return isMobile ? (
     <div className="c-container grid grid-cols-2 gap-2.5">
       {items.map((item, i) => (
@@ -124,10 +130,10 @@ const CategorySlider = () => {
 
       <div className="custom-navigation">
         <div className="flex items-center gap-x-5">
-          <button ref={prevRef} className="nav-button">
+          <button type="button" ref={prevRef} aria-label="Previous slide" className={buttonArrowStyle}>
             <ArrowPrev />
           </button>
-          <button ref={nextRef} className="nav-button">
+          <button type="button" ref={nextRef} aria-label="Next slide" className={buttonArrowStyle}>
             <ArrowNext />
           </button>
         </div>
