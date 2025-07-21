@@ -11,11 +11,10 @@ import { PreloaderFooter } from '@/components/layout/preloader/footer'
 
 /** utils */
 import { cn } from '@/libs/utils/cn'
-import { setVisitedCookie } from './set-visited-cookie'
 
 const Preloader = () => {
   /** hook */
-  const isMobile = useMediaQuery('(max-width: 768px)')
+  const isMobile = useMediaQuery('(max-width: 1023px)')
 
   /** state */
   const [isComplete, setIsComplete] = useState<boolean>(false)
