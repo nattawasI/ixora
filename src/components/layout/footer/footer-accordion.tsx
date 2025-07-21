@@ -26,7 +26,7 @@ type FooterAccordionProps = {
 const FooterAccordion = ({ items, className }: FooterAccordionProps) => {
   const isLaptopUp = useMediaQuery('(min-width: 1024px)')
 
-  const { contactActiveValue, handleSetContactActiveValue } = useGlobalContext()
+  const { contactActiveValue, toggleContactActiveValue } = useGlobalContext()
 
   const orientation = isLaptopUp ? 'horizontal' : 'vertical'
   const isVertical = orientation === 'vertical'
@@ -37,7 +37,7 @@ const FooterAccordion = ({ items, className }: FooterAccordionProps) => {
       collapsible
       orientation={orientation}
       value={contactActiveValue}
-      onValueChange={handleSetContactActiveValue}
+      onValueChange={() => toggleContactActiveValue()}
       className={cn('grid gap-5 lg:grid-cols-3', className)}
     >
       {items.map((item) => {

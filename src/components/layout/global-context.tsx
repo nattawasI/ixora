@@ -5,7 +5,7 @@ import { createContext, useContext, useState, ReactNode } from 'react'
 type GlobalContextType = {
   contactActiveValue: string
   setContactActiveValue: (value: string) => void
-  handleSetContactActiveValue: () => void
+  toggleContactActiveValue: () => void
 }
 
 const GlobalContext = createContext<GlobalContextType | undefined>(undefined)
@@ -17,7 +17,7 @@ type GlobalContextProviderProps = {
 export function GlobalProvider({ children }: GlobalContextProviderProps) {
   const [contactActiveValue, setContactActiveValue] = useState<string>('')
 
-  const handleSetContactActiveValue = () => {
+  const toggleContactActiveValue = () => {
     setContactActiveValue((prev) => {
       if (prev) {
         return ''
@@ -28,7 +28,7 @@ export function GlobalProvider({ children }: GlobalContextProviderProps) {
   }
 
   return (
-    <GlobalContext.Provider value={{ contactActiveValue, setContactActiveValue, handleSetContactActiveValue }}>
+    <GlobalContext.Provider value={{ contactActiveValue, setContactActiveValue, toggleContactActiveValue }}>
       {children}
     </GlobalContext.Provider>
   )
