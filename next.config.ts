@@ -5,8 +5,8 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: 'icadmin.icideax.com',
+        protocol: 'https',
+        hostname: 'icadmin.ixoradesign.com',
         pathname: '/assets/**',
       },
       {

@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import ReactFullpage, { type fullpageApi } from '@fullpage/react-fullpage'
 
 import { Footer } from '@/components/layout/footer'
@@ -20,6 +20,15 @@ const ChevronDownButton = ({
   hideButton: boolean
   fpRef: React.RefObject<FullpageInstance | null>
 }) => {
+
+  useEffect(() => {
+    if (fpRef.current) {
+      document.addEventListener('moveFullPageToLast', () => {
+        fpRef.current?.fullpageApi.moveTo(4)
+      })
+    }
+  }, [fpRef])
+
   return (
     !hideButton && (
       <button
