@@ -3,6 +3,8 @@
 import { use, useState, createContext, ReactNode, useEffect } from 'react'
 import { motion, useMotionValue } from 'framer-motion'
 import { useMediaQuery } from '../hooks/use-media-query'
+import { CursorLogo, CursorScroller } from '@/components/ui/icons-outline'
+import { cn } from '../utils/cn'
 
 type CursorType = 'default' | 'hovered'
 
@@ -16,7 +18,13 @@ const CursorContext = createContext<CursorContextType>({
   setCursorType: () => {},
 })
 
-const CursorProvider = ({ children }: { children: ReactNode }) => {
+const CursorProvider = ({
+  children,
+  cursorIcon = 'logo',
+}: {
+  children: ReactNode
+  cursorIcon?: 'logo' | 'scroller'
+}) => {
   /** hook */
   const isTablet = useMediaQuery('(max-width: 1024px)')
   /** states */
@@ -35,15 +43,16 @@ const CursorProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
+      const yPosition = e.clientY + cursorSize / 2
       mouse.x.set(e.clientX - cursorSize / 2)
-      mouse.y.set(e.clientY - cursorSize / 2)
+      mouse.y.set(cursorIcon === 'logo' ? yPosition : yPosition - 136)
+      /** 136px == header height 100px + icon height 36px */
       mouse.scale.set(1)
     }
+
     window.addEventListener('mousemove', handleMouseMove)
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
-    }
-  }, [mouse.x, mouse.y, mouse.scale, cursorSize])
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [mouse.x, mouse.y, mouse.scale, cursorSize, cursorIcon])
 
   if (isTablet) return <>{children}</>
 
@@ -51,7 +60,10 @@ const CursorProvider = ({ children }: { children: ReactNode }) => {
     <CursorContext.Provider value={{ cursorType, setCursorType }}>
       {children}
       <motion.div
-        className="bg-blue pointer-events-none fixed z-[9999] flex size-0 items-center justify-center rounded-full opacity-0"
+        className={cn(
+          'pointer-events-none absolute z-[9999] flex size-0 items-center justify-center rounded-full opacity-0',
+          cursorIcon === 'logo' ? 'bg-blue' : 'bg-transparent',
+        )}
         animate={{
           opacity: cursorType === 'hovered' ? 0.9 : 0,
           scale: cursorType === 'hovered' ? 1 : 0,
@@ -64,12 +76,7 @@ const CursorProvider = ({ children }: { children: ReactNode }) => {
           top: smoothMouse.y,
         }}
       >
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8.70703 7.29294L12.9495 3.05047" stroke="white" />
-          <path d="M3.0498 12.9498L7.29227 8.7073" stroke="white" />
-          <path d="M3.0498 3.0502L7.29227 7.29267" stroke="#89CEE7" />
-          <path d="M8.70703 8.70706L12.9495 12.9495" stroke="#89CEE7" />
-        </svg>
+        {cursorIcon === 'logo' ? <CursorLogo /> : <CursorScroller />}
       </motion.div>
     </CursorContext.Provider>
   )
