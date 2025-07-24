@@ -70,4 +70,12 @@ const ButtonArrowLink = ({ arrow = 'right', isFullWidth, className, children, ..
   )
 }
 
-export { ButtonArrow, ButtonArrowLink }
+const ButtonArrowNormalLink = ({ arrow = 'right', isFullWidth, className, children, ...props }: ButtonArrowProps & ComponentProps<'a'>) => {
+  return (
+    <a className={buttonArrowVariants({ isFullWidth, className })} {...props}>
+      <ButtonArrowChildren arrow={arrow}>{children}</ButtonArrowChildren>
+    </a>
+  )
+}
+
+export { ButtonArrow, ButtonArrowLink, ButtonArrowNormalLink }

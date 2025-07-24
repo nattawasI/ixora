@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { CardAward, CardAwardLoading } from '@/components/ui/card-award'
-import { ButtonArrowLink } from '@/components/ui/button-arrow'
+import { ButtonArrowNormalLink } from '@/components/ui/button-arrow'
 import { getAwards } from '@/libs/directus/service/awards'
 import { EmptyData } from '@/components/ui/empty-data'
 
@@ -28,13 +28,12 @@ const AwardList = async () => {
               category={item.project.category.title}
               year={item.project.year}
               action={
-                <ButtonArrowLink
+                <ButtonArrowNormalLink
                   href={`/projects/${item.project.category.slug}/${item.project.slug}`}
                   isFullWidth
-                  target="_blank"
                 >
                   See this project
-                </ButtonArrowLink>
+                </ButtonArrowNormalLink>
               }
             />
           ))}

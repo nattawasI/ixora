@@ -21,6 +21,7 @@ const Preloader = () => {
   const [isClicked, setIsClicked] = useState<boolean>(false)
   const [isHovered, setIsHovered] = useState<boolean>(false)
   const [isReady, setIsReady] = useState<boolean>(false)
+  const [isVisited, setIsVisited] = useState<boolean>(false)
 
   /** animation */
   const containerControls = useAnimation()
@@ -112,6 +113,8 @@ const Preloader = () => {
       .then(() => {
         setIsComplete(true)
       })
+
+    sessionStorage.setItem('hasVisited', 'true')
   }
 
   useEffect(() => {
@@ -125,10 +128,17 @@ const Preloader = () => {
     startAnimations()
   }, [logoControls, footerControls])
 
+  useEffect(() => {
+    const hasVisited = sessionStorage.getItem('hasVisited')
+    if (hasVisited) {
+      setIsVisited(true)
+    }
+  }, [])
+
   if (isComplete) return null
 
   return (
-    <RemoveScroll enabled={!isComplete}>
+    !isVisited && <RemoveScroll enabled={!isComplete}>
       <AnimatePresence mode="wait">
         <motion.div animate={containerControls} className="fixed inset-0 z-[9999] flex flex-col bg-white">
           <div
