@@ -17,10 +17,11 @@ const ContactNav = ({ onClick }: { onClick?: () => void }) => {
 
   const handleClick = () => {
     const contactSection = document.getElementById('contact')
+    const useFullPage = pathname === '/about' && !isMobile
 
     if (contactSection) {
       if (contactActiveValue) {
-        if (pathname === '/about' && !isMobile) {
+        if (useFullPage) {
           moveFullPageToLast()
         } else {
           contactSection.scrollIntoView({ behavior: 'smooth' })
@@ -29,7 +30,7 @@ const ContactNav = ({ onClick }: { onClick?: () => void }) => {
         setContactActiveValue('contact')
 
         setTimeout(() => {
-          if (pathname === '/about' && !isMobile) {
+          if (useFullPage) {
             moveFullPageToLast()
           } else {
             contactSection.scrollIntoView({ behavior: 'smooth' })
