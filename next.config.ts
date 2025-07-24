@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'ixoradesign.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'icadmin.ixoradesign.com',
+      },
     ],
   },
 }

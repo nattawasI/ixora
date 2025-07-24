@@ -19,6 +19,7 @@ import { Navigation, Pagination } from 'swiper/modules'
 import { ArrowPrev, ArrowNext } from '@/components/ui/icons-outline'
 import { CategoryCard } from './card'
 import { useMediaQuery } from '@/libs/hooks/use-media-query'
+import { useCursorContext } from '@/libs/context/cursor'
 
 const items = [
   {
@@ -81,12 +82,14 @@ const items = [
 
 const CategorySlider = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
+  const { setCursorType } = useCursorContext()
+
   const prevRef = useRef<HTMLButtonElement>(null)
   const nextRef = useRef<HTMLButtonElement>(null)
   const paginationRef = useRef<HTMLDivElement>(null)
 
   const buttonArrowStyle = cn(
-    'nav-button disabled:text-gray-light-1 disabled:cursor-not-allowed [&_svg]:transition-colors [&_svg]:duration-300',
+    'nav-button disabled:text-gray-light-1 hover:text-blue disabled:cursor-not-allowed [&_svg]:transition-colors [&_svg]:duration-300',
   )
 
   return isMobile ? (
@@ -99,34 +102,43 @@ const CategorySlider = () => {
     </div>
   ) : (
     <div className="custom-slider c-container-sm relative space-y-14">
-      <Swiper
-        slidesPerView={3}
-        spaceBetween={30}
-        centeredSlides={false}
-        modules={[Pagination, Navigation]}
-        navigation={{
-          prevEl: prevRef.current,
-          nextEl: nextRef.current,
+      <div
+        onMouseEnter={() => {
+          setCursorType('hovered')
         }}
-        pagination={{
-          type: 'progressbar',
-          el: paginationRef.current,
-        }}
-        className="!overflow-visible"
-        onInit={(swiper) => {
-          swiper.navigation.init()
-          swiper.navigation.update()
-          swiper.pagination.init()
-          swiper.pagination.render()
-          swiper.pagination.update()
+        onMouseLeave={() => {
+          setCursorType('default')
         }}
       >
-        {items.map((item, i) => (
-          <SwiperSlide key={i}>
-            <CategoryCard {...item} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        <Swiper
+          slidesPerView={3}
+          spaceBetween={30}
+          centeredSlides={false}
+          modules={[Pagination, Navigation]}
+          navigation={{
+            prevEl: prevRef.current,
+            nextEl: nextRef.current,
+          }}
+          pagination={{
+            type: 'progressbar',
+            el: paginationRef.current,
+          }}
+          className="!overflow-visible"
+          onInit={(swiper) => {
+            swiper.navigation.init()
+            swiper.navigation.update()
+            swiper.pagination.init()
+            swiper.pagination.render()
+            swiper.pagination.update()
+          }}
+        >
+          {items.map((item, i) => (
+            <SwiperSlide key={i}>
+              <CategoryCard {...item} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
 
       <div className="custom-navigation">
         <div className="flex items-center gap-x-5">

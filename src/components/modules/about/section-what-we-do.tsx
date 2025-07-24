@@ -1,4 +1,5 @@
 import { CategorySlider } from './category/slider'
+import { CursorProvider } from '@/libs/context/cursor'
 
 const SectionWhatWeDo = () => {
   return (
@@ -16,7 +17,9 @@ const SectionWhatWeDo = () => {
           </div>
         </div>
       </div>
-      <CategorySlider />
+      <CursorProvider cursorIcon="scroller">
+        <CategorySlider />
+      </CursorProvider>
     </div>
   )
 }

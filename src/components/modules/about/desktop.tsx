@@ -32,6 +32,8 @@ const ChevronDownButton = ({
   return (
     !hideButton && (
       <button
+        type="button"
+        aria-label="Scroll down"
         className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2"
         onClick={() => fpRef.current?.fullpageApi.moveSectionDown()}
       >
@@ -43,16 +45,16 @@ const ChevronDownButton = ({
 
 const DesktopAboutLayout = () => {
   const [hideButton, setHideButton] = useState(false)
-  const fp = useRef(null)
+  const fpRef = useRef(null)
 
   return (
     <div className="relative">
-      <ChevronDownButton hideButton={hideButton} fpRef={fp} />
+      <ChevronDownButton hideButton={hideButton} fpRef={fpRef} />
 
       <ReactFullpage
         credits={{ enabled: false }}
         licenseKey={process.env.NEXT_PUBLIC_FP_LICENSE_KEY as string}
-        ref={fp}
+        ref={fpRef}
         onLeave={(_origin, destination, direction) => {
           setHideButton(destination.isLast && direction === 'down')
         }}
