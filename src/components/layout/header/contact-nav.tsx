@@ -6,7 +6,7 @@ import { useGlobalContext } from '@/components/layout/global-context'
 import { useMediaQuery } from '@/libs/hooks/use-media-query'
 
 const ContactNav = ({ onClick }: { onClick?: () => void }) => {
-  const { contactActiveValue, setContactActiveValue } = useGlobalContext()
+  const { setContactActiveValue } = useGlobalContext()
   const pathname = usePathname()
   const isMobile = useMediaQuery('(max-width: 768px)')
 
@@ -20,23 +20,15 @@ const ContactNav = ({ onClick }: { onClick?: () => void }) => {
     const useFullPage = pathname === '/about' && !isMobile
 
     if (contactSection) {
-      if (contactActiveValue) {
+      setContactActiveValue(['email', 'offices', 'social'])
+
+      setTimeout(() => {
         if (useFullPage) {
           moveFullPageToLast()
         } else {
           contactSection.scrollIntoView({ behavior: 'smooth' })
         }
-      } else {
-        setContactActiveValue('contact')
-
-        setTimeout(() => {
-          if (useFullPage) {
-            moveFullPageToLast()
-          } else {
-            contactSection.scrollIntoView({ behavior: 'smooth' })
-          }
-        }, 300)
-      }
+      }, 300)
     }
 
     onClick?.()
