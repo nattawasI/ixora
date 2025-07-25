@@ -43,10 +43,10 @@ const CursorProvider = ({
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      const yPosition = e.clientY + cursorSize / 2
+      const yPosition = e.clientY - cursorSize / 2
       mouse.x.set(e.clientX - cursorSize / 2)
-      mouse.y.set(cursorIcon === 'logo' ? yPosition : yPosition - 136)
-      /** 136px == header height 100px + icon height 36px */
+      mouse.y.set(cursorIcon === 'logo' ? yPosition : yPosition - 100)
+      /** 100px == header height */
       mouse.scale.set(1)
     }
 
