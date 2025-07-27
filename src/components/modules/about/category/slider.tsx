@@ -101,7 +101,7 @@ const CategorySlider = () => {
           ))}
         </div>
       ) : (
-        <div className="custom-slider c-container-sm relative space-y-14">
+        <div className="custom-slider c-container-sm relative space-y-14" data-cursor-target>
           <div>
             <Swiper
               slidesPerView={3}

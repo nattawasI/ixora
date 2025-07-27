@@ -12,7 +12,7 @@ const AboutPageContent = () => {
 
   return (
     <MotionPageFade>
-      <main className={cn(isMobile === undefined ? 'invisible' : '')} data-cursor-target>
+      <main className={cn(isMobile === undefined ? 'invisible' : '')}>
         {isMobile ? <MobileAboutLayout /> : <DesktopAboutLayout />}
       </main>
     </MotionPageFade>
