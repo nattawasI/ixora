@@ -8,7 +8,6 @@ import { ChevronDown } from '@/components/ui/icons-color'
 import { SectionWhoWeAre } from './section-who-we-are'
 import { SectionWhatWeDo } from './section-what-we-do'
 import { SectionOurCommitment } from './section-our-commitment'
-import { CursorProvider } from '@/components/common/cursor-provider'
 interface FullpageInstance {
   fullpageApi: fullpageApi
 }
@@ -47,37 +46,35 @@ const DesktopAboutLayout = () => {
   const fpRef = useRef(null)
 
   return (
-    <CursorProvider cursorIcon="scroller">
-      <div className="relative">
-        <ChevronDownButton hideButton={hideButton} fpRef={fpRef} />
-        <ReactFullpage
-          credits={{ enabled: false }}
-          licenseKey={process.env.NEXT_PUBLIC_FP_LICENSE_KEY as string}
-          ref={fpRef}
-          onLeave={(_origin, destination, direction) => {
-            setHideButton(destination.isLast && direction === 'down')
-          }}
-          render={() => {
-            return (
-              <ReactFullpage.Wrapper>
-                <section className="section pb-25">
-                  <SectionWhoWeAre isDesktop />
-                </section>
-                <section className="section pb-25">
-                  <SectionWhatWeDo />
-                </section>
-                <section className="section pb-25">
-                  <SectionOurCommitment />
-                </section>
-                <section className="section fp-auto-height">
-                  <Footer />
-                </section>
-              </ReactFullpage.Wrapper>
-            )
-          }}
-        />
-      </div>
-    </CursorProvider>
+    <div className="relative">
+      <ChevronDownButton hideButton={hideButton} fpRef={fpRef} />
+      <ReactFullpage
+        credits={{ enabled: false }}
+        licenseKey={process.env.NEXT_PUBLIC_FP_LICENSE_KEY as string}
+        ref={fpRef}
+        onLeave={(_origin, destination, direction) => {
+          setHideButton(destination.isLast && direction === 'down')
+        }}
+        render={() => {
+          return (
+            <ReactFullpage.Wrapper>
+              <section className="section pb-25">
+                <SectionWhoWeAre isDesktop />
+              </section>
+              <section className="section pb-25">
+                <SectionWhatWeDo />
+              </section>
+              <section className="section pb-25">
+                <SectionOurCommitment />
+              </section>
+              <section className="section fp-auto-height">
+                <Footer />
+              </section>
+            </ReactFullpage.Wrapper>
+          )
+        }}
+      />
+    </div>
   )
 }
 

@@ -117,7 +117,7 @@ const CategorySlider = () => {
                 type: 'progressbar',
                 el: paginationRef.current,
               }}
-              className="!overflow-visible"
+              className="!overflow-visible select-none"
               onInit={(swiper) => {
                 swiper.navigation.init()
                 swiper.navigation.update()
@@ -133,7 +133,6 @@ const CategorySlider = () => {
               ))}
             </Swiper>
           </div>
-
           <div className="custom-navigation">
             <div className="flex items-center gap-x-5">
               <button type="button" ref={prevRef} aria-label="Previous slide" className={buttonArrowStyle}>

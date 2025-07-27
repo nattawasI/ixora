@@ -1,5 +1,6 @@
 import { getMetadata } from '@/libs/utils/metadata'
 import { AboutPageContent } from '@/components/modules/about'
+import { CustomCursor } from '@/components/common/custom-cursor'
 
 import type { Metadata } from 'next'
 
@@ -16,5 +17,10 @@ export function generateMetadata(): Metadata {
 }
 
 export default function AboutPage() {
-  return <AboutPageContent />
+  return (
+    <>
+      <AboutPageContent />
+      <CustomCursor icon="scroller" />
+    </>
+  )
 }

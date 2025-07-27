@@ -1,6 +1,5 @@
 /** libs */
 import { cn } from '@/libs/utils/cn'
-import { CursorProvider } from '@/components/common/cursor-provider'
 import { getProjectByCategory } from '@/libs/directus/service/project-category'
 
 /** components */
@@ -21,38 +20,36 @@ const ProjectList = async ({ category }: { category: string }) => {
   return (
     <>
       <UpdateProjectListContext data={data} />
-      <CursorProvider cursorIcon="logo">
-        <MotionStaggerRoot>
-          <div className="list-project">
-            {data.map((item, index) => (
-              <MotionStaggerItem key={index}>
-                <Link
-                  className="block"
-                  href={`/projects/${item.category.slug}/${item.slug}`}
-                  prefetch={false}
-                  scroll={false}
-                >
-                  <CardProject
-                    data-cursor-target
-                    className="cursor-none"
-                    image={{
-                      src: item.cover.src,
-                      alt: item.title,
-                      sizes: '100vw, (min-width: 768px) 33vw',
-                      priority: index <= 5,
-                    }}
-                    title={{
-                      tag: 'h2',
-                      text: item.title,
-                    }}
-                    location={item.location}
-                  />
-                </Link>
-              </MotionStaggerItem>
-            ))}
-          </div>
-        </MotionStaggerRoot>
-      </CursorProvider>
+      <MotionStaggerRoot>
+        <div className="list-project">
+          {data.map((item, index) => (
+            <MotionStaggerItem key={index}>
+              <Link
+                className="block"
+                href={`/projects/${item.category.slug}/${item.slug}`}
+                prefetch={false}
+                scroll={false}
+              >
+                <CardProject
+                  data-cursor-target
+                  className="cursor-none"
+                  image={{
+                    src: item.cover.src,
+                    alt: item.title,
+                    sizes: '100vw, (min-width: 768px) 33vw',
+                    priority: index <= 5,
+                  }}
+                  title={{
+                    tag: 'h2',
+                    text: item.title,
+                  }}
+                  location={item.location}
+                />
+              </Link>
+            </MotionStaggerItem>
+          ))}
+        </div>
+      </MotionStaggerRoot>
     </>
   )
 }
