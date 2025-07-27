@@ -2,7 +2,7 @@ import { cn } from '@/libs/utils/cn'
 
 import { ExploreMoreHeading } from '@/components/modules/article-detail/explore-more-heading'
 import { ExploreMoreLink } from '@/components/modules/article-detail/explore-more-link'
-import { ProjectCard } from '@/components/modules/projects/project-card'
+import { CardProject } from '@/components/ui/card-project'
 
 import type { ProjectResponse } from '@/libs/directus/type'
 
@@ -25,7 +25,7 @@ const ProjectExploreMore = ({ isInModal, data }: ProjectExploreMoreProps) => {
                   href={`/projects/${item.category.slug}/${item.slug}`}
                   isInModal={isInModal}
                 >
-                  <ProjectCard
+                  <CardProject
                     image={{
                       src: item.cover.src,
                       alt: item.title,

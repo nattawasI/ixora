@@ -3,7 +3,7 @@ import { format } from 'date-fns'
 
 import { ExploreMoreHeading } from '@/components/modules/article-detail/explore-more-heading'
 import { ExploreMoreLink } from '@/components/modules/article-detail/explore-more-link'
-import { PressCard } from '@/components/modules/press/press-card'
+import { CardPress } from '@/components/ui/card-press'
 
 import type { NewsResponse } from '@/libs/directus/type'
 
@@ -22,7 +22,7 @@ const PressExploreMore = ({ isInModal, data }: PressExploreMoreProps) => {
             {data.map((item, index) => {
               return (
                 <ExploreMoreLink key={index} href={`/press-and-news/${item.slug}`} isInModal={isInModal}>
-                  <PressCard
+                  <CardPress
                     image={{
                       src: item.cover.src,
                       alt: item.title,

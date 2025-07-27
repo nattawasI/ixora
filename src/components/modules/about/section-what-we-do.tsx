@@ -1,5 +1,5 @@
 import { CategorySlider } from './category/slider'
-import { CursorProvider } from '@/libs/context/cursor'
+import { CursorProvider } from '@/components/common/cursor-provider'
 
 const SectionWhatWeDo = () => {
   return (

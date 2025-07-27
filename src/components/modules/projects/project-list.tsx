@@ -1,13 +1,13 @@
 /** libs */
 import { cn } from '@/libs/utils/cn'
-import { CursorProvider } from '@/libs/context/cursor'
+import { CursorProvider } from '@/components/common/cursor-provider'
 import { getProjectByCategory } from '@/libs/directus/service/project-category'
 
 /** components */
 import Link from 'next/link'
 import { CardProjectLoading } from '@/components/ui/card-project'
 import { EmptyData } from '@/components/ui/empty-data'
-import { ProjectCard } from '@/components/modules/projects/project-card'
+import { CardProject } from '@/components/ui/card-project'
 import { UpdateProjectListContext } from '@/components/modules/projects/update-project-list-context'
 import { MotionStaggerRoot, MotionStaggerItem } from '@/components/common/motion'
 
@@ -21,7 +21,7 @@ const ProjectList = async ({ category }: { category: string }) => {
   return (
     <>
       <UpdateProjectListContext data={data} />
-      <CursorProvider>
+      <CursorProvider cursorIcon="logo">
         <MotionStaggerRoot>
           <div className="list-project">
             {data.map((item, index) => (
@@ -32,7 +32,9 @@ const ProjectList = async ({ category }: { category: string }) => {
                   prefetch={false}
                   scroll={false}
                 >
-                  <ProjectCard
+                  <CardProject
+                    data-cursor-target
+                    className="cursor-none"
                     image={{
                       src: item.cover.src,
                       alt: item.title,

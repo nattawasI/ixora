@@ -1,9 +1,8 @@
 import { format } from 'date-fns'
 import { getNews } from '@/libs/directus/service/news'
 import Link from 'next/link'
-import { CardPressLoading } from '@/components/ui/card-press'
-import { PressCard } from '@/components/modules/press/press-card'
-import { CursorProvider } from '@/libs/context/cursor'
+import { CardPress, CardPressLoading } from '@/components/ui/card-press'
+import { CursorProvider } from '@/components/common/cursor-provider'
 import { UpdatePressListContext } from '@/components/modules/press/update-press-list-context'
 import { EmptyData } from '@/components/ui/empty-data'
 
@@ -17,11 +16,13 @@ const PressList = async () => {
   return (
     <>
       <UpdatePressListContext data={data} />
-      <CursorProvider>
+      <CursorProvider cursorIcon="logo">
         <div className="list-awards-press">
           {data.map((item, index) => (
             <Link href={`/press-and-news/${item.slug}`} className="block" key={index} scroll={false} prefetch={false}>
-              <PressCard
+              <CardPress
+                data-cursor-target
+                className="cursor-none"
                 image={{
                   src: item.cover.src,
                   alt: item.title,
