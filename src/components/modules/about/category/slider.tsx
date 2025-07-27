@@ -101,12 +101,13 @@ const CategorySlider = () => {
           ))}
         </div>
       ) : (
-        <div className="custom-slider c-container-sm relative space-y-14" data-cursor-target>
+        <div className="custom-slider c-container-sm relative space-y-14">
           <div>
             <Swiper
               slidesPerView={3}
               spaceBetween={30}
               centeredSlides={false}
+              grabCursor={false}
               modules={[Pagination, Navigation]}
               navigation={{
                 prevEl: prevRef.current,

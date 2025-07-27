@@ -1,5 +1,4 @@
 import { CategorySlider } from './category/slider'
-import { CursorProvider } from '@/components/common/cursor-provider'
 
 const SectionWhatWeDo = () => {
   return (
@@ -17,9 +16,7 @@ const SectionWhatWeDo = () => {
           </div>
         </div>
       </div>
-      <CursorProvider cursorIcon="scroller">
-        <CategorySlider />
-      </CursorProvider>
+      <CategorySlider />
     </div>
   )
 }

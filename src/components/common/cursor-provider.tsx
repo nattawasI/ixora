@@ -32,8 +32,12 @@ export const CursorProvider = ({
     const handleMove = (e: MouseEvent) => {
       x = e.clientX
       y = e.clientY
+
       cursorX.set(x)
       cursorY.set(y)
+
+      const target = (e.target as HTMLElement)?.closest('[data-cursor-target]')
+      setVisible(!!target)
     }
 
     const updateCursorTarget = () => {
@@ -47,11 +51,11 @@ export const CursorProvider = ({
       rafRef.current = requestAnimationFrame(loop)
     }
 
-    window.addEventListener('mousemove', handleMove)
+    window.addEventListener('pointermove', handleMove)
     loop()
 
     return () => {
-      window.removeEventListener('mousemove', handleMove)
+      window.removeEventListener('pointermove', handleMove)
       cancelAnimationFrame(rafRef.current!)
     }
   }, [isTablet, cursorX, cursorY])
