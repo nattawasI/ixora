@@ -80,6 +80,7 @@ export const getProjectCategory = async () => {
       fields: [
         'id',
         'title',
+        'description',
         'slug',
         'image.id',
         'image.filename_disk',

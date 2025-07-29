@@ -4,6 +4,7 @@ import { CustomCursor } from '@/components/common/custom-cursor'
 import { getProjectCategory } from '@/libs/directus/service/project-category'
 
 import type { Metadata } from 'next'
+import { AboutCategoryProvider } from '@/components/modules/about/category/context'
 
 export function generateMetadata(): Metadata {
   return getMetadata({
@@ -19,11 +20,11 @@ export function generateMetadata(): Metadata {
 
 export default async function AboutPage() {
   const data = await getProjectCategory()
-  console.log(data)
+
   return (
-    <>
+    <AboutCategoryProvider categories={data}>
       <AboutPageContent />
       <CustomCursor icon="scroller" />
-    </>
+    </AboutCategoryProvider>
   )
 }

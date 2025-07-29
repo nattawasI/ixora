@@ -4,7 +4,7 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
-import Image, { type ImageProps } from 'next/image'
+import Image from 'next/image'
 
 /** components */
 import { ArrowRight } from '@/components/ui/icons-outline'
@@ -16,7 +16,7 @@ type CategoryCardProps = {
   title: string
   description: string
   href: string
-  image: ImageProps
+  image: string
 }
 
 const CategoryCard = ({ title, description, href, image }: CategoryCardProps) => {
@@ -35,7 +35,7 @@ const CategoryCard = ({ title, description, href, image }: CategoryCardProps) =>
       <Link href={href} className="relative block aspect-[3/4] overflow-hidden">
         <div className={cn('absolute inset-0 z-10 bg-black/30 transition-colors', { 'bg-black/10': isHovered })} />
         <Image
-          {...image}
+          src={image}
           alt={title}
           width={360}
           height={480}
