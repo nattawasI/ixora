@@ -6,10 +6,14 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
-import { cn } from '@/libs/utils/cn'
+/** context */
+import { useAboutCategory } from './context'
 
 /** libs */
 import { useRef } from 'react'
+
+/** hooks */
+import { useMediaQuery } from '@/libs/hooks/use-media-query'
 
 /** swiper */
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -18,69 +22,14 @@ import { Navigation, Pagination } from 'swiper/modules'
 /** components */
 import { ArrowPrev, ArrowNext } from '@/components/ui/icons-outline'
 import { CategoryCard } from './card'
-import { useMediaQuery } from '@/libs/hooks/use-media-query'
 
-const items = [
-  {
-    title: 'RESIDENTIAL',
-    href: '/projects/residential',
-    description:
-      'Explore the art of landscape architecture and its role in creating sustainable and functional spaces.',
-    image: {
-      src: '/images/about/residential.png',
-      alt: 'RESIDENTIAL',
-    },
-  },
-  {
-    title: 'CONDOMINIUM',
-    href: '/projects/condominium',
-    description: 'Explore the art of urban design and its role in creating sustainable and functional spaces.',
-    image: {
-      src: '/images/about/condominium.png',
-      alt: 'CONDOMINIUM',
-    },
-  },
-  {
-    title: 'HOSPITALITY',
-    href: '/projects/hospitality',
-    description: 'Explore the art of interior design and its role in creating sustainable and functional spaces.',
-    image: {
-      src: '/images/about/hospitality.png',
-      alt: 'HOSPITALITY',
-    },
-  },
-  {
-    title: 'COMMERCIAL',
-    href: '/projects/commercial',
-    description:
-      'Explore the art of landscape architecture and its role in creating sustainable and functional spaces.',
-    image: {
-      src: '/images/about/commercial.png',
-      alt: 'COMMERCIAL',
-    },
-  },
-  {
-    title: 'MASTER PLANNING',
-    href: '/projects/master-planning',
-    description: 'Explore the art of urban design and its role in creating sustainable and functional spaces.',
-    image: {
-      src: '/images/about/master-planning.png',
-      alt: 'MASTER PLANNING',
-    },
-  },
-  {
-    title: 'PUBLIC SPACE',
-    href: '/projects/public-space',
-    description: 'Explore the art of interior design and its role in creating sustainable and functional spaces.',
-    image: {
-      src: '/images/about/public-space.png',
-      alt: 'PUBLIC SPACE',
-    },
-  },
-]
+/** utils */
+import { cn } from '@/libs/utils/cn'
 
 const CategorySlider = () => {
   const isMobile = useMediaQuery('(max-width: 767px)')
+
+  const { categories } = useAboutCategory()
 
   const prevRef = useRef<HTMLButtonElement>(null)
   const nextRef = useRef<HTMLButtonElement>(null)
@@ -94,9 +43,9 @@ const CategorySlider = () => {
     <>
       {isMobile ? (
         <div className="c-container grid grid-cols-2 gap-2.5">
-          {items.map((item, i) => (
+          {categories.map((item, i) => (
             <div key={i}>
-              <CategoryCard {...item} />
+              <CategoryCard href={`/projects/${item.slug}`} {...item} />
             </div>
           ))}
         </div>
@@ -126,9 +75,9 @@ const CategorySlider = () => {
                 swiper.pagination.update()
               }}
             >
-              {items.map((item, i) => (
+              {categories.map((item, i) => (
                 <SwiperSlide key={i}>
-                  <CategoryCard {...item} />
+                  <CategoryCard href={`/projects/${item.slug}`} {...item} />
                 </SwiperSlide>
               ))}
             </Swiper>

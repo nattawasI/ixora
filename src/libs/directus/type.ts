@@ -118,6 +118,14 @@ type ProjectDetailResponse = Omit<ProjectResponse, 'gallery' | 'video'> & {
   video: (VideoResponse & { project_id: string })[]
 }
 
+type ProjectCategoryResponse = {
+  id: string
+  title: string
+  description: string
+  slug: string
+  image: string
+}
+
 export type {
   CategoryType,
   CareerResponse,
@@ -129,4 +137,5 @@ export type {
   NewsDetailResponse,
   ProjectResponse,
   ProjectDetailResponse,
+  ProjectCategoryResponse,
 }

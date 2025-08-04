@@ -3,7 +3,12 @@ import 'server-only'
 import { directus } from '@/libs/directus'
 import { readItems } from '@directus/sdk'
 import { mapMediaSource } from '@/libs/directus/util'
-import type { ProjectResponse, CategoryType, ProjectDetailResponse } from '@/libs/directus/type'
+import type {
+  ProjectResponse,
+  CategoryType,
+  ProjectDetailResponse,
+  ProjectCategoryResponse,
+} from '@/libs/directus/type'
 
 export const getProjectByCategory = async ({ category }: { category: CategoryType | (string & {}) }) => {
   const filteredCategory = category !== '' ? { category: { slug: { _eq: category } } } : {}
@@ -62,4 +67,34 @@ export const getProjectByCategory = async ({ category }: { category: CategoryTyp
   )
 
   return mapMediaSource<ProjectResponse[], ProjectDetailResponse[]>(data)
+}
+
+export const getProjectCategory = async () => {
+  const data = await directus.request(
+    readItems('project_category', {
+      filter: {
+        status: {
+          _eq: 'published',
+        },
+      },
+      fields: [
+        'id',
+        'title',
+        'description',
+        'slug',
+        'image.id',
+        'image.filename_disk',
+        'image.filename_download',
+        'image.width',
+        'image.height',
+        'image.filesize',
+        'image.title',
+      ],
+    }),
+  )
+
+  return data.map((item) => ({
+    ...item,
+    image: `${process.env.DIRECTUS_URL}/assets/${item.image.id}`,
+  })) as ProjectCategoryResponse[]
 }

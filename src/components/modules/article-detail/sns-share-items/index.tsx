@@ -48,6 +48,7 @@ const SnsShareItems = ({ title, coverImage }: SnsShareItemsProps) => {
         aria-label="Pinterest Share"
         url={shareUrl}
         media={coverImage}
+        description={title}
         className={buttonStyle}
       >
         <Pinterest />
