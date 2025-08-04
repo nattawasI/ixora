@@ -24,16 +24,20 @@ const AwardList = async () => {
               title={{ tag: 'h2', text: item.title }}
               descriptionLead={item.content_lead ?? ''}
               descriptionMore={item.content_more ?? ''}
-              projectName={item.project.title}
-              category={item.project.category.title}
-              year={item.project.year}
+              projectName={item.project?.title ?? '-'}
+              category={item.project?.category.title ?? '-'}
+              year={item.project?.year ?? '-'}
               action={
-                <ButtonArrowNormalLink
-                  href={`/projects/${item.project.category.slug}/${item.project.slug}`}
-                  isFullWidth
-                >
-                  See this project
-                </ButtonArrowNormalLink>
+                <>
+                  {item.project?.category.slug && item.project?.slug ? (
+                    <ButtonArrowNormalLink
+                      href={`/projects/${item.project.category.slug}/${item.project.slug}`}
+                      isFullWidth
+                    >
+                      See this project
+                    </ButtonArrowNormalLink>
+                  ) : null}
+                </>
               }
             />
           ))}
