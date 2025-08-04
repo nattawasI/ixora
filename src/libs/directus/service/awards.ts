@@ -11,6 +11,11 @@ export const getAwards = async () => {
         status: {
           _eq: 'published',
         },
+        project: {
+          status: {
+            _eq: 'published',
+          },
+        },
       },
       fields: [
         'id',
