@@ -32,7 +32,7 @@ const ProjectList = async ({ category }: { category: string }) => {
               >
                 <CardProject
                   data-cursor-target
-                  className="cursor-none"
+                  className="xl:cursor-none"
                   image={{
                     src: item.cover.src,
                     alt: item.title,

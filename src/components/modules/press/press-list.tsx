@@ -20,7 +20,7 @@ const PressList = async () => {
           <Link href={`/press-and-news/${item.slug}`} className="block" key={index} scroll={false} prefetch={false}>
             <CardPress
               data-cursor-target
-              className="cursor-none"
+              className="xl:cursor-none"
               image={{
                 src: item.cover.src,
                 alt: item.title,

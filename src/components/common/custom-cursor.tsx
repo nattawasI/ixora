@@ -7,7 +7,7 @@ import { useMediaQuery } from '@/libs/hooks/use-media-query'
 import { CursorLogo, CursorScroller } from '@/components/ui/icons-outline'
 
 export const CustomCursor = ({ icon = 'logo' }: { icon?: 'logo' | 'scroller' }) => {
-  const isTablet = useMediaQuery('(max-width: 1023px)')
+  const isTablet = useMediaQuery('(max-width: 1279px)')
 
   const [visible, setVisible] = useState(false)
 
