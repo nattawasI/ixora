@@ -59,12 +59,12 @@ const CardAward = ({
         <TitleTag className="typo-title-2--rps font-semibold">{title.text}</TitleTag>
         {descriptionLead && descriptionMore ? (
           <ReadMoreBlock
-            className="typo-body-2"
+            className="typo-body-2 cms-content"
             contentLead={parse(descriptionLead)}
             contentMore={<div className="pt-5">{parse(descriptionMore)}</div>}
           />
         ) : descriptionLead || descriptionMore ? (
-          <div className="typo-body-2">{parse(descriptionLead || descriptionMore)}</div>
+          <div className="typo-body-2 cms-content">{parse(descriptionLead || descriptionMore)}</div>
         ) : null}
       </div>
       <Separator orientation="horizontal" className="lg:hidden" />
